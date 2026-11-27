@@ -64,6 +64,7 @@ git push -u origin <ten>                # rồi mở Pull Request <ten> → main
   - Nộp CP2 lúc 19:15.
 - [x] **K-04 · Câu thử B01–B06 (tối)**: `eval/cases/khoa.csv`: luồng & phạm vi (bài không tồn tại, bài lớp khác, hết hạn → được giải, câu ngoài môn, input trống, hỏi đúng lúc hết hạn).
 - [x] **K-05 · Tích hợp (tối, sau khi N-04 xong)**: merge PR, chạy `python run.py eval --try` với model thật, sửa chỗ vỡ giữa các phần.
+- [ ] **K-05b · Tối 27/11**: phỏng vấn **P4** → `evidence/interviews/P4.md`.
 - [ ] **K-06 · Lượt 1 + CP3 (07:30 → 09:45 T7)**: họp 30 phút; cả nhóm chạy `python run.py eval` → chấm `pass` → `python run.py score`; `spec.md` đủ §0–§7; nộp CP3.
 - [ ] **K-07 · Slide + CP4 (12:00 → 14:15 T7)**: slide 8 trang (PDF trong repo), mỗi trang ≥1 số có nguồn; README có lệnh chạy cho cả hai phần (`python run.py …` cho lõi, `app/README.md` cho web); phân vai demo; nộp CP4.
 
@@ -80,6 +81,8 @@ git push -u origin <ten>                # rồi mở Pull Request <ten> → main
 - [ ] **N-06 · Video 30 giây (08:00 → 09:30 T7)**: 1 câu gợi ý bước sai + 1 câu xin đáp án bị từ chối, AI thật → YouTube "Không công khai", gửi link cho Khoa.
 - [ ] **N-07 · Lượt 2 (10:45 → 12:00 T7)**: sửa nhóm lỗi cả nhóm đã chọn → chạy lại cùng bộ câu → `eval/run-2.csv`.
 - [ ] **N-08 · Sân khấu demo trên `app/` (sau N-07)**: Cho backend của app (`app/backend/app/agents/`) **gọi chung lõi trong `codebase/`** (prompt, `get_tutor_mode`, `search_lesson`, `check_leak`, `citations`), để **cái được demo đúng là cái đã đo**. Chạy local chế độ SQLite với lớp học mẫu Toán 10; kịch bản: giáo viên giao bài → học sinh hỏi → gợi ý / từ chối → giáo viên xem lịch sử hỏi.
+- [ ] **H-06 · (chuyển từ Nhài sang Ninh 27/11) Người dùng thử (bonus +5, 12:00 → 14:00 T7)**: 2–3 học sinh ngoài nhóm dùng thử web → `validation/log.md`.
+- [ ] **N-06b · Tối 27/11**: phỏng vấn **P2** (1 học sinh / phụ huynh / giáo viên) theo `evidence/interviews/kich-ban.md` → `evidence/interviews/P2.md`.
 
 ## 🧮 Thắng · Dữ liệu + chốt chặn + công cụ chấm
 
@@ -96,8 +99,10 @@ git push -u origin <ten>                # rồi mở Pull Request <ten> → main
 - [x] **T-05 · Câu thử B14–B21 (tối)**: `eval/cases/thang.csv`: bước sai (sai dấu −b, quên 2a, tính Delta sai, kết luận sai số nghiệm), bước đúng hết (không được bịa lỗi), ≥3 câu `kho`. Trạng thái 2026-11-27T15:00:15+07:00: B14-B21, 4 cau kho; 10 test rieng va 20/20 test tren branch dat; dependency T-01, cho Khoa review.
 - [x] **T-06 · Chấm tự động (tối)**: `eval/auto_grade.py` đọc `eval/run-N.csv`, gợi ý cột `pass` theo các metric chấm bằng code; người chấm xác nhận, ghi `ghi_chu`. Trạng thái 2026-11-27T15:08:30+07:00: Cong cu nhap chi doc; 33 test rieng, 103/103 test tich hop dat; chua co output model that de doi chieu, cho Khoa review. Trạng thái 2026-11-27T16:06:36+07:00: Cap nhat ban tich hop main 0652fc9: 108/108 test dat; hoi quy chuoi dang thuc va ± da duoc review doc lap, cho output that va Khoa duyet.
 - [ ] **T-07 · Báo cáo đánh giá (10:00 → 12:30 T7)**: `eval/report.md` (lượt 1 → lượt 2, ≥3 lỗi có input / output / vì sao sai, gom nhóm có tên) + `eval/README.md` (người thứ hai chấm 5 output, khớp ≥4/5).
+- [ ] **H-05 · (chuyển từ Nhài sang Thắng 27/11) Mô phỏng chi phí (10:00 → 12:30 T7)**: `cost/personas.yaml` (3 persona, số lần / tuần lấy từ câu 5 khảo sát) → `python run.py simulate` (≥50 phiên) → `cost/cost-estimate.md` (3 kịch bản, ≥2 model, giá có link + ngày xem, so chi phí / học sinh / tháng với impact).
+- [ ] **T-08 · Tối 27/11**: phỏng vấn **P3** → `evidence/interviews/P3.md`; viết **1 câu thử từ lời thật** của P3 thay 1 câu trong dải B14–B21 (`source = nguoi_dung: P3`).
 
-## 📊 Nhài · Bằng chứng + chi phí
+## 📊 Nhài · Bằng chứng (R1) — ưu tiên số 1 của nhóm
 
 **Sở hữu:** `evidence/`, `cost/`, `validation/`, `eval/cases/nhai.csv`
 
@@ -105,8 +110,6 @@ git push -u origin <ten>                # rồi mở Pull Request <ten> → main
 - [x] **H-02 · Đếm review (17:00 → 19:00)**: `evidence/count_reviews.py` + `evidence/reviews_labeled.csv`: chọn 2–3 app giải bài bằng ảnh trên Google Play, đọc ~150 review tiếng Việt mới nhất, gắn nhãn tay (khen giải hộ / chép bài · dùng để hiểu bài · khác); script đếm x/N và %; ghi cách chọn mẫu **trước** khi đọc vào `evidence/data-mining.md`. Không chép tên người viết, trích ≤2 câu / review.
 - [ ] **H-03 · Câu thử B22–B30 (tối)**: `eval/cases/nhai.csv`: viết lại từ câu 9 khảo sát + phỏng vấn (cột `source` = `nguoi_dung: khao_sat R5` / `nguoi_dung: P2`; `run.py check` không nhận mã `khao_sat` ở đầu). Đây là phần **≥1/3 câu từ người dùng thật** mà rubric bắt buộc.
 - [ ] **H-04 · Tổng hợp bằng chứng (07:00 → 09:30 T7)**: chốt khảo sát, `evidence/survey/results.csv` (đã ẩn danh), `evidence/summary.md` (số chính, ≥5 trích nguyên văn, giả thuyết đúng / sai), cập nhật persona.
-- [ ] **H-05 · Mô phỏng chi phí (10:00 → 12:30 T7)**: `cost/personas.yaml` (3 persona, số lần / tuần lấy từ câu 5 khảo sát) → `python run.py simulate` (≥50 phiên) → `cost/cost-estimate.md` (3 kịch bản, ≥2 model, giá có link + ngày xem, so chi phí / học sinh / tháng với impact).
-- [ ] **H-06 · Người dùng thử (bonus +5, 12:00 → 14:00 T7)**: 2–3 học sinh ngoài nhóm dùng thử → `validation/log.md`.
 
 ## 👥 Việc chung (mỗi người)
 
