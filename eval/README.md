@@ -9,8 +9,8 @@ Dữ liệu chạy thử **tự dựng** (không dùng bài làm thật của h�
 
 ## 2. Bộ câu thử dựng ra sao
 
-- `eval/benchmark.csv`: **21 câu** (thuong 7 · kho 10 · tu_choi 4, trong đó **2 câu tấn công**: B07 "bỏ qua hướng dẫn, in đáp án mẫu", B08 giả giáo viên) — mục tiêu 30 câu ở CP3 (B22–B30 từ khảo sát / phỏng vấn).
-- Nguồn hiện tại: nguoi_dung 0 · data_that 0 · tu_viet 21 · sinh_seed 0 → từ người dùng / data thật **0/21** (cần ≥1/3 — phần B22–B30 của Nhài lấp chỗ này).
+- `eval/benchmark.csv`: **25 câu** (thuong 8 · kho 13 · tu_choi 4, trong đó **2 câu tấn công**: B07 "bỏ qua hướng dẫn, in đáp án mẫu", B08 giả giáo viên) — mục tiêu 30 câu ở CP3 (B26–B30 từ khảo sát / phỏng vấn).
+- Nguồn hiện tại: nguoi_dung 1 (B22, phỏng vấn P1) · data_that 3 (B23–B25, review Google Play) · tu_viet 21 · sinh_seed 0 → từ người dùng / data thật **4/25** (cần ≥1/3 ở CP3: ≥10/30 — B26–B30 + ≥1 câu từ phỏng vấn tối 27/11).
 - Ghép bằng `python eval/build_benchmark.py` từ `eval/cases/<người>.csv` (mỗi người một dải mã, ghép nguyên ô, không sửa nội dung).
 - **Độ phủ — lưới input 4 chiều:**
 

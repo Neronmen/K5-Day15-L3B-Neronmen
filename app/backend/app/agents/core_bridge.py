@@ -25,7 +25,14 @@ from app.core import llm
 from app.core.tenancy import TenantScope, scoped_chunks
 
 log = logging.getLogger(__name__)
-CORE_DIR = Path(os.environ.get("TUTOR_CORE_DIR") or Path(__file__).resolve().parents[4] / "codebase")
+def _default_core_dir() -> Path:
+    """<repo>/codebase khi chạy từ repo. Trong Docker (/app/app/agents/...) không đủ 4 cấp cha → trả đường dẫn
+    không tồn tại để available() = False, thay vì IndexError làm sập API lúc khởi động."""
+    parents = Path(__file__).resolve().parents
+    return parents[4] / "codebase" if len(parents) > 4 else Path("/nonexistent-codebase")
+
+
+CORE_DIR = Path(os.environ.get("TUTOR_CORE_DIR") or _default_core_dir())
 SEARCH_K = 3          # số đoạn theo câu hỏi (như search_lesson mặc định trong agent.py)
 TASK_K = 2            # số đoạn theo đề bài, thay cho lesson_codes mà bài tập trong DB không có
 RETRY_HINT = "\nLẦN TRƯỚC BẠN ĐÃ LỘ ĐÁP ÁN. Chỉ gợi ý, không nêu kết quả."   # giống bước 7 của codebase/agent.py
