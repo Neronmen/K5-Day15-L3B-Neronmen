@@ -101,9 +101,9 @@ git push -u origin <ten>                # rồi mở Pull Request <ten> → main
 
 **Sở hữu:** `evidence/`, `cost/`, `validation/`, `eval/cases/nhai.csv`
 
-- [ ] **H-01 · Gửi khảo sát (NGAY)**: chép `evidence/survey/questions.md` sang Google Form, gửi qua phụ huynh / giáo viên quen. Mục tiêu ≥20 học sinh THPT trước 08:00 T7. Gửi link form vào group để cả nhóm cùng chuyển.
+- [x] **H-01 · Gửi khảo sát (NGAY)** *(form tạo 14:50 27/11)*: chép `evidence/survey/questions.md` sang Google Form, gửi qua phụ huynh / giáo viên quen. Mục tiêu ≥20 học sinh THPT trước 08:00 T7. Gửi link form vào group để cả nhóm cùng chuyển.
 - [ ] **H-02 · Đếm review (17:00 → 19:00)**: `evidence/count_reviews.py` + `evidence/reviews_labeled.csv`: chọn 2–3 app giải bài bằng ảnh trên Google Play, đọc ~150 review tiếng Việt mới nhất, gắn nhãn tay (khen giải hộ / chép bài · dùng để hiểu bài · khác); script đếm x/N và %; ghi cách chọn mẫu **trước** khi đọc vào `evidence/data-mining.md`. Không chép tên người viết, trích ≤2 câu / review.
-- [ ] **H-03 · Câu thử B22–B30 (tối)**: `eval/cases/nhai.csv`: viết lại từ câu 9 khảo sát + phỏng vấn (cột `source` = `khao_sat: R5` / `nguoi_dung: P2`). Đây là phần **≥1/3 câu từ người dùng thật** mà rubric bắt buộc.
+- [ ] **H-03 · Câu thử B22–B30 (tối)**: `eval/cases/nhai.csv`: viết lại từ câu 9 khảo sát + phỏng vấn (cột `source` = `nguoi_dung: khao_sat R5` / `nguoi_dung: P2`; `run.py check` không nhận mã `khao_sat` ở đầu). Đây là phần **≥1/3 câu từ người dùng thật** mà rubric bắt buộc.
 - [ ] **H-04 · Tổng hợp bằng chứng (07:00 → 09:30 T7)**: chốt khảo sát, `evidence/survey/results.csv` (đã ẩn danh), `evidence/summary.md` (số chính, ≥5 trích nguyên văn, giả thuyết đúng / sai), cập nhật persona.
 - [ ] **H-05 · Mô phỏng chi phí (10:00 → 12:30 T7)**: `cost/personas.yaml` (3 persona, số lần / tuần lấy từ câu 5 khảo sát) → `python run.py simulate` (≥50 phiên) → `cost/cost-estimate.md` (3 kịch bản, ≥2 model, giá có link + ngày xem, so chi phí / học sinh / tháng với impact).
 - [ ] **H-06 · Người dùng thử (bonus +5, 12:00 → 14:00 T7)**: 2–3 học sinh ngoài nhóm dùng thử → `validation/log.md`.
