@@ -108,12 +108,18 @@ def search_lesson(query: str, class_id: str, k: int = 3) -> list:
     - score = BM25 × độ_phủ², độ phủ = tỉ lệ từ khoá đơn của câu hỏi có trong đoạn; làm tròn 3 chữ số. Câu chỉ trùng
       1/3 từ ("Thủ đô nước Pháp" trùng mỗi "pháp" trong "phương pháp") bị chia 9, nên agent dùng được một ngưỡng
       cố định TUTOR_MIN_SCORE (đề xuất 0.5: câu ngoài bài ≤ 0.26, "Delta là gì" ≥ 0.89 trên cả dữ liệu mẫu lẫn T-01).
-    - Chỉ trả đoạn có score > 0, xếp giảm dần (bằng điểm thì trang nhỏ trước)."""
-    q = _terms(query)
-    if not q or not class_id or k <= 0:
+    - Chỉ trả đoạn có score > 0, xếp giảm dần (bằng điểm thì trang nhỏ trước).
+    Phần chấm điểm nằm ở rank_passages để app/ (N-08) dùng chung trên đoạn bài giảng trong DB."""
+    if not class_id:
         return []
-    passages = [p for p in _load("lesson.json") if p.get("class_id") == class_id]
-    if not passages:
+    return rank_passages(query, [p for p in _load("lesson.json") if p.get("class_id") == class_id], k)
+
+
+def rank_passages(query: str, passages: list, k: int = 3) -> list:
+    """Chấm điểm BM25 (xem search_lesson) trên danh sách đoạn {"title","text",...} ĐÃ LỌC THEO LỚP từ trước.
+    Không đọc file, không lọc lớp: người gọi chịu trách nhiệm lọc tenant (app/ dùng app.core.tenancy)."""
+    q = _terms(query)
+    if not q or not passages or k <= 0:
         return []
     # Mỗi đoạn có 2 túi từ: có dấu (key "a") và không dấu (key "p"); từ của câu hỏi tra đúng túi của nó.
     docs = []
