@@ -35,7 +35,7 @@ export function AttachmentLink({ assignmentId, name }: { assignmentId: string; n
         type="button"
         onClick={open}
         disabled={busy}
-        className="inline-flex max-w-full items-center gap-2 rounded-[9px] border border-line bg-surface px-3 py-2 text-left text-sm font-medium hover:border-accent hover:text-accent disabled:opacity-60"
+        className="inline-flex max-w-full items-center gap-2 rounded-lg border border-line bg-surface px-3 py-2 text-left text-sm font-medium hover:border-accent hover:text-accent disabled:opacity-60"
       >
         <Paperclip size={15} className="flex-none" />
         <span className="min-w-0 break-all">{busy ? "Đang tải…" : name}</span>

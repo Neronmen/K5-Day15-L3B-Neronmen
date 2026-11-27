@@ -91,14 +91,14 @@ export default function TeacherDashboard() {
             const next = fmtNextSession(c.next_session_at);
             return (
               <Link key={c.id} href={`/teacher/classes/${c.id}`} className="group">
-                <Card className="flex h-full flex-col gap-3 transition group-hover:border-accent">
+                <Card className="flex h-full flex-col gap-4 transition group-hover:-translate-y-0.5 group-hover:border-line-strong">
                   <div className="flex flex-wrap items-center gap-2">
                     <Pill>{c.subject}</Pill>
                     <ModeLabel mode={c.ai_mode} />
                   </div>
-                  <h2 className="text-lg font-semibold">{c.name}</h2>
+                  <h2 className="text-[1.08rem] font-semibold leading-snug">{c.name}</h2>
                   <div className="flex items-start gap-2 text-sm">
-                    <CalendarClock size={16} className="mt-0.5 flex-none text-muted" />
+                    <CalendarClock size={16} className="mt-0.5 flex-none text-faint" />
                     {c.schedule_text ? (
                       <span>
                         {next && <b className="block text-accent">Buổi tới: {next}</b>}
@@ -108,14 +108,14 @@ export default function TeacherDashboard() {
                       <span className="text-muted">Chưa xếp lịch học</span>
                     )}
                   </div>
-                  <div className="flex flex-wrap gap-6">
+                  <div className="grid grid-cols-3 divide-x divide-line rounded-xl border border-line bg-sunken">
                     <Stat n={c.students} label="học sinh" />
                     <Stat n={c.documents} label="tài liệu" />
                     <Stat n={c.open_assignments} label="bài đang mở" />
                   </div>
                   <div className="mt-auto flex flex-wrap items-center gap-3 text-sm text-muted">
                     <span>
-                      Mã lớp <span className="rounded-md bg-sunken px-2 py-0.5 font-mono tracking-wide text-ink">{c.class_code}</span>
+                      Mã lớp <span className="rounded-md border border-line-strong px-2 py-0.5 font-mono tracking-wider text-ink">{c.class_code}</span>
                     </span>
                     {c.pending_grades > 0 && <Pill tone="warn">{c.pending_grades} bài chờ chấm</Pill>}
                   </div>
@@ -131,9 +131,9 @@ export default function TeacherDashboard() {
 
 function Stat({ n, label }: { n: number; label: string }) {
   return (
-    <div>
-      <b className="block font-display text-2xl tabular-nums">{n}</b>
-      <span className="text-xs text-muted">{label}</span>
+    <div className="px-3 py-2.5">
+      <b className="block font-display text-[1.4rem] font-semibold leading-tight tabular-nums">{n}</b>
+      <span className="text-[0.72rem] text-faint">{label}</span>
     </div>
   );
 }

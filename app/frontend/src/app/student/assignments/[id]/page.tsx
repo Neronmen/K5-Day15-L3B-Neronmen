@@ -8,7 +8,7 @@ import { ImagePlus, Lock, X } from "lucide-react";
 import { AttachmentLink } from "@/components/AttachmentLink";
 import { AuthImage } from "@/components/AuthImage";
 import { ChatPanel } from "@/components/ChatPanel";
-import { Banner, Button, Card, CardHeader, ErrorText, Loading, PageHeader, Pill, Textarea, cn } from "@/components/ui";
+import { Banner, Button, Card, CardHeader, DueChip, ErrorText, Loading, PageHeader, Pill, Textarea, cn } from "@/components/ui";
 import { api } from "@/lib/api";
 import { fmtDate, isPast } from "@/lib/format";
 import type { Result, RubricItem, StudentAssignmentDetail, Submission } from "@/lib/types";
@@ -29,7 +29,7 @@ export default function StudentAssignmentPage() {
     <>
       <PageHeader
         eyebrow={
-          <Link href={`/student/classes/${a.class_id}`} className="hover:text-accent">
+          <Link href={`/student/classes/${a.class_id}`} className="normal-case tracking-normal hover:underline">
             ← Về lớp
           </Link>
         }
@@ -40,16 +40,19 @@ export default function StudentAssignmentPage() {
         ) : overdue ? (
           <Pill tone="bad">Quá hạn</Pill>
         ) : (
-          <Pill tone="warn">Chưa nộp</Pill>
+          <div className="flex items-center gap-2">
+            <DueChip due={a.due_at} />
+            <Pill tone="warn">Chưa nộp</Pill>
+          </div>
         )}
       </PageHeader>
       <div className="grid items-start gap-4 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
         <div className="flex min-w-0 flex-col gap-4">
         <Card>
           <CardHeader title="Đề bài">
-            <span className="text-xs text-muted">Đề v{a.version}</span>
+            <span className="rounded-md border border-line px-1.5 py-0.5 font-mono text-[0.7rem] text-faint">v{a.version}</span>
           </CardHeader>
-          <p className="whitespace-pre-wrap">{a.prompt}</p>
+          <p className="whitespace-pre-wrap rounded-xl border border-line bg-sunken px-4 py-3.5 font-display text-[1.02rem] leading-relaxed">{a.prompt}</p>
           {a.attachment_name && (
             <div className="mt-3">
               <p className="mb-1.5 text-sm text-muted">File đề giáo viên gửi:</p>
@@ -89,9 +92,9 @@ export default function StudentAssignmentPage() {
         </div>
         </div>
         <ChatPanel
-          className="h-[600px] lg:sticky lg:top-20 lg:h-[calc(100vh-120px)]"
+          className="h-[600px] lg:sticky lg:top-[72px] lg:h-[calc(100vh-100px)]"
           title="Trợ lý giải bài"
-          badge={overdue ? <Pill tone="ok">Đã qua hạn · có lời giải</Pill> : <Pill tone="warn">Chế độ gợi ý</Pill>}
+          badge={overdue ? <Pill tone="ok">Đã qua hạn · có lời giải</Pill> : <Pill tone="info">Chế độ gợi ý</Pill>}
           intro={
             overdue
               ? "Bài đã qua hạn nộp. Em có thể hỏi lời giải chi tiết từng câu."
@@ -154,14 +157,14 @@ function SubmitCard({ assignmentId, late, onDone }: { assignmentId: string; late
   return (
     <Card>
       <CardHeader title="Nộp bài">
-        <div className="inline-flex gap-0.5 rounded-[10px] bg-sunken p-[3px]" role="group" aria-label="Cách nộp">
+        <div className="inline-flex gap-0.5 rounded-xl bg-sunken p-[3px]" role="group" aria-label="Cách nộp">
           {(["text", "photo"] as const).map((m) => (
             <button
               key={m}
               type="button"
               aria-pressed={mode === m}
               onClick={() => setMode(m)}
-              className={cn("rounded-lg px-3 py-1.5 text-sm font-medium text-muted", mode === m && "bg-surface text-ink shadow-sm")}
+              className={cn("rounded-md px-3 py-1.5 text-sm font-medium text-muted transition hover:text-ink", mode === m && "bg-surface text-ink shadow-card")}
             >
               {m === "text" ? "Gõ trực tiếp" : "Chụp ảnh vở"}
             </button>
@@ -206,7 +209,7 @@ function SubmitCard({ assignmentId, late, onDone }: { assignmentId: string; late
             <button
               type="button"
               onClick={() => inputRef.current?.click()}
-              className="rounded-xl border-[1.5px] border-dashed border-line p-8 text-center text-muted hover:border-accent hover:text-accent"
+              className="rounded-xl border-[1.5px] border-dashed border-line-strong p-8 text-center text-muted transition hover:border-accent hover:bg-accent-soft hover:text-ink"
             >
               <ImagePlus className="mx-auto mb-2" />
               <b>Chụp hoặc chọn ảnh bài làm</b>
@@ -249,7 +252,7 @@ function SubmittedCard({ s, published }: { s: Submission; published: boolean }) 
         {s.is_late && <Pill tone="warn">Nộp muộn</Pill>}
       </CardHeader>
       <div className="flex flex-col gap-3">
-        {s.content && <div className="paper whitespace-pre-wrap break-words rounded-[10px] border border-line p-3.5">{s.content}</div>}
+        {s.content && <div className="paper whitespace-pre-wrap break-words rounded-xl border border-line p-3.5">{s.content}</div>}
         {s.has_image && <AuthImage path={`/files/submissions/${s.id}/image`} alt="Ảnh bài làm đã nộp" />}
         {!published && <Banner>Nộp lúc {fmtDate(s.submitted_at)}. Điểm và nhận xét hiện ra khi giáo viên chấm xong và công bố.</Banner>}
       </div>

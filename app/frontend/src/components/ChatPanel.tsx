@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { SendHorizontal } from "lucide-react";
+import { ArrowUp, Sparkles } from "lucide-react";
 
 import { api } from "@/lib/api";
 import { streamChat } from "@/lib/sse";
@@ -78,23 +78,34 @@ export function ChatPanel({
   }
 
   return (
-    <div className={cn("flex min-h-0 flex-col rounded-xl border border-line bg-surface p-4", className)}>
-      <div className="flex flex-wrap items-center gap-2 border-b border-line pb-3">
-        <h2 className="mr-auto text-base font-semibold">{title}</h2>
+    <div className={cn("flex min-h-0 flex-col overflow-hidden rounded-2xl border border-line bg-surface shadow-card", className)}>
+      <div className="flex flex-wrap items-center gap-2.5 border-b border-line px-4 py-3">
+        <span className="grid size-7 place-items-center rounded-lg bg-accent-soft text-accent">
+          <Sparkles size={15} />
+        </span>
+        <h2 className="mr-auto text-[0.95rem] font-semibold">{title}</h2>
         {badge}
       </div>
-      <div ref={boxRef} className="flex min-h-0 flex-1 flex-col gap-3 overflow-y-auto py-3" aria-live="polite">
-        {msgs.length === 0 && <div className="max-w-[92%] self-start rounded-xl rounded-bl-sm bg-sunken px-3.5 py-2.5 text-sm">{intro}</div>}
+      <div ref={boxRef} className="flex min-h-0 flex-1 flex-col gap-4 overflow-y-auto px-4 py-4" aria-live="polite">
+        {msgs.length === 0 && (
+          <div className="max-w-[92%] self-start rounded-2xl rounded-tl-md border border-line bg-sunken px-4 py-3 text-sm leading-relaxed text-muted">
+            {intro}
+          </div>
+        )}
         {msgs.map((m) =>
           m.role === "user" ? (
-            <div key={m.id} className="max-w-[88%] self-end whitespace-pre-wrap break-words rounded-xl rounded-br-sm bg-accent px-3.5 py-2.5 text-sm text-accent-ink">
+            <div key={m.id} className="max-w-[85%] animate-rise self-end whitespace-pre-wrap break-words rounded-2xl rounded-br-md border border-accent/25 bg-accent-soft px-4 py-2.5 text-sm text-ink">
               {m.content}
             </div>
           ) : (
             <div
               key={m.id}
-              className={cn("max-w-[94%] self-start rounded-xl rounded-bl-sm bg-sunken px-3.5 py-2.5", m.error && "bg-bad-soft text-bad")}
+              className={cn(
+                "max-w-[94%] animate-rise self-start rounded-2xl rounded-tl-md border border-line bg-sunken px-4 py-3",
+                m.error && "border-bad/30 bg-bad-soft text-bad",
+              )}
             >
+              <div className="mb-1 text-[0.68rem] font-semibold uppercase tracking-[0.12em] text-faint">Gia sư</div>
               {m.content ? (
                 <Answer text={m.content} citations={m.citations} streaming={m.streaming} onCite={onCite} />
               ) : (
@@ -109,27 +120,28 @@ export function ChatPanel({
         )}
       </div>
       {msgs.length === 0 && (
-        <div className="flex flex-wrap gap-1.5 pb-2.5">
+        <div className="flex flex-wrap gap-1.5 px-4 pb-3">
           {suggestions.map((s) => (
             <button
               key={s}
               type="button"
               onClick={() => send(s)}
-              className="rounded-full border border-line px-3 py-1 text-xs text-muted hover:border-accent hover:text-accent"
+              className="rounded-full border border-line-strong px-3 py-1.5 text-xs text-muted transition hover:border-accent hover:bg-accent-soft hover:text-ink"
             >
               {s}
             </button>
           ))}
         </div>
       )}
-      {notice && <p className="pb-2 text-xs text-warn">{notice}</p>}
+      {notice && <p className="px-4 pb-2 text-xs text-warn">{notice}</p>}
       <form
         onSubmit={(e) => {
           e.preventDefault();
           send(input);
         }}
-        className="flex gap-2 border-t border-line pt-3"
+        className="border-t border-line p-3"
       >
+        <div className="flex items-end gap-2 rounded-xl border border-line-strong bg-field p-1.5 pl-3 transition focus-within:border-accent focus-within:ring-2 focus-within:ring-accent/20">
         <textarea
           aria-label="Câu hỏi"
           rows={1}
@@ -142,15 +154,16 @@ export function ChatPanel({
             }
           }}
           placeholder={placeholder}
-          className="max-h-32 min-w-0 flex-1 resize-none rounded-[9px] border border-line bg-surface px-3 py-2 text-sm"
+          className="max-h-32 min-w-0 flex-1 resize-none bg-transparent py-1.5 text-sm placeholder:text-faint focus:outline-none"
         />
         <button
           disabled={busy || !input.trim()}
           aria-label="Gửi"
-          className="grid size-10 flex-none place-items-center rounded-[9px] bg-accent text-accent-ink disabled:opacity-50"
+          className="grid size-9 flex-none place-items-center rounded-lg bg-accent text-accent-ink transition hover:brightness-105 disabled:bg-sunken disabled:text-faint"
         >
-          <SendHorizontal size={17} />
+          <ArrowUp size={17} />
         </button>
+        </div>
       </form>
     </div>
   );

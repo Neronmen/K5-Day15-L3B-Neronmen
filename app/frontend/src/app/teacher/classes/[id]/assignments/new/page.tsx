@@ -84,7 +84,7 @@ export default function NewAssignmentPage() {
               onChange={(e) => setFile(e.target.files?.[0] ?? null)}
             />
             {file ? (
-              <div className="flex items-center gap-2 rounded-[9px] border border-line px-3 py-2 text-sm">
+              <div className="flex items-center gap-2 rounded-lg border border-line px-3 py-2 text-sm">
                 <Paperclip size={15} className="flex-none text-muted" />
                 <span className="min-w-0 flex-1 break-all">{file.name}</span>
                 <Button
@@ -122,7 +122,7 @@ export default function NewAssignmentPage() {
               <Input id="due" type="datetime-local" required value={due} onChange={(e) => setDue(e.target.value)} />
             </Field>
             <Field label="Nộp muộn" htmlFor="late">
-              <label className="flex items-center gap-2 rounded-[9px] border border-line px-3 py-2">
+              <label className="flex items-center gap-2 rounded-lg border border-line px-3 py-2">
                 <input id="late" type="checkbox" className="accent-accent" checked={allowLate} onChange={(e) => setAllowLate(e.target.checked)} />
                 Cho phép, gắn nhãn &quot;Nộp muộn&quot;
               </label>

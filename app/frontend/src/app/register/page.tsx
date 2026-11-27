@@ -45,7 +45,7 @@ export default function RegisterPage() {
           {(["student", "teacher"] as const).map((r) => (
             <label
               key={r}
-              className="flex cursor-pointer items-center gap-2 rounded-[10px] border border-line p-3 has-[:checked]:border-accent has-[:checked]:bg-accent-soft"
+              className="flex cursor-pointer items-center gap-2 rounded-xl border border-line p-3 has-[:checked]:border-accent has-[:checked]:bg-accent-soft"
             >
               <input type="radio" name="role" value={r} checked={role === r} onChange={() => setRole(r)} className="accent-accent" />
               <span className="font-semibold">{r === "student" ? "Học sinh" : "Giáo viên"}</span>
