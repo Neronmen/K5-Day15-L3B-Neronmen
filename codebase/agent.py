@@ -28,7 +28,9 @@ from tracing import note
 
 DEFAULTS = {"assignment_id": "BT01", "role": "student", "class_id": "10A1",
             "asked_at": "2026-11-28T21:00:00+07:00"}
-MIN_SCORE = float(os.environ.get("TUTOR_MIN_SCORE", "1"))  # ngưỡng điểm search_lesson để coi là "liên quan"
+# Ngưỡng điểm BM25 của search_lesson để coi đoạn là "liên quan". 0.5 theo đo của Ninh (N-02):
+# câu ngoài bài tối đa 0.26 điểm, "Delta là gì" thấp nhất 0.89 → 0.5 nằm giữa hai mức.
+MIN_SCORE = float(os.environ.get("TUTOR_MIN_SCORE", "0.5"))
 MAX_MESSAGE_CHARS = 2000
 
 TAG = "[QUYET_DINH: %s]\n"
