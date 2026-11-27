@@ -19,3 +19,9 @@ README của nhóm có mục "Dùng AI vào việc gì" (2–3 dòng, bắt bu�
 Phần trên chỉ khai báo việc AI hỗ trợ Thắng trong phiên này. Các ô còn trống thuộc công việc chưa được khai báo ở đây, không có nghĩa là thành viên khác có hoặc không dùng AI. Công cụ chấm T-06 không gọi LLM và không tự điền pass. Không có run-1/run-2 hay phỏng vấn thật do phiên này tạo ra.
 
 **Không dùng AI để:** tạo người được phỏng vấn, trích dẫn, câu trả lời khảo sát; sửa kết quả các lượt đã chạy (`eval/run-*.csv`, `cost/simulate-*.csv`, `traces/`).
+
+## Rà soát CP2 của Thắng, ngày 27/11/2026
+
+Codex đọc trạng thái GitHub, dependency, commit/file, CI/review và chạy kiểm chứng trên main 0e96a99 trong worktree riêng. Đã xác minh cả sáu head có trong main, 108 unittest đạt; smoke dùng MODEL_PROVIDER=fake, probe dùng stub synthetic, không gọi model thật trong phiên rà soát. Ghi lại hai điểm hợp đồng chấm cần Khoa/Ninh thống nhất, không sửa agent, CSV, metric hoặc ngưỡng. Chỉ bổ sung tài liệu bàn giao và gợi ý xử lý PR34 dư; không merge main hay đóng Issue.
+
+Ba file nháp T-07 có backup byte-for-byte trước fetch; cập nhật local được thêm vào mà không xóa bản gốc. Không tạo output eval hay human grading/phỏng vấn giả. Dữ liệu kiểm thử synthetic không phải bằng chứng người dùng. Các dòng khai báo của thành viên khác được giữ nguyên. Hướng dẫn và biên nhận: docs/cp2-review-thang.md, docs/verification/thang-cp2-20261127.json.
