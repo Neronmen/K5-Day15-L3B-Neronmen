@@ -1,0 +1,73 @@
+{
+  "issues": [
+    {
+      "number": 7,
+      "state": "closed",
+      "state_reason": "completed",
+      "comment_url": "https://github.com/Neronmen/K5-Day15-L3B-Neronmen/issues/7#issuecomment-7220742917",
+      "closed_in_this_audit": false
+    },
+    {
+      "number": 8,
+      "state": "closed",
+      "state_reason": "completed",
+      "comment_url": "https://github.com/Neronmen/K5-Day15-L3B-Neronmen/issues/8#issuecomment-7220744047",
+      "closed_in_this_audit": false
+    },
+    {
+      "number": 9,
+      "state": "closed",
+      "state_reason": "completed",
+      "comment_url": "https://github.com/Neronmen/K5-Day15-L3B-Neronmen/issues/9#issuecomment-7220745096",
+      "closed_in_this_audit": true
+    },
+    {
+      "number": 16,
+      "state": "closed",
+      "state_reason": "completed",
+      "comment_url": "https://github.com/Neronmen/K5-Day15-L3B-Neronmen/issues/16#issuecomment-7220746654",
+      "closed_in_this_audit": true
+    },
+    {
+      "number": 17,
+      "state": "closed",
+      "state_reason": "completed",
+      "comment_url": "https://github.com/Neronmen/K5-Day15-L3B-Neronmen/issues/17#issuecomment-7220748242",
+      "closed_in_this_audit": true
+    },
+    {
+      "number": 18,
+      "state": "closed",
+      "state_reason": "completed",
+      "comment_url": "https://github.com/Neronmen/K5-Day15-L3B-Neronmen/issues/18#issuecomment-7220749742",
+      "closed_in_this_audit": false
+    },
+    {
+      "number": 26,
+      "state": "open",
+      "state_reason": null,
+      "comment_url": "https://github.com/Neronmen/K5-Day15-L3B-Neronmen/issues/26#issuecomment-7220750919",
+      "closed_in_this_audit": false
+    },
+    {
+      "number": 27,
+      "state": "open",
+      "state_reason": null,
+      "comment_url": "https://github.com/Neronmen/K5-Day15-L3B-Neronmen/issues/27#issuecomment-7220751996",
+      "closed_in_this_audit": false
+    },
+    {
+      "number": 20,
+      "state": "open",
+      "state_reason": null,
+      "comment_url": "https://github.com/Neronmen/K5-Day15-L3B-Neronmen/issues/20#issuecomment-7220752986",
+      "closed_in_this_audit": false
+    }
+  ],
+  "pr47": {
+    "url": "https://github.com/Neronmen/K5-Day15-L3B-Neronmen/pull/47",
+    "head": "db305da68cc820e6acae381020d20fb4b8550037",
+    "ready_for_review": true
+  },
+  "pr39": "unchanged"
+}

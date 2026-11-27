@@ -38,3 +38,9 @@ Benchmark có 30 ID duy nhất, 7 câu khảo sát + 3 review = 10/30 = 33,33% n
 Phần H-05 kế thừa file hoàn chỉnh từ worktree cũ tại 85e0678, không thay worktree đó. Survey main khớp nguyên byte Git và mọi số phân tích cũ. Xem [cost-estimate](../cost/cost-estimate.md) cho giả định, giá, các ô pending và lệnh chạy tiếp. Sau khi người giao việc cấu hình credential, đã chạy 10 phiên thử và 50 phiên API thật. Đây là simulation chi phí, chưa phải bộ evaluation/human grading.
 
 T-06 chưa được đối chiếu với raw output thật; không dùng bản redteam tóm tắt làm run. T-07 giữ draft gốc local, không tự tạo run-1/run-2, lỗi minh họa, human grading hoặc đồng thuận người thứ hai.
+
+## K?t qu? th?c hi?n tr?n GitHub
+
+?? comment b?ng ch?ng v? ??ng completed #9, #16, #17. #7, #8, #18 v?n closed/completed t? tr??c; #26, #27 v? vi?c chung #20 gi? m? v?i comment ti?n ??/blocker. [Receipt API](verification/thang-issue-actions-20261127.json) gi? URL comment t?ng Issue. PR #47 ?? Ready for review, ch?a merge.
+
+Ki?m cu?i: 125/125 unittest, builder/check, CLI SHA256, diff-check v? ??i chi?u token CSV/trace ??u ??t. To?n l??t 50 c? 45 model calls, 84621/10106 token; kh?ng c? API key trong file tracked. Raw CSV/trace/summary v? snapshot ???c b?o to?n byte qua .gitattributes; kh?ng s?a artifact ?? ch?y ?? x? l? CRLF.
