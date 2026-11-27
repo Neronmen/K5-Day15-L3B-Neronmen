@@ -1,4 +1,4 @@
-"""System prompt của gia sư. Owner: Ninh — chuyển từ MinutesStudy backend/app/agents/prompts.py (ticket N-01).
+"""System prompt của gia sư. Owner: Ninh (ticket N-01). Đồng bộ với app/backend/app/agents/prompts.py.
 
 Luật (khớp canvas dòng 6):
 - Chỉ dùng các đoạn tài liệu được đưa vào. Mỗi ý lý thuyết kèm thẻ [Nguồn: <mã đoạn> - Trang <số>].

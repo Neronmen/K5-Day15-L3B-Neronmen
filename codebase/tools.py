@@ -43,7 +43,7 @@ def strip_accents(s: str) -> str:
 @tool
 def get_assignment(assignment_id: str, now: str) -> dict:
     """get_assignment · Input: mã bài tập, giờ hỏi (ISO) · Output: đề, hạn, lớp, mã đoạn liên quan;
-    answer_key + final_answers CHỈ trả khi đã hết hạn (Rule 3 của MinutesStudy) · Không tác động ra ngoài.
+    answer_key + final_answers CHỈ trả khi đã hết hạn (Rule 3 trong app/docs/rules.md) · Không tác động ra ngoài.
     Owner: Thắng (dữ liệu thật ở data/assignments.json, ticket T-01)."""
     for a in _load("assignments.json"):
         if a["id"] == assignment_id:
@@ -66,7 +66,7 @@ def final_answers_of(assignment_id: str) -> list:
 def get_tutor_mode(role: str, due_at: str, now: str) -> str:
     """get_tutor_mode · Input: vai (lấy từ tài khoản, không từ lời nhắn), hạn nộp, giờ máy chủ ·
     Output: "hint" (còn hạn, học sinh) hoặc "answer" · Không tác động ra ngoài.
-    Lấy từ MinutesStudy backend/app/agents/policy.py. Owner: Ninh (ticket N-01)."""
+    Cùng logic với app/backend/app/agents/policy.py. Owner: Ninh (ticket N-01)."""
     if role != "student":
         return "answer"
     return "answer" if _parse_dt(now) >= _parse_dt(due_at) else "hint"
@@ -76,7 +76,7 @@ def get_tutor_mode(role: str, due_at: str, now: str) -> str:
 def search_lesson(query: str, class_id: str, k: int = 3) -> list:
     """search_lesson · Input: câu hỏi, mã lớp, số đoạn · Output: đoạn tài liệu kèm trang, LỌC CỨNG theo lớp ·
     Không tác động ra ngoài.
-    v0: đếm từ trùng (không dấu). Owner: Ninh thay bằng BM25 không dấu của MinutesStudy core/tenancy.py (ticket N-02)."""
+    v0: đếm từ trùng (không dấu). Owner: Ninh thay bằng BM25 không dấu, tham khảo app/backend/app/core/tenancy.py (ticket N-02)."""
     q = set(re.findall(r"\w+", strip_accents(query)))
     scored = []
     for p in _load("lesson.json"):
@@ -105,7 +105,7 @@ def check_leak(reply: str, final_answers: list) -> dict:
 def citations(reply: str, chunks: list) -> dict:
     """citations · Input: câu trả lời, các đoạn đã tìm · Output: câu trả lời đã bỏ thẻ nguồn bịa + danh sách nguồn thật ·
     Không tác động ra ngoài. Thẻ nguồn dạng [Nguồn: T10-C3-P02 - Trang 2].
-    Lấy ý từ MinutesStudy backend/app/agents/tutor.py (citations). Owner: Ninh (ticket N-03)."""
+    Tham khảo app/backend/app/agents/tutor.py (citations). Owner: Ninh (ticket N-03)."""
     valid = {c["code"]: c["page"] for c in chunks}
     sources = []
 

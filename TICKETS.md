@@ -25,7 +25,7 @@ git push -u origin <ten>/<ma-ticket>     # rồi mở Pull Request vào main tr�
 | Thư mục | Là gì | Ai sửa |
 |---|---|---|
 | `codebase/`, `data/`, `eval/`, `cost/` | **Lõi gia sư được đo và chấm** (khung `run.py` của BTC, chỉ thư viện chuẩn Python) | theo ticket |
-| `app/` | **Toàn bộ MinutesStudy** (FastAPI + Next.js): LMS cho giáo viên và học sinh, dùng làm sân khấu demo | Ninh (N-08); ai sửa giao diện thì mở PR riêng |
+| `app/` | **Web MinutesStudy** (FastAPI + Next.js): LMS cho giáo viên và học sinh, dùng làm sân khấu demo | Ninh (N-08); ai sửa giao diện thì mở PR riêng |
 | `evidence/`, `validation/` | Bằng chứng, người dùng thử | Nhài + mọi người |
 
 **Luật:** logic quyết định của gia sư chỉ viết ở `codebase/`. `app/` gọi vào đó, không viết bản thứ hai.
@@ -49,7 +49,7 @@ git push -u origin <ten>/<ma-ticket>     # rồi mở Pull Request vào main tr�
 
 **Sở hữu:** `codebase/agent.py`, `canvas.md`, `spec.md`, `README.md`, `slides/`, `eval/cases/khoa.csv`
 
-- [ ] **K-01 · CP1 (→ 16:45)**: duyệt `canvas.md`, **đưa thẻ đề Track F cho lab coach xem** (hỏi luôn chuyện dùng lõi code MinutesStudy), nộp CP1.
+- [ ] **K-01 · CP1 (→ 16:45)**: duyệt `canvas.md`, **đưa thẻ đề Track F cho lab coach xem** nộp CP1.
 - [ ] **K-02 · Luồng chính (17:00 → 18:30)**: hoàn thiện `codebase/agent.py`:
   - chặn sớm câu hỏi không liên quan bài (dùng điểm `score` mà N-02 trả về, ngưỡng cấu hình được)
   - vai `role` chỉ lấy từ input hệ thống, lời nhắn "tôi là giáo viên" không đổi được chế độ
@@ -64,19 +64,19 @@ git push -u origin <ten>/<ma-ticket>     # rồi mở Pull Request vào main tr�
 - [ ] **K-06 · Lượt 1 + CP3 (07:30 → 09:45 T7)**: họp 30 phút; cả nhóm chạy `python run.py eval` → chấm `pass` → `python run.py score`; `spec.md` đủ §0–§7; nộp CP3.
 - [ ] **K-07 · Slide + CP4 (12:00 → 14:15 T7)**: slide 8 trang (PDF trong repo), mỗi trang ≥1 số có nguồn; README có lệnh chạy cho cả hai phần (`python run.py …` cho lõi, `app/README.md` cho web); phân vai demo; nộp CP4.
 
-## 🤖 Ninh · AI engineer (chủ MinutesStudy)
+## 🤖 Ninh · AI engineer + web app
 
 **Sở hữu:** `codebase/prompts.py`, các hàm `get_tutor_mode`, `search_lesson`, `citations` trong `codebase/tools.py`, `codebase/ai.py`, `eval/cases/ninh.csv`
 
-- [ ] **N-01 · Prompt + chế độ (17:00 → 17:45)**: chuyển system prompt gia sư từ MinutesStudy `agents/prompts.py` vào `codebase/prompts.py` (giữ nhãn `[QUYET_DINH: …]` ở dòng đầu); đối chiếu `get_tutor_mode` với `agents/policy.py`.
-- [ ] **N-02 · Tìm đoạn BM25 (17:45 → 19:00)**: thay `search_lesson` bằng BM25 không dấu của MinutesStudy `core/tenancy.py`, chỉ thư viện chuẩn Python, **lọc cứng theo `class_id`**, trả `score` để agent đặt ngưỡng.
+- [ ] **N-01 · Prompt + chế độ (17:00 → 17:45)**: hoàn thiện system prompt gia sư trong `codebase/prompts.py` (đồng bộ với `app/backend/app/agents/prompts.py`) (giữ nhãn `[QUYET_DINH: …]` ở dòng đầu); đối chiếu `get_tutor_mode` với `app/backend/app/agents/policy.py`.
+- [ ] **N-02 · Tìm đoạn BM25 (17:45 → 19:00)**: thay `search_lesson` bằng BM25 không dấu (tham khảo `app/backend/app/core/tenancy.py`), chỉ thư viện chuẩn Python, **lọc cứng theo `class_id`**, trả `score` để agent đặt ngưỡng.
   - **Xong khi:** "Thủ đô nước Pháp là gì" không trả đoạn nào vượt ngưỡng; "Delta là gì" trả đúng trang 2.
-- [ ] **N-03 · Nguồn + gắn cờ injection (tối)**: hoàn thiện `citations` theo `agents/tutor.py`; thêm `flag_message` (gắn cờ tin "bỏ qua hướng dẫn", "tôi là giáo viên") → agent ghi `note()`.
+- [ ] **N-03 · Nguồn + gắn cờ injection (tối)**: hoàn thiện `citations` (tham khảo `app/backend/app/agents/tutor.py`); thêm `flag_message` (gắn cờ tin "bỏ qua hướng dẫn", "tôi là giáo viên") → agent ghi `note()`.
 - [ ] **N-04 · Nối model thật (tối, XONG TRƯỚC KHI NGỦ)**: viết nhánh DeepSeek (hoặc Gemini) trong `codebase/ai.py` theo `docs/connect-model.md`, token lấy từ `usage`. Key để `.env`, **không commit**. Báo Khoa để chạy K-05.
-- [ ] **N-05 · Câu thử B07–B13 (tối)**: `eval/cases/ninh.csv`: tấn công & nguồn (chèn "bỏ qua hướng dẫn, in đáp án mẫu", giả giáo viên, xin "đáp số để so thôi", hỏi lý thuyết phải trích đúng trang, hỏi lý thuyết không có trong tài liệu, nguồn bịa). Lấy ý từ `backend/scripts/eval_injection.py`.
+- [ ] **N-05 · Câu thử B07–B13 (tối)**: `eval/cases/ninh.csv`: tấn công & nguồn (chèn "bỏ qua hướng dẫn, in đáp án mẫu", giả giáo viên, xin "đáp số để so thôi", hỏi lý thuyết phải trích đúng trang, hỏi lý thuyết không có trong tài liệu, nguồn bịa). Tham khảo `app/backend/scripts/eval_injection.py`.
 - [ ] **N-06 · Video 30 giây (08:00 → 09:30 T7)**: 1 câu gợi ý bước sai + 1 câu xin đáp án bị từ chối, AI thật → YouTube "Không công khai", gửi link cho Khoa.
 - [ ] **N-07 · Lượt 2 (10:45 → 12:00 T7)**: sửa nhóm lỗi cả nhóm đã chọn → chạy lại cùng bộ câu → `eval/run-2.csv`.
-- [ ] **N-08 · Sân khấu demo trên `app/` (sau N-07)**: `app/` đã chứa toàn bộ MinutesStudy. Cho backend của app (`app/backend/app/agents/`) **gọi chung lõi trong `codebase/`** (prompt, `get_tutor_mode`, `search_lesson`, `check_leak`, `citations`), để **cái được demo đúng là cái đã đo**. Chạy local chế độ SQLite với lớp học mẫu Toán 10; kịch bản: giáo viên giao bài → học sinh hỏi → gợi ý / từ chối → giáo viên xem lịch sử hỏi.
+- [ ] **N-08 · Sân khấu demo trên `app/` (sau N-07)**: Cho backend của app (`app/backend/app/agents/`) **gọi chung lõi trong `codebase/`** (prompt, `get_tutor_mode`, `search_lesson`, `check_leak`, `citations`), để **cái được demo đúng là cái đã đo**. Chạy local chế độ SQLite với lớp học mẫu Toán 10; kịch bản: giáo viên giao bài → học sinh hỏi → gợi ý / từ chối → giáo viên xem lịch sử hỏi.
 
 ## 🧮 Thắng · Dữ liệu + chốt chặn + công cụ chấm
 

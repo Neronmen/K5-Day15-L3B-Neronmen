@@ -16,8 +16,8 @@
 | Tầng | Gồm | Vì sao |
 |---|---|---|
 | **1. Phần được chấm** (bắt buộc) | Một quyết định của gia sư, chạy qua `run.py eval` / `simulate`: bộ câu thử, metric, lượt 1 → 2, chi phí | Rubric chấm "quyết định và bằng chứng, không chấm độ hoành tráng" |
-| **2. Sân khấu demo** (nên có) | Toàn bộ MinutesStudy nằm ở `app/`. Chạy chính quyết định đó (app gọi chung lõi `codebase/`) trong web: giáo viên giao bài → học sinh hỏi → gợi ý / từ chối → giáo viên xem lịch sử hỏi (ticket N-08) | Giám khảo thấy sản phẩm thật, không thêm quyết định AI nào phải đo |
-| **3. Lộ trình** (chỉ trên slide) | AI chấm bài ảnh có giáo viên duyệt, trợ lý giáo viên, thông báo, lịch học | "Đã có trong MinutesStudy, chưa đo trong hackathon" |
+| **2. Sân khấu demo** (nên có) | Web MinutesStudy nằm ở `app/`. Chạy chính quyết định đó (app gọi chung lõi `codebase/`) trong web: giáo viên giao bài → học sinh hỏi → gợi ý / từ chối → giáo viên xem lịch sử hỏi (ticket N-08) | Giám khảo thấy sản phẩm thật, không thêm quyết định AI nào phải đo |
+| **3. Lộ trình** (chỉ trên slide) | AI chấm bài ảnh có giáo viên duyệt, trợ lý giáo viên, thông báo, lịch học | "Có trong sản phẩm, chưa đo trong bộ câu thử" |
 
 Tầng 2 chỉ làm **sau khi tầng 1 chạy xong lượt 1**.
 
@@ -44,5 +44,5 @@ input JSON {assignment_id, role, asked_at, message}
 ## ⚠️ Luật dễ mất điểm
 1. **Không commit API key** (để trong `.env`). Bị phát hiện → −10.
 2. **Không sửa chuẩn "đạt" sau CP2**, không xoá câu thử trượt, không sửa `expected` cho khớp output.
-3. Mỗi người phải **giải thích được phần có tên mình**. Ninh giải thích lõi gia sư cho cả nhóm trước CP3.
+3. Mỗi người phải **giải thích được phần có tên mình**. Ninh giải thích phần `app/` và lõi gia sư cho cả nhóm trước CP3.
 4. Không dùng bài làm, ảnh vở, tên trường thật của học sinh. Dữ liệu chạy thử đều tự dựng.
