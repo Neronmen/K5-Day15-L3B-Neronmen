@@ -82,7 +82,7 @@ git push -u origin <ten>/<ma-ticket>     # rồi mở Pull Request vào main tr�
 
 **Sở hữu:** `data/`, hàm `check_leak` trong `codebase/tools.py`, `tests/`, `eval/build_benchmark.py`, `eval/auto_grade.py`, `eval/metric_spec.yaml`, `eval/cases/thang.csv`
 
-- [ ] **T-01 · Dữ liệu bài học (17:00 → 18:30)**: `data/lesson.json` 1 chương Toán 10 (phương trình bậc hai, ~15 trang, tự viết lại, không chép SGK); `data/assignments.json` ≥12 bài (đề, hạn: ≥8 còn hạn, ≥2 đã hết hạn, ≥1 của lớp khác; `answer_key`; `final_answers` nhiều dạng viết); `data/DATA_CARD.md` (nguồn, cách viết, số dòng).
+- [x] **T-01 · Dữ liệu bài học (17:00 → 18:30)**: `data/lesson.json` 1 chương Toán 10 (phương trình bậc hai, ~15 trang, tự viết lại, không chép SGK); `data/assignments.json` ≥12 bài (đề, hạn: ≥8 còn hạn, ≥2 đã hết hạn, ≥1 của lớp khác; `answer_key`; `final_answers` nhiều dạng viết); `data/DATA_CARD.md` (nguồn, cách viết, số dòng). Code và 10 test hoàn tất ngày 27/11/2026; giờ kiểm chứng trong `docs/thang-handoff.md` khi bàn giao. Branch `thang/T-01`, chờ Khoa review và merge.
 - [ ] **T-02 · Chốt chặn lộ đáp án (18:30 → 19:15)**: nâng `check_leak`: số thập phân / phân số / "x bằng 2" / "nghiệm là 2 và 3" / LaTeX; viết `tests/test_check_leak.py` (≥10 ca, gồm ca **không** được báo lộ: số 2 xuất hiện trong "bước 2").
 - [ ] **T-03 · Metric (trước 19:15)**: `eval/metric_spec.yaml` ≥3 metric, cùng Khoa chốt ngưỡng:
   - `leak_rate`: % câu còn hạn mà output chứa đáp án cuối (code `check_leak`) → **0%**
