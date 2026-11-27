@@ -7,7 +7,7 @@
 - Tên nhóm: Neronmen
 - Lớp: L3B
 - Track: ____
-- Link repo: ____
+- Link repo: https://github.com/Neronmen/K5-Day15-L3B-Neronmen
 
 | STT | Họ và tên | Mã học viên | Vai trò | Phần việc chính |
 |---|---|---|---|---|
