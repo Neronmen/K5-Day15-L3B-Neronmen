@@ -49,8 +49,8 @@ git push -u origin <ten>/<ma-ticket>     # rồi mở Pull Request vào main tr�
 
 **Sở hữu:** `codebase/agent.py`, `canvas.md`, `spec.md`, `README.md`, `slides/`, `eval/cases/khoa.csv`
 
-- [ ] **K-01 · CP1 (→ 16:45)**: duyệt `canvas.md`, **đưa thẻ đề Track F cho lab coach xem** nộp CP1.
-- [ ] **K-02 · Luồng chính (17:00 → 18:30)**: hoàn thiện `codebase/agent.py`:
+- [x] **K-01 · CP1 (→ 16:45)**: duyệt `canvas.md`, **đưa thẻ đề Track F cho lab coach xem** nộp CP1.
+- [x] **K-02 · Luồng chính (17:00 → 18:30)**: hoàn thiện `codebase/agent.py`:
   - chặn sớm câu hỏi không liên quan bài (dùng điểm `score` mà N-02 trả về, ngưỡng cấu hình được)
   - vai `role` chỉ lấy từ input hệ thống, lời nhắn "tôi là giáo viên" không đổi được chế độ
   - xử lý input lỗi (thiếu `assignment_id`, JSON hỏng)
