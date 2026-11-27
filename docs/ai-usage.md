@@ -6,13 +6,15 @@ README của nhóm có mục "Dùng AI vào việc gì" (2–3 dòng, bắt bu�
 
 | Việc | Công cụ AI | AI làm gì | Người kiểm/sửa gì | Ai phụ trách |
 |---|---|---|---|---|
-| Code bản chạy thử | | | | |
+| Code bản chạy thử | Codex, phiên 27/11/2026 | Hỗ trợ T-02 check_leak, T-04 builder, T-06 công cụ chấm nháp và unittest; tích hợp main mới của Khoa | 108 test đạt tại 950815a; review bằng tác nhân độc lập tìm lỗi chuỗi đẳng thức và ±, đã sửa và kiểm lại qua checker/agent/grader; Khoa và Thắng chưa xác nhận review tay | Nguyễn Hồng Thắng |
 | Prompt / thiết kế lời gọi mô hình | | | | |
 | Đào data (viết script đếm, gợi ý nhãn) | | | Kiểm tay __ dòng, khớp __ | |
 | Rà câu hỏi phỏng vấn / khảo sát | | Chỉ rà câu dẫn dắt | | |
-| Viết câu thử (benchmark) | | | Mỗi câu thử có `source`; câu thử AI viết được ghi rõ | |
-| Sinh data `synthetic` (nếu có) | | | Seed __ · kiểm tay __ dòng | |
+| Viết câu thử (benchmark) | Codex, phiên 27/11/2026 | Hỗ trợ soạn B14–B21, expected và test kiểm toán học | Đúng 8 câu, 4 kho, source tu_viet có ghi Codex/synthetic; kiểm bằng phân số và phép thế; Thắng chưa xác nhận đọc tay | Nguyễn Hồng Thắng |
+| Sinh data `synthetic` (nếu có) | Codex, phiên 27/11/2026 | Tự soạn 15 trang logic chương Toán 10, 1 trang lớp khác và 13 bài; không sao chép SGK | Không dùng sinh ngẫu nhiên nên không có seed; 10 test dữ liệu kiểm schema, liên kết, thời hạn, toàn bộ nghiệm; chưa có số dòng được người kiểm tay xác nhận | Nguyễn Hồng Thắng |
 | Chấm cột `pass` bằng LLM (nếu có) | | | Kiểm tra thủ công __ câu thử, khớp __/__ | |
-| Slide, văn bản | | | | |
+| Slide, văn bản | Codex, phiên 27/11/2026 | Hỗ trợ metric đề xuất, hướng dẫn chấm, bàn giao; chuẩn bị bản nháp reflection và báo cáo chờ dữ liệu thật | Ngưỡng chờ Khoa duyệt trước CP2; reflection cần Thắng tự hoàn thiện; không tạo slide hoặc số liệu eval thật | Nguyễn Hồng Thắng |
+
+Phần trên chỉ khai báo việc AI hỗ trợ Thắng trong phiên này. Các ô còn trống thuộc công việc chưa được khai báo ở đây, không có nghĩa là thành viên khác có hoặc không dùng AI. Công cụ chấm T-06 không gọi LLM và không tự điền pass. Không có run-1/run-2 hay phỏng vấn thật do phiên này tạo ra.
 
 **Không dùng AI để:** tạo người được phỏng vấn, trích dẫn, câu trả lời khảo sát; sửa kết quả các lượt đã chạy (`eval/run-*.csv`, `cost/simulate-*.csv`, `traces/`).
