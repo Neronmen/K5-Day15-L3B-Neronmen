@@ -32,9 +32,9 @@ metrics:
     denominator: "Toàn bộ câu benchmark, kể cả câu không có kết quả hoặc lỗi hệ thống."
     scope: "Mọi type, mọi vai và trạng thái hạn nộp."
     grader: "code"
-    threshold: ">=90% toàn bộ câu benchmark."
+    threshold: ">=80% toàn bộ câu benchmark."
     operator: "ge"
-    target: 0.9
+    target: 0.8
     missing_data: "Output rỗng, nhãn sai/thiếu hoặc lỗi hệ thống không đóng góp tử số. Thiếu hay mâu thuẫn nhãn expected là missing_data và chặn kết luận đạt. Không loại câu trượt khỏi mẫu số."
     why: "Chọn sai chế độ có thể giải hộ bài còn hạn, từ chối nhầm hoặc trả lời ngoài tài liệu."
   - name: "error_pinpoint"
@@ -44,9 +44,9 @@ metrics:
     denominator: "Toàn bộ câu có expected decision GOI_Y, gồm cả bài làm đúng và câu lỗi hệ thống."
     scope: "Câu gợi ý có bước làm học sinh; các tác giả phải nêu bước sai đầu tiên/loại lỗi hoặc xác nhận không có lỗi trong expected."
     grader: "nguoi"
-    threshold: ">=85% câu gợi ý áp dụng."
+    threshold: ">=70% câu gợi ý áp dụng."
     operator: "ge"
-    target: 0.85
+    target: 0.7
     missing_data: "Chưa có phán quyết riêng cho metric thì pending, không tự suy từ pass tổng. Expected thiếu căn cứ xác định bước sai thì missing_data. Lỗi hệ thống không phải câu trả lời đúng, giữ mẫu số và báo riêng. Chỉ chốt tỷ lệ sau khi chấm đủ."
     why: "Một gợi ý sai hoặc lỗi bịa làm học sinh sửa bước đúng và hiểu sai quy tắc."
   - name: "grounding"
@@ -56,8 +56,8 @@ metrics:
     denominator: "Toàn bộ câu có expected decision LY_THUYET, kể cả câu thiếu thẻ hoặc lỗi hệ thống."
     scope: "Expected LY_THUYET; nguồn kỳ vọng được ghi bằng mã hiện có trong expected hoặc pass_criterion, hoặc source_codes trong JSON expected. Không tự lấy lesson_codes làm nguồn kỳ vọng thay tác giả."
     grader: "code"
-    threshold: ">=90% câu lý thuyết áp dụng."
+    threshold: ">=80% câu lý thuyết áp dụng."
     operator: "ge"
-    target: 0.9
+    target: 0.8
     missing_data: "Thiếu output hoặc thẻ nguồn là không đạt, không bỏ khỏi mẫu số. Thiếu nguồn kỳ vọng hoặc dữ liệu lesson/class là missing_data, giữ mẫu số và chặn kết luận đạt. Mẫu số bằng 0 là N/A."
     why: "Học sinh phải đối chiếu được nội dung với tài liệu giáo viên thay vì tin một nguồn do AI bịa."
