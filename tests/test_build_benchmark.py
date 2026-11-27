@@ -137,6 +137,22 @@ class BuildBenchmarkTests(unittest.TestCase):
         self.save("thang")
         self.assertEqual(len(self.build(check=True)), 30)
 
+    def test_optional_system_class_id_is_preserved(self):
+        request = json.loads(self.groups["thang"][0]["input"])
+        request["class_id"] = "10A1"
+        self.groups["thang"][0]["input"] = json.dumps(request)
+        self.save("thang")
+        rows = self.build(check=True)
+        self.assertEqual(json.loads(next(r for r in rows if r["id"] == self.groups["thang"][0]["id"])["input"])["class_id"], "10A1")
+
+    def test_optional_class_id_types_and_unknown_fields_rejected(self):
+        original = json.loads(self.groups["thang"][0]["input"])
+        for changes in ({"class_id": None}, {"class_id": ""}, {"class_id": 10}, {"extra": "unknown"}):
+            with self.subTest(changes=changes):
+                self.groups["thang"][0]["input"] = json.dumps(dict(original, **changes))
+                self.save("thang")
+                self.invalid()
+
     def test_invalid_role_empty_assignment_and_naive_time(self):
         original = json.loads(self.groups["thang"][0]["input"])
         for field, value in (("role", "admin"), ("assignment_id", " "), ("asked_at", "2026-11-28T21:00:00"), ("asked_at", "bad")):
