@@ -20,7 +20,7 @@ Data BTC cấp đã dùng: không (Track F, dữ liệu chạy thử tự dựng
 - Việc họ cố làm xong: *tự giải xong bài tập Toán về nhà trước hạn nộp khi bị kẹt ở một bước.*
 - Hôm nay họ giải bằng: app giải bài bằng ảnh / chatbot / hỏi bạn. Hỏng ở chỗ: nhận **lời giải đầy đủ** thay vì chỉ ra bước mình sai, nên chép mà không hiểu; lời giải không theo cách thầy cô dạy. Vì sao chưa bỏ: nhanh, miễn phí, lúc 10 giờ tối không có ai khác để hỏi, và bài nộp vẫn "đủ".
 - Pain (không chữ AI): học sinh THPT làm bài Toán về nhà, bí thì chép lời giải từ app → nộp đủ bài nhưng không tự làm được → kiểm tra cùng dạng bị điểm thấp; giáo viên không biết em hổng ở đâu.
-- Bằng chứng — số chính + kết luận: **chờ số thật** (chi tiết sẽ ở `evidence/summary.md`). Nguồn: khảo sát học sinh THPT (Google Form, mở 14:43 27/11) · phỏng vấn ≥3 giáo viên / phụ huynh / học sinh (issue #20) · đếm review công khai app giải bài (`evidence/data-mining.md`). Giả thuyết và ngưỡng đúng / sai viết trước ở `evidence/hypothesis.md`.
+- Bằng chứng — số chính + kết luận: **chờ số thật** (chi tiết sẽ ở `evidence/summary.md`). Nguồn: khảo sát học sinh THPT (Google Form của Nhài, mở 14:50 27/11) · phỏng vấn ≥3 giáo viên / phụ huynh / học sinh (issue #20) · đếm review công khai app giải bài (`evidence/data-mining.md`). Giả thuyết và ngưỡng đúng / sai viết trước ở `evidence/hypothesis.md`.
 
 ## §2. Impact & quyết định chọn *(guide 1.3)*
 
