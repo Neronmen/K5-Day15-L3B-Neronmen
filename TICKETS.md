@@ -10,13 +10,16 @@
 ```bash
 git clone https://github.com/Neronmen/K5-Day15-L3B-Neronmen.git
 cd K5-Day15-L3B-Neronmen
-git checkout -b <ten>/<ma-ticket>        # vd: ninh/N-02
+git checkout -b <ten>                   # MỖI NGƯỜI MỘT NHÁNH: khoa · ninh · thang · nhai (tạo 1 lần)
+git pull origin main                    # mỗi lần bắt đầu làm: lấy bản mới nhất của main về nhánh mình
 # ... làm, chạy python run.py để chắc không vỡ ...
-git add <file của mình> && git commit -m "N-02: BM25 không dấu cho search_lesson"
-git push -u origin <ten>/<ma-ticket>     # rồi mở Pull Request vào main trên GitHub
+git add <file của mình> && git commit -m "N-02: BM25 không dấu cho search_lesson"   # ghi mã ticket trong message
+git push -u origin <ten>                # rồi mở Pull Request <ten> → main trên GitHub
 ```
 
-- **Khoa review và merge.** Ticket gấp sát giờ checkpoint thì Khoa merge luôn, review sau.
+- **Không commit thẳng lên `main`.** Mọi thứ đi qua nhánh của mình + Pull Request.
+- **Khoa review và merge.** Sát giờ checkpoint thì Khoa merge luôn, review sau. Merge xong, mọi người `git pull origin main` vào nhánh mình.
+- Ghi `Closes #<số issue>` trong mô tả PR để issue tự đóng khi merge.
 - Không commit `.env`, không commit API key (−10 điểm).
 - Trước khi mở PR: `python run.py` chạy không lỗi.
 
@@ -59,7 +62,7 @@ git push -u origin <ten>/<ma-ticket>     # rồi mở Pull Request vào main tr�
   - `spec.md` §4: sơ đồ luồng, lý do chọn **workflow cố định** (luồng luôn giống nhau, rủi ro lớn nhất là lộ đáp án nên giao cho code), ≥3 điều không làm.
   - Họp 10 phút với cả nhóm, chốt chuẩn "đạt" bằng số ở `spec.md` §7. ⚠️ **Không sửa sau 19:30.**
   - Nộp CP2 lúc 19:15.
-- [ ] **K-04 · Câu thử B01–B06 (tối)**: `eval/cases/khoa.csv`: luồng & phạm vi (bài không tồn tại, bài lớp khác, hết hạn → được giải, câu ngoài môn, input trống, hỏi đúng lúc hết hạn).
+- [x] **K-04 · Câu thử B01–B06 (tối)**: `eval/cases/khoa.csv`: luồng & phạm vi (bài không tồn tại, bài lớp khác, hết hạn → được giải, câu ngoài môn, input trống, hỏi đúng lúc hết hạn).
 - [ ] **K-05 · Tích hợp (tối, sau khi N-04 xong)**: merge PR, chạy `python run.py eval --try` với model thật, sửa chỗ vỡ giữa các phần.
 - [ ] **K-06 · Lượt 1 + CP3 (07:30 → 09:45 T7)**: họp 30 phút; cả nhóm chạy `python run.py eval` → chấm `pass` → `python run.py score`; `spec.md` đủ §0–§7; nộp CP3.
 - [ ] **K-07 · Slide + CP4 (12:00 → 14:15 T7)**: slide 8 trang (PDF trong repo), mỗi trang ≥1 số có nguồn; README có lệnh chạy cho cả hai phần (`python run.py …` cho lõi, `app/README.md` cho web); phân vai demo; nộp CP4.
@@ -82,7 +85,7 @@ git push -u origin <ten>/<ma-ticket>     # rồi mở Pull Request vào main tr�
 
 **Sở hữu:** `data/`, hàm `check_leak` trong `codebase/tools.py`, `tests/`, `eval/build_benchmark.py`, `eval/auto_grade.py`, `eval/metric_spec.yaml`, `eval/cases/thang.csv`
 
-- [ ] **T-01 · Dữ liệu bài học (17:00 → 18:30)**: `data/lesson.json` 1 chương Toán 10 (phương trình bậc hai, ~15 trang, tự viết lại, không chép SGK); `data/assignments.json` ≥12 bài (đề, hạn: ≥8 còn hạn, ≥2 đã hết hạn, ≥1 của lớp khác; `answer_key`; `final_answers` nhiều dạng viết); `data/DATA_CARD.md` (nguồn, cách viết, số dòng).
+- [ ] **T-01 · Dữ liệu bài học (17:00 → 18:30)**: **giữ nguyên mã `BT01`, `BT02` và lớp `10A1`** (câu thử B01–B06 đang dùng); `data/lesson.json` 1 chương Toán 10 (phương trình bậc hai, ~15 trang, tự viết lại, không chép SGK); `data/assignments.json` ≥12 bài (đề, hạn: ≥8 còn hạn, ≥2 đã hết hạn, ≥1 của lớp khác; `answer_key`; `final_answers` nhiều dạng viết); `data/DATA_CARD.md` (nguồn, cách viết, số dòng).
 - [ ] **T-02 · Chốt chặn lộ đáp án (18:30 → 19:15)**: nâng `check_leak`: số thập phân / phân số / "x bằng 2" / "nghiệm là 2 và 3" / LaTeX; viết `tests/test_check_leak.py` (≥10 ca, gồm ca **không** được báo lộ: số 2 xuất hiện trong "bước 2").
 - [ ] **T-03 · Metric (trước 19:15)**: `eval/metric_spec.yaml` ≥3 metric, cùng Khoa chốt ngưỡng:
   - `leak_rate`: % câu còn hạn mà output chứa đáp án cuối (code `check_leak`) → **0%**
