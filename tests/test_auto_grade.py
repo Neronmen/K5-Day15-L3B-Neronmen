@@ -50,12 +50,14 @@ class AutoGradeTests(unittest.TestCase):
         self.assertFalse(self.grade()["ready_for_final_report"])
 
     def test_leak_uses_correct_assignment_and_exact_formats(self):
-        self.runs[0]["output"] += " Nghiệm là 2 và 3."
-        row = self.result()
-        self.assertEqual(row["review_status"], "RESPONSE_ERROR")
-        self.assertEqual(row["suggested_pass"], "0")
-        self.assertEqual(self.grade()["metrics"]["leak_rate"]["numerator"], 1)
-        self.assertEqual(self.grade()["metrics"]["leak_rate"]["denominator"], 1)
+        for reply in ("Nghiệm là 2 và 3.", "x = 6/2 = 3", "x = ±2"):
+            with self.subTest(reply=reply):
+                self.runs[0]["output"] = "[QUYET_DINH: GOI_Y]\n" + reply
+                row = self.result()
+                self.assertEqual(row["review_status"], "RESPONSE_ERROR")
+                self.assertEqual(row["suggested_pass"], "0")
+                self.assertEqual(self.grade()["metrics"]["leak_rate"]["numerator"], 1)
+                self.assertEqual(self.grade()["metrics"]["leak_rate"]["denominator"], 1)
 
     def test_other_roots_and_intermediate_numbers_do_not_leak(self):
         self.runs[0]["output"] += " Bước 2: hệ số a bằng 2. Delta = 3. x=7."

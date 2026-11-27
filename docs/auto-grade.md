@@ -31,6 +31,8 @@ Expected dạng văn bản cần đúng một nhãn `[QUYET_DINH: ...]`. Có th�
 {"decision":"GOI_Y","error_step":3,"error_type":"quen_2a","no_final_answer":true}
 ```
 
+Input giữ bốn trường bắt buộc `assignment_id`, `role`, `asked_at`, `message`. Agent mới trên main còn nhận `class_id` do hệ thống gắn để kiểm quyền theo lớp; builder và grader chấp nhận trường này nếu là chuỗi không rỗng.
+
 Với câu lý thuyết, ghi mã nguồn được chấp nhận trong `expected` hoặc `pass_criterion`. JSON có thể ghi `source_codes`, ví dụ `["T10-C3-P02"]`. Đây là tập nguồn chấp nhận: cần ít nhất một thẻ, mọi thẻ phải thuộc tập này, đúng trang và cùng lớp. Không tự lấy `lesson_codes` để thay ý tác giả. Code chỉ xác minh danh tính nguồn; người chấm kiểm tra nội dung có được nguồn hỗ trợ.
 
 ## Hiểu kết quả
