@@ -203,6 +203,8 @@ class AutoGradeTests(unittest.TestCase):
         self.assertIsNone(report["metrics"]["decision_accuracy"]["rate"])
 
     def test_pending_spec_cannot_become_approved(self):
+        # Spec thật đã duyệt 27/11; test này dựng spec "pending" để giữ kiểm tra hành vi của bộ chấm.
+        self.spec["approval"] = {"status": "pending", "approved_at": None}
         report = self.grade()
         self.assertEqual(report["spec_approval"]["status"], "pending")
         self.assertEqual(report["metrics"]["decision_accuracy"]["threshold_status"], "PENDING_APPROVAL")

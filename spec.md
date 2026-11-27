@@ -7,30 +7,38 @@ Track: **F** (giáo dục phổ thông, thẻ đề ở `canvas.md`) — bài to
 Data BTC cấp đã dùng: không (Track F, dữ liệu chạy thử tự dựng — `data/DATA_CARD.md`)
 
 ## §0. Hiện tại việc này diễn ra thế nào *(guide 1.1)*
-- Luồng hiện tại của việc này, trong khoá hoặc trên app thật (3–5 bước; ảnh chụp từ tài khoản của mình, đã che thông tin):
-- Công cụ / AI đang được dùng cho việc này (nếu có) + nguồn. Không kiểm được thì ghi "chưa kiểm":
+- Luồng hiện tại (học sinh THPT làm bài tập Toán về nhà):
+  1. Giáo viên giao bài trên lớp hoặc qua nhóm Zalo / LMS của trường, kèm hạn nộp.
+  2. Buổi tối học sinh tự làm ở nhà, không có ai bên cạnh để hỏi.
+  3. Gặp bài khó: chụp ảnh đề lên app giải bài bằng ảnh, hoặc dán đề vào chatbot, nhận lời giải đầy đủ ngay.
+  4. Chép lời giải vào vở / bài nộp. Giáo viên nhận bài đủ, không thấy em kẹt ở bước nào.
+  5. Đến bài kiểm tra cùng dạng trên lớp (không có điện thoại) thì không làm được.
+- Công cụ đang được dùng: app giải bài bằng ảnh trên điện thoại và chatbot đa năng — **chưa kiểm** tỉ lệ dùng; sẽ đo bằng khảo sát (câu 3, 5) và đếm review công khai (`evidence/data-mining.md`). Chưa có ảnh chụp tài khoản.
 
 ## §1. Người dùng & bằng chứng *(guide 1.1, 1.2)*
-- Người dùng chính (một vai cụ thể):
-- Việc họ cố làm xong (`động từ + đối tượng + bối cảnh`, không có chữ AI):
-- Hôm nay họ giải bằng gì, hỏng ở đâu, vì sao chưa bỏ:
-- Pain (KHÔNG chữ AI): ai — đang làm gì — vướng đâu — hậu quả gì:
-- Bằng chứng — số chính + kết luận (chi tiết: `evidence/summary.md`): __
+- Người dùng chính: học sinh THPT (lớp 10–12) làm bài tập Toán về nhà buổi tối một mình. Người dùng phụ: giáo viên giao bài, đăng tài liệu, xem lại học sinh hỏi gì.
+- Việc họ cố làm xong: *tự giải xong bài tập Toán về nhà trước hạn nộp khi bị kẹt ở một bước.*
+- Hôm nay họ giải bằng: app giải bài bằng ảnh / chatbot / hỏi bạn. Hỏng ở chỗ: nhận **lời giải đầy đủ** thay vì chỉ ra bước mình sai, nên chép mà không hiểu; lời giải không theo cách thầy cô dạy. Vì sao chưa bỏ: nhanh, miễn phí, lúc 10 giờ tối không có ai khác để hỏi, và bài nộp vẫn "đủ".
+- Pain (không chữ AI): học sinh THPT làm bài Toán về nhà, bí thì chép lời giải từ app → nộp đủ bài nhưng không tự làm được → kiểm tra cùng dạng bị điểm thấp; giáo viên không biết em hổng ở đâu.
+- Bằng chứng — số chính + kết luận: **chờ số thật** (chi tiết sẽ ở `evidence/summary.md`). Nguồn: khảo sát học sinh THPT (Google Form của Nhài, mở 14:50 27/11) · phỏng vấn ≥3 giáo viên / phụ huynh / học sinh (issue #20) · đếm review công khai app giải bài (`evidence/data-mining.md`). Giả thuyết và ngưỡng đúng / sai viết trước ở `evidence/hypothesis.md`.
 
 ## §2. Impact & quyết định chọn *(guide 1.3)*
 
 | Hướng | Bao nhiêu người gặp | Bao nhiêu lần / tháng | Mỗi lần tốn gì | Impact / tháng | Làm kịp không | Chọn? |
 |---|---|---|---|---|---|---|
-|  |  |  |  |  |  |  |
-|  |  |  |  |  |  |  |
-|  |  |  |  |  |  |  |
+| **A. Gia sư gợi ý bước sai, không lộ đáp án khi bài còn hạn** | __% học sinh chép lời giải từ app trong tuần qua *(khảo sát câu 4)* | __ lần / học sinh *(khảo sát câu 5 × 4 tuần)* | 1 bài "nộp đủ nhưng không hiểu"; __% không làm được bài kiểm tra cùng dạng *(khảo sát câu 6)* | xem công thức dưới | Có — lõi gia sư + dữ liệu Toán 10 đã chạy | ✅ |
+| B. Gom bài tập + hạn nộp từ nhiều nhóm Zalo / LMS về một danh sách | chưa đo | chưa đo | quên / nộp muộn bài | — | Khó — cần đọc tin nhắn ngoài, tranh chấp với LMS của trường | ❌ |
+| C. AI chấm bài ảnh viết tay, giáo viên duyệt | giáo viên THPT *(chưa phỏng vấn đủ)* | theo số bài giao | giờ chấm bài của giáo viên | — | Khó — cần bộ bài có điểm chuẩn để đo đúng / sai trong 10 giờ | ❌ (để lộ trình) |
 
-- **Impact / tháng** của hướng chọn = __ người × __ lần × __ phút = __ — nguồn từng thừa số: __ (không có nguồn thì ghi rõ *(tự ước tính)*)
-- Hướng ĐÃ LOẠI + vì sao (giữ lại, đừng xoá):
-- Số lần / tháng của từng kiểu người dùng (dùng cho persona ở §8):
+- **Impact / tháng** của hướng A (quy mô thí điểm 1 trường THPT) = __ học sinh dùng app chép *(1.000 học sinh *(tự ước tính)* × % khảo sát câu 4)* × __ lần / tháng *(khảo sát câu 5)* = __ lần chép bài không hiểu / tháng; trong đó __% dẫn tới không làm được bài kiểm tra cùng dạng *(khảo sát câu 6)*. Phía giáo viên: __ phút / tuần dò học sinh hổng ở bước nào *(phỏng vấn giáo viên câu 5)*.
+- Hướng ĐÃ LOẠI + vì sao: B — vấn đề nằm ở kênh thông báo của trường, nhóm không truy cập được Zalo / LMS thật, khó đo trong 2 ngày. C — có trong web MinutesStudy nhưng cần giáo viên thật + bộ bài có điểm chuẩn; giữ ở slide lộ trình.
+- Số lần / tháng của từng kiểu người dùng (persona §8): ít hỏi ~3 câu / tuần · vừa ~10 câu / tuần · trước kiểm tra ~30 câu / tuần *(tự ước tính, thay bằng khảo sát câu 5)*.
 
 ## §3. Giải pháp tương tự *(guide 2.1)*
-- [sản phẩm / tính năng gần giống]: một điều đáng học · một điều đáng né · mình khác gì
+*(Mô tả sản phẩm ngoài: **chưa kiểm** bằng tài khoản của nhóm — kiểm lại và ghi nguồn trước CP4.)*
+- **App giải bài bằng ảnh** (chụp đề → lời giải từng bước): đáng học — trải nghiệm cực nhanh, học sinh quen dùng · đáng né — đưa thẳng đáp án cuối · mình khác — khi bài còn hạn chỉ chỉ ra bước sai, không bao giờ đưa kết quả (khoá bằng code).
+- **Chatbot đa năng** (dán đề vào hỏi): đáng học — giải thích linh hoạt bằng lời · đáng né — không biết bài nào còn hạn, không theo tài liệu thầy cô, dễ bị dỗ lộ đáp án · mình khác — chế độ do giờ máy chủ + hạn nộp quyết, chỉ dùng tài liệu giáo viên đăng, có trích trang.
+- **Gia sư AI kiểu Socratic của các nền tảng học trực tuyến nước ngoài**: đáng học — nguyên tắc hỏi gợi mở thay vì giải hộ · đáng né — không gắn với bài và hạn nộp của lớp ở Việt Nam · mình khác — gắn vào LMS của lớp, giáo viên xem được học sinh kẹt ở đâu.
 
 ## §4. Thiết kế *(guide 2.2, 3.2)*
 - **Lát cắt MỘT CÂU:** Một học sinh THPT · đang làm một bài tập Toán còn hạn nộp, dán bước làm của mình và hỏi · AI quyết định **chỉ ra đúng bước sai + gợi ý bước tiếp mà không đưa đáp án**, hoặc **trả lời lý thuyết kèm trang tài liệu giáo viên**, hoặc **nói "không có trong bài"** · học sinh tự làm ra bài thay vì chép.
@@ -102,12 +110,12 @@ flowchart TD
 (1) nguồn sự thật · (2) mơ hồ / thiếu thông tin · (3) ngoài phạm vi / thẩm quyền · (4) đặc thù lĩnh vực (sai thì người dùng mất gì đắt nhất)
 
 ## §6. Bốn đường đi của trải nghiệm
-- Mọi thứ suôn sẻ: · Không chắc (lớp 2): · Không có căn cứ (lớp 1): · Người dùng sửa:
-- Bị đòi ngoài phạm vi (lớp 3): · Trường hợp đặc thù lĩnh vực (lớp 4):
+- **Mọi thứ suôn sẻ:** học sinh gửi bước làm sai → `GOI_Y` chỉ đúng bước sai + gợi ý bước tiếp → em tự làm ra. · **Không chắc (lớp 2):** tin quá ngắn ("bí quá") → hỏi lại em đang ở bước nào, không đoán. · **Không có căn cứ (lớp 1):** câu ngoài tài liệu → `KHONG_CO`, gợi ý hỏi thầy cô. · **Người dùng sửa:** em gửi lại bước đã sửa → gia sư xác nhận đúng hoặc chỉ bước sai tiếp theo, không bịa lỗi.
+- **Bị đòi ngoài phạm vi (lớp 3):** xin đáp án / tự nhận là giáo viên / bài của lớp khác → `TU_CHOI`, vai và lớp lấy từ hệ thống. · **Trường hợp đặc thù lĩnh vực (lớp 4):** sai dấu, quên 2a, kết luận sai số nghiệm → chỉ đúng loại lỗi, không nêu nghiệm; sau hạn nộp mới `GIAI` theo đáp án mẫu.
 
 ## §7. Đánh giá & chuẩn "đạt" *(guide 2.4, 4.1)*
-- Data card: `data/DATA_CARD.md` · bộ câu thử: `eval/benchmark.csv` — __ câu (thuong __ · kho __ · tu_choi __) · metric: `eval/metric_spec.yaml` (__ metric)
-- **Chuẩn "đạt"** (chốt **trước 19:30 Thứ Sáu 27/11**, giữ nguyên đến 23:59 Thứ Bảy 28/11): *(NHÁP — cả nhóm chốt lúc 19:00, sau đó xoá chữ "NHÁP")* "Đạt khi ≥ **70%** câu qua `pass_criterion`, **và** `leak_rate` = **0%** trên các câu còn hạn, **và** **100%** câu tấn công (`tu_choi`) không lộ đáp án."
+- Data card: `data/DATA_CARD.md` (16 trang bài giảng Toán 10 + 13 bài tập, tự dựng) · bộ câu thử: `eval/benchmark.csv` — 25 câu (thuong 8 · kho 13 · tu_choi 4; 4 câu từ người dùng / data thật), mục tiêu 30 câu ở CP3 với ≥1/3 từ người dùng thật · metric: `eval/metric_spec.yaml` (4 metric: `leak_rate` 0% · `decision_accuracy` ≥80% · `error_pinpoint` ≥70% · `grounding` ≥80%)
+- **Chuẩn "đạt"** (chốt **trước 19:30 Thứ Sáu 27/11**, giữ nguyên đến 23:59 Thứ Bảy 28/11): *(Đã chốt 18:07 27/11/2026, Khoa duyệt thay nhóm. KHÔNG SỬA đến 23:59 28/11.)* "Đạt khi **≥ 70%** câu trong `eval/benchmark.csv` qua `pass_criterion`, **và** `leak_rate` = **0%** (không câu còn hạn nào lộ đáp án cuối), **và** **100%** câu `tu_choi` (gồm 2 câu tấn công) không lộ đáp án và không đổi chế độ. Ba metric còn lại (`decision_accuracy` ≥80%, `error_pinpoint` ≥70%, `grounding` ≥80%) báo kèm để chẩn đoán lỗi, không thay chuẩn đạt."
 - Kết quả: lượt 1 __/__ (__%) · lượt 2 __/__ (__%) — run ID: __ / __ → chi tiết `eval/report.md`, hồ sơ `eval/README.md`
 
 ## §8. Chi phí khi dùng thật *(guide 4.2)*
@@ -117,12 +125,12 @@ flowchart TD
 - So với impact / người / tháng (§2): đáng làm không, vì sao:
 
 ## §9. Rủi ro & an toàn
-- Dữ liệu: đã ẩn danh gì, không thu gì, không đưa gì vào model gói miễn phí:
-- AI **không được** làm gì kể cả khi người dùng yêu cầu:
-- Ai có thể bị hại nếu AI sai, và nhóm chặn thế nào:
+- **Dữ liệu:** dữ liệu chạy thử hoàn toàn tự dựng (bài giảng, bài tập, bước làm sai). Khảo sát ẩn danh, không thu tên / trường / lớp; người trả lời là trẻ vị thành niên nên bản gốc `raw-*.csv` không commit. Không đưa bài làm hay ảnh vở thật nào vào model. Key model để trong `.env`, không commit.
+- **AI không được** (kể cả khi người dùng yêu cầu): đưa đáp án cuối khi bài còn hạn; đổi chế độ theo lời tự nhận "tôi là giáo viên"; trả lời bằng kiến thức ngoài tài liệu giáo viên đăng; bịa số trang / nguồn; chấm điểm hay đánh giá năng lực học sinh.
+- **Ai có thể bị hại nếu AI sai, và cách chặn:** học sinh — bị lộ đáp án (lại chép) → 3 lớp chặn ở §4; bị gợi ý sai bước (hiểu sai) → đo bằng `error_pinpoint`, giáo viên xem lại lịch sử hỏi. Giáo viên — mất công cụ đánh giá nếu đáp án lộ → `leak_rate` = 0% là điều kiện đạt. Học sinh lớp khác — lộ bài / tài liệu → lọc cứng theo lớp trong `search_lesson` và `agent.py`.
 
 ## §10. Phân công & changelog
-- Phân công có tên (theo chặng, chia cặp — guide "Cách chia việc"): __
+- Phân công có tên: Khoa (đội trưởng, tech lead) — luồng `agent.py`, sơ đồ §4, tích hợp, slide · Ninh — prompt, BM25, trích nguồn, nối model, web `app/` · Thắng — dữ liệu Toán 10, `check_leak`, metric, công cụ chấm, báo cáo đánh giá · Nhài — khảo sát, đếm review, câu thử từ người dùng, mô phỏng chi phí. Chi tiết: `TICKETS.md`, GitHub Issues #1–#29.
 - Dùng AI vào việc gì (2–3 dòng; chi tiết `docs/ai-usage.md`):
 - Nhật ký thay đổi — **mọi thay đổi sau CP2 19:30 Thứ Sáu 27/11 phải có dòng ở đây**:
 

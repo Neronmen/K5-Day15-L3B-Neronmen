@@ -170,7 +170,7 @@ export interface ChatMessage {
 export interface ChatLog extends ChatMessage {
   student_id: string;
   student_name: string;
-  flagged: "jailbreak" | "ask_answer" | null;
+  flagged: "jailbreak" | "impersonation" | "ask_answer" | null;
   assignment_id: string | null;
   document_id: string | null;
   context: string;

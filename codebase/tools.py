@@ -108,12 +108,18 @@ def search_lesson(query: str, class_id: str, k: int = 3) -> list:
     - score = BM25 × độ_phủ², độ phủ = tỉ lệ từ khoá đơn của câu hỏi có trong đoạn; làm tròn 3 chữ số. Câu chỉ trùng
       1/3 từ ("Thủ đô nước Pháp" trùng mỗi "pháp" trong "phương pháp") bị chia 9, nên agent dùng được một ngưỡng
       cố định TUTOR_MIN_SCORE (đề xuất 0.5: câu ngoài bài ≤ 0.26, "Delta là gì" ≥ 0.89 trên cả dữ liệu mẫu lẫn T-01).
-    - Chỉ trả đoạn có score > 0, xếp giảm dần (bằng điểm thì trang nhỏ trước)."""
-    q = _terms(query)
-    if not q or not class_id or k <= 0:
+    - Chỉ trả đoạn có score > 0, xếp giảm dần (bằng điểm thì trang nhỏ trước).
+    Phần chấm điểm nằm ở rank_passages để app/ (N-08) dùng chung trên đoạn bài giảng trong DB."""
+    if not class_id:
         return []
-    passages = [p for p in _load("lesson.json") if p.get("class_id") == class_id]
-    if not passages:
+    return rank_passages(query, [p for p in _load("lesson.json") if p.get("class_id") == class_id], k)
+
+
+def rank_passages(query: str, passages: list, k: int = 3) -> list:
+    """Chấm điểm BM25 (xem search_lesson) trên danh sách đoạn {"title","text",...} ĐÃ LỌC THEO LỚP từ trước.
+    Không đọc file, không lọc lớp: người gọi chịu trách nhiệm lọc tenant (app/ dùng app.core.tenancy)."""
+    q = _terms(query)
+    if not q or not passages or k <= 0:
         return []
     # Mỗi đoạn có 2 túi từ: có dấu (key "a") và không dấu (key "p"); từ của câu hỏi tra đúng túi của nó.
     docs = []
@@ -238,6 +244,20 @@ def _leak_values(text, roots_only):
     return values
 
 
+_LEAK_FACTOR = re.compile(r"\(\s*x\s*([+-])\s*(" + _LEAK_NUMBER + r")\s*\)")
+
+
+def _leak_factor_roots(text):
+    """Nghiệm lộ qua dạng nhân tử có số cụ thể: (x - 2)(x + 3) → {2, -3}. Thêm bởi Khoa sau thử tấn công.
+    Chỉ đọc nhân tử dạng (x ± số); (2x - 1) hay (x - r) bằng chữ không tính."""
+    roots = set()
+    for sign, literal in _LEAK_FACTOR.findall(text):
+        value = _leak_fraction(literal)
+        if value is not None:
+            roots.add(value if sign == "-" else -value)
+    return roots
+
+
 def _leak_empty_solution(text):
     for match in _LEAK_EMPTY.finditer(text):
         prefix = re.split(r"[.!?;\n]", text[:match.start()])[-1]
@@ -265,6 +285,7 @@ def check_leak(reply: str, final_answers: list) -> dict:
     for line in normalized.splitlines():
         if re.fullmatch(r"\s*" + _LEAK_VALUE + r"\s*[.!]?\s*", line):
             roots.update(_leak_values(line, roots_only=False))
+    roots.update(_leak_factor_roots(normalized))
     matches = []
     for answer in final_answers:
         if not isinstance(answer, str) or not answer.strip():
@@ -315,7 +336,7 @@ def citations(reply: str, chunks: list) -> dict:
             if code not in seen:
                 seen.add(code)
                 sources.append({"code": code, "page": page})
-        return "[Nguồn: %s]" % "; ".join(kept) if kept else ""
+        return " ".join("[Nguồn: %s]" % k for k in kept)  # mỗi nguồn một thẻ: bộ chấm grounding đọc 1 mã / thẻ
 
     clean = _CITE_TAG.sub(rewrite, reply or "")
     if removed:
