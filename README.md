@@ -1,49 +1,59 @@
-> Đây là khung repo nộp bài. Điền mọi chỗ `____`, giữ nguyên tên các mục. **Mục 0 xoá đi sau khi tạo repo xong.**
-> Giờ, mốc, luật, rubric: xem `README.md`, `02-guide.md`, `03-rubric.md` trong repo đề (bộ đề BTC phát).
+# Neronmen — MinutesStudy Tutor: gia sư không lộ đáp án
 
-# [Tên nhóm] — [Tên lát cắt]
+**Track F · Giáo dục phổ thông.** Học sinh THPT bí bài tập Toán về nhà thường chụp app giải bài rồi chép nguyên lời giải. MinutesStudy Tutor, khi bài **còn hạn nộp**, chỉ ra **bước sai đầu tiên** và gợi ý bước tiếp — **không đưa đáp án**; chỉ dùng tài liệu giáo viên đã đăng, có trích trang. Hết hạn mới được giải đầy đủ.
 
-**Thành viên, lớp, track:** xem [TEAMS.md](TEAMS.md). **Điền TEAMS.md đúng format**: khi chấm và đánh giá, BTC quét file này để ghép điểm cho từng người.
+**Thành viên, lớp, track:** [TEAMS.md](TEAMS.md) · Canvas + thẻ đề Track F: [canvas.md](canvas.md) · Thiết kế, chuẩn "đạt": [spec.md](spec.md) · Việc từng người: [TICKETS.md](TICKETS.md)
 
-*Lát cắt = phần nhỏ nhất làm xong được trong hackathon: một người dùng · một việc · một quyết định AI · một kết quả.*
+**Lát cắt:** một học sinh THPT · hỏi về một bài tập Toán còn hạn, kèm bước làm · AI quyết định *gợi ý bước sai* / *trả lời lý thuyết kèm trang* / *nói "không có trong bài"* / *từ chối xin đáp án* · học sinh tự làm ra bài.
 
----
+## Chạy nhanh (lõi gia sư — phần được chấm)
 
-## 0. Tạo repo nhóm từ khung này *(guide bước 1.0 — xoá mục này khi xong)*
-
-**Hai luật:** repo **mới, công khai (Public)** · tên `K5-Day15-<lớp>-<tên nhóm>`, vd `K5-Day15-L3A-StudyPulse` (tên nhóm viết liền, không dấu). Chép **nội dung bên trong** `starter-repo/` — `README.md`, `run.py` phải nằm ngay ở trang đầu repo.
-
-**(a) Không cần terminal — làm trên web GitHub**
-1. **New repository** → tên theo mẫu → **Public** → không tick thêm gì → tạo.
-2. Trên máy mở thư mục `starter-repo/`, **bật hiện file ẩn** (Mac Finder: `Cmd + Shift + .` · Windows: View → Show → Hidden items) để thấy `.gitignore`, `.env.example`.
-3. Trên repo vừa tạo: **Add file → Upload files** → **kéo thả** tất cả file và thư mục bên trong `starter-repo/` → **Commit changes**. Kéo thả mới giữ được thư mục con; lỗi vì nhiều file quá thì tải từng thư mục.
-4. Kiểm: có `.gitignore` chưa (hay thiếu nhất). Thiếu thì **Add file → Create new file**, tên `.gitignore`, dán nội dung từ máy.
-5. Từ giờ sửa file ngay trên web (biểu tượng bút chì → Commit). Phần code vẫn cần **một** người chạy được trên máy: trước mỗi lượt chạy tải **Code → Download ZIP** về thư mục mới (mang `.env` sang), chạy xong chỉ upload file kết quả và file vừa sửa; trong lúc đang chạy không ai sửa `eval/benchmark.csv` trên web.
-
-**(b) Dùng git**
 ```bash
-git clone https://github.com/<tai-khoan>/K5-Day15-L3A-TenNhom.git
-cd K5-Day15-L3A-TenNhom
-cp -R ../duong-dan-toi/starter-repo/. .      # Windows PowerShell: Copy-Item -Recurse -Force ..\duong-dan-toi\starter-repo\* .
-git status                                   # không được có .env, data-btc/
-git add -A && git commit -m "Khung repo từ starter-repo" && git push
+python run.py                      # gõ câu hỏi, chạy với AI giả nếu chưa có .env
+cp .env.example .env               # Windows: copy .env.example .env — rồi điền:
+#   MODEL_PROVIDER=deepseek   MODEL_NAME=deepseek-chat   API_KEY=<key của bạn>
+python run.py eval --try           # 3 câu đầu với model thật
+python run.py eval                 # cả bộ eval/benchmark.csv → eval/run-N.csv
+python run.py check                # kiểm bộ câu thử, metric, TEAMS.md
+```
+Không cần `pip install` cho lõi (chỉ thư viện chuẩn Python 3.10+). Test: `pip install pytest && python -m pytest tests`.
+
+Ô `input` của câu thử là JSON do **hệ thống** điền (vai, lớp, bài, giờ hỏi), chỉ `message` là học sinh gõ:
+```json
+{"role": "student", "class_id": "10A1", "assignment_id": "BT01", "asked_at": "2026-11-28T21:00:00+07:00", "message": "Em tính Delta = 25 + 24 = 49 rồi bí"}
 ```
 
-**Xong khi:** mở link repo bằng **cửa sổ ẩn danh** thấy được file (link nộp CP1) · đã mời thành viên (Settings → Collaborators) · đã điền `TEAMS.md` và `python run.py check` không báo gì ở phần "Kiểm TEAMS.md".
+## Web demo (sân khấu, không phải phần được đo)
+- Bản đang chạy: **https://k5-day15-l3-b-neronmen.vercel.app** (Vercel → API Render → Supabase). Gói free của Render ngủ sau 15 phút: lần mở đầu chờ ~30–50 giây.
+- Chạy trên máy và cách deploy: [app/README.md](app/README.md), [app/docs/deploy-vercel-supabase-render.md](app/docs/deploy-vercel-supabase-render.md).
+
+## Cấu trúc
+
+| Thư mục | Là gì |
+|---|---|
+| `codebase/` | Lõi gia sư: `agent.py` (luồng), `tools.py` (7 công cụ), `prompts.py`, `ai.py` (nối model) |
+| `data/` | Bài giảng Toán 10 (16 trang) + 13 bài tập — **tự dựng**, xem `data/DATA_CARD.md` |
+| `eval/` | Bộ câu thử, metric, `build_benchmark.py`, `auto_grade.py`, các lượt chạy |
+| `evidence/` | Khảo sát, phỏng vấn, đếm review — bằng chứng pain |
+| `cost/` | Persona + mô phỏng chi phí |
+| `app/` | Web MinutesStudy (FastAPI + Next.js) dùng làm demo |
+| `tests/` | Test cho dữ liệu, `check_leak`, metric, bộ chấm |
+
+## Phần nào thật, phần nào giả
+
+| Thành phần | Thật / Giả | Ghi chú |
+|---|---|---|
+| Lời gọi AI ở quyết định trung tâm | **Thật** | DeepSeek `deepseek-chat` (đổi được sang Gemini / OpenAI trong `.env`) |
+| Chế độ gợi ý / giải, chặn lộ đáp án, lọc nguồn, lọc lớp | **Thật** — chạy bằng code | `get_tutor_mode`, `check_leak`, `citations`, kiểm lớp trong `agent.py` |
+| Bài giảng, bài tập, bước làm sai của học sinh | **Giả** — nhóm tự dựng | `data/DATA_CARD.md`; không dùng bài làm thật của học sinh |
+| Bằng chứng pain | **Thật** — đang thu | khảo sát học sinh THPT, phỏng vấn, đếm review công khai (`evidence/`) |
+
+## Dùng AI vào việc gì
+Nhóm dùng trợ lý AI lập trình để dựng khung, viết test và soát tài liệu; mỗi người tự kiểm và giải thích được phần có tên mình. Chi tiết: [docs/ai-usage.md](docs/ai-usage.md).
 
 ---
 
-## Nhóm làm gì, khung làm gì
-
-| Nhóm quyết định và viết | Khung làm sẵn (không cần sửa) |
-|---|---|
-| Người dùng, pain, bằng chứng, impact (`evidence/`, `spec.md` §1–§2) | — |
-| Hình dạng giải pháp, công cụ, prompt, luồng (`spec.md` §4, `codebase/agent.py`, `tools.py`, `ai.py`) | Ghi mọi lần gọi model / công cụ vào trace, cộng token (`codebase/tracing.py`) |
-| Bộ câu thử, metric, chuẩn "đạt" (`eval/benchmark.csv`, `eval/metric_spec.yaml`, `spec.md` §7) | Kiểm đủ cột, đủ câu `kho` / `tu_choi`, đủ ≥1/3 câu từ người dùng / data thật (`run.py check`) |
-| Chấm cột `pass` theo metric spec | Chạy cả bộ một lệnh, có run ID, model, token từng câu (`run.py eval`) · tính % đạt (`run.py score`) |
-| Persona, số người dùng thật, giá model (`cost/personas.yaml`) | Sinh ~50 phiên, chạy thật qua bản chạy thử, tính chi phí / phiên, / task thành công, / tháng 3 kịch bản (`run.py simulate`) |
-
-*Ví dụ track A (ví dụ cỡ, không phải lời giải):* nhóm viết công cụ `search_lesson` tra bài pre-class đã đánh mã đoạn, luồng "tra đoạn → model trả lời kèm mã đoạn, không có thì nói không có", metric "mọi khẳng định có mã đoạn đúng", persona "ôn dồn trước kiểm tra". Khung chạy 25 câu thử ra `run-1.csv`, nhóm chấm `pass`, `score` in % đạt; `simulate` chạy 50 phiên ra chi phí / task thành công cho hai model.
+*Phần dưới là hướng dẫn chung của bộ khung BTC (giữ lại để tra lệnh).*
 
 ## Chạy trong 3 phút
 
@@ -103,19 +113,6 @@ Nhóm dùng stack khác (Node, Streamlit, notebook…): sửa hàm `run_app()` t
 - **Trước CP2:** để chế độ giả, công cụ trả dữ liệu giả — `python run.py` đi hết luồng là đủ.
 - **Trước CP3:** nối model thật theo [docs/connect-model.md](docs/connect-model.md), `eval --try` thấy token > 0 rồi mới `eval`.
 - Bộ chạy gửi **nguyên ô `input`** của câu thử vào `answer(text)`. Dữ liệu nền (bài học, thông báo, lịch…) để trong `data/`, đọc qua công cụ.
-
-## Phần nào thật, phần nào giả
-
-| Thành phần | Thật / Giả | Ghi chú |
-|---|---|---|
-| Lời gọi AI ở quyết định trung tâm | **Thật** (bắt buộc từ CP3) | Model: ____ |
-|  |  |  |
-
-## Dùng AI vào việc gì
-
-2–3 dòng (bắt buộc): nhóm dùng công cụ AI nào để làm gì, người kiểm lại phần nào. Chi tiết: [docs/ai-usage.md](docs/ai-usage.md). Coding agent đọc [AGENTS.md](AGENTS.md).
-
-____
 
 ## File mẫu — điền ở bước nào
 
