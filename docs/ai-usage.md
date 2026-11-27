@@ -25,3 +25,17 @@ Phần trên chỉ khai báo việc AI hỗ trợ Thắng trong phiên này. Cá
 Codex đọc trạng thái GitHub, dependency, commit/file, CI/review và chạy kiểm chứng trên main 0e96a99 trong worktree riêng. Đã xác minh cả sáu head có trong main, 108 unittest đạt; smoke dùng MODEL_PROVIDER=fake, probe dùng stub synthetic, không gọi model thật trong phiên rà soát. Ghi lại hai điểm hợp đồng chấm cần Khoa/Ninh thống nhất, không sửa agent, CSV, metric hoặc ngưỡng. Chỉ bổ sung tài liệu bàn giao và gợi ý xử lý PR34 dư; không merge main hay đóng Issue.
 
 Ba file nháp T-07 có backup byte-for-byte trước fetch; cập nhật local được thêm vào mà không xóa bản gốc. Không tạo output eval hay human grading/phỏng vấn giả. Dữ liệu kiểm thử synthetic không phải bằng chứng người dùng. Các dòng khai báo của thành viên khác được giữ nguyên. Hướng dẫn và biên nhận: docs/cp2-review-thang.md, docs/verification/thang-cp2-20261127.json.
+
+### Cập nhật cuối theo main cce4e72
+
+Trong cùng phiên rà soát, upstream bổ sung code app/core, 5 test của Khoa và 4 câu có nhãn nguồn thật của Nhài. Codex merge upstream vào nhánh review riêng, không merge main; kiểm113/113 unittest và các probe bằng fake/stub trên runtime/data/test giống main cce4e72. Benchmark hiện25 câu, 4/25 nguồn thật theo nhãn và có điểm đối chiếu P1/review; không tạo interview, nguồn mới hoặc đổi nhãn. Không sửa code/metric/CSV. Các khai báo Nhài và thành viên khác được giữ từ main mới; snapshot0e96a99 phía trên là lịch sử lượt đầu.
+
+### Chốt kiểm chứng tại main1711525
+
+Khoa đã sửa hợp đồng nguồn và đồng bộ số đếm trong lúc review. Codex kiểm lại114/114 test trên runtime/data/test giống main1711525; probe thẻ nhiều nguồn PASS, không còn ghi đó là blocker. Giữ các lượt0e96a99/cce4e72 như lịch sử. Chỉ cập nhật docs, không đổi runtime/metric/CSV, không gọi model thật hoặc tạo human grading/phỏng vấn. PR38 lượt đầu đã được tích hợp bởi Khoa; phần cập nhật cuối được bàn giao riêng bằng diff tài liệu.
+
+## Tiếp tục T-03, T-04, T-06 và draft T-07 theo main 12250ae
+
+Codex đối chiếu commit duyệt metric ae5bc56 và các Issue/PR mới; kiểm benchmark main cùng candidate CSV Nhài tại b35509a, đối chiếu năm đoạn nguồn khảo sát. Chỉ đọc dữ liệu khảo sát ẩn danh, không tạo câu trả lời, phỏng vấn hoặc gán lại source. Không sửa metric, expected, agent hay dữ liệu của tác giả khác.
+
+Codex chạy smoke fake, check, 114 unittest, diff-check và các probe fake/stub; builder từ chối đúng candidate 9/30 nguồn thật. Đã ghi fingerprint SHA-256 hiện tại, không gán thành provenance của lượt model thật. Không tìm thấy run/trace phù hợp nên không chạy auto grader trên dữ liệu tự tạo, không chấm human hay người thứ hai. T-07 được cập nhật local bằng số đã kiểm chứng; reflection chỉ bổ sung hồ sơ công việc, Thắng còn phải tự xác nhận. Không gọi API model thật, không chạy mô phỏng H-05, không merge main hoặc đóng Issue.

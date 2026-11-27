@@ -19,3 +19,9 @@
    Kiểm tra v0 cho thấy `x=20` bị so chuỗi nhầm thành `x=2`, còn `x1=2` có thể bị bỏ sót.
    Đây là lỗi unit test của starter, không phải kết quả benchmark CP3/CP4 hay phản hồi người dùng.
    Sau lượt thật, Thắng tự điền case ID, input/output/expected, nguyên nhân và điều mình rút ra.
+
+## Dữ kiện bổ sung cho Thắng tự hoàn thiện reflection
+
+Đây là ghi chép do Codex hỗ trợ, không thay lời tự đánh giá của Thắng. Trong lượt rà soát ngày 27/11/2026, main 12250ae có metric được Khoa duyệt và đạt 114/114 test. Candidate benchmark đã đủ 30 mã nhưng chỉ 9 nguồn thật, nên builder từ chối. Năm nguồn khảo sát mới đã được đối chiếu; chưa có phỏng vấn P3 của Thắng hoặc hai lượt model thật đủ provenance để phân tích.
+
+Thắng cần tự giải thích vì sao không đổi nhãn synthetic thành nguồn thật, vì sao hash file hiện tại không chứng minh dữ liệu lịch sử, và vì sao gợi ý chấm không thay người chấm. Chưa điền bài học từ một lỗi model của nhóm khi chưa đọc raw output thật. Giữ phần phỏng vấn P3, nhận xét cá nhân và xác nhận cuối ở trạng thái chờ Thắng cung cấp.

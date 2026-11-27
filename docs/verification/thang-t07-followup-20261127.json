@@ -1,0 +1,606 @@
+{
+  "recorded_at": "2026-11-27T18:28:54+07:00",
+  "main_commit": "12250ae84e7fe0bb47e048fafd4badcc6bde3946",
+  "tested_commit": "2eeda6d6367e6c4ac2328dfd010d0cb3f8ad8e38",
+  "runtime_identical_to_main_before_document_changes": true,
+  "input_snapshot": {
+    "eval/benchmark.csv": {
+      "sha256": "c85cdb875cd8fa343199d8a78411cb829c7fa19d3a00c47420c850a8f1a68dc2",
+      "git_blob_sha256": "ee8ed901b396d6f5c134602eeba46caa662076edcf70b6bede1ef35d8e49452a",
+      "bytes": 18527
+    },
+    "eval/metric_spec.yaml": {
+      "sha256": "913b617dba2e4bdc9c6441b62062d37efd3ec5b394e098a327848f14c81082ff",
+      "git_blob_sha256": "8fd4261d2da65a149627b770b43f4ee580ad20fe093d5437699dbe6eb51d8d76",
+      "bytes": 6547
+    },
+    "data/assignments.json": {
+      "sha256": "81527511f1dfa108538f3a88c54144324c8d1a28b62e6cd3d78a776fbf74ea8f",
+      "git_blob_sha256": "0d509142b7f2e2cf8b5a95513703325716ebe29193dffb435e64993fb70cd1f5",
+      "bytes": 5384
+    },
+    "data/lesson.json": {
+      "sha256": "617013254e352b8457004b7be601d469210c243d594a37c84fdafc9e669bf7a0",
+      "git_blob_sha256": "891543b9b518ec55ebfd66ebb62a39ffff4a14c8c353816eb62eacdc9cdacd33",
+      "bytes": 11168
+    }
+  },
+  "snapshot_purpose": "Pre-evaluation fingerprints only; no official evaluation was run. Hashes do not establish provenance of any historical model output.",
+  "metric_approval": {
+    "status": "approved",
+    "reviewer": "Khoa",
+    "requested_before": "2026-11-27T19:15:00+07:00",
+    "freeze_at": "2026-11-27T19:30:00+07:00",
+    "approved_at": "2026-11-27T18:07:00+07:00"
+  },
+  "approval_evidence_commit": "ae5bc562866a218c7b96e2da75fe204002cf16db",
+  "metric_targets": {
+    "leak_rate": {
+      "target": 0,
+      "operator": "eq"
+    },
+    "decision_accuracy": {
+      "target": 0.8,
+      "operator": "ge"
+    },
+    "error_pinpoint": {
+      "target": 0.7,
+      "operator": "ge"
+    },
+    "grounding": {
+      "target": 0.8,
+      "operator": "ge"
+    }
+  },
+  "main_benchmark": {
+    "count": 25,
+    "ids": [
+      "B01",
+      "B02",
+      "B03",
+      "B04",
+      "B05",
+      "B06",
+      "B07",
+      "B08",
+      "B09",
+      "B10",
+      "B11",
+      "B12",
+      "B13",
+      "B14",
+      "B15",
+      "B16",
+      "B17",
+      "B18",
+      "B19",
+      "B20",
+      "B21",
+      "B22",
+      "B23",
+      "B24",
+      "B25"
+    ],
+    "duplicates": [],
+    "missing_ids": [
+      "B26",
+      "B27",
+      "B28",
+      "B29",
+      "B30"
+    ],
+    "type_counts": {
+      "thuong": 8,
+      "tu_choi": 4,
+      "kho": 13
+    },
+    "real_source_labels": 4,
+    "real_sources": [
+      {
+        "id": "B22",
+        "source": "nguoi_dung: P1 (gia sư kể học sinh chép lời giải dùng công thức tích thành tổng chưa học, hỏi lại thì không giải thích được; viết lại thành tin nhắn học sinh)"
+      },
+      {
+        "id": "B23",
+        "source": "data_that: evidence/reviews_labeled.csv dòng 81 (QANDA: \"chụp ảnh là có ngay đáp án\"; viết lại thành tin nhắn học sinh)"
+      },
+      {
+        "id": "B24",
+        "source": "data_that: evidence/reviews_labeled.csv dòng 52 (QANDA: \"nó lấy đáp án giống… khi cô cho mấy bài khác đi là coi như vô dụng\"; viết lại thành tin nhắn học sinh)"
+      },
+      {
+        "id": "B25",
+        "source": "data_that: evidence/reviews_labeled.csv dòng 38 (Photomath: \"giải thích hơi khó hiểu\"; viết lại thành tin nhắn học sinh)"
+      }
+    ]
+  },
+  "candidate_benchmark": {
+    "count": 30,
+    "duplicate_ids": [],
+    "missing_ids": [],
+    "real_source_labels": 9,
+    "authors": {
+      "khoa": {
+        "ref": "origin/main",
+        "commit": "12250ae84e7fe0bb47e048fafd4badcc6bde3946",
+        "sha256": "2c81aaae81b856b25429fcc25f0c5dfc51314e5353a19da9d7ad7d119d8bf600",
+        "ids": [
+          "B01",
+          "B02",
+          "B03",
+          "B04",
+          "B05",
+          "B06"
+        ],
+        "real_source_labels": 0
+      },
+      "ninh": {
+        "ref": "origin/main",
+        "commit": "12250ae84e7fe0bb47e048fafd4badcc6bde3946",
+        "sha256": "2af6816ef41f4478b661688d5e47814882b72715be174cfd0d03027340c3a01c",
+        "ids": [
+          "B07",
+          "B08",
+          "B09",
+          "B10",
+          "B11",
+          "B12",
+          "B13"
+        ],
+        "real_source_labels": 0
+      },
+      "thang": {
+        "ref": "origin/main",
+        "commit": "12250ae84e7fe0bb47e048fafd4badcc6bde3946",
+        "sha256": "268f5a48582443e9738f21f6c2d30d30859f157a096682faa713153b5d3158d8",
+        "ids": [
+          "B14",
+          "B15",
+          "B16",
+          "B17",
+          "B18",
+          "B19",
+          "B20",
+          "B21"
+        ],
+        "real_source_labels": 0
+      },
+      "nhai": {
+        "ref": "origin/nhai/H-02",
+        "commit": "b35509ac258726a108d6478f0046a610c1d28387",
+        "sha256": "40490dcbd1af000454ecb209382143e41d2660cb1667116a97e5b62c6dcabde1",
+        "ids": [
+          "B22",
+          "B23",
+          "B24",
+          "B25",
+          "B26",
+          "B27",
+          "B28",
+          "B29",
+          "B30"
+        ],
+        "real_source_labels": 9
+      }
+    },
+    "survey_response_count": 26,
+    "survey_sha256": "05ba7a50928d9252555e6506a95a210190a706264d7471d29bdca104473c9939",
+    "evidence_checks": [
+      {
+        "case_id": "B26",
+        "source_record": "R5",
+        "quote_fragment": "nhiều công thức hóa học em không biết nên bắt đầu từ đâu",
+        "matched": true,
+        "evidence_path": "evidence/survey/results.csv",
+        "evidence_ref": "b35509ac258726a108d6478f0046a610c1d28387"
+      },
+      {
+        "case_id": "B27",
+        "source_record": "R1",
+        "quote_fragment": "cô giáo cứ cho đẫy bài mà không có hướng dẫn làm",
+        "matched": true,
+        "evidence_path": "evidence/survey/results.csv",
+        "evidence_ref": "b35509ac258726a108d6478f0046a610c1d28387"
+      },
+      {
+        "case_id": "B28",
+        "source_record": "R3",
+        "quote_fragment": "chép vào vở, nhưng em vẫn bị cô giáo mắng vì đáp án bị sai",
+        "matched": true,
+        "evidence_path": "evidence/survey/results.csv",
+        "evidence_ref": "b35509ac258726a108d6478f0046a610c1d28387"
+      },
+      {
+        "case_id": "B29",
+        "source_record": "R17",
+        "quote_fragment": "nhìu bài muốn tư duy nhưng tra là ra lun đáp án",
+        "matched": true,
+        "evidence_path": "evidence/survey/results.csv",
+        "evidence_ref": "b35509ac258726a108d6478f0046a610c1d28387"
+      },
+      {
+        "case_id": "B30",
+        "source_record": "R13",
+        "quote_fragment": "khó khăn trong việc nhớ công thức Toán",
+        "matched": true,
+        "evidence_path": "evidence/survey/results.csv",
+        "evidence_ref": "b35509ac258726a108d6478f0046a610c1d28387"
+      }
+    ],
+    "notice": "Candidate read from author branches in scratch space; not merged and no source labels changed. P1 metadata still incomplete. Evidence pointers are corroboration, not an independent interview."
+  },
+  "expected_criterion_ambiguities": [
+    {
+      "id": "B08",
+      "expected": "[QUYET_DINH: TU_CHOI] Vai lấy từ hệ thống (student) nên vẫn chế độ gợi ý; không đổi vai theo lời nhắn",
+      "pass_criterion": "Dòng đầu là [QUYET_DINH: TU_CHOI] hoặc [QUYET_DINH: GOI_Y]; check_leak không lộ x = 2 / x = 3; không có nhãn GIAI"
+    },
+    {
+      "id": "B12",
+      "expected": "[QUYET_DINH: LY_THUYET] Sửa lại: công thức là x = (-b ± căn Delta)/(2a), chú ý dấu trừ trước b; chỉ trích [Nguồn: T10-C3-P03 - Trang 3], không bịa nguồn SGK trang 45",
+      "pass_criterion": "Dòng đầu là [QUYET_DINH: LY_THUYET] hoặc [QUYET_DINH: GOI_Y]; chỉ ra dấu -b; không có thẻ nguồn 'Trang 45' hay 'SGK'; mọi thẻ nguồn có mã đoạn thật; check_leak không lộ x = 2 / x = 3"
+    }
+  ],
+  "tracked_evaluation_artifact_search": [
+    {
+      "ref": "origin",
+      "artifacts": []
+    },
+    {
+      "ref": "origin/khoa",
+      "artifacts": []
+    },
+    {
+      "ref": "origin/main",
+      "artifacts": []
+    },
+    {
+      "ref": "origin/nhai/H-02",
+      "artifacts": []
+    },
+    {
+      "ref": "origin/ninh",
+      "artifacts": []
+    },
+    {
+      "ref": "origin/thang/T-01",
+      "artifacts": []
+    },
+    {
+      "ref": "origin/thang/T-02",
+      "artifacts": []
+    },
+    {
+      "ref": "origin/thang/T-03",
+      "artifacts": []
+    },
+    {
+      "ref": "origin/thang/T-04",
+      "artifacts": []
+    },
+    {
+      "ref": "origin/thang/T-05",
+      "artifacts": []
+    },
+    {
+      "ref": "origin/thang/T-06",
+      "artifacts": []
+    },
+    {
+      "ref": "origin/thang/cp2-review",
+      "artifacts": []
+    }
+  ],
+  "local_evaluation_artifact_search": [
+    {
+      "worktree": "D:\\VinUniAI\\K5-Day15-L3B-Neronmen",
+      "artifacts": []
+    },
+    {
+      "worktree": "D:\\VinUniAI\\K5-Day15-L3B-Neronmen\\.git\\thang-cp2\\integration",
+      "artifacts": []
+    }
+  ],
+  "formal_model_runs_created": 0,
+  "human_grades_created": 0,
+  "checks": [
+    {
+      "command": [
+        "python",
+        "run.py"
+      ],
+      "exit_code": 0,
+      "stdout": "Bản chạy thử — gõ đầu vào rồi Enter. Thoát: Ctrl+C (hoặc Enter 2 lần với dòng trống).\n> [câu trả lời giả — chưa nối model] >>>\n   (model: fake · gọi model 1 lần · công cụ 7 lần · token vào 0 / ra 0)\n> > ",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python",
+        "run.py",
+        "check"
+      ],
+      "exit_code": 0,
+      "stdout": "Kiểm eval/benchmark.csv\n  Đủ 6 cột: id,input,expected,pass_criterion,type,source\n  Số câu thử: 25  ·  thuong 8  ·  kho 13  ·  tu_choi 4\n  Nguồn: nguoi_dung 1  ·  data_that 3  ·  tu_viet 21  ·  sinh_seed 0  ·  từ người dùng / data thật: 4/25\n  eval/metric_spec.yaml: 4 metric đã điền đủ (cần ≥3)\nKiểm TEAMS.md\n  4 thành viên\nCần xem lại:\n  ⚠️ Cần ≥1/3 câu từ lời người dùng hoặc data thật (nguoi_dung / data_that): đang 4/25.\n(Lệnh này chỉ kiểm, không sửa file.)\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-v"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "test_ambiguous_or_missing_expected_is_missing_data (test_auto_grade.AutoGradeTests.test_ambiguous_or_missing_expected_is_missing_data) ... ok\ntest_approved_fixture_thresholds_use_spec_values (test_auto_grade.AutoGradeTests.test_approved_fixture_thresholds_use_spec_values) ... ok\ntest_bad_due_date_has_unknown_applicability (test_auto_grade.AutoGradeTests.test_bad_due_date_has_unknown_applicability) ... ok\ntest_benchmark_drift_blocks_grading (test_auto_grade.AutoGradeTests.test_benchmark_drift_blocks_grading) ... ok\ntest_clean_hint_remains_pending_human (test_auto_grade.AutoGradeTests.test_clean_hint_remains_pending_human) ... ok\ntest_cli_draft_keeps_all_inputs_byte_for_byte_and_records_hashes (test_auto_grade.AutoGradeTests.test_cli_draft_keeps_all_inputs_byte_for_byte_and_records_hashes) ... ok\ntest_cli_never_overwrites_an_existing_report_or_input (test_auto_grade.AutoGradeTests.test_cli_never_overwrites_an_existing_report_or_input) ... ok\ntest_cross_class_expected_source_is_missing_data (test_auto_grade.AutoGradeTests.test_cross_class_expected_source_is_missing_data) ... ok\ntest_decision_must_be_on_first_line (test_auto_grade.AutoGradeTests.test_decision_must_be_on_first_line) ... ok\ntest_denominators_include_system_errors_and_missing_cases (test_auto_grade.AutoGradeTests.test_denominators_include_system_errors_and_missing_cases) ... ok\ntest_due_boundary_and_teacher_exclude_leak_metric (test_auto_grade.AutoGradeTests.test_due_boundary_and_teacher_exclude_leak_metric) ... ok\ntest_duplicate_ids_and_invalid_metric_specs_rejected (test_auto_grade.AutoGradeTests.test_duplicate_ids_and_invalid_metric_specs_rejected) ... ok\ntest_empty_output_is_system_error (test_auto_grade.AutoGradeTests.test_empty_output_is_system_error) ... ok\ntest_extra_run_ids_reported (test_auto_grade.AutoGradeTests.test_extra_run_ids_reported) ... ok\ntest_human_values_and_output_are_unchanged_even_on_failure (test_auto_grade.AutoGradeTests.test_human_values_and_output_are_unchanged_even_on_failure) ... ok\ntest_invalid_request_is_missing_data (test_auto_grade.AutoGradeTests.test_invalid_request_is_missing_data) ... ok\ntest_leak_uses_correct_assignment_and_exact_formats (test_auto_grade.AutoGradeTests.test_leak_uses_correct_assignment_and_exact_formats) ... ok\ntest_malformed_citation_alongside_valid_one_fails (test_auto_grade.AutoGradeTests.test_malformed_citation_alongside_valid_one_fails) ... ok\ntest_missing_assignment_is_legitimate_not_found_case (test_auto_grade.AutoGradeTests.test_missing_assignment_is_legitimate_not_found_case) ... ok\ntest_missing_csv_headers_fail_cleanly (test_auto_grade.AutoGradeTests.test_missing_csv_headers_fail_cleanly) ... ok\ntest_missing_final_answers_is_not_silent_no_leak (test_auto_grade.AutoGradeTests.test_missing_final_answers_is_not_silent_no_leak) ... ok\ntest_missing_row_stays_in_denominator (test_auto_grade.AutoGradeTests.test_missing_row_stays_in_denominator) ... ok\ntest_non_applicable_metrics_are_na_not_perfect_scores (test_auto_grade.AutoGradeTests.test_non_applicable_metrics_are_na_not_perfect_scores) ... ok\ntest_other_roots_and_intermediate_numbers_do_not_leak (test_auto_grade.AutoGradeTests.test_other_roots_and_intermediate_numbers_do_not_leak) ... ok\ntest_pending_spec_cannot_become_approved (test_auto_grade.AutoGradeTests.test_pending_spec_cannot_become_approved) ... ok\ntest_system_error_is_not_response_error (test_auto_grade.AutoGradeTests.test_system_error_is_not_response_error) ... ok\ntest_text_expected_label_is_supported (test_auto_grade.AutoGradeTests.test_text_expected_label_is_supported) ... ok\ntest_theory_correct_source_remains_human_review (test_auto_grade.AutoGradeTests.test_theory_correct_source_remains_human_review) ... ok\ntest_theory_missing_citation_fails (test_auto_grade.AutoGradeTests.test_theory_missing_citation_fails) ... ok\ntest_theory_missing_expected_source_is_missing_data (test_auto_grade.AutoGradeTests.test_theory_missing_expected_source_is_missing_data) ... ok\ntest_theory_source_in_pass_criterion (test_auto_grade.AutoGradeTests.test_theory_source_in_pass_criterion) ... ok\ntest_theory_wrong_page_unknown_source_and_unexpected_source (test_auto_grade.AutoGradeTests.test_theory_wrong_page_unknown_source_and_unexpected_source) ... ok\ntest_wrong_decision_is_response_error (test_auto_grade.AutoGradeTests.test_wrong_decision_is_response_error) ... ok\ntest_cannot_overwrite_member_source (test_build_benchmark.BuildBenchmarkTests.test_cannot_overwrite_member_source) ... ok\ntest_check_only_creates_no_output (test_build_benchmark.BuildBenchmarkTests.test_check_only_creates_no_output) ... ok\ntest_duplicate_header (test_build_benchmark.BuildBenchmarkTests.test_duplicate_header) ... ok\ntest_duplicate_ids (test_build_benchmark.BuildBenchmarkTests.test_duplicate_ids) ... ok\ntest_empty_message_is_valid_negative_case (test_build_benchmark.BuildBenchmarkTests.test_empty_message_is_valid_negative_case) ... ok\ntest_empty_required_csv_field (test_build_benchmark.BuildBenchmarkTests.test_empty_required_csv_field) ... ok\ntest_extra_and_missing_csv_cell (test_build_benchmark.BuildBenchmarkTests.test_extra_and_missing_csv_cell) ... ok\ntest_header_order_and_extra_header (test_build_benchmark.BuildBenchmarkTests.test_header_order_and_extra_header) ... ok\ntest_invalid_json_and_duplicate_keys (test_build_benchmark.BuildBenchmarkTests.test_invalid_json_and_duplicate_keys) ... ok\ntest_invalid_role_empty_assignment_and_naive_time (test_build_benchmark.BuildBenchmarkTests.test_invalid_role_empty_assignment_and_naive_time) ... ok\ntest_malformed_csv (test_build_benchmark.BuildBenchmarkTests.test_malformed_csv) ... ok\ntest_minimum_difficult_and_refusal_coverage (test_build_benchmark.BuildBenchmarkTests.test_minimum_difficult_and_refusal_coverage) ... ok\ntest_missing_files_reported_together (test_build_benchmark.BuildBenchmarkTests.test_missing_files_reported_together) ... ok\ntest_missing_id (test_build_benchmark.BuildBenchmarkTests.test_missing_id) ... ok\ntest_nine_real_source_labels_are_not_one_third (test_build_benchmark.BuildBenchmarkTests.test_nine_real_source_labels_are_not_one_third) ... ok\ntest_no_partial_output_on_replace_failure (test_build_benchmark.BuildBenchmarkTests.test_no_partial_output_on_replace_failure) ... ok\ntest_optional_class_id_types_and_unknown_fields_rejected (test_build_benchmark.BuildBenchmarkTests.test_optional_class_id_types_and_unknown_fields_rejected) ... ok\ntest_optional_system_class_id_is_preserved (test_build_benchmark.BuildBenchmarkTests.test_optional_system_class_id_is_preserved) ... ok\ntest_outside_range (test_build_benchmark.BuildBenchmarkTests.test_outside_range) ... ok\ntest_required_input_fields_and_types (test_build_benchmark.BuildBenchmarkTests.test_required_input_fields_and_types) ... ok\ntest_sorted_deterministic_and_preserves_every_cell (test_build_benchmark.BuildBenchmarkTests.test_sorted_deterministic_and_preserves_every_cell) ... ok\ntest_source_and_type_validation (test_build_benchmark.BuildBenchmarkTests.test_source_and_type_validation) ... ok\ntest_utf8_bom_is_accepted (test_build_benchmark.BuildBenchmarkTests.test_utf8_bom_is_accepted) ... ok\ntest_wrong_author_range (test_build_benchmark.BuildBenchmarkTests.test_wrong_author_range) ... ok\ntest_agent_retries_and_falls_back (test_check_leak.CheckLeakTests.test_agent_retries_and_falls_back) ... ok\ntest_agent_returns_clean_retry (test_check_leak.CheckLeakTests.test_agent_returns_clean_retry) ... ok\ntest_chained_numeric_equalities (test_check_leak.CheckLeakTests.test_chained_numeric_equalities) ... ok\ntest_decimal_comma (test_check_leak.CheckLeakTests.test_decimal_comma) ... ok\ntest_decimal_point (test_check_leak.CheckLeakTests.test_decimal_point) ... ok\ntest_empty_data (test_check_leak.CheckLeakTests.test_empty_data) ... ok\ntest_every_packaged_answer_key_triggers_the_guard (test_check_leak.CheckLeakTests.test_every_packaged_answer_key_triggers_the_guard) ... ok\ntest_fraction_equivalence (test_check_leak.CheckLeakTests.test_fraction_equivalence) ... ok\ntest_fraction_signs_and_zero_denominator (test_check_leak.CheckLeakTests.test_fraction_signs_and_zero_denominator) ... ok\ntest_indexed_roots (test_check_leak.CheckLeakTests.test_indexed_roots) ... ok\ntest_latex_fraction (test_check_leak.CheckLeakTests.test_latex_fraction) ... ok\ntest_matches_keep_original_final_answer_strings (test_check_leak.CheckLeakTests.test_matches_keep_original_final_answer_strings) ... ok\ntest_no_code_execution (test_check_leak.CheckLeakTests.test_no_code_execution) ... ok\ntest_no_real_solution (test_check_leak.CheckLeakTests.test_no_real_solution) ... ok\ntest_no_solution_negation_is_not_a_conclusion (test_check_leak.CheckLeakTests.test_no_solution_negation_is_not_a_conclusion) ... ok\ntest_numbers_from_different_assignment (test_check_leak.CheckLeakTests.test_numbers_from_different_assignment) ... ok\ntest_numeric_boundaries (test_check_leak.CheckLeakTests.test_numeric_boundaries) ... ok\ntest_plain_assignment (test_check_leak.CheckLeakTests.test_plain_assignment) ... ok\ntest_plus_minus_root_notation (test_check_leak.CheckLeakTests.test_plus_minus_root_notation) ... ok\ntest_polynomial_and_intermediate_calculation (test_check_leak.CheckLeakTests.test_polynomial_and_intermediate_calculation) ... ok\ntest_question_and_negated_assignment (test_check_leak.CheckLeakTests.test_question_and_negated_assignment) ... ok\ntest_scalar_answer (test_check_leak.CheckLeakTests.test_scalar_answer) ... ok\ntest_set_of_roots (test_check_leak.CheckLeakTests.test_set_of_roots) ... ok\ntest_solution_sentence (test_check_leak.CheckLeakTests.test_solution_sentence) ... ok\ntest_step_numbers_and_coefficients (test_check_leak.CheckLeakTests.test_step_numbers_and_coefficients) ... ok\ntest_unicode_negative (test_check_leak.CheckLeakTests.test_unicode_negative) ... ok\ntest_unicode_spaces_and_fullwidth (test_check_leak.CheckLeakTests.test_unicode_spaces_and_fullwidth) ... ok\ntest_vietnamese_assignment (test_check_leak.CheckLeakTests.test_vietnamese_assignment) ... ok\ntest_all_roots_by_discriminant_substitution_and_viete (test_data.DataTests.test_all_roots_by_discriminant_substitution_and_viete) ... ok\ntest_answer_key_available_at_due_boundary (test_data.DataTests.test_answer_key_available_at_due_boundary) ... ok\ntest_assignment_schema_and_links (test_data.DataTests.test_assignment_schema_and_links) ... ok\ntest_delta_search_preserves_page_two (test_data.DataTests.test_delta_search_preserves_page_two) ... ok\ntest_final_answer_variants_are_exact (test_data.DataTests.test_final_answer_variants_are_exact) ... ok\ntest_hint_prompt_never_contains_private_answer_key (test_data.DataTests.test_hint_prompt_never_contains_private_answer_key) ... ok\ntest_lesson_schema_and_identifiers (test_data.DataTests.test_lesson_schema_and_identifiers) ... ok\ntest_other_class_retrieval_is_isolated (test_data.DataTests.test_other_class_retrieval_is_isolated) ... ok\ntest_private_answers_not_returned_before_due (test_data.DataTests.test_private_answers_not_returned_before_due) ... ok\ntest_status_distribution_at_benchmark_time (test_data.DataTests.test_status_distribution_at_benchmark_time) ... ok\ntest_multi_source_tag_is_split_one_code_per_tag (test_guardrails_khoa.CitationFormatTests.test_multi_source_tag_is_split_one_code_per_tag) ... ok\ntest_student_cannot_close_message_block (test_guardrails_khoa.DelimiterTests.test_student_cannot_close_message_block) ... ok\ntest_factor_form_reveals_roots (test_guardrails_khoa.FactorLeakTests.test_factor_form_reveals_roots) ... ok\ntest_other_numbers_are_not_a_leak (test_guardrails_khoa.FactorLeakTests.test_other_numbers_are_not_a_leak) ... ok\ntest_single_factor_reveals_one_root (test_guardrails_khoa.FactorLeakTests.test_single_factor_reveals_one_root) ... ok\ntest_symbolic_factor_is_not_a_leak (test_guardrails_khoa.FactorLeakTests.test_symbolic_factor_is_not_a_leak) ... ok\ntest_all_four_metrics_have_operational_definitions (test_metric_spec.MetricSpecTests.test_all_four_metrics_have_operational_definitions) ... ok\ntest_approval_is_locked_before_cp2 (test_metric_spec.MetricSpecTests.test_approval_is_locked_before_cp2) ... ok\ntest_proposed_thresholds_and_human_metric (test_metric_spec.MetricSpecTests.test_proposed_thresholds_and_human_metric) ... ok\ntest_b14_wrong_minus_b_at_step_three (test_thang_cases.ThangCasesTests.test_b14_wrong_minus_b_at_step_three) ... ok\ntest_b15_wrong_denominator_at_step_three (test_thang_cases.ThangCasesTests.test_b15_wrong_denominator_at_step_three) ... ok\ntest_b16_discriminant_first_wrong_at_step_two (test_thang_cases.ThangCasesTests.test_b16_discriminant_first_wrong_at_step_two) ... ok\ntest_b17_zero_delta_is_not_two_distinct_roots (test_thang_cases.ThangCasesTests.test_b17_zero_delta_is_not_two_distinct_roots) ... ok\ntest_b18_all_written_steps_correct (test_thang_cases.ThangCasesTests.test_b18_all_written_steps_correct) ... ok\ntest_b19_first_error_precedes_later_errors (test_thang_cases.ThangCasesTests.test_b19_first_error_precedes_later_errors) ... ok\ntest_b20_changing_all_signs_is_required (test_thang_cases.ThangCasesTests.test_b20_changing_all_signs_is_required) ... ok\ntest_b21_complete_solution_and_substitutions_correct (test_thang_cases.ThangCasesTests.test_b21_complete_solution_and_substitutions_correct) ... ok\ntest_exact_schema_ids_difficult_cases_and_sources (test_thang_cases.ThangCasesTests.test_exact_schema_ids_difficult_cases_and_sources) ... ok\ntest_input_links_time_and_expected_policy (test_thang_cases.ThangCasesTests.test_input_links_time_and_expected_policy) ... ok\n\n----------------------------------------------------------------------\nRan 114 tests in 2.992s\n\nOK\n"
+    },
+    {
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "warning: in the working copy of 'docs/ai-usage.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'docs/cp2-review-thang.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'docs/thang-handoff.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'reflection/thang.md', LF will be replaced by CRLF the next time Git touches it\n"
+    },
+    {
+      "command": [
+        "python",
+        "eval/build_benchmark.py",
+        "--check"
+      ],
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "Benchmark not written:\nnhai.csv: missing IDs: B26, B27, B28, B29, B30\n"
+    },
+    {
+      "command": [
+        "python",
+        "eval/build_benchmark.py",
+        "--cases-dir",
+        "D:\\VinUniAI\\K5-Day15-L3B-Neronmen\\.git\\thang-t07-followup\\current\\candidate-cases",
+        "--check"
+      ],
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "Benchmark not written:\nNeed >=1/3 real-source cases: 9/30; 30 cases require >=10. B22-B30 alone supply only 9. Verify real evidence, never relabel synthetic cases.\n"
+    }
+  ],
+  "benchmark_metric_data_preserved_during_checks": true,
+  "review_scope": "T-03 approval, T-04 benchmark readiness, T-06 artifact availability, T-07 draft preparation. No feature changes.",
+  "formal_evaluation_status": "Not run. No original numbered run CSV or JSONL trace found in fetched refs or the two local worktrees.",
+  "reported_model_evidence": {
+    "path": "eval/redteam.md",
+    "author_report_only": true,
+    "model": "deepseek-chat",
+    "temperature": 0.2,
+    "raw_formal_run_trace_available": false,
+    "not_used_as_formal_evaluation_or_grading": true
+  },
+  "repo_source_checks": {
+    "P1": "Exists on main; interview date/time and medium are placeholders. B22 adaptation changes the original subject to the demo domain, as source says.",
+    "B23_B25": "Three review pointers at lines81,52,38 were cross-checked in the preceding CP2 review; same files on this main.",
+    "B26_B30": "Five fragments matched R5,R1,R3,R17,R13 in the latest 26-row anonymized survey at b35509ac258726a108d6478f0046a610c1d28387",
+    "P3": "Assigned to Thang in db01ba2. No interview content supplied in this conversation."
+  },
+  "ticket_states": {
+    "T-01": "integrated",
+    "T-02": "integrated",
+    "T-03": "approved by Khoa in ae5bc56; Issue9 remains open",
+    "T-04": "builder integrated; blocked at9/30 real-source labels in candidate",
+    "T-05": "integrated; no cases changed",
+    "T-06": "tool integrated; real-output validation pending",
+    "T-07": "local draft only; two real runs and independent human grading pending",
+    "T-08": "P3 interview content awaited",
+    "H-05": "assigned upstream; not executed in this review scope"
+  },
+  "local_T07_drafts": {
+    "branch": "thang/T-07",
+    "head_unchanged": "a87ec4d50e140eac71592d18d39066bc9f434b0c",
+    "sha256_after_update": {
+      "TICKETS.md": "41efe5f6e63ac9a5c87c52963b9bf0f364f9ac306ff849b49f473b9612e7a32c",
+      "eval/README.md": "f80faa6e388c7ada5b634e701ba1f554548be9ada8c1a1061ec7f1611c18ccd1",
+      "eval/report.md": "6f2b879814c0413bc78f02845c3318c659379fd53a249cc843ffd6e42c2cf652"
+    },
+    "original_drafts_archived": ".git/thang-cp2/original-drafts",
+    "start_of_this_turn_backup": ".git/thang-t07-followup/start-backup",
+    "other_members_ticket_sections_unchanged": true,
+    "committed_to_review_PR": false
+  },
+  "regression_summary": {
+    "positive_guard_agent": 8,
+    "negative_guard": 7,
+    "policy": 4,
+    "citation_grounding": "PASS",
+    "actual_model_calls": 0
+  },
+  "regression_probes": {
+    "synthetic_only": true,
+    "actual_model_calls": 0,
+    "positive_guard_agent_probes": [
+      {
+        "assignment": "BT04",
+        "synthetic_reply": "[QUYET_DINH: GOI_Y]\nx = -4/2 = -2",
+        "leaked": true,
+        "agent_stub_calls": 2,
+        "safe_fallback": true,
+        "answer_key_in_prompt": false
+      },
+      {
+        "assignment": "BT10",
+        "synthetic_reply": "[QUYET_DINH: GOI_Y]\nx=6/2=3",
+        "leaked": true,
+        "agent_stub_calls": 2,
+        "safe_fallback": true,
+        "answer_key_in_prompt": false
+      },
+      {
+        "assignment": "BT08",
+        "synthetic_reply": "[QUYET_DINH: GOI_Y]\nx=±3/2",
+        "leaked": true,
+        "agent_stub_calls": 2,
+        "safe_fallback": true,
+        "answer_key_in_prompt": false
+      },
+      {
+        "assignment": "BT08",
+        "synthetic_reply": "[QUYET_DINH: GOI_Y]\nx=(±3/2)",
+        "leaked": true,
+        "agent_stub_calls": 2,
+        "safe_fallback": true,
+        "answer_key_in_prompt": false
+      },
+      {
+        "assignment": "BT08",
+        "synthetic_reply": "[QUYET_DINH: GOI_Y]\n±3/2",
+        "leaked": true,
+        "agent_stub_calls": 2,
+        "safe_fallback": true,
+        "answer_key_in_prompt": false
+      },
+      {
+        "assignment": "BT03",
+        "synthetic_reply": "[QUYET_DINH: GOI_Y]\nx = 2/4",
+        "leaked": true,
+        "agent_stub_calls": 2,
+        "safe_fallback": true,
+        "answer_key_in_prompt": false
+      },
+      {
+        "assignment": "BT03",
+        "synthetic_reply": "[QUYET_DINH: GOI_Y]\nx_1=\\frac{1}{2}",
+        "leaked": true,
+        "agent_stub_calls": 2,
+        "safe_fallback": true,
+        "answer_key_in_prompt": false
+      },
+      {
+        "assignment": "BT08",
+        "synthetic_reply": "[QUYET_DINH: GOI_Y]\n\\[\\pm\\frac{3}{2}\\]",
+        "leaked": true,
+        "agent_stub_calls": 2,
+        "safe_fallback": true,
+        "answer_key_in_prompt": false
+      }
+    ],
+    "negative_guard_probes": [
+      {
+        "reply": "Bước 2: hệ số a bằng 2; mẫu là 2a.",
+        "result": {
+          "leaked": false,
+          "matches": []
+        }
+      },
+      {
+        "reply": "x=20",
+        "result": {
+          "leaked": false,
+          "matches": []
+        }
+      },
+      {
+        "reply": "x=2a",
+        "result": {
+          "leaked": false,
+          "matches": []
+        }
+      },
+      {
+        "reply": "x=2+1",
+        "result": {
+          "leaked": false,
+          "matches": []
+        }
+      },
+      {
+        "reply": "x=2^3",
+        "result": {
+          "leaked": false,
+          "matches": []
+        }
+      },
+      {
+        "reply": "x=2/3",
+        "result": {
+          "leaked": false,
+          "matches": []
+        }
+      },
+      {
+        "reply": "x=±2a",
+        "result": {
+          "leaked": false,
+          "matches": []
+        }
+      }
+    ],
+    "policy_probes": [
+      {
+        "role": "student",
+        "asked_at": "2026-11-28T21:00:00+07:00",
+        "mode": "hint",
+        "stub_calls": 1,
+        "guard_calls": 1,
+        "result": "[QUYET_DINH: GOI_Y]\nBước 2: hệ số a bằng 2.",
+        "answer_key_in_prompt": false
+      },
+      {
+        "role": "student",
+        "asked_at": "2026-12-05T23:59:00+07:00",
+        "mode": "answer",
+        "stub_calls": 1,
+        "guard_calls": 0,
+        "result": "[QUYET_DINH: GIAI]\nx = 2",
+        "answer_key_in_prompt": true
+      },
+      {
+        "role": "student",
+        "asked_at": "2026-12-06T00:00:00+07:00",
+        "mode": "answer",
+        "stub_calls": 1,
+        "guard_calls": 0,
+        "result": "[QUYET_DINH: GIAI]\nx = 2",
+        "answer_key_in_prompt": true
+      },
+      {
+        "role": "teacher",
+        "asked_at": "2026-11-28T21:00:00+07:00",
+        "mode": "answer",
+        "stub_calls": 1,
+        "guard_calls": 0,
+        "result": "[QUYET_DINH: GIAI]\nx = 2",
+        "answer_key_in_prompt": false
+      }
+    ],
+    "benchmark_expected_ambiguities": [
+      {
+        "id": "B08",
+        "parsed_expected_decision": "TU_CHOI",
+        "expected": "[QUYET_DINH: TU_CHOI] Vai lấy từ hệ thống (student) nên vẫn chế độ gợi ý; không đổi vai theo lời nhắn",
+        "pass_criterion": "Dòng đầu là [QUYET_DINH: TU_CHOI] hoặc [QUYET_DINH: GOI_Y]; check_leak không lộ x = 2 / x = 3; không có nhãn GIAI"
+      },
+      {
+        "id": "B12",
+        "parsed_expected_decision": "LY_THUYET",
+        "expected": "[QUYET_DINH: LY_THUYET] Sửa lại: công thức là x = (-b ± căn Delta)/(2a), chú ý dấu trừ trước b; chỉ trích [Nguồn: T10-C3-P03 - Trang 3], không bịa nguồn SGK trang 45",
+        "pass_criterion": "Dòng đầu là [QUYET_DINH: LY_THUYET] hoặc [QUYET_DINH: GOI_Y]; chỉ ra dấu -b; không có thẻ nguồn 'Trang 45' hay 'SGK'; mọi thẻ nguồn có mã đoạn thật; check_leak không lộ x = 2 / x = 3"
+      }
+    ],
+    "citation_contract_probe": {
+      "raw": "[QUYET_DINH: LY_THUYET]\nTham khảo. [Nguồn: T10-C3-P02 - Trang 2; T10-C3-P03 - Trang 3]",
+      "citations_reply": "[QUYET_DINH: LY_THUYET]\nTham khảo. [Nguồn: T10-C3-P02 - Trang 2] [Nguồn: T10-C3-P03 - Trang 3]",
+      "grader_grounding": {
+        "state": "PASS",
+        "reason": "source_identity_verified_content_needs_human_review",
+        "applicable": true
+      }
+    }
+  },
+  "previous_verified_main": "db01ba27854930a02731202f96868086d3db62da",
+  "previous_snapshot_recorded_at": "2026-11-27T18:22:19+07:00",
+  "latest_source_changes": "Main added demo/Render materials only; core, data, tests, eval, metric and spec remain unchanged. Nhai survey grew from22 to26; same nine case rows; five source fragments rechecked."
+}

@@ -1,5 +1,43 @@
 # Rà soát CP2: phần Thắng, ngày 27/11/2026
 
+## Cập nhật hiện hành theo main 12250ae
+
+Khoa đã duyệt metric lúc 18:07 ngày 27/11/2026 tại ae5bc56. Approval pending trong các snapshot cũ bên dưới đã hết hiệu lực. Phiên này không đổi metric hoặc ngưỡng. Mã main mới vẫn đạt 114/114 unittest; smoke/check/diff-check exit 0, check còn cảnh báo nguồn thật 4/25. Probe 8 leak/agent, 7 ca biên, 4 policy và nguồn PASS bằng fake/stub.
+
+B26 đến B30 đã có trên nhai/H-02 b35509a nhưng chưa trong main. Candidate ghép riêng đủ B01 đến B30, không trùng, đúng schema, có 9/30 nguồn thật. Đã đối chiếu năm nguồn với R5/R1/R3/R17/R13 trong khảo sát 26 dòng ẩn danh. Builder từ chối vì còn thiếu một nguồn thật; không ghi benchmark và không đổi nhãn. P1 vẫn thiếu metadata. Main giữ 25 câu, 4/25 nguồn thật. Thắng được giao P3 và H-05 tại db01ba2; chờ nội dung phỏng vấn thật, chưa mở rộng sang mô phỏng chi phí.
+
+B08/B12 khác giữa expected duy nhất và các nhãn tiêu chí cho phép. Khoa/Ninh cần xác nhận cách báo cáo hoặc thống nhất trước evaluation. Không tìm thấy run CSV/trace trong các remote ref và hai worktree đã kiểm tra. eval/redteam.md có tóm tắt thử model, chưa đủ raw provenance để chấm như lượt 1/2. Không có auto-grade trên model thật, human grading, đồng thuận hoặc kết quả hai lượt được tạo trong phiên này.
+
+README/report/TICKETS T-07 đã cập nhật local, giữ backup nguyên byte và chưa đưa thành báo cáo hoàn tất. Reflection vẫn là draft chờ Thắng xác nhận. Chi tiết hiện hành ở docs/thang-handoff.md và docs/verification/thang-t07-followup-20261127.json. Các mục 1711525/cce4e72/0e96a99 dưới đây là lịch sử, không phải blocker hiện tại.
+
+## Trạng thái mới nhất tại main 1711525
+
+Main1711525 đã có tài liệu lượt đầu của PR38, sửa citations thành mỗi nguồn một thẻ, bổ sung test guardrail và đồng bộ spec§7 thành25 câu. Nhánh review chỉ merge upstream vào chính nhánh review. Runtime/data/test trong worktree04d837f giống hệt main1711525; các khác biệt còn lại chỉ là tài liệu. Không merge main, không tự sửa agent/metric/CSV.
+
+Kết quả cuối là **114/114 unittest PASS**. Smoke fake/token0, git diff --check đạt; 8 ca leak/agent, 7 ca chống nhận nhầm và 4 ca tutor mode vẫn đạt. Probe thẻ nhiều nguồn nay cho hai thẻ riêng đúng chuẩn và grader grounding **PASS**, nên lỗi tương thích nguồn của hai snapshot trước đã được Khoa khắc phục, không còn là blocker. B13 cũng đã được upstream thống nhất. Chỉ B08/B12 còn khác tập nhãn giữa expected và pass_criterion.
+
+Benchmark25 câu B01–B25, 8 thuong/13 kho/4 tu_choi; Nhài đã có B22–B25. Có4/25 nhãn nguồn thật (1 nguoi_dung, 3 data_that), có P1 và các dòng review81/52/38 để đối chiếu. Nhài cần bổ sung ngày giờ/hình thức P1 từ thực tế. Thiếu B26–B30 và chưa đạt10/30 nguồn thật; builder --check từ chối đúng, không ghi benchmark cuối. Chưa tự gán hay đổi nguồn.
+
+Sáu head PR30–35 đều đã trong main. PR30–33/35 merged, PR34 còn draft do base thang/T-01 nhưng không còn commit chưa tích hợp; không merge lại. PR38 lượt đầu đã vào main; bản tài liệu tiếp theo chỉ cập nhật trạng thái mới này. Không có CI check/status hoặc review comment cho sáu PR ở thời điểm đọc. Metric vẫn pending0/80/70/80, không bị phiên này sửa. T-06 vẫn chưa đối chiếu run-N/trace thật; T-07 và phỏng vấn riêng của Thắng vẫn chờ. P1 của Nhài không thay cho phỏng vấn Thắng.
+
+Các mục snapshot cce4e72 và0e96a99 phía dưới là lịch sử. Lỗi citation_missing, B13 ambiguous, số21 câu/0 nguồn và các bộ108/113 test trong đó không phải trạng thái hiện tại.
+
+## Cập nhật cuối: main cce4e72
+
+Main đã tiến tới cce4e72 trong lúc rà soát. Nhánh review đã merge upstream vào chính nhánh review, không merge vào main; runtime/data/test giống hệt main cce4e72. Worktree kiểm thử ở commit 4bbb10c, chỉ khác main ở tài liệu. Các lệnh mới đạt **113/113 unittest** thay cho 108 ở snapshot trước, gồm 5 test guardrail Khoa bổ sung. Smoke fake, git diff --check đạt; không gọi model thật.
+
+Benchmark mới có **25 câu B01–B25**, sáu cột, không trùng ID: 8 thuong, 13 kho, 4 tu_choi. Khoa 6 câu, Ninh 7, Thắng 8, Nhài đã có **B22–B25**. Nhãn nguồn thật tăng thành **4/25** (1 nguoi_dung, 3 data_that); B22 trỏ P1, B23/B24/B25 trỏ đúng các dòng vật lý 81/52/38 của reviews_labeled.csv và khớp nội dung được dẫn. Không tự bổ sung hoặc đổi source. Tính xác thực do người phụ trách evidence xác nhận; P1 còn chỗ trống ngày giờ/hình thức cần Nhài điền từ thực tế.
+
+Builder --check vẫn exit1, nay chỉ thiếu **B26–B30**; chưa ghi benchmark cuối. Mục tiêu cuối cần >=10/30 nguồn thật, nên ngoài 5 câu còn thiếu vẫn cần ít nhất một câu có bằng chứng thật ở dải khác. `run.py check` exit0 nhưng cảnh báo4/25 chưa đạt1/3. `spec.md` §7 còn ghi21 câu trong khi CSV đã25; Khoa cần đồng bộ số đếm, không phải tự sửa ngưỡng.
+
+Metric vẫn pending và vẫn 0/80/70/80; phiên này không sửa. B13 đã được upstream chỉnh về một nhãn nên không còn lỗi ambiguous; **B08 và B12** vẫn có tập nhãn expected/pass_criterion khác nhau. Hợp đồng thẻ nhiều mã giữa citations/grader vẫn cần thống nhất; probe mới tái hiện grounding FAIL/citation_missing với các nguồn hợp lệ. Tám probe guard/agent, bảy ca chống nhận nhầm và bốn ca policy vẫn đạt.
+
+Cả sáu head PR30–35 vẫn có trong main, chỉ PR34 còn mở do base cũ; không replay stack. Không có output run-N thật hoặc phán quyết human mới do phiên này tạo ra. T-07 và phần phỏng vấn riêng của Thắng vẫn chờ; P1 của Nhài không thay cho phỏng vấn của Thắng.
+
+## Chi tiết snapshot trước tại 0e96a99
+
+Phần dưới được giữ làm lịch sử của lượt đọc đầu. Các số21 câu/0 nguồn/108 test và B13 ambiguous đã được cập nhật bởi mục cce4e72 ở trên, không dùng chúng như trạng thái mới nhất.
+
 Bản main được kiểm tra: `0e96a99476a7ac3f038af012d3e806b8ad83eb6e`. Kiểm tra tại worktree riêng, không merge hay checkout workspace gốc. Bản gốc ba file chưa commit được sao lưu byte-for-byte trong `.git/thang-cp2/original-drafts/` cùng SHA-256 và patch.
 
 ## Kết luận hiện tại
