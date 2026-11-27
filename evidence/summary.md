@@ -9,13 +9,13 @@
 |---|---|---|
 | Đào data (x/N, %, cách đếm chạy lại được, ≥5 ví dụ) | ☑ 149 review Google Play, script `fetch_reviews.py` + `count_reviews.py`, 7 ví dụ | `evidence/data-mining.md` |
 | Phỏng vấn (≥3 người ngoài nhóm, đúng người dùng) | ☐ | `evidence/interviews/P1.md`… |
-| Khảo sát (≥20 người ngoài nhóm, đúng người dùng) | ☐ | `evidence/survey/` |
+| Khảo sát (≥20 người ngoài nhóm, đúng người dùng) | ☐ chưa đủ: n = 12 lúc 17:57 27/11, form mở đến 08:00 28/11 | `evidence/survey/` |
 
 ## 2. Số chính
 
 - Đào data: trong 19/149 review Google Play có nói về cách dùng lời giải (Photomath, QANDA, AI Hay), **11/19 (58%) là dùng để lấy đáp án / giải hộ**, 8/19 dùng để hiểu bài. n nhỏ: 87% review chỉ chê lỗi app hoặc chuyện tiền.
-- Phỏng vấn: __/3 người gặp *(n nhỏ không ghi %)* · số lần / tháng: P1 __, P2 __, P3 __ · mỗi lần mất __–__ phút
-- Khảo sát: n = __ · __/__ (__%) …
+- Phỏng vấn: 1/1 người đã phỏng vấn gặp pain (P1, gia sư Toán; cần ≥3) *(n nhỏ không ghi %)* · số lần / tháng: P1 không hỏi, P2 __, P3 __ · P1 mất 40–50 phút / tuần rà bài cho 2 học sinh
+- Khảo sát (học sinh lớp 10–12, ngoài nhóm; `evidence/survey/results.csv`, đếm bằng `analyze_survey.py`): n = 12 · **chép gần như nguyên lời giải 6/12 (50%)** · trong 6 em chép, **4/6 chỉ làm được một phần hoặc không làm được bài kiểm tra cùng dạng** · lần đó đã hỏi ChatGPT / chatbot 10/12, chụp lên app giải bài 6/12 · dùng app / chatbot ≥6 lần / tuần 9/12 · lý do: không biết bắt đầu từ đâu 5/12, sai mà không biết sai ở đâu 5/12, quá nhiều bài hoặc chỉ cần nộp cho đủ 4/12
 
 Phỏng vấn nhiều vai thì đếm theo từng vai, không cộng chung.
 
@@ -32,14 +32,16 @@ Phỏng vấn nhiều vai thì đếm theo từng vai, không cộng chung.
 3. "Rat hieu ich ,cho dap an phe qua" — review Photomath 5★, dòng data 48
 4. "Hôm sau mình đổi số và cho làm lại ngay một câu lượng giác tương tự trong 10 phút đầu giờ thì bạn ấy chỉ viết được mỗi dòng chép lại đề bài rồi bỏ giấy trắng" — P1 (gia sư Toán)
 5. "Cách này chỉ giải quyết được lúc có mặt mình ở đó, còn 5 ngày còn lại trong tuần mình không ngồi cạnh được" — P1
+6. "Em đã chụp ảnh lên Chatgpt, sau đó chép vào vở, nhưng em vẫn bị cô giáo mắng vì đáp án bị sai." — phiếu khảo sát R3
+7. "Hóa rất khó đối với em mà cô giáo cho toàn bài khó, nhiều công thức hóa học em không biết nên bắt đầu từ đâu khi giải bài" — phiếu khảo sát R5
 
 ## 4. Các nguồn có khớp nhau không
 
-Data (review) nói: trong số người nhắc tới cách dùng, đa số dùng app để lấy đáp án (11/19), và có người tự thấy lời giải tra được vô dụng khi gặp bài khác (dòng 52); không cho biết hậu quả ở bài kiểm tra. Người dùng nói __; người dùng nói __. Khớp / lệch ở đâu, vì sao: __
+Data (review) nói: trong số người nhắc tới cách dùng, đa số dùng app để lấy đáp án (11/19), và có người tự thấy lời giải tra được vô dụng khi gặp bài khác (dòng 52); không cho biết hậu quả ở bài kiểm tra. Người dùng nói: khảo sát 6/12 chép gần như nguyên, 4/6 trong số đó hổng bài kiểm tra cùng dạng; gia sư P1 kể một lần cụ thể học sinh chép rồi bỏ giấy trắng khi đổi số. Khớp / lệch ở đâu, vì sao: **khớp hướng** — cả review, khảo sát và P1 đều cho thấy lời giải có sẵn được dùng để chép / lấy đáp án và không giúp làm bài khác. **Lệch:** (1) học sinh dùng ChatGPT (10/12) nhiều hơn app giải bài (6/12); (2) 3/4 câu kể ở câu 9 là môn Lý / Hoá, ví dụ của P1 là lượng giác lớp 11, trong khi lát cắt chỉ làm phương trình bậc hai Toán 10.
 
 ## 5. Kết luận
 
-Giả thuyết ở `evidence/hypothesis.md`: **đúng / sai / phải đổi** — vì __. Điều vẫn chưa biết: __
+Giả thuyết ở `evidence/hypothesis.md`: **tạm đúng, chưa đủ mẫu** — với n = 12, hai ngưỡng khảo sát đều chạm (6/12 chép ≥50%; 4/6 hổng bài kiểm tra ≥40%) và lý do chính là không biết bắt đầu / không biết sai ở đâu, không phải quá nhiều bài (4/12). Chốt lại khi n ≥ 20 (08:00 28/11). Điều vẫn chưa biết: pain có nặng ở Toán bằng Lý / Hoá không; phỏng vấn mới có 1/3 người.
 
 ## Lịch hẹn (dùng cho CP2 — chỉ ghi vai và giờ, không tên)
 
