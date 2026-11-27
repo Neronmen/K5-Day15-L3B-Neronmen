@@ -101,8 +101,9 @@ def search_lesson(query: str, class_id: str, k: int = 3) -> list:
 
 _LEAK_DECIMAL = r"[+-]?(?:\d{1,18}(?:\.\d{1,12})?|\.\d{1,12})"
 _LEAK_NUMBER = _LEAK_DECIMAL + r"(?:/" + _LEAK_DECIMAL + r")?"
+_LEAK_VALUE = r"(?:±\s*)?" + _LEAK_NUMBER
 _LEAK_ROOT = r"(?<![\w^])x(?:_?\{?\d{1,2}\}?)?\s*(?:=|≠|bang\b|khac\b|la\b)\s*"
-_LEAK_TOKEN = re.compile(r"(?<![\w.\d/])(" + _LEAK_NUMBER + r")(?![\w\d/]|\.\d)")
+_LEAK_TOKEN = re.compile(r"(?<![\w.\d/])(" + _LEAK_VALUE + r")(?![\w\d/]|\.\d)")
 _LEAK_EMPTY = re.compile(r"\bvo nghiem\b|\bkhong co nghiem(?: thuc)?\b|\bs\s*=\s*(?:∅|\{\s*\})")
 
 
@@ -111,6 +112,7 @@ def _leak_normalize(text):
     text = "".join(c for c in text if unicodedata.category(c) != "Cf")
     text = strip_accents(text).translate(str.maketrans({"−": "-", "–": "-", "﹣": "-", "÷": "/", "⁄": "/", "∕": "/", "×": "*", "·": "*"}))
     text = re.sub(r"\\(?:times|cdot)\b", "*", text)
+    text = re.sub(r"\\(?:pm|mp)\b", "±", text).replace("∓", "±")
     text = re.sub(r"\\(?:in)\b", "∈", text)
     text = re.sub(r"\\(?:dfrac|tfrac|frac)\s*\{\s*(" + _LEAK_DECIMAL + r")\s*\}\s*\{\s*(" + _LEAK_DECIMAL + r")\s*\}", r"\1/\2", text)
     text = re.sub(r"\\(?:left|right|quad|qquad)\b|\\[!,;:]", " ", text)
@@ -118,7 +120,7 @@ def _leak_normalize(text):
     text = re.sub(r"(?<=\d),(?=\d)", ".", text)
     text = re.sub(r"(?<=[+-])\s+(?=[\d.])", "", text)
     text = re.sub(r"\s*/\s*", "/", text)
-    text = re.sub(r"\(\s*(" + _LEAK_DECIMAL + r")\s*\)", r"\1", text)
+    text = re.sub(r"\(\s*(" + _LEAK_NUMBER + r")\s*\)", r"\1", text)
     return text
 
 
@@ -134,10 +136,12 @@ def _leak_values(text, roots_only):
     """Read exact numeric literals, excluding prefixes of a larger expression."""
     values = set()
     if roots_only:
-        spans = [m.span(1) for m in re.finditer(_LEAK_ROOT + r"(" + _LEAK_NUMBER + r")", text)]
+        spans = []
+        for match in re.finditer(_LEAK_ROOT + r"(" + _LEAK_VALUE + r"(?:\s*=\s*" + _LEAK_VALUE + r")*)", text):
+            spans.extend((match.start(1) + token.start(1), match.start(1) + token.end(1)) for token in _LEAK_TOKEN.finditer(match[1]))
         for marker in re.finditer(r"\bnghiem(?:\s+(?:kep|phan biet|thuc|cua phuong trinh|lan luot))*\s*(?:la|:|=)\s*|\bdap\s+(?:an|so)(?:\s+cuoi)?\s*(?:la|:|=)\s*|\bs\s*=\s*\{|\bx\s*∈\s*\{", text):
             tail = text[marker.end():]
-            listing = re.match(r"(" + _LEAK_NUMBER + r")(?:(?:\s*(?:;|,|va\b|hoac\b)\s*)(" + _LEAK_NUMBER + r"))*", tail)
+            listing = re.match(r"(" + _LEAK_VALUE + r")(?:(?:\s*(?:;|,|va\b|hoac\b)\s*)(" + _LEAK_VALUE + r"))*", tail)
             if listing:
                 spans.extend((marker.end() + m.start(1), marker.end() + m.end(1)) for m in _LEAK_TOKEN.finditer(listing[0]))
     else:
@@ -145,13 +149,17 @@ def _leak_values(text, roots_only):
     for start, end in spans:
         # Do not read x=2 as a final root when it is x=20, x=2a or x=2+1.
         suffix = text[end:]
-        if re.match(r"(?:[\w\d/]|\.\d)", suffix) or re.match(r"\s*[+*/^=(]", suffix):
+        if re.match(r"(?:[\w\d/]|\.\d)", suffix) or re.match(r"\s*[+*/^(]", suffix):
             continue
         if re.match(r"\s*-\s*[\d(]", suffix):
             continue
-        value = _leak_fraction(text[start:end])
+        literal = text[start:end].strip()
+        plus_minus = literal.startswith("±")
+        value = _leak_fraction(literal[1:].strip() if plus_minus else literal)
         if value is not None:
             values.add(value)
+            if plus_minus:
+                values.add(-value)
     return values
 
 
