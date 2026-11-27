@@ -100,7 +100,9 @@ git push -u origin <ten>                # rồi mở Pull Request <ten> → main
 - [x] **T-06 · Chấm tự động (tối)**: `eval/auto_grade.py` đọc `eval/run-N.csv`, gợi ý cột `pass` theo các metric chấm bằng code; người chấm xác nhận, ghi `ghi_chu`. Trạng thái 2026-11-27T15:08:30+07:00: Cong cu nhap chi doc; 33 test rieng, 103/103 test tich hop dat; chua co output model that de doi chieu, cho Khoa review. Trạng thái 2026-11-27T16:06:36+07:00: Cap nhat ban tich hop main 0652fc9: 108/108 test dat; hoi quy chuoi dang thuc va ± da duoc review doc lap, cho output that va Khoa duyet.
 - [ ] **T-07 · Báo cáo đánh giá (10:00 → 12:30 T7)**: `eval/report.md` (lượt 1 → lượt 2, ≥3 lỗi có input / output / vì sao sai, gom nhóm có tên) + `eval/README.md` (người thứ hai chấm 5 output, khớp ≥4/5).
 - [ ] **H-05 · (chuyển từ Nhài sang Thắng 27/11) Mô phỏng chi phí (10:00 → 12:30 T7)**: `cost/personas.yaml` (3 persona, số lần / tuần lấy từ câu 5 khảo sát) → `python run.py simulate` (≥50 phiên) → `cost/cost-estimate.md` (3 kịch bản, ≥2 model, giá có link + ngày xem, so chi phí / học sinh / tháng với impact).
-- [ ] **T-08 · Tối 27/11**: phỏng vấn **P3** → `evidence/interviews/P3.md`; viết **1 câu thử từ lời thật** của P3 thay 1 câu trong dải B14–B21 (`source = nguoi_dung: P3`).
+- [ ] **T-08 · Tối 27/11**: tách phần benchmark được giao bổ sung khỏi nghĩa vụ phỏng vấn P3.
+  - [x] **Bổ sung benchmark, chờ Khoa review**: thay B16 từ khảo sát R24 chưa dùng, `source = nguoi_dung: khao_sat R24`. Người giao việc chọn đổi nguồn vì R26 đã có ở B22. Bộ ghép đủ 30 câu, 10/30 nguồn thật, 114/114 unittest đạt ngày 27/11/2026 UTC+7. Nội dung trước/sau và nguồn: `docs/t08-benchmark-handoff.md`.
+  - [ ] **Phỏng vấn P3**: vẫn cần phỏng vấn thật và ghi `evidence/interviews/P3.md`; không tạo P3 từ khảo sát và không tính phần benchmark là hoàn tất phỏng vấn.
 
 ## 📊 Nhài · Bằng chứng (R1) — ưu tiên số 1 của nhóm
 

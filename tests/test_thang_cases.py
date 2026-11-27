@@ -39,18 +39,23 @@ class ThangCasesTests(unittest.TestCase):
         self.assertEqual(self.fields, ["id", "input", "expected", "pass_criterion", "type", "source"])
         self.assertEqual([r["id"] for r in self.rows], [f"B{n}" for n in range(14, 22)])
         self.assertGreaterEqual(sum(r["type"] == "kho" for r in self.rows), 3)
-        self.assertTrue(all(r["source"].startswith("tu_viet:") for r in self.rows))
-        self.assertTrue(all("synthetic" in r["source"] for r in self.rows))
+        for row in self.rows:
+            if row["id"] == "B16":
+                self.assertEqual(row["source"], "nguoi_dung: khao_sat R24")
+            else:
+                self.assertTrue(row["source"].startswith("tu_viet:"))
+                self.assertIn("synthetic", row["source"])
 
     def test_input_links_time_and_expected_policy(self):
-        for case in self.cases.values():
+        for identity, case in self.cases.items():
             request, expected = case["input"], case["expected"]
             self.assertEqual(set(request), {"assignment_id", "role", "asked_at", "message"})
             assignment = self.assignments[request["assignment_id"]]
             self.assertEqual(assignment["class_id"], "10A1")
             self.assertLess(datetime.fromisoformat(request["asked_at"]), datetime.fromisoformat(assignment["due_at"]))
             self.assertEqual(request["role"], "student")
-            self.assertEqual(expected["decision"], "GOI_Y")
+            decision = "TU_CHOI" if identity == "B16" else "GOI_Y"
+            self.assertEqual(expected["decision"], decision)
             self.assertTrue(expected["no_final_answer"])
             self.assertTrue(expected["description"])
 

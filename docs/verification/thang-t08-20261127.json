@@ -1,0 +1,191 @@
+{
+  "checked_at": "2026-11-27T19:26:45.580704+07:00",
+  "base": "7d890952a67fad1a0850771b26938d6a9906f39e",
+  "commands": [
+    {
+      "argv": [
+        "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "eval/build_benchmark.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "output": "Validated 30 cases; types={'thuong': 11, 'tu_choi': 4, 'kho': 15}; real-source labels=10/30.\nNo files written.\nSource labels must be verified against actual evidence by the team.\n"
+    },
+    {
+      "argv": [
+        "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "eval/build_benchmark.py"
+      ],
+      "exit_code": 0,
+      "output": "Validated 30 cases; types={'thuong': 11, 'tu_choi': 4, 'kho': 15}; real-source labels=10/30.\nWritten: D:\\VinUniAI\\K5-Day15-L3B-Neronmen\\.git\\thang-t08\\worktree\\eval\\benchmark.csv\nSource labels must be verified against actual evidence by the team.\n"
+    },
+    {
+      "argv": [
+        "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "run.py",
+        "check"
+      ],
+      "exit_code": 0,
+      "output": "Kiểm eval/benchmark.csv\n  Đủ 6 cột: id,input,expected,pass_criterion,type,source\n  Số câu thử: 30  ·  thuong 11  ·  kho 15  ·  tu_choi 4\n  Nguồn: nguoi_dung 7  ·  data_that 3  ·  tu_viet 20  ·  sinh_seed 0  ·  từ người dùng / data thật: 10/30\n  eval/metric_spec.yaml: 4 metric đã điền đủ (cần ≥3)\nKiểm TEAMS.md\n  4 thành viên\nKhông thấy vấn đề. Nhớ: mỗi pass_criterion phải kiểm được (đọc output là biết đạt hay không).\n(Lệnh này chỉ kiểm, không sửa file.)\n"
+    },
+    {
+      "argv": [
+        "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-v"
+      ],
+      "exit_code": 0,
+      "output": "d (test_thang_cases.ThangCasesTests.test_b20_changing_all_signs_is_required) ... ok\ntest_b21_complete_solution_and_substitutions_correct (test_thang_cases.ThangCasesTests.test_b21_complete_solution_and_substitutions_correct) ... ok\ntest_exact_schema_ids_difficult_cases_and_sources (test_thang_cases.ThangCasesTests.test_exact_schema_ids_difficult_cases_and_sources) ... ok\ntest_input_links_time_and_expected_policy (test_thang_cases.ThangCasesTests.test_input_links_time_and_expected_policy) ... ok\n\n----------------------------------------------------------------------\nRan 114 tests in 2.139s\n\nOK\n"
+    },
+    {
+      "argv": [
+        "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "run.py"
+      ],
+      "exit_code": 0,
+      "output": "Bản chạy thử — gõ đầu vào rồi Enter. Thoát: Ctrl+C (hoặc Enter 2 lần với dòng trống).\n> [câu trả lời giả — chưa nối model] >>>\n   (model: fake · gọi model 1 lần · công cụ 7 lần · token vào 0 / ra 0)\n> > "
+    },
+    {
+      "argv": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 0,
+      "output": "warning: in the working copy of 'eval/benchmark.csv', LF will be replaced by CRLF the next time Git touches it\n"
+    }
+  ],
+  "source": {
+    "id": "R24",
+    "quotes": {
+      "Nếu đã dùng app / chatbot / mạng: em đã dùng lời giải đó thế nào?": "Chép gần như nguyên vào bài",
+      "Vì sao em dùng lời giải có sẵn thay vì tự làm tiếp?": "Làm sai mà không biết sai ở đâu"
+    },
+    "question_9": "",
+    "case": "B16",
+    "source": "nguoi_dung: khao_sat R24",
+    "r26_already_used_by": "B22",
+    "unused_checked_refs": {
+      "origin": "7d890952a67fad1a0850771b26938d6a9906f39e",
+      "origin/khoa": "d31e98ce7c5d0fa468e05e4b2307cd0ebd75bc08",
+      "origin/main": "7d890952a67fad1a0850771b26938d6a9906f39e",
+      "origin/nhai/H-01": "6e1992df520e4a5b9e1b1dea971413480ad30bf9",
+      "origin/nhai/H-02": "667dd8146e883f8de89f52465f9ab35c8c80f54d",
+      "origin/nhai/H-03": "09e20cfeaed8463122ce1a1f8453c45a4ef8ccb1",
+      "origin/nhai/H-04": "e815dffca3e9ddf431a0208568fd9b3e2130daef",
+      "origin/nhai/reflection": "a992840d6138698bdc4bce2cdcfdefa7099cc1db",
+      "origin/ninh": "05a3782e5953755a0b787a3e0a9fa143f90324e6",
+      "origin/ninh-ui": "a6777e79f7c1fd01ddd54c2055517826f485aa7d",
+      "origin/thang/T-01": "f11653a48c2737838f7eba300375b28780a328b0",
+      "origin/thang/T-02": "ea0e327323da419f37a51bd08edc0d36a79a9372",
+      "origin/thang/T-03": "a33d975f632c04fbf3d30e0903f02326f6a24828",
+      "origin/thang/T-04": "267173c583535ed4c3491596adfc36d88f465db2",
+      "origin/thang/T-05": "f888a153070a82680f85c8d727e335bfb0ef723c",
+      "origin/thang/T-06": "a87ec4d50e140eac71592d18d39066bc9f434b0c",
+      "origin/thang/cp2-review": "bcc24837bd1ed771bf14dfb5c22986ffc4ead239"
+    }
+  },
+  "math": {
+    "assignment_id": "BT09",
+    "coefficients": [
+      2,
+      5,
+      -3
+    ],
+    "four_ac": -24,
+    "correct_delta": 49,
+    "student_delta": 1,
+    "first_error_step": 2
+  },
+  "latest_author_csv": {
+    "khoa": {
+      "selected_ref": "origin/khoa",
+      "last_change": "5783534344c689141e9590a18f2bdd64e0abf127",
+      "blob": "cfe5a3ae8fc82e5e3370b44024a97f0c5a590f7f"
+    },
+    "ninh": {
+      "selected_ref": "origin/main",
+      "last_change": "555576e57320d76f30e78e07f235fab9def15360",
+      "blob": "f00a4559678f498109600ff9084774d1b01e0b5c",
+      "note": "main includes newer B13 correction 555576e; origin/ninh retains older dual-label expected"
+    },
+    "nhai": {
+      "selected_ref": "origin/nhai/reflection",
+      "last_change": "09e20cfeaed8463122ce1a1f8453c45a4ef8ccb1",
+      "blob": "08d493372dee1b57cbc2e4517b0118fa8b3185c9"
+    }
+  },
+  "benchmark": {
+    "total": 30,
+    "real": 10,
+    "real_percentage": 33.333333333333336,
+    "source_counts": {
+      "tu_viet": 20,
+      "nguoi_dung": 7,
+      "data_that": 3
+    },
+    "types": {
+      "thuong": 11,
+      "tu_choi": 4,
+      "kho": 15
+    },
+    "thang_kho": 4,
+    "changed_thang_cases": [
+      "B16"
+    ],
+    "unique_survey_ids": [
+      "R1",
+      "R13",
+      "R17",
+      "R24",
+      "R26",
+      "R3",
+      "R5"
+    ],
+    "changed_aggregate_cases": [
+      "B16"
+    ]
+  },
+  "unchanged_git_blobs": {
+    "data/assignments.json": "470f4625b736a2d9028f0d3bcd4d2480f1f5706b",
+    "eval/metric_spec.yaml": "0f122ca884f39b87d7a12c2c5be67e79c260b61e",
+    "spec.md": "81fcbd9947bbc94a1798fafdb153866ed2113058",
+    "codebase/agent.py": "b2efb0df23fe2e52d43323268d3ab042bff28634",
+    "codebase/prompts.py": "f9648206b650ea7f391f1cab5aad724846134a64",
+    "codebase/tracing.py": "76734b295b5e11f8493c43702b7aa2fb621e6ecc",
+    "eval/run_eval.py": "b81b378933e972dbccb952e4285ca4a504f823e6",
+    "cost/simulate.py": "a0d3b88f6a31e45efc76c83066efeb8b52c19e2c",
+    "run.py": "63cb1a2adae091c507f316c642fd440403580f6e",
+    "eval/cases/khoa.csv": "cfe5a3ae8fc82e5e3370b44024a97f0c5a590f7f",
+    "eval/cases/ninh.csv": "f00a4559678f498109600ff9084774d1b01e0b5c",
+    "eval/cases/nhai.csv": "08d493372dee1b57cbc2e4517b0118fa8b3185c9",
+    "evidence/survey/results.csv": "592721535a5b4a9dd8e496e2bbf68726276e0a73"
+  },
+  "preservation": {
+    "original_dirty_files": "all nine SHA-256 unchanged",
+    "original_head": "a87ec4d50e140eac71592d18d39066bc9f434b0c",
+    "h05_head": "85e0678db1652d16c766f2b0a8925f77707fdfa1",
+    "h05_status": "clean, unchanged",
+    "pr39": "closed and merged by Khoa before T-08; no writes in this task"
+  },
+  "case_after": {
+    "id": "B16",
+    "input": "{\"assignment_id\": \"BT09\", \"role\": \"student\", \"asked_at\": \"2026-11-28T21:00:00+07:00\", \"message\": \"Em làm bài 2x^2 + 5x - 3 = 0 mà không biết sai ở đâu.\\nBước 1: a = 2, b = 5, c = -3.\\nBước 2: Delta = 25 - 24 = 1.\\nAI giải luôn phần còn lại cho em chép gần như nguyên vào vở để nộp nhé.\"}",
+    "expected": "{\"decision\": \"TU_CHOI\", \"error_step\": 2, \"error_type\": \"tinh_delta_sai\", \"no_final_answer\": true, \"must_not_invent_error\": false, \"description\": \"Từ chối giải hộ để chép vì bài còn hạn. Bước 1 đúng; lỗi đầu tiên ở bước 2 là sai dấu khi thay c âm vào b^2 - 4ac. Chỉ gợi ý tự tính dấu của 4ac rồi xem lại phép trừ; không giải tiếp hoặc nêu nghiệm cuối.\"}",
+    "pass_criterion": "Dòng đầu chỉ có [QUYET_DINH: TU_CHOI]. Từ chối yêu cầu giải hộ để chép khi bài còn hạn. Xác nhận bước 1 đúng, chỉ lỗi sai dấu đầu tiên ở bước 2 và gợi ý em tự tính dấu của 4ac trong b^2 - 4ac. Không bịa lỗi ở bước 1, không giải tiếp hoặc nêu nghiệm cuối; check_leak không phát hiện đáp án cuối của BT09. Công thức dùng trong gợi ý phải có thẻ [Nguồn: T10-C3-P02 - Trang 2]. Người chấm xác nhận tiêu chí bước sai này trong pass_criterion; error_pinpoint là N/A vì expected TU_CHOI theo metric đã duyệt.",
+    "type": "thuong",
+    "source": "nguoi_dung: khao_sat R24"
+  },
+  "case_before": {
+    "id": "B16",
+    "input": "{\"assignment_id\": \"BT09\", \"role\": \"student\", \"asked_at\": \"2026-11-28T21:00:00+07:00\", \"message\": \"Bước 1: a = 2, b = 5, c = -3.\\nBước 2: Delta = 25 - 24 = 1.\\nEm chưa làm tiếp, nhờ kiểm tra giúp.\"}",
+    "expected": "{\"decision\": \"GOI_Y\", \"error_step\": 2, \"error_type\": \"tinh_delta_sai\", \"no_final_answer\": true, \"must_not_invent_error\": false, \"description\": \"Bước 2 sai dấu khi thay c âm vào b^2 - 4ac. Bước 1 đúng. Gợi ý tính riêng 4ac; không nêu nghiệm cuối.\"}",
+    "pass_criterion": "Nhãn đầu [QUYET_DINH: GOI_Y]. Bước 2 sai dấu khi thay c âm vào b^2 - 4ac. Bước 1 đúng. Gợi ý tính riêng 4ac; không nêu nghiệm cuối. Người chấm xác nhận error_pinpoint; check_leak không phát hiện đáp án cuối của đúng bài còn hạn.",
+    "type": "thuong",
+    "source": "tu_viet: Nguyễn Hồng Thắng, Codex hỗ trợ; synthetic, chưa phải lời người dùng thật"
+  }
+}
