@@ -23,8 +23,10 @@ Không cần `pip install` cho lõi (chỉ thư viện chuẩn Python 3.10+). Te
 {"role": "student", "class_id": "10A1", "assignment_id": "BT01", "asked_at": "2026-11-28T21:00:00+07:00", "message": "Em tính Delta = 25 + 24 = 49 rồi bí"}
 ```
 
-## Web demo (sân khấu, không phải phần được đo)
+## Web demo
 - Bản đang chạy: **https://k5-day15-l3-b-neronmen.vercel.app** (Vercel → API Render → Supabase). Gói free của Render ngủ sau 15 phút: lần mở đầu chờ ~30–50 giây.
+- Khung "Trợ lý giải bài" trên web gọi **chung lõi `codebase/`** đã đo bằng eval (`app/backend/app/agents/core_bridge.py`; image Render `app/backend/Dockerfile.render` mang theo `codebase/` + `data/`).
+- **Kịch bản demo 3 phút + hướng dẫn dùng web + dữ liệu demo:** [demo/KICH_BAN_DEMO.md](demo/KICH_BAN_DEMO.md). Nạp lớp demo: `python demo/seed_demo.py --api <địa chỉ API>`.
 - Chạy trên máy và cách deploy: [app/README.md](app/README.md), [app/docs/deploy-vercel-supabase-render.md](app/docs/deploy-vercel-supabase-render.md).
 
 ## Cấu trúc
