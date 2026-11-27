@@ -37,14 +37,14 @@ input JSON {assignment_id, role, asked_at, message}
 
 | Khối | Điểm | Đã có | Còn thiếu → ai |
 |---|---|---|---|
-| R1 Bằng chứng pain | 14 | form khảo sát chính thức (link trong `evidence/survey/questions.md`), kịch bản phỏng vấn, cách đếm review viết trước | **≥20 câu trả lời** + `results.csv` + `analyze_survey.py` → Nhài · **≥3 phỏng vấn** `P1–P4.md` → mỗi người 1 · đếm review `reviews_labeled.csv` → Nhài · `evidence/summary.md` (≥5 trích nguyên văn) → Nhài |
+| R1 Bằng chứng pain | 14 | form khảo sát chính thức (link trong `evidence/survey/questions.md`), kịch bản phỏng vấn, cách đếm review viết trước | **≥20 câu trả lời** + `results.csv` + `analyze_survey.py` → Nhài · **≥3 phỏng vấn**: P1 Nhài ✅ · P2 Ninh · P3 Thắng · P4 Khoa (tối 27/11) · đếm review `reviews_labeled.csv` → Nhài · `evidence/summary.md` (≥5 trích nguyên văn) → Nhài |
 | R2 Impact | 11 | `spec.md` §1–§2: pain không chữ AI, bảng 3 hướng + lý do loại, công thức impact | điền **số thật** từ khảo sát vào §1, §2 → Khoa (sáng T7) |
 | R3 Giải pháp AI | 16 | §4 sơ đồ, workflow cố định + lý do, 7 công cụ, chặn rủi ro 3 lớp, 4 nguyên tắc (có G10); code chạy thật; README có lệnh chạy; red-team 10/10 | — (giữ nguyên, chỉ cập nhật nếu đổi code) |
-| R4 Câu thử + metric | 14 | 21 câu (≥5 kho, 4 tu_choi gồm 2 tấn công), 4 metric, DATA_CARD, `eval/README.md` §1–3 | **≥1/3 câu từ người dùng thật** (B22–B30) → Nhài · **chốt chuẩn đạt trước 19:30** → cả nhóm · người thứ 2 chấm 5 output → Thắng |
+| R4 Câu thử + metric | 14 | 21 câu (≥5 kho, 4 tu_choi gồm 2 tấn công), 4 metric, DATA_CARD, `eval/README.md` §1–3 | **≥1/3 câu từ người dùng thật** (B22–B30) → Nhài · ✅ chuẩn đạt đã chốt 18:07 · người thứ 2 chấm 5 output → Thắng |
 | R5 Báo cáo đánh giá | 8 | bộ chấm nháp `auto_grade.py`, ứng viên cải tiến lượt 2 (B16: tính Δ bằng code) | lượt 1 → nhóm lỗi → 1 cải tiến → lượt 2 → `eval/report.md` → Ninh + Thắng (T7) |
-| R6 Chi phí | 12 | khung `cost/`, token thật ~1.600 vào / 300 ra mỗi câu | `personas.yaml` (số từ khảo sát câu 5) → `simulate` ≥50 phiên → `cost-estimate.md` 3 kịch bản, ≥2 model, giá có link → Nhài (T7) |
+| R6 Chi phí | 12 | khung `cost/`, token thật ~1.600 vào / 300 ra mỗi câu | `personas.yaml` (số từ khảo sát câu 5) → `simulate` ≥50 phiên → `cost-estimate.md` 3 kịch bản, ≥2 model, giá có link → **Thắng** (T7, nhận từ Nhài) |
 | R7 Slide + demo | 10 | web demo đã chạy trên mạng, câu chuyện red-team A7 (model bị lừa, code chặn) | slide 8 trang, video 30s (CP3), video dự phòng, tập trả lời 4 câu hỏi → Khoa + Ninh |
-| Bonus người dùng thử | +5 | — | 2–3 học sinh dùng thử web → `validation/log.md` → Nhài (T7) |
+| Bonus người dùng thử | +5 | — | 2–3 học sinh dùng thử web → `validation/log.md` → **Ninh** (T7, nhận từ Nhài) |
 
 ## Mốc
 

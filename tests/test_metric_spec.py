@@ -23,9 +23,10 @@ class MetricSpecTests(unittest.TestCase):
                 self.assertTrue(metric[field].strip())
                 self.assertFalse(metric[field].startswith("<"))
 
-    def test_approval_is_explicitly_pending(self):
-        self.assertEqual(self.spec["approval"]["status"], "pending")
-        self.assertIsNone(self.spec["approval"]["approved_at"])
+    def test_approval_is_locked_before_cp2(self):  # Khoa duyệt 27/11, trước freeze 19:30
+        self.assertEqual(self.spec["approval"]["status"], "approved")
+        self.assertIsNotNone(self.spec["approval"]["approved_at"])
+        self.assertLess(self.spec["approval"]["approved_at"], self.spec["approval"]["freeze_at"])
 
     def test_proposed_thresholds_and_human_metric(self):
         metrics = {m["name"]: m for m in self.spec["metrics"]}
