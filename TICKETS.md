@@ -63,7 +63,7 @@ git push -u origin <ten>                # rồi mở Pull Request <ten> → main
   - Họp 10 phút với cả nhóm, chốt chuẩn "đạt" bằng số ở `spec.md` §7. ⚠️ **Không sửa sau 19:30.**
   - Nộp CP2 lúc 19:15.
 - [x] **K-04 · Câu thử B01–B06 (tối)**: `eval/cases/khoa.csv`: luồng & phạm vi (bài không tồn tại, bài lớp khác, hết hạn → được giải, câu ngoài môn, input trống, hỏi đúng lúc hết hạn).
-- [ ] **K-05 · Tích hợp (tối, sau khi N-04 xong)**: merge PR, chạy `python run.py eval --try` với model thật, sửa chỗ vỡ giữa các phần.
+- [x] **K-05 · Tích hợp (tối, sau khi N-04 xong)**: merge PR, chạy `python run.py eval --try` với model thật, sửa chỗ vỡ giữa các phần.
 - [ ] **K-06 · Lượt 1 + CP3 (07:30 → 09:45 T7)**: họp 30 phút; cả nhóm chạy `python run.py eval` → chấm `pass` → `python run.py score`; `spec.md` đủ §0–§7; nộp CP3.
 - [ ] **K-07 · Slide + CP4 (12:00 → 14:15 T7)**: slide 8 trang (PDF trong repo), mỗi trang ≥1 số có nguồn; README có lệnh chạy cho cả hai phần (`python run.py …` cho lõi, `app/README.md` cho web); phân vai demo; nộp CP4.
 
