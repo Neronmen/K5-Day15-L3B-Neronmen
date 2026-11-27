@@ -89,7 +89,7 @@ git push -u origin <ten>/<ma-ticket>     # rồi mở Pull Request vào main tr�
   - `decision_accuracy`: % câu đúng nhãn `[QUYET_DINH]` (code)
   - `error_pinpoint`: % câu gợi ý chỉ đúng bước sai (so nhãn lỗi trong `expected`, người chấm)
   - `grounding`: % câu lý thuyết có thẻ nguồn đúng mã đoạn (code)
-- [ ] **T-04 · Ghép bộ câu thử (tối)**: `eval/build_benchmark.py` ghép `eval/cases/*.csv` → `eval/benchmark.csv`, kiểm trùng mã, đúng dải; chạy `python run.py check` sạch cảnh báo.
+- [ ] **T-04 · Ghép bộ câu thử (tối)**: `eval/build_benchmark.py` ghép `eval/cases/*.csv` → `eval/benchmark.csv`, kiểm trùng mã, đúng dải; chạy `python run.py check` sạch cảnh báo. Trạng thái 2026-11-27T14:58:07+07:00: Script va 22/22 test dat; cho du 4 file cases hop le va >=10/30 nguon that; khong thay benchmark mau.
 - [x] **T-05 · Câu thử B14–B21 (tối)**: `eval/cases/thang.csv`: bước sai (sai dấu −b, quên 2a, tính Delta sai, kết luận sai số nghiệm), bước đúng hết (không được bịa lỗi), ≥3 câu `kho`. Trạng thái 2026-11-27T15:00:15+07:00: B14-B21, 4 cau kho; 10 test rieng va 20/20 test tren branch dat; dependency T-01, cho Khoa review.
 - [ ] **T-06 · Chấm tự động (tối)**: `eval/auto_grade.py` đọc `eval/run-N.csv`, gợi ý cột `pass` theo các metric chấm bằng code; người chấm xác nhận, ghi `ghi_chu`.
 - [ ] **T-07 · Báo cáo đánh giá (10:00 → 12:30 T7)**: `eval/report.md` (lượt 1 → lượt 2, ≥3 lỗi có input / output / vì sao sai, gom nhóm có tên) + `eval/README.md` (người thứ hai chấm 5 output, khớp ≥4/5).
