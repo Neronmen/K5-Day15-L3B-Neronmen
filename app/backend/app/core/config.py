@@ -1,3 +1,4 @@
+from pydantic import field_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
@@ -51,6 +52,13 @@ class Settings(BaseSettings):
 
     deepseek_api_key: str = ""
     deepseek_base_url: str = "https://api.deepseek.com"
+
+    # Dán key / URL vào ô nhiều dòng (vd Render Blueprint) hay dính xuống dòng hoặc dấu cách ở cuối:
+    # header "Bearer sk-..." có ký tự xuống dòng bị từ chối → openai báo APIConnectionError. Cắt sạch khi đọc cấu hình.
+    @field_validator("*", mode="before")
+    @classmethod
+    def _strip_whitespace(cls, v):
+        return v.strip() if isinstance(v, str) else v
 
 
 settings = Settings()
