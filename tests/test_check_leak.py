@@ -1,4 +1,5 @@
 """Leak formats and non-answer numbers, plus the actual agent retry contract."""
+import json
 from pathlib import Path
 import sys
 import unittest
@@ -91,13 +92,32 @@ class CheckLeakTests(unittest.TestCase):
         self.assertTrue(check_leak("x = 3 / -2", ["x=-1.5"])["leaked"])
         self.assertFalse(check_leak("x = 1/0", ["x=1"])["leaked"])
 
+    def test_chained_numeric_equalities(self):
+        for reply, answer in (("x = -4/2 = -2", "x=-2"), ("x = 6/2 = 3", "x=3"), ("x = 99 = 2", "x=2"), ("x = (1/2) = 0.5", "x=0.5")):
+            with self.subTest(reply=reply):
+                self.assertTrue(check_leak(reply, [answer])["leaked"])
+        self.assertFalse(check_leak("x=2+1", ["x=2"])["leaked"])
+
+    def test_plus_minus_root_notation(self):
+        for reply in ("x=±3/2", r"x=\pm\frac{3}{2}", "x ∈ {±1.5}"):
+            with self.subTest(reply=reply):
+                self.assertEqual(check_leak(reply, ["x=1.5", "x=-1.5"])["matches"], ["x=1.5", "x=-1.5"])
+        self.assertFalse(check_leak("x=±2a", ["x=2"])["leaked"])
+
+    def test_every_packaged_answer_key_triggers_the_guard(self):
+        path = Path(__file__).resolve().parents[1] / "data/assignments.json"
+        for assignment in json.loads(path.read_text(encoding="utf-8")):
+            with self.subTest(assignment=assignment["id"]):
+                self.assertTrue(check_leak(assignment["answer_key"], assignment["final_answers"])["leaked"])
+
     def test_no_code_execution(self):
         self.assertFalse(check_leak("x=__import__('os').system('echo bad')", ["x=2"])["leaked"])
 
     def test_agent_retries_and_falls_back(self):
-        with patch.object(agent, "call_model", return_value={"text": "[QUYET_DINH: GOI_Y]\nx1 bằng 2"}) as model:
-            self.assertEqual(agent.answer("Em kiểm tra giúp bước này")["output"], agent.SAFE_HINT)
-            self.assertEqual(model.call_count, 2)
+        for reply in ("x1 bằng 2", "x=4/2=2", "x=±2"):
+            with self.subTest(reply=reply), patch.object(agent, "call_model", return_value={"text": "[QUYET_DINH: GOI_Y]\n" + reply}) as model:
+                self.assertEqual(agent.answer("Em kiểm tra giúp bước này")["output"], agent.SAFE_HINT)
+                self.assertEqual(model.call_count, 2)
 
     def test_agent_returns_clean_retry(self):
         with patch.object(agent, "call_model", side_effect=[{"text": "x1 = 2"}, {"text": "[QUYET_DINH: GOI_Y]\nEm xem lại dấu của b."}]) as model:
