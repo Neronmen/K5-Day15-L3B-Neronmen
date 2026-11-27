@@ -9,16 +9,19 @@ HỢP ĐỒNG (giữ nguyên chữ ký để 4 người làm song song, xem TICK
     search_lesson(query, class_id, k)   -> [{"code","page","title","text","score"}]
     check_leak(reply, final_answers)    -> {"leaked": bool, "matches": [str]}
     citations(reply, chunks)            -> {"reply": str, "sources": [{"code","page"}]}
+    flag_message(message, mode)         -> "jailbreak" | "impersonation" | "ask_answer" | None   (N-03, chỉ gắn cờ)
 
 Bản hiện tại là v0 chạy được, đơn giản. Ai phụ trách thay bằng bản thật theo ticket ghi trong từng hàm.
 """
 import json
+import math
 import os
 import re
+from collections import Counter
 import unicodedata
 from datetime import datetime, timezone
 
-from tracing import tool, TOOLS  # noqa: F401
+from tracing import note, tool, TOOLS  # noqa: F401
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA = os.path.join(ROOT, "data")
@@ -74,28 +77,94 @@ def final_answers_of(assignment_id: str) -> list:
 def get_tutor_mode(role: str, due_at: str, now: str) -> str:
     """get_tutor_mode · Input: vai (lấy từ tài khoản, không từ lời nhắn), hạn nộp, giờ máy chủ ·
     Output: "hint" (còn hạn, học sinh) hoặc "answer" · Không tác động ra ngoài.
-    Cùng logic với app/backend/app/agents/policy.py. Owner: Ninh (ticket N-01)."""
-    if role != "student":
+    Cùng logic với app/backend/app/agents/policy.py (giáo viên luôn "answer"; học sinh "answer" khi now >= due_at,
+    đúng lúc hết hạn cũng tính là hết hạn). Owner: Ninh (ticket N-01).
+
+    Khác policy.py ở chỗ ĐÓNG KHI LỖI: policy.py coi mọi vai != "student" là giáo viên; ở đây chỉ vai nằm trong
+    ANSWER_ROLES mới luôn được "answer". Vai trống / lạ / viết hoa sai, hạn hoặc giờ hỏng → xử như học sinh,
+    hỏng giờ → "hint". Lý do: input câu thử là JSON, sai một chữ ở `role` không được làm lộ đáp án."""
+    if (role or "").strip().lower() in ANSWER_ROLES:
         return "answer"
-    return "answer" if _parse_dt(now) >= _parse_dt(due_at) else "hint"
+    try:
+        return "answer" if _parse_dt(now) >= _parse_dt(due_at) else "hint"
+    except (TypeError, ValueError):
+        return "hint"
+
+
+ANSWER_ROLES = {"teacher"}  # vai trong app/backend/app/models.py: "teacher" | "student"
 
 
 @tool
 def search_lesson(query: str, class_id: str, k: int = 3) -> list:
     """search_lesson · Input: câu hỏi, mã lớp, số đoạn · Output: đoạn tài liệu kèm trang, LỌC CỨNG theo lớp ·
     Không tác động ra ngoài.
-    v0: đếm từ trùng (không dấu). Owner: Ninh thay bằng BM25 không dấu, tham khảo app/backend/app/core/tenancy.py (ticket N-02)."""
-    q = set(re.findall(r"\w+", strip_accents(query)))
+    BM25 (cùng công thức _bm25 trong app/backend/app/core/tenancy.py), chỉ thư viện chuẩn. Owner: Ninh (N-02).
+    - LỌC CỨNG theo class_id TRƯỚC khi tính điểm: thống kê IDF cũng chỉ lấy từ tài liệu của lớp đó.
+    - Bỏ từ hư ("là", "gì", "em"...), thêm bigram ("biet_thuc"), tiêu đề tính gấp TITLE_WEIGHT lần.
+    - So khớp theo dấu: từ học sinh GÕ CÓ DẤU thì so có dấu ("thủ" ≠ "thứ", "quá" ≠ "quả"); từ gõ không dấu thì so
+      không dấu ("delta la gi" vẫn khớp). Bỏ dấu toàn bộ như tenancy.py làm "Thủ đô nước Pháp" khớp nhầm "thứ tự".
+    - Bỏ số thuần ("25", "49" trong bước làm của học sinh): đó là bài làm, không phải từ khoá tìm kiếm.
+    - score = BM25 × độ_phủ², độ phủ = tỉ lệ từ khoá đơn của câu hỏi có trong đoạn; làm tròn 3 chữ số. Câu chỉ trùng
+      1/3 từ ("Thủ đô nước Pháp" trùng mỗi "pháp" trong "phương pháp") bị chia 9, nên agent dùng được một ngưỡng
+      cố định TUTOR_MIN_SCORE (đề xuất 0.5: câu ngoài bài ≤ 0.26, "Delta là gì" ≥ 0.89 trên cả dữ liệu mẫu lẫn T-01).
+    - Chỉ trả đoạn có score > 0, xếp giảm dần (bằng điểm thì trang nhỏ trước)."""
+    q = _terms(query)
+    if not q or not class_id or k <= 0:
+        return []
+    passages = [p for p in _load("lesson.json") if p.get("class_id") == class_id]
+    if not passages:
+        return []
+    # Mỗi đoạn có 2 túi từ: có dấu (key "a") và không dấu (key "p"); từ của câu hỏi tra đúng túi của nó.
+    docs = []
+    for p in passages:
+        title, text = _terms(p.get("title", "")), _terms(p.get("text", ""))
+        docs.append({f: [t[f] for t in title] * TITLE_WEIGHT + [t[f] for t in text] for f in ("a", "p")})
+    n = len(docs)
+    avgdl = sum(len(d["p"]) for d in docs) / n or 1
+    df = {f: Counter(t for d in docs for t in set(d[f])) for f in ("a", "p")}
+    keys = {(t["f"], t[t["f"]]) for t in q}            # (túi, từ) của câu hỏi, đã bỏ trùng
+    unigrams = {key for key in keys if "_" not in key[1]}
     scored = []
-    for p in _load("lesson.json"):
-        if p["class_id"] != class_id:
-            continue
-        words = set(re.findall(r"\w+", strip_accents(p["title"] + " " + p["text"])))
-        score = len(q & words)
-        if score:
-            scored.append(dict(p, score=score))
-    scored.sort(key=lambda x: -x["score"])
+    for p, d in zip(passages, docs):
+        tf = {f: Counter(d[f]) for f in ("a", "p")}
+        s, hit = 0.0, 0
+        for f, t in keys:
+            if not tf[f][t]:
+                continue
+            hit += (f, t) in unigrams
+            idf = math.log(1 + (n - df[f][t] + 0.5) / (df[f][t] + 0.5))
+            s += idf * tf[f][t] * (BM25_K1 + 1) / (tf[f][t] + BM25_K1 * (1 - BM25_B + BM25_B * len(d["p"]) / avgdl))
+        coverage = hit / len(unigrams) if unigrams else 0
+        if s > 0 and coverage > 0:
+            scored.append(dict(p, score=round(s * coverage ** 2, 3)))
+    scored.sort(key=lambda x: (-x["score"], x.get("page", 0)))
     return scored[:k]
+
+
+BM25_K1, BM25_B, TITLE_WEIGHT = 1.2, 0.75, 3
+# Từ hư trong câu hỏi tiếng Việt (so sau khi bỏ dấu) — bỏ khi chấm điểm. Lấy từ tenancy._STOP, bỏ mục rác ("a,", "a.").
+_STOP = set("""la gi cua va cac nhung mot cho voi thi ma o tai trong ve nay do khi nao sao the nhu bao nhieu
+duoc co khong em anh chi minh ban hay giup xin a oi vay roi nhe lam thay ko k dc j z""".split())
+_VIETE = re.compile(r"\bvi\s*-?\s*[eéè]te?\b")
+_SYMBOLS = {"δ": " delta ", "∆": " delta ", "√": " can ", "≥": " >= ", "≤": " <= "}
+
+
+def _terms(text: str) -> list:
+    """Tách từ + bigram. Mỗi từ là {"a": dạng có dấu, "p": dạng không dấu, "f": túi dùng khi từ này nằm trong câu hỏi}.
+    "f" = "a" nếu người gõ có dấu, "p" nếu gõ không dấu. Bigram có dấu khi một trong hai từ có dấu."""
+    text = unicodedata.normalize("NFC", (text or "").lower())
+    for sym, word in _SYMBOLS.items():
+        text = text.replace(sym, word)
+    text = _VIETE.sub("viet", text)  # "Viète" / "Vi-ét" / "viete" / "viet" → cùng một từ
+    words = []
+    for w in re.findall(r"\w+", text):
+        plain = strip_accents(w)
+        if plain in _STOP or plain.isdigit() or not re.fullmatch(r"[a-z0-9]+", plain):
+            continue
+        words.append({"a": w, "p": plain, "f": "a" if w != plain else "p"})
+    bigrams = [{"a": x["a"] + "_" + y["a"], "p": x["p"] + "_" + y["p"], "f": "a" if "a" in (x["f"], y["f"]) else "p"}
+               for x, y in zip(words, words[1:])]
+    return words + bigrams
 
 
 @tool
@@ -113,16 +182,81 @@ def check_leak(reply: str, final_answers: list) -> dict:
 def citations(reply: str, chunks: list) -> dict:
     """citations · Input: câu trả lời, các đoạn đã tìm · Output: câu trả lời đã bỏ thẻ nguồn bịa + danh sách nguồn thật ·
     Không tác động ra ngoài. Thẻ nguồn dạng [Nguồn: T10-C3-P02 - Trang 2].
-    Tham khảo app/backend/app/agents/tutor.py (citations). Owner: Ninh (ticket N-03)."""
-    valid = {c["code"]: c["page"] for c in chunks}
-    sources = []
+    Cùng ý với citations trong app/backend/app/agents/tutor.py (chỉ giữ nguồn có thật trong đoạn đã truy xuất). Owner: Ninh (N-03).
+    - Bắt MỌI thẻ [Nguồn: ...] (cả "nguồn"/"Nguon", nhiều mã trong một thẻ cách nhau bằng ";" hoặc ",").
+    - Mã đoạn không nằm trong `chunks` → bỏ (nguồn bịa). Mã đúng nhưng ghi sai trang → sửa về trang thật của đoạn.
+    - Thẻ giữ lại được viết lại đúng dạng chuẩn [Nguồn: <mã> - Trang <số>] để bộ chấm grounding đọc được.
+    - Output: {"reply", "sources": [{"code","page"}] (không trùng, theo thứ tự xuất hiện),
+      "removed": [thẻ bịa đã bỏ], "fixed": [mã bị sửa trang]} — 2 khoá sau để ghi trace, agent không bắt buộc dùng."""
+    valid = {c["code"].upper(): (c["code"], c["page"]) for c in chunks or [] if c.get("code")}  # không phân biệt hoa thường
+    sources, seen, removed, fixed = [], set(), [], []
 
-    def keep(m):
-        code = m.group(1).strip()
-        if code in valid:
-            sources.append({"code": code, "page": valid[code]})
-            return m.group(0)
-        return ""  # thẻ nguồn bịa → bỏ
+    def rewrite(m):
+        kept = []
+        for part in re.split(r"[;,]", m.group(1)):
+            ref = _CITE_REF.match(part.strip())
+            code = ref.group(1).upper() if ref else ""
+            if code not in valid:
+                if part.strip():
+                    removed.append(part.strip())
+                continue
+            code, page = valid[code]
+            if ref.group(2) and int(ref.group(2)) != page:
+                fixed.append(code)
+            kept.append("%s - Trang %s" % (code, page))
+            if code not in seen:
+                seen.add(code)
+                sources.append({"code": code, "page": page})
+        return "[Nguồn: %s]" % "; ".join(kept) if kept else ""
 
-    clean = re.sub(r"\[Nguồn:\s*([^\]\-]+?)\s*-\s*Trang\s*\d+\]", keep, reply)
-    return {"reply": clean, "sources": sources}
+    clean = _CITE_TAG.sub(rewrite, reply or "")
+    if removed:
+        clean = re.sub(r"[ \t]+([.,;:!?)])", r"\1", re.sub(r"[ \t]{2,}", " ", clean))  # dọn khoảng trắng sau khi bỏ thẻ
+        note("citations: bỏ %d thẻ nguồn bịa: %s" % (len(removed), "; ".join(removed)[:200]))
+    if fixed:
+        note("citations: sửa trang cho %s" % ", ".join(fixed))
+    return {"reply": clean, "sources": sources, "removed": removed, "fixed": fixed}
+
+
+_CITE_TAG = re.compile(r"\[\s*ngu[ồo]n\s*:\s*([^\]]*)\]", re.I)
+_CITE_REF = re.compile(r"([A-Za-z0-9]+(?:-[A-Za-z0-9]+)*)(?:\s*[-–,]?\s*(?:trang|tr\.?|p\.?)\s*(\d+))?", re.I)
+
+
+@tool
+def flag_message(message: str, mode: str = "hint") -> str:
+    """flag_message · Input: tin nhắn học sinh, chế độ ("hint"/"answer") · Output: lý do gắn cờ hoặc None ·
+    Không tác động ra ngoài. CHỈ ĐỂ GẮN CỜ cho giáo viên xem lại và ghi note() vào trace: KHÔNG chặn, KHÔNG đổi chế độ —
+    luật chặn nằm ở system prompt (prompts.py) và chốt check_leak. Owner: Ninh (N-03).
+    Cùng ý với flag_message trong app/backend/app/agents/tutor.py, thêm loại "impersonation" và so cả câu gõ không dấu.
+    Thứ tự ưu tiên (trả lý do đầu tiên khớp):
+      "jailbreak"     bỏ qua / quên hướng dẫn, đóng vai AI khác, chế độ nhà phát triển, đòi in system prompt / đáp án mẫu
+      "impersonation" tự nhận là giáo viên / admin, hoặc "thầy cô cho phép rồi"
+      "ask_answer"    xin đáp án / đáp số / lời giải, "giải hộ" — chỉ tính khi mode="hint" (hết hạn thì xin là hợp lệ)"""
+    text = message or ""
+    plain = strip_accents(text)
+    if _JAILBREAK.search(plain) or _DAN.search(text):
+        return "jailbreak"
+    if _IMPERSONATE.search(plain):
+        return "impersonation"
+    if mode == "hint" and _ASK_ANSWER.search(plain):
+        return "ask_answer"
+    return None
+
+
+# Các mẫu viết KHÔNG DẤU vì so trên strip_accents(tin nhắn): bắt được cả "bỏ qua hướng dẫn" lẫn "bo qua huong dan".
+_JAILBREAK = re.compile(
+    r"(bo qua|quen|phot lo|lo di|dung theo|khong can theo|ignore|disregard|forget|override)\W*(\w+\W+){0,4}?"
+    r"(huong dan|quy tac|luat|chi dan|chi thi|cau lenh|lenh truoc|instruction|rule|prompt)"
+    r"|system prompt|developer mode|che do (nha phat trien|developer|admin|khong gioi han)|jailbreak"
+    r"|dong vai|you are now|act as|pretend|bay gio ban la|ban la (mot )?ai khac|khong (con )?gioi han"
+    r"|(in|hien|cho xem|tiet lo|nhac lai|print|show|reveal)\W+(ra\W+)?(nguyen van\W+)?(\w+\W+){0,2}?"
+    r"(system prompt|prompt|dap an mau|huong dan (he thong|goc)|dap_an_mau)")
+_DAN = re.compile(r"\bDAN\b")  # so trên bản CÓ DẤU, phân biệt hoa thường: "dẫn" bỏ dấu cũng thành "dan"
+_IMPERSONATE = re.compile(
+    r"\b(toi|minh|ta|day|em)\W+(la|dang la|chinh la)\W+(\w+\W+){0,1}?(giao vien|thay giao|co giao|gv|admin|quan tri|giam thi)"
+    r"|\b(i am|i'm)\W+(the|a|your)?\W*(teacher|admin)"
+    r"|\b(thay|co|giao vien|gv|thay co)\W+(\w+\W+){0,2}?(da\W+)?(cho phep|dong y|bao|cho)\W+(\w+\W+){0,4}?"
+    r"(dap an|dap so|loi giai|ket qua|xem|giai)")
+_ASK_ANSWER = re.compile(
+    r"\b(cho|xin|dua|gui|noi|in|bao)\W+(\w+\W+){0,3}?(dap an|dap so|ket qua|loi giai|nghiem cuoi)"
+    r"|\bgiai\W+(ho|giup|ho em|chi tiet|het|luon|full)\b|\blam\W+(ho|giup)\b|\bdap (an|so)\W+(\w+\W+){0,2}?de\W+(so|doi chieu|kiem tra)")
