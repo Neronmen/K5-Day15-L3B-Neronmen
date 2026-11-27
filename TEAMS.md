@@ -5,7 +5,7 @@
 > Kiểm bằng `python run.py check`: phần "Kiểm TEAMS.md" không báo gì là đúng format.
 
 - Tên nhóm: Neronmen
-- Lớp: ____
+- Lớp: L3B
 - Track: ____
 - Link repo: ____
 
