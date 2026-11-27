@@ -1,0 +1,12 @@
+# Build context ở gốc repo (app/backend/Dockerfile.render): chỉ gửi những gì image cần, không gửi .env, node_modules, eval…
+*
+!app/backend/pyproject.toml
+!app/backend/app
+!app/backend/scripts
+!app/backend/alembic.ini
+!app/backend/migrations
+!codebase
+!data
+**/__pycache__
+**/*.pyc
+**/.env
