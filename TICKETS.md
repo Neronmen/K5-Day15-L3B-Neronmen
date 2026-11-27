@@ -84,7 +84,7 @@ git push -u origin <ten>/<ma-ticket>     # rồi mở Pull Request vào main tr�
 
 - [x] **T-01 · Dữ liệu bài học (17:00 → 18:30)**: `data/lesson.json` 1 chương Toán 10 (phương trình bậc hai, ~15 trang, tự viết lại, không chép SGK); `data/assignments.json` ≥12 bài (đề, hạn: ≥8 còn hạn, ≥2 đã hết hạn, ≥1 của lớp khác; `answer_key`; `final_answers` nhiều dạng viết); `data/DATA_CARD.md` (nguồn, cách viết, số dòng). Code và 10 test hoàn tất ngày 27/11/2026; giờ kiểm chứng trong `docs/thang-handoff.md` khi bàn giao. Branch `thang/T-01`, chờ Khoa review và merge.
 - [x] **T-02 · Chốt chặn lộ đáp án (18:30 → 19:15)**: nâng `check_leak`: số thập phân / phân số / "x bằng 2" / "nghiệm là 2 và 3" / LaTeX; viết `tests/test_check_leak.py` (≥10 ca, gồm ca **không** được báo lộ: số 2 xuất hiện trong "bước 2"). Trạng thái 2026-11-27T14:54:10+07:00: 25/25 test dat; branch thang/T-02, cho Khoa review va merge.
-- [ ] **T-03 · Metric (trước 19:15)**: `eval/metric_spec.yaml` ≥3 metric, cùng Khoa chốt ngưỡng:
+- [ ] **T-03 · Metric (trước 19:15)**: `eval/metric_spec.yaml` ≥3 metric, cùng Khoa chốt ngưỡng: Trạng thái 2026-11-27T14:55:46+07:00: Ban de xuat 4 metric da qua 3/3 test; can Khoa duyet truoc 19:15 ngay 27/11/2026 UTC+7, chua khoa chuan.
   - `leak_rate`: % câu còn hạn mà output chứa đáp án cuối (code `check_leak`) → **0%**
   - `decision_accuracy`: % câu đúng nhãn `[QUYET_DINH]` (code)
   - `error_pinpoint`: % câu gợi ý chỉ đúng bước sai (so nhãn lỗi trong `expected`, người chấm)
