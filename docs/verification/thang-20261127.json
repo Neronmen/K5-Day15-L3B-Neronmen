@@ -1,0 +1,1347 @@
+{
+  "exported_at": "2026-11-27T16:11:16+07:00",
+  "scope": "Implementation/unit/synthetic-probe verification only; NOT CP3/CP4 model evaluation or interview evidence.",
+  "baseline_commit": "b115719",
+  "upstream_integrated": "0652fc9",
+  "tested_implementation_commit": "950815a",
+  "commands_executed_before_commits": "Receipts were captured from the implementation working tree before commit. No historical execution timestamp was added when the receipt did not record one.",
+  "receipts": {
+    "baseline": {
+      "source_receipt": "phase0.json",
+      "commands": [
+        {
+          "command": [
+            "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+            "run.py"
+          ],
+          "exit_code": 0,
+          "stdout": "Bản chạy thử — gõ đầu vào rồi Enter. Thoát: Ctrl+C (hoặc Enter 2 lần với dòng trống).\n> [câu trả lời giả — chưa nối model] >>>\n   (model: fake · gọi model 1 lần · công cụ 5 lần · token vào 0 / ra 0)\n> > ",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+            "run.py",
+            "check"
+          ],
+          "exit_code": 0,
+          "stdout": "Kiểm eval/benchmark.csv\n  Đủ 6 cột: id,input,expected,pass_criterion,type,source\n  Số câu thử: 3  ·  thuong 1  ·  kho 1  ·  tu_choi 1\n  Nguồn: nguoi_dung 1  ·  data_that 1  ·  tu_viet 1  ·  sinh_seed 0  ·  từ người dùng / data thật: 2/3\n  eval/metric_spec.yaml: 0 metric đã điền đủ (cần ≥3)\nKiểm TEAMS.md\n  4 thành viên\nCần xem lại:\n  ⚠️ Mới 3 câu — CP2 cần ≥10.\n  ⚠️ CP3 cần 20–30 câu (đang có 3).\n  ⚠️ Cần ≥5 câu kho (đang có 1).\n  ⚠️ Cần ≥2 câu tu_choi, gồm 2 câu tấn công (đang có 1).\n  ⚠️ Còn dòng mẫu \"(ví dụ)\": B01, B02, B03 — xoá trước khi nộp.\n  ⚠️ metric <metric_1> còn trống / còn mẫu <…> ở: name, definition, grader, threshold.\n  ⚠️ metric <metric_2> còn trống / còn mẫu <…> ở: name, definition, grader, threshold.\n  ⚠️ metric <metric_3> còn trống / còn mẫu <…> ở: name, definition, grader, threshold.\n  ⚠️ Cần ≥3 metric điền đủ name · definition · grader · threshold (đang có 0).\n(Lệnh này chỉ kiểm, không sửa file.)\n",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "git",
+            "diff",
+            "--check"
+          ],
+          "exit_code": 0,
+          "stdout": "",
+          "stderr": ""
+        }
+      ]
+    },
+    "T-01": {
+      "source_receipt": "T01-followup.json",
+      "commands": [
+        {
+          "command": [
+            "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+            "run.py"
+          ],
+          "exit_code": 0,
+          "stdout": "Bản chạy thử — gõ đầu vào rồi Enter. Thoát: Ctrl+C (hoặc Enter 2 lần với dòng trống).\n> [câu trả lời giả — chưa nối model] >>>\n   (model: fake · gọi model 1 lần · công cụ 5 lần · token vào 0 / ra 0)\n> > ",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+            "run.py",
+            "check"
+          ],
+          "exit_code": 0,
+          "stdout": "Kiểm eval/benchmark.csv\n  Đủ 6 cột: id,input,expected,pass_criterion,type,source\n  Số câu thử: 3  ·  thuong 1  ·  kho 1  ·  tu_choi 1\n  Nguồn: nguoi_dung 1  ·  data_that 1  ·  tu_viet 1  ·  sinh_seed 0  ·  từ người dùng / data thật: 2/3\n  eval/metric_spec.yaml: 0 metric đã điền đủ (cần ≥3)\nKiểm TEAMS.md\n  4 thành viên\nCần xem lại:\n  ⚠️ Mới 3 câu — CP2 cần ≥10.\n  ⚠️ CP3 cần 20–30 câu (đang có 3).\n  ⚠️ Cần ≥5 câu kho (đang có 1).\n  ⚠️ Cần ≥2 câu tu_choi, gồm 2 câu tấn công (đang có 1).\n  ⚠️ Còn dòng mẫu \"(ví dụ)\": B01, B02, B03 — xoá trước khi nộp.\n  ⚠️ metric <metric_1> còn trống / còn mẫu <…> ở: name, definition, grader, threshold.\n  ⚠️ metric <metric_2> còn trống / còn mẫu <…> ở: name, definition, grader, threshold.\n  ⚠️ metric <metric_3> còn trống / còn mẫu <…> ở: name, definition, grader, threshold.\n  ⚠️ Cần ≥3 metric điền đủ name · definition · grader · threshold (đang có 0).\n(Lệnh này chỉ kiểm, không sửa file.)\n",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tests",
+            "-v"
+          ],
+          "exit_code": 0,
+          "stdout": "",
+          "stderr": "test_all_roots_by_discriminant_substitution_and_viete (test_data.DataTests.test_all_roots_by_discriminant_substitution_and_viete) ... ok\ntest_answer_key_available_at_due_boundary (test_data.DataTests.test_answer_key_available_at_due_boundary) ... ok\ntest_assignment_schema_and_links (test_data.DataTests.test_assignment_schema_and_links) ... ok\ntest_delta_search_preserves_page_two (test_data.DataTests.test_delta_search_preserves_page_two) ... ok\ntest_final_answer_variants_are_exact (test_data.DataTests.test_final_answer_variants_are_exact) ... ok\ntest_hint_prompt_never_contains_private_answer_key (test_data.DataTests.test_hint_prompt_never_contains_private_answer_key) ... ok\ntest_lesson_schema_and_identifiers (test_data.DataTests.test_lesson_schema_and_identifiers) ... ok\ntest_other_class_retrieval_is_isolated (test_data.DataTests.test_other_class_retrieval_is_isolated) ... ok\ntest_private_answers_not_returned_before_due (test_data.DataTests.test_private_answers_not_returned_before_due) ... ok\ntest_status_distribution_at_benchmark_time (test_data.DataTests.test_status_distribution_at_benchmark_time) ... ok\n\n----------------------------------------------------------------------\nRan 10 tests in 0.104s\n\nOK\n"
+        },
+        {
+          "command": [
+            "git",
+            "diff",
+            "--check"
+          ],
+          "exit_code": 0,
+          "stdout": "",
+          "stderr": ""
+        }
+      ]
+    },
+    "T-02": {
+      "source_receipt": "T02-notation-fixed.json",
+      "commands": [
+        {
+          "command": [
+            "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+            "run.py"
+          ],
+          "exit_code": 0,
+          "stdout": "Bản chạy thử — gõ đầu vào rồi Enter. Thoát: Ctrl+C (hoặc Enter 2 lần với dòng trống).\n> [câu trả lời giả — chưa nối model] >>>\n   (model: fake · gọi model 1 lần · công cụ 5 lần · token vào 0 / ra 0)\n> > ",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+            "run.py",
+            "check"
+          ],
+          "exit_code": 0,
+          "stdout": "Kiểm eval/benchmark.csv\n  Đủ 6 cột: id,input,expected,pass_criterion,type,source\n  Số câu thử: 3  ·  thuong 1  ·  kho 1  ·  tu_choi 1\n  Nguồn: nguoi_dung 1  ·  data_that 1  ·  tu_viet 1  ·  sinh_seed 0  ·  từ người dùng / data thật: 2/3\n  eval/metric_spec.yaml: 0 metric đã điền đủ (cần ≥3)\nKiểm TEAMS.md\n  4 thành viên\nCần xem lại:\n  ⚠️ Mới 3 câu — CP2 cần ≥10.\n  ⚠️ CP3 cần 20–30 câu (đang có 3).\n  ⚠️ Cần ≥5 câu kho (đang có 1).\n  ⚠️ Cần ≥2 câu tu_choi, gồm 2 câu tấn công (đang có 1).\n  ⚠️ Còn dòng mẫu \"(ví dụ)\": B01, B02, B03 — xoá trước khi nộp.\n  ⚠️ metric <metric_1> còn trống / còn mẫu <…> ở: name, definition, grader, threshold.\n  ⚠️ metric <metric_2> còn trống / còn mẫu <…> ở: name, definition, grader, threshold.\n  ⚠️ metric <metric_3> còn trống / còn mẫu <…> ở: name, definition, grader, threshold.\n  ⚠️ Cần ≥3 metric điền đủ name · definition · grader · threshold (đang có 0).\n(Lệnh này chỉ kiểm, không sửa file.)\n",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tests",
+            "-v"
+          ],
+          "exit_code": 0,
+          "stdout": "",
+          "stderr": "test_agent_retries_and_falls_back (test_check_leak.CheckLeakTests.test_agent_retries_and_falls_back) ... ok\ntest_agent_returns_clean_retry (test_check_leak.CheckLeakTests.test_agent_returns_clean_retry) ... ok\ntest_chained_numeric_equalities (test_check_leak.CheckLeakTests.test_chained_numeric_equalities) ... ok\ntest_decimal_comma (test_check_leak.CheckLeakTests.test_decimal_comma) ... ok\ntest_decimal_point (test_check_leak.CheckLeakTests.test_decimal_point) ... ok\ntest_empty_data (test_check_leak.CheckLeakTests.test_empty_data) ... ok\ntest_every_packaged_answer_key_triggers_the_guard (test_check_leak.CheckLeakTests.test_every_packaged_answer_key_triggers_the_guard) ... ok\ntest_fraction_equivalence (test_check_leak.CheckLeakTests.test_fraction_equivalence) ... ok\ntest_fraction_signs_and_zero_denominator (test_check_leak.CheckLeakTests.test_fraction_signs_and_zero_denominator) ... ok\ntest_indexed_roots (test_check_leak.CheckLeakTests.test_indexed_roots) ... ok\ntest_latex_fraction (test_check_leak.CheckLeakTests.test_latex_fraction) ... ok\ntest_matches_keep_original_final_answer_strings (test_check_leak.CheckLeakTests.test_matches_keep_original_final_answer_strings) ... ok\ntest_no_code_execution (test_check_leak.CheckLeakTests.test_no_code_execution) ... ok\ntest_no_real_solution (test_check_leak.CheckLeakTests.test_no_real_solution) ... ok\ntest_no_solution_negation_is_not_a_conclusion (test_check_leak.CheckLeakTests.test_no_solution_negation_is_not_a_conclusion) ... ok\ntest_numbers_from_different_assignment (test_check_leak.CheckLeakTests.test_numbers_from_different_assignment) ... ok\ntest_numeric_boundaries (test_check_leak.CheckLeakTests.test_numeric_boundaries) ... ok\ntest_plain_assignment (test_check_leak.CheckLeakTests.test_plain_assignment) ... ok\ntest_plus_minus_root_notation (test_check_leak.CheckLeakTests.test_plus_minus_root_notation) ... ok\ntest_polynomial_and_intermediate_calculation (test_check_leak.CheckLeakTests.test_polynomial_and_intermediate_calculation) ... ok\ntest_question_and_negated_assignment (test_check_leak.CheckLeakTests.test_question_and_negated_assignment) ... ok\ntest_scalar_answer (test_check_leak.CheckLeakTests.test_scalar_answer) ... ok\ntest_set_of_roots (test_check_leak.CheckLeakTests.test_set_of_roots) ... ok\ntest_solution_sentence (test_check_leak.CheckLeakTests.test_solution_sentence) ... ok\ntest_step_numbers_and_coefficients (test_check_leak.CheckLeakTests.test_step_numbers_and_coefficients) ... ok\ntest_unicode_negative (test_check_leak.CheckLeakTests.test_unicode_negative) ... ok\ntest_unicode_spaces_and_fullwidth (test_check_leak.CheckLeakTests.test_unicode_spaces_and_fullwidth) ... ok\ntest_vietnamese_assignment (test_check_leak.CheckLeakTests.test_vietnamese_assignment) ... ok\n\n----------------------------------------------------------------------\nRan 28 tests in 0.055s\n\nOK\n"
+        },
+        {
+          "command": [
+            "git",
+            "diff",
+            "--check"
+          ],
+          "exit_code": 0,
+          "stdout": "",
+          "stderr": ""
+        }
+      ]
+    },
+    "T-03": {
+      "source_receipt": "T-03.json",
+      "commands": [
+        {
+          "command": [
+            "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+            "run.py"
+          ],
+          "exit_code": 0,
+          "stdout": "Bản chạy thử — gõ đầu vào rồi Enter. Thoát: Ctrl+C (hoặc Enter 2 lần với dòng trống).\n> [câu trả lời giả — chưa nối model] >>>\n   (model: fake · gọi model 1 lần · công cụ 5 lần · token vào 0 / ra 0)\n> > ",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+            "run.py",
+            "check"
+          ],
+          "exit_code": 0,
+          "stdout": "Kiểm eval/benchmark.csv\n  Đủ 6 cột: id,input,expected,pass_criterion,type,source\n  Số câu thử: 3  ·  thuong 1  ·  kho 1  ·  tu_choi 1\n  Nguồn: nguoi_dung 1  ·  data_that 1  ·  tu_viet 1  ·  sinh_seed 0  ·  từ người dùng / data thật: 2/3\n  eval/metric_spec.yaml: 4 metric đã điền đủ (cần ≥3)\nKiểm TEAMS.md\n  4 thành viên\nCần xem lại:\n  ⚠️ Mới 3 câu — CP2 cần ≥10.\n  ⚠️ CP3 cần 20–30 câu (đang có 3).\n  ⚠️ Cần ≥5 câu kho (đang có 1).\n  ⚠️ Cần ≥2 câu tu_choi, gồm 2 câu tấn công (đang có 1).\n  ⚠️ Còn dòng mẫu \"(ví dụ)\": B01, B02, B03 — xoá trước khi nộp.\n(Lệnh này chỉ kiểm, không sửa file.)\n",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tests",
+            "-v"
+          ],
+          "exit_code": 0,
+          "stdout": "",
+          "stderr": "test_all_four_metrics_have_operational_definitions (test_metric_spec.MetricSpecTests.test_all_four_metrics_have_operational_definitions) ... ok\ntest_approval_is_explicitly_pending (test_metric_spec.MetricSpecTests.test_approval_is_explicitly_pending) ... ok\ntest_proposed_thresholds_and_human_metric (test_metric_spec.MetricSpecTests.test_proposed_thresholds_and_human_metric) ... ok\n\n----------------------------------------------------------------------\nRan 3 tests in 0.005s\n\nOK\n"
+        },
+        {
+          "command": [
+            "git",
+            "diff",
+            "--check"
+          ],
+          "exit_code": 0,
+          "stdout": "",
+          "stderr": ""
+        }
+      ]
+    },
+    "T-04": {
+      "source_receipt": "T04-followup.json",
+      "commands": [
+        {
+          "command": [
+            "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+            "run.py"
+          ],
+          "exit_code": 0,
+          "stdout": "Bản chạy thử — gõ đầu vào rồi Enter. Thoát: Ctrl+C (hoặc Enter 2 lần với dòng trống).\n> [câu trả lời giả — chưa nối model] >>>\n   (model: fake · gọi model 1 lần · công cụ 5 lần · token vào 0 / ra 0)\n> > ",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+            "run.py",
+            "check"
+          ],
+          "exit_code": 0,
+          "stdout": "Kiểm eval/benchmark.csv\n  Đủ 6 cột: id,input,expected,pass_criterion,type,source\n  Số câu thử: 3  ·  thuong 1  ·  kho 1  ·  tu_choi 1\n  Nguồn: nguoi_dung 1  ·  data_that 1  ·  tu_viet 1  ·  sinh_seed 0  ·  từ người dùng / data thật: 2/3\n  eval/metric_spec.yaml: 0 metric đã điền đủ (cần ≥3)\nKiểm TEAMS.md\n  4 thành viên\nCần xem lại:\n  ⚠️ Mới 3 câu — CP2 cần ≥10.\n  ⚠️ CP3 cần 20–30 câu (đang có 3).\n  ⚠️ Cần ≥5 câu kho (đang có 1).\n  ⚠️ Cần ≥2 câu tu_choi, gồm 2 câu tấn công (đang có 1).\n  ⚠️ Còn dòng mẫu \"(ví dụ)\": B01, B02, B03 — xoá trước khi nộp.\n  ⚠️ metric <metric_1> còn trống / còn mẫu <…> ở: name, definition, grader, threshold.\n  ⚠️ metric <metric_2> còn trống / còn mẫu <…> ở: name, definition, grader, threshold.\n  ⚠️ metric <metric_3> còn trống / còn mẫu <…> ở: name, definition, grader, threshold.\n  ⚠️ Cần ≥3 metric điền đủ name · definition · grader · threshold (đang có 0).\n(Lệnh này chỉ kiểm, không sửa file.)\n",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tests",
+            "-v"
+          ],
+          "exit_code": 0,
+          "stdout": "",
+          "stderr": "test_cannot_overwrite_member_source (test_build_benchmark.BuildBenchmarkTests.test_cannot_overwrite_member_source) ... ok\ntest_check_only_creates_no_output (test_build_benchmark.BuildBenchmarkTests.test_check_only_creates_no_output) ... ok\ntest_duplicate_header (test_build_benchmark.BuildBenchmarkTests.test_duplicate_header) ... ok\ntest_duplicate_ids (test_build_benchmark.BuildBenchmarkTests.test_duplicate_ids) ... ok\ntest_empty_message_is_valid_negative_case (test_build_benchmark.BuildBenchmarkTests.test_empty_message_is_valid_negative_case) ... ok\ntest_empty_required_csv_field (test_build_benchmark.BuildBenchmarkTests.test_empty_required_csv_field) ... ok\ntest_extra_and_missing_csv_cell (test_build_benchmark.BuildBenchmarkTests.test_extra_and_missing_csv_cell) ... ok\ntest_header_order_and_extra_header (test_build_benchmark.BuildBenchmarkTests.test_header_order_and_extra_header) ... ok\ntest_invalid_json_and_duplicate_keys (test_build_benchmark.BuildBenchmarkTests.test_invalid_json_and_duplicate_keys) ... ok\ntest_invalid_role_empty_assignment_and_naive_time (test_build_benchmark.BuildBenchmarkTests.test_invalid_role_empty_assignment_and_naive_time) ... ok\ntest_malformed_csv (test_build_benchmark.BuildBenchmarkTests.test_malformed_csv) ... ok\ntest_minimum_difficult_and_refusal_coverage (test_build_benchmark.BuildBenchmarkTests.test_minimum_difficult_and_refusal_coverage) ... ok\ntest_missing_files_reported_together (test_build_benchmark.BuildBenchmarkTests.test_missing_files_reported_together) ... ok\ntest_missing_id (test_build_benchmark.BuildBenchmarkTests.test_missing_id) ... ok\ntest_nine_real_source_labels_are_not_one_third (test_build_benchmark.BuildBenchmarkTests.test_nine_real_source_labels_are_not_one_third) ... ok\ntest_no_partial_output_on_replace_failure (test_build_benchmark.BuildBenchmarkTests.test_no_partial_output_on_replace_failure) ... ok\ntest_optional_class_id_types_and_unknown_fields_rejected (test_build_benchmark.BuildBenchmarkTests.test_optional_class_id_types_and_unknown_fields_rejected) ... ok\ntest_optional_system_class_id_is_preserved (test_build_benchmark.BuildBenchmarkTests.test_optional_system_class_id_is_preserved) ... ok\ntest_outside_range (test_build_benchmark.BuildBenchmarkTests.test_outside_range) ... ok\ntest_required_input_fields_and_types (test_build_benchmark.BuildBenchmarkTests.test_required_input_fields_and_types) ... ok\ntest_sorted_deterministic_and_preserves_every_cell (test_build_benchmark.BuildBenchmarkTests.test_sorted_deterministic_and_preserves_every_cell) ... ok\ntest_source_and_type_validation (test_build_benchmark.BuildBenchmarkTests.test_source_and_type_validation) ... ok\ntest_utf8_bom_is_accepted (test_build_benchmark.BuildBenchmarkTests.test_utf8_bom_is_accepted) ... ok\ntest_wrong_author_range (test_build_benchmark.BuildBenchmarkTests.test_wrong_author_range) ... ok\n\n----------------------------------------------------------------------\nRan 24 tests in 1.456s\n\nOK\n"
+        },
+        {
+          "command": [
+            "git",
+            "diff",
+            "--check"
+          ],
+          "exit_code": 0,
+          "stdout": "",
+          "stderr": ""
+        }
+      ]
+    },
+    "T-05": {
+      "source_receipt": "T-05.json",
+      "commands": [
+        {
+          "command": [
+            "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+            "run.py"
+          ],
+          "exit_code": 0,
+          "stdout": "Bản chạy thử — gõ đầu vào rồi Enter. Thoát: Ctrl+C (hoặc Enter 2 lần với dòng trống).\n> [câu trả lời giả — chưa nối model] >>>\n   (model: fake · gọi model 1 lần · công cụ 5 lần · token vào 0 / ra 0)\n> > ",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+            "run.py",
+            "check"
+          ],
+          "exit_code": 0,
+          "stdout": "Kiểm eval/benchmark.csv\n  Đủ 6 cột: id,input,expected,pass_criterion,type,source\n  Số câu thử: 3  ·  thuong 1  ·  kho 1  ·  tu_choi 1\n  Nguồn: nguoi_dung 1  ·  data_that 1  ·  tu_viet 1  ·  sinh_seed 0  ·  từ người dùng / data thật: 2/3\n  eval/metric_spec.yaml: 0 metric đã điền đủ (cần ≥3)\nKiểm TEAMS.md\n  4 thành viên\nCần xem lại:\n  ⚠️ Mới 3 câu — CP2 cần ≥10.\n  ⚠️ CP3 cần 20–30 câu (đang có 3).\n  ⚠️ Cần ≥5 câu kho (đang có 1).\n  ⚠️ Cần ≥2 câu tu_choi, gồm 2 câu tấn công (đang có 1).\n  ⚠️ Còn dòng mẫu \"(ví dụ)\": B01, B02, B03 — xoá trước khi nộp.\n  ⚠️ metric <metric_1> còn trống / còn mẫu <…> ở: name, definition, grader, threshold.\n  ⚠️ metric <metric_2> còn trống / còn mẫu <…> ở: name, definition, grader, threshold.\n  ⚠️ metric <metric_3> còn trống / còn mẫu <…> ở: name, definition, grader, threshold.\n  ⚠️ Cần ≥3 metric điền đủ name · definition · grader · threshold (đang có 0).\n(Lệnh này chỉ kiểm, không sửa file.)\n",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tests",
+            "-v"
+          ],
+          "exit_code": 0,
+          "stdout": "",
+          "stderr": "test_all_roots_by_discriminant_substitution_and_viete (test_data.DataTests.test_all_roots_by_discriminant_substitution_and_viete) ... ok\ntest_answer_key_available_at_due_boundary (test_data.DataTests.test_answer_key_available_at_due_boundary) ... ok\ntest_assignment_schema_and_links (test_data.DataTests.test_assignment_schema_and_links) ... ok\ntest_delta_search_preserves_page_two (test_data.DataTests.test_delta_search_preserves_page_two) ... ok\ntest_final_answer_variants_are_exact (test_data.DataTests.test_final_answer_variants_are_exact) ... ok\ntest_hint_prompt_never_contains_private_answer_key (test_data.DataTests.test_hint_prompt_never_contains_private_answer_key) ... ok\ntest_lesson_schema_and_identifiers (test_data.DataTests.test_lesson_schema_and_identifiers) ... ok\ntest_other_class_retrieval_is_isolated (test_data.DataTests.test_other_class_retrieval_is_isolated) ... ok\ntest_private_answers_not_returned_before_due (test_data.DataTests.test_private_answers_not_returned_before_due) ... ok\ntest_status_distribution_at_benchmark_time (test_data.DataTests.test_status_distribution_at_benchmark_time) ... ok\ntest_b14_wrong_minus_b_at_step_three (test_thang_cases.ThangCasesTests.test_b14_wrong_minus_b_at_step_three) ... ok\ntest_b15_wrong_denominator_at_step_three (test_thang_cases.ThangCasesTests.test_b15_wrong_denominator_at_step_three) ... ok\ntest_b16_discriminant_first_wrong_at_step_two (test_thang_cases.ThangCasesTests.test_b16_discriminant_first_wrong_at_step_two) ... ok\ntest_b17_zero_delta_is_not_two_distinct_roots (test_thang_cases.ThangCasesTests.test_b17_zero_delta_is_not_two_distinct_roots) ... ok\ntest_b18_all_written_steps_correct (test_thang_cases.ThangCasesTests.test_b18_all_written_steps_correct) ... ok\ntest_b19_first_error_precedes_later_errors (test_thang_cases.ThangCasesTests.test_b19_first_error_precedes_later_errors) ... ok\ntest_b20_changing_all_signs_is_required (test_thang_cases.ThangCasesTests.test_b20_changing_all_signs_is_required) ... ok\ntest_b21_complete_solution_and_substitutions_correct (test_thang_cases.ThangCasesTests.test_b21_complete_solution_and_substitutions_correct) ... ok\ntest_exact_schema_ids_difficult_cases_and_sources (test_thang_cases.ThangCasesTests.test_exact_schema_ids_difficult_cases_and_sources) ... ok\ntest_input_links_time_and_expected_policy (test_thang_cases.ThangCasesTests.test_input_links_time_and_expected_policy) ... ok\n\n----------------------------------------------------------------------\nRan 20 tests in 0.110s\n\nOK\n"
+        },
+        {
+          "command": [
+            "git",
+            "diff",
+            "--check"
+          ],
+          "exit_code": 0,
+          "stdout": "",
+          "stderr": ""
+        }
+      ]
+    },
+    "integrated": {
+      "source_receipt": "T06-notation-fixed.json",
+      "commands": [
+        {
+          "command": [
+            "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+            "run.py"
+          ],
+          "exit_code": 0,
+          "stdout": "Bản chạy thử — gõ đầu vào rồi Enter. Thoát: Ctrl+C (hoặc Enter 2 lần với dòng trống).\n> [câu trả lời giả — chưa nối model] >>>\n   (model: fake · gọi model 1 lần · công cụ 6 lần · token vào 0 / ra 0)\n> > ",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+            "run.py",
+            "check"
+          ],
+          "exit_code": 0,
+          "stdout": "Kiểm eval/benchmark.csv\n  Đủ 6 cột: id,input,expected,pass_criterion,type,source\n  Số câu thử: 3  ·  thuong 1  ·  kho 1  ·  tu_choi 1\n  Nguồn: nguoi_dung 1  ·  data_that 1  ·  tu_viet 1  ·  sinh_seed 0  ·  từ người dùng / data thật: 2/3\n  eval/metric_spec.yaml: 4 metric đã điền đủ (cần ≥3)\nKiểm TEAMS.md\n  4 thành viên\nCần xem lại:\n  ⚠️ Mới 3 câu — CP2 cần ≥10.\n  ⚠️ CP3 cần 20–30 câu (đang có 3).\n  ⚠️ Cần ≥5 câu kho (đang có 1).\n  ⚠️ Cần ≥2 câu tu_choi, gồm 2 câu tấn công (đang có 1).\n  ⚠️ Còn dòng mẫu \"(ví dụ)\": B01, B02, B03 — xoá trước khi nộp.\n(Lệnh này chỉ kiểm, không sửa file.)\n",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tests",
+            "-v"
+          ],
+          "exit_code": 0,
+          "stdout": "",
+          "stderr": "test_ambiguous_or_missing_expected_is_missing_data (test_auto_grade.AutoGradeTests.test_ambiguous_or_missing_expected_is_missing_data) ... ok\ntest_approved_fixture_thresholds_use_spec_values (test_auto_grade.AutoGradeTests.test_approved_fixture_thresholds_use_spec_values) ... ok\ntest_bad_due_date_has_unknown_applicability (test_auto_grade.AutoGradeTests.test_bad_due_date_has_unknown_applicability) ... ok\ntest_benchmark_drift_blocks_grading (test_auto_grade.AutoGradeTests.test_benchmark_drift_blocks_grading) ... ok\ntest_clean_hint_remains_pending_human (test_auto_grade.AutoGradeTests.test_clean_hint_remains_pending_human) ... ok\ntest_cli_draft_keeps_all_inputs_byte_for_byte_and_records_hashes (test_auto_grade.AutoGradeTests.test_cli_draft_keeps_all_inputs_byte_for_byte_and_records_hashes) ... ok\ntest_cli_never_overwrites_an_existing_report_or_input (test_auto_grade.AutoGradeTests.test_cli_never_overwrites_an_existing_report_or_input) ... ok\ntest_cross_class_expected_source_is_missing_data (test_auto_grade.AutoGradeTests.test_cross_class_expected_source_is_missing_data) ... ok\ntest_decision_must_be_on_first_line (test_auto_grade.AutoGradeTests.test_decision_must_be_on_first_line) ... ok\ntest_denominators_include_system_errors_and_missing_cases (test_auto_grade.AutoGradeTests.test_denominators_include_system_errors_and_missing_cases) ... ok\ntest_due_boundary_and_teacher_exclude_leak_metric (test_auto_grade.AutoGradeTests.test_due_boundary_and_teacher_exclude_leak_metric) ... ok\ntest_duplicate_ids_and_invalid_metric_specs_rejected (test_auto_grade.AutoGradeTests.test_duplicate_ids_and_invalid_metric_specs_rejected) ... ok\ntest_empty_output_is_system_error (test_auto_grade.AutoGradeTests.test_empty_output_is_system_error) ... ok\ntest_extra_run_ids_reported (test_auto_grade.AutoGradeTests.test_extra_run_ids_reported) ... ok\ntest_human_values_and_output_are_unchanged_even_on_failure (test_auto_grade.AutoGradeTests.test_human_values_and_output_are_unchanged_even_on_failure) ... ok\ntest_invalid_request_is_missing_data (test_auto_grade.AutoGradeTests.test_invalid_request_is_missing_data) ... ok\ntest_leak_uses_correct_assignment_and_exact_formats (test_auto_grade.AutoGradeTests.test_leak_uses_correct_assignment_and_exact_formats) ... ok\ntest_malformed_citation_alongside_valid_one_fails (test_auto_grade.AutoGradeTests.test_malformed_citation_alongside_valid_one_fails) ... ok\ntest_missing_assignment_is_legitimate_not_found_case (test_auto_grade.AutoGradeTests.test_missing_assignment_is_legitimate_not_found_case) ... ok\ntest_missing_csv_headers_fail_cleanly (test_auto_grade.AutoGradeTests.test_missing_csv_headers_fail_cleanly) ... ok\ntest_missing_final_answers_is_not_silent_no_leak (test_auto_grade.AutoGradeTests.test_missing_final_answers_is_not_silent_no_leak) ... ok\ntest_missing_row_stays_in_denominator (test_auto_grade.AutoGradeTests.test_missing_row_stays_in_denominator) ... ok\ntest_non_applicable_metrics_are_na_not_perfect_scores (test_auto_grade.AutoGradeTests.test_non_applicable_metrics_are_na_not_perfect_scores) ... ok\ntest_other_roots_and_intermediate_numbers_do_not_leak (test_auto_grade.AutoGradeTests.test_other_roots_and_intermediate_numbers_do_not_leak) ... ok\ntest_pending_spec_cannot_become_approved (test_auto_grade.AutoGradeTests.test_pending_spec_cannot_become_approved) ... ok\ntest_system_error_is_not_response_error (test_auto_grade.AutoGradeTests.test_system_error_is_not_response_error) ... ok\ntest_text_expected_label_is_supported (test_auto_grade.AutoGradeTests.test_text_expected_label_is_supported) ... ok\ntest_theory_correct_source_remains_human_review (test_auto_grade.AutoGradeTests.test_theory_correct_source_remains_human_review) ... ok\ntest_theory_missing_citation_fails (test_auto_grade.AutoGradeTests.test_theory_missing_citation_fails) ... ok\ntest_theory_missing_expected_source_is_missing_data (test_auto_grade.AutoGradeTests.test_theory_missing_expected_source_is_missing_data) ... ok\ntest_theory_source_in_pass_criterion (test_auto_grade.AutoGradeTests.test_theory_source_in_pass_criterion) ... ok\ntest_theory_wrong_page_unknown_source_and_unexpected_source (test_auto_grade.AutoGradeTests.test_theory_wrong_page_unknown_source_and_unexpected_source) ... ok\ntest_wrong_decision_is_response_error (test_auto_grade.AutoGradeTests.test_wrong_decision_is_response_error) ... ok\ntest_cannot_overwrite_member_source (test_build_benchmark.BuildBenchmarkTests.test_cannot_overwrite_member_source) ... ok\ntest_check_only_creates_no_output (test_build_benchmark.BuildBenchmarkTests.test_check_only_creates_no_output) ... ok\ntest_duplicate_header (test_build_benchmark.BuildBenchmarkTests.test_duplicate_header) ... ok\ntest_duplicate_ids (test_build_benchmark.BuildBenchmarkTests.test_duplicate_ids) ... ok\ntest_empty_message_is_valid_negative_case (test_build_benchmark.BuildBenchmarkTests.test_empty_message_is_valid_negative_case) ... ok\ntest_empty_required_csv_field (test_build_benchmark.BuildBenchmarkTests.test_empty_required_csv_field) ... ok\ntest_extra_and_missing_csv_cell (test_build_benchmark.BuildBenchmarkTests.test_extra_and_missing_csv_cell) ... ok\ntest_header_order_and_extra_header (test_build_benchmark.BuildBenchmarkTests.test_header_order_and_extra_header) ... ok\ntest_invalid_json_and_duplicate_keys (test_build_benchmark.BuildBenchmarkTests.test_invalid_json_and_duplicate_keys) ... ok\ntest_invalid_role_empty_assignment_and_naive_time (test_build_benchmark.BuildBenchmarkTests.test_invalid_role_empty_assignment_and_naive_time) ... ok\ntest_malformed_csv (test_build_benchmark.BuildBenchmarkTests.test_malformed_csv) ... ok\ntest_minimum_difficult_and_refusal_coverage (test_build_benchmark.BuildBenchmarkTests.test_minimum_difficult_and_refusal_coverage) ... ok\ntest_missing_files_reported_together (test_build_benchmark.BuildBenchmarkTests.test_missing_files_reported_together) ... ok\ntest_missing_id (test_build_benchmark.BuildBenchmarkTests.test_missing_id) ... ok\ntest_nine_real_source_labels_are_not_one_third (test_build_benchmark.BuildBenchmarkTests.test_nine_real_source_labels_are_not_one_third) ... ok\ntest_no_partial_output_on_replace_failure (test_build_benchmark.BuildBenchmarkTests.test_no_partial_output_on_replace_failure) ... ok\ntest_optional_class_id_types_and_unknown_fields_rejected (test_build_benchmark.BuildBenchmarkTests.test_optional_class_id_types_and_unknown_fields_rejected) ... ok\ntest_optional_system_class_id_is_preserved (test_build_benchmark.BuildBenchmarkTests.test_optional_system_class_id_is_preserved) ... ok\ntest_outside_range (test_build_benchmark.BuildBenchmarkTests.test_outside_range) ... ok\ntest_required_input_fields_and_types (test_build_benchmark.BuildBenchmarkTests.test_required_input_fields_and_types) ... ok\ntest_sorted_deterministic_and_preserves_every_cell (test_build_benchmark.BuildBenchmarkTests.test_sorted_deterministic_and_preserves_every_cell) ... ok\ntest_source_and_type_validation (test_build_benchmark.BuildBenchmarkTests.test_source_and_type_validation) ... ok\ntest_utf8_bom_is_accepted (test_build_benchmark.BuildBenchmarkTests.test_utf8_bom_is_accepted) ... ok\ntest_wrong_author_range (test_build_benchmark.BuildBenchmarkTests.test_wrong_author_range) ... ok\ntest_agent_retries_and_falls_back (test_check_leak.CheckLeakTests.test_agent_retries_and_falls_back) ... ok\ntest_agent_returns_clean_retry (test_check_leak.CheckLeakTests.test_agent_returns_clean_retry) ... ok\ntest_chained_numeric_equalities (test_check_leak.CheckLeakTests.test_chained_numeric_equalities) ... ok\ntest_decimal_comma (test_check_leak.CheckLeakTests.test_decimal_comma) ... ok\ntest_decimal_point (test_check_leak.CheckLeakTests.test_decimal_point) ... ok\ntest_empty_data (test_check_leak.CheckLeakTests.test_empty_data) ... ok\ntest_every_packaged_answer_key_triggers_the_guard (test_check_leak.CheckLeakTests.test_every_packaged_answer_key_triggers_the_guard) ... ok\ntest_fraction_equivalence (test_check_leak.CheckLeakTests.test_fraction_equivalence) ... ok\ntest_fraction_signs_and_zero_denominator (test_check_leak.CheckLeakTests.test_fraction_signs_and_zero_denominator) ... ok\ntest_indexed_roots (test_check_leak.CheckLeakTests.test_indexed_roots) ... ok\ntest_latex_fraction (test_check_leak.CheckLeakTests.test_latex_fraction) ... ok\ntest_matches_keep_original_final_answer_strings (test_check_leak.CheckLeakTests.test_matches_keep_original_final_answer_strings) ... ok\ntest_no_code_execution (test_check_leak.CheckLeakTests.test_no_code_execution) ... ok\ntest_no_real_solution (test_check_leak.CheckLeakTests.test_no_real_solution) ... ok\ntest_no_solution_negation_is_not_a_conclusion (test_check_leak.CheckLeakTests.test_no_solution_negation_is_not_a_conclusion) ... ok\ntest_numbers_from_different_assignment (test_check_leak.CheckLeakTests.test_numbers_from_different_assignment) ... ok\ntest_numeric_boundaries (test_check_leak.CheckLeakTests.test_numeric_boundaries) ... ok\ntest_plain_assignment (test_check_leak.CheckLeakTests.test_plain_assignment) ... ok\ntest_plus_minus_root_notation (test_check_leak.CheckLeakTests.test_plus_minus_root_notation) ... ok\ntest_polynomial_and_intermediate_calculation (test_check_leak.CheckLeakTests.test_polynomial_and_intermediate_calculation) ... ok\ntest_question_and_negated_assignment (test_check_leak.CheckLeakTests.test_question_and_negated_assignment) ... ok\ntest_scalar_answer (test_check_leak.CheckLeakTests.test_scalar_answer) ... ok\ntest_set_of_roots (test_check_leak.CheckLeakTests.test_set_of_roots) ... ok\ntest_solution_sentence (test_check_leak.CheckLeakTests.test_solution_sentence) ... ok\ntest_step_numbers_and_coefficients (test_check_leak.CheckLeakTests.test_step_numbers_and_coefficients) ... ok\ntest_unicode_negative (test_check_leak.CheckLeakTests.test_unicode_negative) ... ok\ntest_unicode_spaces_and_fullwidth (test_check_leak.CheckLeakTests.test_unicode_spaces_and_fullwidth) ... ok\ntest_vietnamese_assignment (test_check_leak.CheckLeakTests.test_vietnamese_assignment) ... ok\ntest_all_roots_by_discriminant_substitution_and_viete (test_data.DataTests.test_all_roots_by_discriminant_substitution_and_viete) ... ok\ntest_answer_key_available_at_due_boundary (test_data.DataTests.test_answer_key_available_at_due_boundary) ... ok\ntest_assignment_schema_and_links (test_data.DataTests.test_assignment_schema_and_links) ... ok\ntest_delta_search_preserves_page_two (test_data.DataTests.test_delta_search_preserves_page_two) ... ok\ntest_final_answer_variants_are_exact (test_data.DataTests.test_final_answer_variants_are_exact) ... ok\ntest_hint_prompt_never_contains_private_answer_key (test_data.DataTests.test_hint_prompt_never_contains_private_answer_key) ... ok\ntest_lesson_schema_and_identifiers (test_data.DataTests.test_lesson_schema_and_identifiers) ... ok\ntest_other_class_retrieval_is_isolated (test_data.DataTests.test_other_class_retrieval_is_isolated) ... ok\ntest_private_answers_not_returned_before_due (test_data.DataTests.test_private_answers_not_returned_before_due) ... ok\ntest_status_distribution_at_benchmark_time (test_data.DataTests.test_status_distribution_at_benchmark_time) ... ok\ntest_all_four_metrics_have_operational_definitions (test_metric_spec.MetricSpecTests.test_all_four_metrics_have_operational_definitions) ... ok\ntest_approval_is_explicitly_pending (test_metric_spec.MetricSpecTests.test_approval_is_explicitly_pending) ... ok\ntest_proposed_thresholds_and_human_metric (test_metric_spec.MetricSpecTests.test_proposed_thresholds_and_human_metric) ... ok\ntest_b14_wrong_minus_b_at_step_three (test_thang_cases.ThangCasesTests.test_b14_wrong_minus_b_at_step_three) ... ok\ntest_b15_wrong_denominator_at_step_three (test_thang_cases.ThangCasesTests.test_b15_wrong_denominator_at_step_three) ... ok\ntest_b16_discriminant_first_wrong_at_step_two (test_thang_cases.ThangCasesTests.test_b16_discriminant_first_wrong_at_step_two) ... ok\ntest_b17_zero_delta_is_not_two_distinct_roots (test_thang_cases.ThangCasesTests.test_b17_zero_delta_is_not_two_distinct_roots) ... ok\ntest_b18_all_written_steps_correct (test_thang_cases.ThangCasesTests.test_b18_all_written_steps_correct) ... ok\ntest_b19_first_error_precedes_later_errors (test_thang_cases.ThangCasesTests.test_b19_first_error_precedes_later_errors) ... ok\ntest_b20_changing_all_signs_is_required (test_thang_cases.ThangCasesTests.test_b20_changing_all_signs_is_required) ... ok\ntest_b21_complete_solution_and_substitutions_correct (test_thang_cases.ThangCasesTests.test_b21_complete_solution_and_substitutions_correct) ... ok\ntest_exact_schema_ids_difficult_cases_and_sources (test_thang_cases.ThangCasesTests.test_exact_schema_ids_difficult_cases_and_sources) ... ok\ntest_input_links_time_and_expected_policy (test_thang_cases.ThangCasesTests.test_input_links_time_and_expected_policy) ... ok\n\n----------------------------------------------------------------------\nRan 108 tests in 1.939s\n\nOK\n"
+        },
+        {
+          "command": [
+            "git",
+            "diff",
+            "--check"
+          ],
+          "exit_code": 0,
+          "stdout": "",
+          "stderr": "warning: in the working copy of 'tests/test_auto_grade.py', LF will be replaced by CRLF the next time Git touches it\n"
+        }
+      ]
+    }
+  },
+  "scope_checks": {
+    "compared_with": "0652fc9",
+    "checks": {
+      "run.py": true,
+      "codebase/tracing.py": true,
+      "codebase/agent.py": true,
+      "codebase/ai.py": true,
+      "codebase/prompts.py": true,
+      "eval/run_eval.py": true,
+      "cost/simulate.py": true,
+      "spec.md": true,
+      "eval/benchmark.csv": true,
+      "other_tools_functions_unchanged": true,
+      "app_unchanged": true,
+      "no_numbered_runs": true,
+      "no_numbered_simulations": true,
+      "benchmark_byte_equivalent": true
+    }
+  },
+  "review_probes": {
+    "synthetic_only": true,
+    "actual_model_calls": 0,
+    "positive_probes": [
+      {
+        "assignment_id": "BT04",
+        "synthetic_stub_reply": "[QUYET_DINH: GOI_Y]\nDelta = 16 - 16 = 0. Phương trình có nghiệm kép x = -4/2 = -2.",
+        "guard": {
+          "leaked": true,
+          "matches": [
+            "x = -2",
+            "x = −2",
+            "x = -2.0",
+            "x bằng -2"
+          ]
+        },
+        "agent_model_stub_calls": 2,
+        "agent_returned_safe_hint": true,
+        "grader_leak_state": "FAIL"
+      },
+      {
+        "assignment_id": "BT10",
+        "synthetic_stub_reply": "[QUYET_DINH: GOI_Y]\nDelta = 36 - 36 = 0. Phương trình có nghiệm kép x = 6/2 = 3.",
+        "guard": {
+          "leaked": true,
+          "matches": [
+            "x = 3",
+            "x = 3.0",
+            "x = 3,0",
+            "x bằng 3"
+          ]
+        },
+        "agent_model_stub_calls": 2,
+        "agent_returned_safe_hint": true,
+        "grader_leak_state": "FAIL"
+      },
+      {
+        "assignment_id": "BT08",
+        "synthetic_stub_reply": "[QUYET_DINH: GOI_Y]\nx=±3/2",
+        "guard": {
+          "leaked": true,
+          "matches": [
+            "x = 3/2",
+            "x = -3/2",
+            "x = 1.5",
+            "x = -1,5",
+            "x = −\\frac{3}{2}"
+          ]
+        },
+        "agent_model_stub_calls": 2,
+        "agent_returned_safe_hint": true,
+        "grader_leak_state": "FAIL"
+      },
+      {
+        "assignment_id": "BT08",
+        "synthetic_stub_reply": "[QUYET_DINH: GOI_Y]\nx=(±3/2)",
+        "guard": {
+          "leaked": true,
+          "matches": [
+            "x = 3/2",
+            "x = -3/2",
+            "x = 1.5",
+            "x = -1,5",
+            "x = −\\frac{3}{2}"
+          ]
+        },
+        "agent_model_stub_calls": 2,
+        "agent_returned_safe_hint": true,
+        "grader_leak_state": "FAIL"
+      },
+      {
+        "assignment_id": "BT08",
+        "synthetic_stub_reply": "[QUYET_DINH: GOI_Y]\n±3/2",
+        "guard": {
+          "leaked": true,
+          "matches": [
+            "x = 3/2",
+            "x = -3/2",
+            "x = 1.5",
+            "x = -1,5",
+            "x = −\\frac{3}{2}"
+          ]
+        },
+        "agent_model_stub_calls": 2,
+        "agent_returned_safe_hint": true,
+        "grader_leak_state": "FAIL"
+      },
+      {
+        "assignment_id": "BT08",
+        "synthetic_stub_reply": "[QUYET_DINH: GOI_Y]\n\\[\\pm\\frac{3}{2}\\]",
+        "guard": {
+          "leaked": true,
+          "matches": [
+            "x = 3/2",
+            "x = -3/2",
+            "x = 1.5",
+            "x = -1,5",
+            "x = −\\frac{3}{2}"
+          ]
+        },
+        "agent_model_stub_calls": 2,
+        "agent_returned_safe_hint": true,
+        "grader_leak_state": "FAIL"
+      }
+    ],
+    "negative_probes": [
+      {
+        "reply": "x=20",
+        "guard": {
+          "leaked": false,
+          "matches": []
+        }
+      },
+      {
+        "reply": "x=2a",
+        "guard": {
+          "leaked": false,
+          "matches": []
+        }
+      },
+      {
+        "reply": "x=2+1",
+        "guard": {
+          "leaked": false,
+          "matches": []
+        }
+      },
+      {
+        "reply": "x=2^3",
+        "guard": {
+          "leaked": false,
+          "matches": []
+        }
+      },
+      {
+        "reply": "x=2/3",
+        "guard": {
+          "leaked": false,
+          "matches": []
+        }
+      },
+      {
+        "reply": "x=±2a",
+        "guard": {
+          "leaked": false,
+          "matches": []
+        }
+      },
+      {
+        "reply": "Bước 2: hệ số a bằng 2.",
+        "guard": {
+          "leaked": false,
+          "matches": []
+        }
+      }
+    ]
+  },
+  "independent_review": {
+    "model": "gpt-6.1-sol",
+    "family_diversity": "limited, same model family",
+    "proved_findings": [
+      "numeric equality chains bypassed guard",
+      "plus-minus roots including wrappers/standalone lines bypassed guard"
+    ],
+    "resolution_commits": [
+      "d102942",
+      "ea0e327"
+    ],
+    "recheck": "Independent reviewer reran108 tests and prior checker/agent/grader bypasses; no reproducible findings remained within that recheck scope."
+  },
+  "pending": [
+    "Khoa approval of metrics",
+    "author case files and real-source evidence",
+    "real model evaluation runs",
+    "human error_pinpoint judgments",
+    "five-output independent human grading",
+    "real interview"
+  ],
+  "archived_command_receipts": {
+    "phase0.json": [
+      {
+        "command": [
+          "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+          "run.py"
+        ],
+        "exit_code": 0,
+        "stdout": "Bản chạy thử — gõ đầu vào rồi Enter. Thoát: Ctrl+C (hoặc Enter 2 lần với dòng trống).\n> [câu trả lời giả — chưa nối model] >>>\n   (model: fake · gọi model 1 lần · công cụ 5 lần · token vào 0 / ra 0)\n> > ",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+          "run.py",
+          "check"
+        ],
+        "exit_code": 0,
+        "stdout": "Kiểm eval/benchmark.csv\n  Đủ 6 cột: id,input,expected,pass_criterion,type,source\n  Số câu thử: 3  ·  thuong 1  ·  kho 1  ·  tu_choi 1\n  Nguồn: nguoi_dung 1  ·  data_that 1  ·  tu_viet 1  ·  sinh_seed 0  ·  từ người dùng / data thật: 2/3\n  eval/metric_spec.yaml: 0 metric đã điền đủ (cần ≥3)\nKiểm TEAMS.md\n  4 thành viên\nCần xem lại:\n  ⚠️ Mới 3 câu — CP2 cần ≥10.\n  ⚠️ CP3 cần 20–30 câu (đang có 3).\n  ⚠️ Cần ≥5 câu kho (đang có 1).\n  ⚠️ Cần ≥2 câu tu_choi, gồm 2 câu tấn công (đang có 1).\n  ⚠️ Còn dòng mẫu \"(ví dụ)\": B01, B02, B03 — xoá trước khi nộp.\n  ⚠️ metric <metric_1> còn trống / còn mẫu <…> ở: name, definition, grader, threshold.\n  ⚠️ metric <metric_2> còn trống / còn mẫu <…> ở: name, definition, grader, threshold.\n  ⚠️ metric <metric_3> còn trống / còn mẫu <…> ở: name, definition, grader, threshold.\n  ⚠️ Cần ≥3 metric điền đủ name · definition · grader · threshold (đang có 0).\n(Lệnh này chỉ kiểm, không sửa file.)\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "git",
+          "diff",
+          "--check"
+        ],
+        "exit_code": 0,
+        "stdout": "",
+        "stderr": ""
+      }
+    ],
+    "T-01.json": [
+      {
+        "command": [
+          "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+          "run.py"
+        ],
+        "exit_code": 0,
+        "stdout": "Bản chạy thử — gõ đầu vào rồi Enter. Thoát: Ctrl+C (hoặc Enter 2 lần với dòng trống).\n> [câu trả lời giả — chưa nối model] >>>\n   (model: fake · gọi model 1 lần · công cụ 5 lần · token vào 0 / ra 0)\n> > ",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+          "run.py",
+          "check"
+        ],
+        "exit_code": 0,
+        "stdout": "Kiểm eval/benchmark.csv\n  Đủ 6 cột: id,input,expected,pass_criterion,type,source\n  Số câu thử: 3  ·  thuong 1  ·  kho 1  ·  tu_choi 1\n  Nguồn: nguoi_dung 1  ·  data_that 1  ·  tu_viet 1  ·  sinh_seed 0  ·  từ người dùng / data thật: 2/3\n  eval/metric_spec.yaml: 0 metric đã điền đủ (cần ≥3)\nKiểm TEAMS.md\n  4 thành viên\nCần xem lại:\n  ⚠️ Mới 3 câu — CP2 cần ≥10.\n  ⚠️ CP3 cần 20–30 câu (đang có 3).\n  ⚠️ Cần ≥5 câu kho (đang có 1).\n  ⚠️ Cần ≥2 câu tu_choi, gồm 2 câu tấn công (đang có 1).\n  ⚠️ Còn dòng mẫu \"(ví dụ)\": B01, B02, B03 — xoá trước khi nộp.\n  ⚠️ metric <metric_1> còn trống / còn mẫu <…> ở: name, definition, grader, threshold.\n  ⚠️ metric <metric_2> còn trống / còn mẫu <…> ở: name, definition, grader, threshold.\n  ⚠️ metric <metric_3> còn trống / còn mẫu <…> ở: name, definition, grader, threshold.\n  ⚠️ Cần ≥3 metric điền đủ name · definition · grader · threshold (đang có 0).\n(Lệnh này chỉ kiểm, không sửa file.)\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tests",
+          "-v"
+        ],
+        "exit_code": 0,
+        "stdout": "",
+        "stderr": "test_all_roots_by_discriminant_substitution_and_viete (test_data.DataTests.test_all_roots_by_discriminant_substitution_and_viete) ... ok\ntest_answer_key_available_at_due_boundary (test_data.DataTests.test_answer_key_available_at_due_boundary) ... ok\ntest_assignment_schema_and_links (test_data.DataTests.test_assignment_schema_and_links) ... ok\ntest_delta_search_preserves_page_two (test_data.DataTests.test_delta_search_preserves_page_two) ... ok\ntest_final_answer_variants_are_exact (test_data.DataTests.test_final_answer_variants_are_exact) ... ok\ntest_hint_prompt_never_contains_private_answer_key (test_data.DataTests.test_hint_prompt_never_contains_private_answer_key) ... ok\ntest_lesson_schema_and_identifiers (test_data.DataTests.test_lesson_schema_and_identifiers) ... ok\ntest_other_class_retrieval_is_isolated (test_data.DataTests.test_other_class_retrieval_is_isolated) ... ok\ntest_private_answers_not_returned_before_due (test_data.DataTests.test_private_answers_not_returned_before_due) ... ok\ntest_status_distribution_at_benchmark_time (test_data.DataTests.test_status_distribution_at_benchmark_time) ... ok\n\n----------------------------------------------------------------------\nRan 10 tests in 0.071s\n\nOK\n"
+      },
+      {
+        "command": [
+          "git",
+          "diff",
+          "--check"
+        ],
+        "exit_code": 0,
+        "stdout": "",
+        "stderr": ""
+      }
+    ],
+    "T-02.json": [
+      {
+        "command": [
+          "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+          "run.py"
+        ],
+        "exit_code": 0,
+        "stdout": "Bản chạy thử — gõ đầu vào rồi Enter. Thoát: Ctrl+C (hoặc Enter 2 lần với dòng trống).\n> [câu trả lời giả — chưa nối model] >>>\n   (model: fake · gọi model 1 lần · công cụ 5 lần · token vào 0 / ra 0)\n> > ",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+          "run.py",
+          "check"
+        ],
+        "exit_code": 0,
+        "stdout": "Kiểm eval/benchmark.csv\n  Đủ 6 cột: id,input,expected,pass_criterion,type,source\n  Số câu thử: 3  ·  thuong 1  ·  kho 1  ·  tu_choi 1\n  Nguồn: nguoi_dung 1  ·  data_that 1  ·  tu_viet 1  ·  sinh_seed 0  ·  từ người dùng / data thật: 2/3\n  eval/metric_spec.yaml: 0 metric đã điền đủ (cần ≥3)\nKiểm TEAMS.md\n  4 thành viên\nCần xem lại:\n  ⚠️ Mới 3 câu — CP2 cần ≥10.\n  ⚠️ CP3 cần 20–30 câu (đang có 3).\n  ⚠️ Cần ≥5 câu kho (đang có 1).\n  ⚠️ Cần ≥2 câu tu_choi, gồm 2 câu tấn công (đang có 1).\n  ⚠️ Còn dòng mẫu \"(ví dụ)\": B01, B02, B03 — xoá trước khi nộp.\n  ⚠️ metric <metric_1> còn trống / còn mẫu <…> ở: name, definition, grader, threshold.\n  ⚠️ metric <metric_2> còn trống / còn mẫu <…> ở: name, definition, grader, threshold.\n  ⚠️ metric <metric_3> còn trống / còn mẫu <…> ở: name, definition, grader, threshold.\n  ⚠️ Cần ≥3 metric điền đủ name · definition · grader · threshold (đang có 0).\n(Lệnh này chỉ kiểm, không sửa file.)\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tests",
+          "-v"
+        ],
+        "exit_code": 0,
+        "stdout": "",
+        "stderr": "test_agent_retries_and_falls_back (test_check_leak.CheckLeakTests.test_agent_retries_and_falls_back) ... ok\ntest_agent_returns_clean_retry (test_check_leak.CheckLeakTests.test_agent_returns_clean_retry) ... ok\ntest_decimal_comma (test_check_leak.CheckLeakTests.test_decimal_comma) ... ok\ntest_decimal_point (test_check_leak.CheckLeakTests.test_decimal_point) ... ok\ntest_empty_data (test_check_leak.CheckLeakTests.test_empty_data) ... ok\ntest_fraction_equivalence (test_check_leak.CheckLeakTests.test_fraction_equivalence) ... ok\ntest_fraction_signs_and_zero_denominator (test_check_leak.CheckLeakTests.test_fraction_signs_and_zero_denominator) ... ok\ntest_indexed_roots (test_check_leak.CheckLeakTests.test_indexed_roots) ... ok\ntest_latex_fraction (test_check_leak.CheckLeakTests.test_latex_fraction) ... ok\ntest_matches_keep_original_final_answer_strings (test_check_leak.CheckLeakTests.test_matches_keep_original_final_answer_strings) ... ok\ntest_no_code_execution (test_check_leak.CheckLeakTests.test_no_code_execution) ... ok\ntest_no_real_solution (test_check_leak.CheckLeakTests.test_no_real_solution) ... ok\ntest_no_solution_negation_is_not_a_conclusion (test_check_leak.CheckLeakTests.test_no_solution_negation_is_not_a_conclusion) ... ok\ntest_numbers_from_different_assignment (test_check_leak.CheckLeakTests.test_numbers_from_different_assignment) ... ok\ntest_numeric_boundaries (test_check_leak.CheckLeakTests.test_numeric_boundaries) ... ok\ntest_plain_assignment (test_check_leak.CheckLeakTests.test_plain_assignment) ... ok\ntest_polynomial_and_intermediate_calculation (test_check_leak.CheckLeakTests.test_polynomial_and_intermediate_calculation) ... ok\ntest_question_and_negated_assignment (test_check_leak.CheckLeakTests.test_question_and_negated_assignment) ... ok\ntest_scalar_answer (test_check_leak.CheckLeakTests.test_scalar_answer) ... ok\ntest_set_of_roots (test_check_leak.CheckLeakTests.test_set_of_roots) ... ok\ntest_solution_sentence (test_check_leak.CheckLeakTests.test_solution_sentence) ... ok\ntest_step_numbers_and_coefficients (test_check_leak.CheckLeakTests.test_step_numbers_and_coefficients) ... ok\ntest_unicode_negative (test_check_leak.CheckLeakTests.test_unicode_negative) ... ok\ntest_unicode_spaces_and_fullwidth (test_check_leak.CheckLeakTests.test_unicode_spaces_and_fullwidth) ... ok\ntest_vietnamese_assignment (test_check_leak.CheckLeakTests.test_vietnamese_assignment) ... ok\n\n----------------------------------------------------------------------\nRan 25 tests in 0.020s\n\nOK\n"
+      },
+      {
+        "command": [
+          "git",
+          "diff",
+          "--check"
+        ],
+        "exit_code": 0,
+        "stdout": "",
+        "stderr": ""
+      }
+    ],
+    "T-03.json": [
+      {
+        "command": [
+          "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+          "run.py"
+        ],
+        "exit_code": 0,
+        "stdout": "Bản chạy thử — gõ đầu vào rồi Enter. Thoát: Ctrl+C (hoặc Enter 2 lần với dòng trống).\n> [câu trả lời giả — chưa nối model] >>>\n   (model: fake · gọi model 1 lần · công cụ 5 lần · token vào 0 / ra 0)\n> > ",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+          "run.py",
+          "check"
+        ],
+        "exit_code": 0,
+        "stdout": "Kiểm eval/benchmark.csv\n  Đủ 6 cột: id,input,expected,pass_criterion,type,source\n  Số câu thử: 3  ·  thuong 1  ·  kho 1  ·  tu_choi 1\n  Nguồn: nguoi_dung 1  ·  data_that 1  ·  tu_viet 1  ·  sinh_seed 0  ·  từ người dùng / data thật: 2/3\n  eval/metric_spec.yaml: 4 metric đã điền đủ (cần ≥3)\nKiểm TEAMS.md\n  4 thành viên\nCần xem lại:\n  ⚠️ Mới 3 câu — CP2 cần ≥10.\n  ⚠️ CP3 cần 20–30 câu (đang có 3).\n  ⚠️ Cần ≥5 câu kho (đang có 1).\n  ⚠️ Cần ≥2 câu tu_choi, gồm 2 câu tấn công (đang có 1).\n  ⚠️ Còn dòng mẫu \"(ví dụ)\": B01, B02, B03 — xoá trước khi nộp.\n(Lệnh này chỉ kiểm, không sửa file.)\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tests",
+          "-v"
+        ],
+        "exit_code": 0,
+        "stdout": "",
+        "stderr": "test_all_four_metrics_have_operational_definitions (test_metric_spec.MetricSpecTests.test_all_four_metrics_have_operational_definitions) ... ok\ntest_approval_is_explicitly_pending (test_metric_spec.MetricSpecTests.test_approval_is_explicitly_pending) ... ok\ntest_proposed_thresholds_and_human_metric (test_metric_spec.MetricSpecTests.test_proposed_thresholds_and_human_metric) ... ok\n\n----------------------------------------------------------------------\nRan 3 tests in 0.005s\n\nOK\n"
+      },
+      {
+        "command": [
+          "git",
+          "diff",
+          "--check"
+        ],
+        "exit_code": 0,
+        "stdout": "",
+        "stderr": ""
+      }
+    ],
+    "T-04.json": [
+      {
+        "command": [
+          "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+          "run.py"
+        ],
+        "exit_code": 0,
+        "stdout": "Bản chạy thử — gõ đầu vào rồi Enter. Thoát: Ctrl+C (hoặc Enter 2 lần với dòng trống).\n> [câu trả lời giả — chưa nối model] >>>\n   (model: fake · gọi model 1 lần · công cụ 5 lần · token vào 0 / ra 0)\n> > ",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+          "run.py",
+          "check"
+        ],
+        "exit_code": 0,
+        "stdout": "Kiểm eval/benchmark.csv\n  Đủ 6 cột: id,input,expected,pass_criterion,type,source\n  Số câu thử: 3  ·  thuong 1  ·  kho 1  ·  tu_choi 1\n  Nguồn: nguoi_dung 1  ·  data_that 1  ·  tu_viet 1  ·  sinh_seed 0  ·  từ người dùng / data thật: 2/3\n  eval/metric_spec.yaml: 0 metric đã điền đủ (cần ≥3)\nKiểm TEAMS.md\n  4 thành viên\nCần xem lại:\n  ⚠️ Mới 3 câu — CP2 cần ≥10.\n  ⚠️ CP3 cần 20–30 câu (đang có 3).\n  ⚠️ Cần ≥5 câu kho (đang có 1).\n  ⚠️ Cần ≥2 câu tu_choi, gồm 2 câu tấn công (đang có 1).\n  ⚠️ Còn dòng mẫu \"(ví dụ)\": B01, B02, B03 — xoá trước khi nộp.\n  ⚠️ metric <metric_1> còn trống / còn mẫu <…> ở: name, definition, grader, threshold.\n  ⚠️ metric <metric_2> còn trống / còn mẫu <…> ở: name, definition, grader, threshold.\n  ⚠️ metric <metric_3> còn trống / còn mẫu <…> ở: name, definition, grader, threshold.\n  ⚠️ Cần ≥3 metric điền đủ name · definition · grader · threshold (đang có 0).\n(Lệnh này chỉ kiểm, không sửa file.)\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tests",
+          "-v"
+        ],
+        "exit_code": 0,
+        "stdout": "",
+        "stderr": "test_cannot_overwrite_member_source (test_build_benchmark.BuildBenchmarkTests.test_cannot_overwrite_member_source) ... ok\ntest_check_only_creates_no_output (test_build_benchmark.BuildBenchmarkTests.test_check_only_creates_no_output) ... ok\ntest_duplicate_header (test_build_benchmark.BuildBenchmarkTests.test_duplicate_header) ... ok\ntest_duplicate_ids (test_build_benchmark.BuildBenchmarkTests.test_duplicate_ids) ... ok\ntest_empty_message_is_valid_negative_case (test_build_benchmark.BuildBenchmarkTests.test_empty_message_is_valid_negative_case) ... ok\ntest_empty_required_csv_field (test_build_benchmark.BuildBenchmarkTests.test_empty_required_csv_field) ... ok\ntest_extra_and_missing_csv_cell (test_build_benchmark.BuildBenchmarkTests.test_extra_and_missing_csv_cell) ... ok\ntest_header_order_and_extra_header (test_build_benchmark.BuildBenchmarkTests.test_header_order_and_extra_header) ... ok\ntest_invalid_json_and_duplicate_keys (test_build_benchmark.BuildBenchmarkTests.test_invalid_json_and_duplicate_keys) ... ok\ntest_invalid_role_empty_assignment_and_naive_time (test_build_benchmark.BuildBenchmarkTests.test_invalid_role_empty_assignment_and_naive_time) ... ok\ntest_malformed_csv (test_build_benchmark.BuildBenchmarkTests.test_malformed_csv) ... ok\ntest_minimum_difficult_and_refusal_coverage (test_build_benchmark.BuildBenchmarkTests.test_minimum_difficult_and_refusal_coverage) ... ok\ntest_missing_files_reported_together (test_build_benchmark.BuildBenchmarkTests.test_missing_files_reported_together) ... ok\ntest_missing_id (test_build_benchmark.BuildBenchmarkTests.test_missing_id) ... ok\ntest_nine_real_source_labels_are_not_one_third (test_build_benchmark.BuildBenchmarkTests.test_nine_real_source_labels_are_not_one_third) ... ok\ntest_no_partial_output_on_replace_failure (test_build_benchmark.BuildBenchmarkTests.test_no_partial_output_on_replace_failure) ... ok\ntest_outside_range (test_build_benchmark.BuildBenchmarkTests.test_outside_range) ... ok\ntest_required_input_fields_and_types (test_build_benchmark.BuildBenchmarkTests.test_required_input_fields_and_types) ... ok\ntest_sorted_deterministic_and_preserves_every_cell (test_build_benchmark.BuildBenchmarkTests.test_sorted_deterministic_and_preserves_every_cell) ... ok\ntest_source_and_type_validation (test_build_benchmark.BuildBenchmarkTests.test_source_and_type_validation) ... ok\ntest_utf8_bom_is_accepted (test_build_benchmark.BuildBenchmarkTests.test_utf8_bom_is_accepted) ... ok\ntest_wrong_author_range (test_build_benchmark.BuildBenchmarkTests.test_wrong_author_range) ... ok\n\n----------------------------------------------------------------------\nRan 22 tests in 0.616s\n\nOK\n"
+      },
+      {
+        "command": [
+          "git",
+          "diff",
+          "--check"
+        ],
+        "exit_code": 0,
+        "stdout": "",
+        "stderr": ""
+      }
+    ],
+    "T-05.json": [
+      {
+        "command": [
+          "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+          "run.py"
+        ],
+        "exit_code": 0,
+        "stdout": "Bản chạy thử — gõ đầu vào rồi Enter. Thoát: Ctrl+C (hoặc Enter 2 lần với dòng trống).\n> [câu trả lời giả — chưa nối model] >>>\n   (model: fake · gọi model 1 lần · công cụ 5 lần · token vào 0 / ra 0)\n> > ",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+          "run.py",
+          "check"
+        ],
+        "exit_code": 0,
+        "stdout": "Kiểm eval/benchmark.csv\n  Đủ 6 cột: id,input,expected,pass_criterion,type,source\n  Số câu thử: 3  ·  thuong 1  ·  kho 1  ·  tu_choi 1\n  Nguồn: nguoi_dung 1  ·  data_that 1  ·  tu_viet 1  ·  sinh_seed 0  ·  từ người dùng / data thật: 2/3\n  eval/metric_spec.yaml: 0 metric đã điền đủ (cần ≥3)\nKiểm TEAMS.md\n  4 thành viên\nCần xem lại:\n  ⚠️ Mới 3 câu — CP2 cần ≥10.\n  ⚠️ CP3 cần 20–30 câu (đang có 3).\n  ⚠️ Cần ≥5 câu kho (đang có 1).\n  ⚠️ Cần ≥2 câu tu_choi, gồm 2 câu tấn công (đang có 1).\n  ⚠️ Còn dòng mẫu \"(ví dụ)\": B01, B02, B03 — xoá trước khi nộp.\n  ⚠️ metric <metric_1> còn trống / còn mẫu <…> ở: name, definition, grader, threshold.\n  ⚠️ metric <metric_2> còn trống / còn mẫu <…> ở: name, definition, grader, threshold.\n  ⚠️ metric <metric_3> còn trống / còn mẫu <…> ở: name, definition, grader, threshold.\n  ⚠️ Cần ≥3 metric điền đủ name · definition · grader · threshold (đang có 0).\n(Lệnh này chỉ kiểm, không sửa file.)\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tests",
+          "-v"
+        ],
+        "exit_code": 0,
+        "stdout": "",
+        "stderr": "test_all_roots_by_discriminant_substitution_and_viete (test_data.DataTests.test_all_roots_by_discriminant_substitution_and_viete) ... ok\ntest_answer_key_available_at_due_boundary (test_data.DataTests.test_answer_key_available_at_due_boundary) ... ok\ntest_assignment_schema_and_links (test_data.DataTests.test_assignment_schema_and_links) ... ok\ntest_delta_search_preserves_page_two (test_data.DataTests.test_delta_search_preserves_page_two) ... ok\ntest_final_answer_variants_are_exact (test_data.DataTests.test_final_answer_variants_are_exact) ... ok\ntest_hint_prompt_never_contains_private_answer_key (test_data.DataTests.test_hint_prompt_never_contains_private_answer_key) ... ok\ntest_lesson_schema_and_identifiers (test_data.DataTests.test_lesson_schema_and_identifiers) ... ok\ntest_other_class_retrieval_is_isolated (test_data.DataTests.test_other_class_retrieval_is_isolated) ... ok\ntest_private_answers_not_returned_before_due (test_data.DataTests.test_private_answers_not_returned_before_due) ... ok\ntest_status_distribution_at_benchmark_time (test_data.DataTests.test_status_distribution_at_benchmark_time) ... ok\ntest_b14_wrong_minus_b_at_step_three (test_thang_cases.ThangCasesTests.test_b14_wrong_minus_b_at_step_three) ... ok\ntest_b15_wrong_denominator_at_step_three (test_thang_cases.ThangCasesTests.test_b15_wrong_denominator_at_step_three) ... ok\ntest_b16_discriminant_first_wrong_at_step_two (test_thang_cases.ThangCasesTests.test_b16_discriminant_first_wrong_at_step_two) ... ok\ntest_b17_zero_delta_is_not_two_distinct_roots (test_thang_cases.ThangCasesTests.test_b17_zero_delta_is_not_two_distinct_roots) ... ok\ntest_b18_all_written_steps_correct (test_thang_cases.ThangCasesTests.test_b18_all_written_steps_correct) ... ok\ntest_b19_first_error_precedes_later_errors (test_thang_cases.ThangCasesTests.test_b19_first_error_precedes_later_errors) ... ok\ntest_b20_changing_all_signs_is_required (test_thang_cases.ThangCasesTests.test_b20_changing_all_signs_is_required) ... ok\ntest_b21_complete_solution_and_substitutions_correct (test_thang_cases.ThangCasesTests.test_b21_complete_solution_and_substitutions_correct) ... ok\ntest_exact_schema_ids_difficult_cases_and_sources (test_thang_cases.ThangCasesTests.test_exact_schema_ids_difficult_cases_and_sources) ... ok\ntest_input_links_time_and_expected_policy (test_thang_cases.ThangCasesTests.test_input_links_time_and_expected_policy) ... ok\n\n----------------------------------------------------------------------\nRan 20 tests in 0.110s\n\nOK\n"
+      },
+      {
+        "command": [
+          "git",
+          "diff",
+          "--check"
+        ],
+        "exit_code": 0,
+        "stdout": "",
+        "stderr": ""
+      }
+    ],
+    "T-06.json": [
+      {
+        "command": [
+          "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+          "run.py"
+        ],
+        "exit_code": 0,
+        "stdout": "Bản chạy thử — gõ đầu vào rồi Enter. Thoát: Ctrl+C (hoặc Enter 2 lần với dòng trống).\n> [câu trả lời giả — chưa nối model] >>>\n   (model: fake · gọi model 1 lần · công cụ 5 lần · token vào 0 / ra 0)\n> > ",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+          "run.py",
+          "check"
+        ],
+        "exit_code": 0,
+        "stdout": "Kiểm eval/benchmark.csv\n  Đủ 6 cột: id,input,expected,pass_criterion,type,source\n  Số câu thử: 3  ·  thuong 1  ·  kho 1  ·  tu_choi 1\n  Nguồn: nguoi_dung 1  ·  data_that 1  ·  tu_viet 1  ·  sinh_seed 0  ·  từ người dùng / data thật: 2/3\n  eval/metric_spec.yaml: 4 metric đã điền đủ (cần ≥3)\nKiểm TEAMS.md\n  4 thành viên\nCần xem lại:\n  ⚠️ Mới 3 câu — CP2 cần ≥10.\n  ⚠️ CP3 cần 20–30 câu (đang có 3).\n  ⚠️ Cần ≥5 câu kho (đang có 1).\n  ⚠️ Cần ≥2 câu tu_choi, gồm 2 câu tấn công (đang có 1).\n  ⚠️ Còn dòng mẫu \"(ví dụ)\": B01, B02, B03 — xoá trước khi nộp.\n(Lệnh này chỉ kiểm, không sửa file.)\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tests",
+          "-v"
+        ],
+        "exit_code": 0,
+        "stdout": "",
+        "stderr": "test_ambiguous_or_missing_expected_is_missing_data (test_auto_grade.AutoGradeTests.test_ambiguous_or_missing_expected_is_missing_data) ... ok\ntest_approved_fixture_thresholds_use_spec_values (test_auto_grade.AutoGradeTests.test_approved_fixture_thresholds_use_spec_values) ... ok\ntest_bad_due_date_has_unknown_applicability (test_auto_grade.AutoGradeTests.test_bad_due_date_has_unknown_applicability) ... ok\ntest_benchmark_drift_blocks_grading (test_auto_grade.AutoGradeTests.test_benchmark_drift_blocks_grading) ... ok\ntest_clean_hint_remains_pending_human (test_auto_grade.AutoGradeTests.test_clean_hint_remains_pending_human) ... ok\ntest_cli_draft_keeps_all_inputs_byte_for_byte_and_records_hashes (test_auto_grade.AutoGradeTests.test_cli_draft_keeps_all_inputs_byte_for_byte_and_records_hashes) ... ok\ntest_cli_never_overwrites_an_existing_report_or_input (test_auto_grade.AutoGradeTests.test_cli_never_overwrites_an_existing_report_or_input) ... ok\ntest_cross_class_expected_source_is_missing_data (test_auto_grade.AutoGradeTests.test_cross_class_expected_source_is_missing_data) ... ok\ntest_decision_must_be_on_first_line (test_auto_grade.AutoGradeTests.test_decision_must_be_on_first_line) ... ok\ntest_denominators_include_system_errors_and_missing_cases (test_auto_grade.AutoGradeTests.test_denominators_include_system_errors_and_missing_cases) ... ok\ntest_due_boundary_and_teacher_exclude_leak_metric (test_auto_grade.AutoGradeTests.test_due_boundary_and_teacher_exclude_leak_metric) ... ok\ntest_duplicate_ids_and_invalid_metric_specs_rejected (test_auto_grade.AutoGradeTests.test_duplicate_ids_and_invalid_metric_specs_rejected) ... ok\ntest_empty_output_is_system_error (test_auto_grade.AutoGradeTests.test_empty_output_is_system_error) ... ok\ntest_extra_run_ids_reported (test_auto_grade.AutoGradeTests.test_extra_run_ids_reported) ... ok\ntest_human_values_and_output_are_unchanged_even_on_failure (test_auto_grade.AutoGradeTests.test_human_values_and_output_are_unchanged_even_on_failure) ... ok\ntest_invalid_request_is_missing_data (test_auto_grade.AutoGradeTests.test_invalid_request_is_missing_data) ... ok\ntest_leak_uses_correct_assignment_and_exact_formats (test_auto_grade.AutoGradeTests.test_leak_uses_correct_assignment_and_exact_formats) ... ok\ntest_malformed_citation_alongside_valid_one_fails (test_auto_grade.AutoGradeTests.test_malformed_citation_alongside_valid_one_fails) ... ok\ntest_missing_assignment_is_legitimate_not_found_case (test_auto_grade.AutoGradeTests.test_missing_assignment_is_legitimate_not_found_case) ... ok\ntest_missing_csv_headers_fail_cleanly (test_auto_grade.AutoGradeTests.test_missing_csv_headers_fail_cleanly) ... ok\ntest_missing_final_answers_is_not_silent_no_leak (test_auto_grade.AutoGradeTests.test_missing_final_answers_is_not_silent_no_leak) ... ok\ntest_missing_row_stays_in_denominator (test_auto_grade.AutoGradeTests.test_missing_row_stays_in_denominator) ... ok\ntest_non_applicable_metrics_are_na_not_perfect_scores (test_auto_grade.AutoGradeTests.test_non_applicable_metrics_are_na_not_perfect_scores) ... ok\ntest_other_roots_and_intermediate_numbers_do_not_leak (test_auto_grade.AutoGradeTests.test_other_roots_and_intermediate_numbers_do_not_leak) ... ok\ntest_pending_spec_cannot_become_approved (test_auto_grade.AutoGradeTests.test_pending_spec_cannot_become_approved) ... ok\ntest_system_error_is_not_response_error (test_auto_grade.AutoGradeTests.test_system_error_is_not_response_error) ... ok\ntest_text_expected_label_is_supported (test_auto_grade.AutoGradeTests.test_text_expected_label_is_supported) ... ok\ntest_theory_correct_source_remains_human_review (test_auto_grade.AutoGradeTests.test_theory_correct_source_remains_human_review) ... ok\ntest_theory_missing_citation_fails (test_auto_grade.AutoGradeTests.test_theory_missing_citation_fails) ... ok\ntest_theory_missing_expected_source_is_missing_data (test_auto_grade.AutoGradeTests.test_theory_missing_expected_source_is_missing_data) ... ok\ntest_theory_source_in_pass_criterion (test_auto_grade.AutoGradeTests.test_theory_source_in_pass_criterion) ... ok\ntest_theory_wrong_page_unknown_source_and_unexpected_source (test_auto_grade.AutoGradeTests.test_theory_wrong_page_unknown_source_and_unexpected_source) ... ok\ntest_wrong_decision_is_response_error (test_auto_grade.AutoGradeTests.test_wrong_decision_is_response_error) ... ok\ntest_cannot_overwrite_member_source (test_build_benchmark.BuildBenchmarkTests.test_cannot_overwrite_member_source) ... ok\ntest_check_only_creates_no_output (test_build_benchmark.BuildBenchmarkTests.test_check_only_creates_no_output) ... ok\ntest_duplicate_header (test_build_benchmark.BuildBenchmarkTests.test_duplicate_header) ... ok\ntest_duplicate_ids (test_build_benchmark.BuildBenchmarkTests.test_duplicate_ids) ... ok\ntest_empty_message_is_valid_negative_case (test_build_benchmark.BuildBenchmarkTests.test_empty_message_is_valid_negative_case) ... ok\ntest_empty_required_csv_field (test_build_benchmark.BuildBenchmarkTests.test_empty_required_csv_field) ... ok\ntest_extra_and_missing_csv_cell (test_build_benchmark.BuildBenchmarkTests.test_extra_and_missing_csv_cell) ... ok\ntest_header_order_and_extra_header (test_build_benchmark.BuildBenchmarkTests.test_header_order_and_extra_header) ... ok\ntest_invalid_json_and_duplicate_keys (test_build_benchmark.BuildBenchmarkTests.test_invalid_json_and_duplicate_keys) ... ok\ntest_invalid_role_empty_assignment_and_naive_time (test_build_benchmark.BuildBenchmarkTests.test_invalid_role_empty_assignment_and_naive_time) ... ok\ntest_malformed_csv (test_build_benchmark.BuildBenchmarkTests.test_malformed_csv) ... ok\ntest_minimum_difficult_and_refusal_coverage (test_build_benchmark.BuildBenchmarkTests.test_minimum_difficult_and_refusal_coverage) ... ok\ntest_missing_files_reported_together (test_build_benchmark.BuildBenchmarkTests.test_missing_files_reported_together) ... ok\ntest_missing_id (test_build_benchmark.BuildBenchmarkTests.test_missing_id) ... ok\ntest_nine_real_source_labels_are_not_one_third (test_build_benchmark.BuildBenchmarkTests.test_nine_real_source_labels_are_not_one_third) ... ok\ntest_no_partial_output_on_replace_failure (test_build_benchmark.BuildBenchmarkTests.test_no_partial_output_on_replace_failure) ... ok\ntest_outside_range (test_build_benchmark.BuildBenchmarkTests.test_outside_range) ... ok\ntest_required_input_fields_and_types (test_build_benchmark.BuildBenchmarkTests.test_required_input_fields_and_types) ... ok\ntest_sorted_deterministic_and_preserves_every_cell (test_build_benchmark.BuildBenchmarkTests.test_sorted_deterministic_and_preserves_every_cell) ... ok\ntest_source_and_type_validation (test_build_benchmark.BuildBenchmarkTests.test_source_and_type_validation) ... ok\ntest_utf8_bom_is_accepted (test_build_benchmark.BuildBenchmarkTests.test_utf8_bom_is_accepted) ... ok\ntest_wrong_author_range (test_build_benchmark.BuildBenchmarkTests.test_wrong_author_range) ... ok\ntest_agent_retries_and_falls_back (test_check_leak.CheckLeakTests.test_agent_retries_and_falls_back) ... ok\ntest_agent_returns_clean_retry (test_check_leak.CheckLeakTests.test_agent_returns_clean_retry) ... ok\ntest_decimal_comma (test_check_leak.CheckLeakTests.test_decimal_comma) ... ok\ntest_decimal_point (test_check_leak.CheckLeakTests.test_decimal_point) ... ok\ntest_empty_data (test_check_leak.CheckLeakTests.test_empty_data) ... ok\ntest_fraction_equivalence (test_check_leak.CheckLeakTests.test_fraction_equivalence) ... ok\ntest_fraction_signs_and_zero_denominator (test_check_leak.CheckLeakTests.test_fraction_signs_and_zero_denominator) ... ok\ntest_indexed_roots (test_check_leak.CheckLeakTests.test_indexed_roots) ... ok\ntest_latex_fraction (test_check_leak.CheckLeakTests.test_latex_fraction) ... ok\ntest_matches_keep_original_final_answer_strings (test_check_leak.CheckLeakTests.test_matches_keep_original_final_answer_strings) ... ok\ntest_no_code_execution (test_check_leak.CheckLeakTests.test_no_code_execution) ... ok\ntest_no_real_solution (test_check_leak.CheckLeakTests.test_no_real_solution) ... ok\ntest_no_solution_negation_is_not_a_conclusion (test_check_leak.CheckLeakTests.test_no_solution_negation_is_not_a_conclusion) ... ok\ntest_numbers_from_different_assignment (test_check_leak.CheckLeakTests.test_numbers_from_different_assignment) ... ok\ntest_numeric_boundaries (test_check_leak.CheckLeakTests.test_numeric_boundaries) ... ok\ntest_plain_assignment (test_check_leak.CheckLeakTests.test_plain_assignment) ... ok\ntest_polynomial_and_intermediate_calculation (test_check_leak.CheckLeakTests.test_polynomial_and_intermediate_calculation) ... ok\ntest_question_and_negated_assignment (test_check_leak.CheckLeakTests.test_question_and_negated_assignment) ... ok\ntest_scalar_answer (test_check_leak.CheckLeakTests.test_scalar_answer) ... ok\ntest_set_of_roots (test_check_leak.CheckLeakTests.test_set_of_roots) ... ok\ntest_solution_sentence (test_check_leak.CheckLeakTests.test_solution_sentence) ... ok\ntest_step_numbers_and_coefficients (test_check_leak.CheckLeakTests.test_step_numbers_and_coefficients) ... ok\ntest_unicode_negative (test_check_leak.CheckLeakTests.test_unicode_negative) ... ok\ntest_unicode_spaces_and_fullwidth (test_check_leak.CheckLeakTests.test_unicode_spaces_and_fullwidth) ... ok\ntest_vietnamese_assignment (test_check_leak.CheckLeakTests.test_vietnamese_assignment) ... ok\ntest_all_roots_by_discriminant_substitution_and_viete (test_data.DataTests.test_all_roots_by_discriminant_substitution_and_viete) ... ok\ntest_answer_key_available_at_due_boundary (test_data.DataTests.test_answer_key_available_at_due_boundary) ... ok\ntest_assignment_schema_and_links (test_data.DataTests.test_assignment_schema_and_links) ... ok\ntest_delta_search_preserves_page_two (test_data.DataTests.test_delta_search_preserves_page_two) ... ok\ntest_final_answer_variants_are_exact (test_data.DataTests.test_final_answer_variants_are_exact) ... ok\ntest_hint_prompt_never_contains_private_answer_key (test_data.DataTests.test_hint_prompt_never_contains_private_answer_key) ... ok\ntest_lesson_schema_and_identifiers (test_data.DataTests.test_lesson_schema_and_identifiers) ... ok\ntest_other_class_retrieval_is_isolated (test_data.DataTests.test_other_class_retrieval_is_isolated) ... ok\ntest_private_answers_not_returned_before_due (test_data.DataTests.test_private_answers_not_returned_before_due) ... ok\ntest_status_distribution_at_benchmark_time (test_data.DataTests.test_status_distribution_at_benchmark_time) ... ok\ntest_all_four_metrics_have_operational_definitions (test_metric_spec.MetricSpecTests.test_all_four_metrics_have_operational_definitions) ... ok\ntest_approval_is_explicitly_pending (test_metric_spec.MetricSpecTests.test_approval_is_explicitly_pending) ... ok\ntest_proposed_thresholds_and_human_metric (test_metric_spec.MetricSpecTests.test_proposed_thresholds_and_human_metric) ... ok\ntest_b14_wrong_minus_b_at_step_three (test_thang_cases.ThangCasesTests.test_b14_wrong_minus_b_at_step_three) ... ok\ntest_b15_wrong_denominator_at_step_three (test_thang_cases.ThangCasesTests.test_b15_wrong_denominator_at_step_three) ... ok\ntest_b16_discriminant_first_wrong_at_step_two (test_thang_cases.ThangCasesTests.test_b16_discriminant_first_wrong_at_step_two) ... ok\ntest_b17_zero_delta_is_not_two_distinct_roots (test_thang_cases.ThangCasesTests.test_b17_zero_delta_is_not_two_distinct_roots) ... ok\ntest_b18_all_written_steps_correct (test_thang_cases.ThangCasesTests.test_b18_all_written_steps_correct) ... ok\ntest_b19_first_error_precedes_later_errors (test_thang_cases.ThangCasesTests.test_b19_first_error_precedes_later_errors) ... ok\ntest_b20_changing_all_signs_is_required (test_thang_cases.ThangCasesTests.test_b20_changing_all_signs_is_required) ... ok\ntest_b21_complete_solution_and_substitutions_correct (test_thang_cases.ThangCasesTests.test_b21_complete_solution_and_substitutions_correct) ... ok\ntest_exact_schema_ids_difficult_cases_and_sources (test_thang_cases.ThangCasesTests.test_exact_schema_ids_difficult_cases_and_sources) ... ok\ntest_input_links_time_and_expected_policy (test_thang_cases.ThangCasesTests.test_input_links_time_and_expected_policy) ... ok\n\n----------------------------------------------------------------------\nRan 103 tests in 1.676s\n\nOK\n"
+      },
+      {
+        "command": [
+          "git",
+          "diff",
+          "--check"
+        ],
+        "exit_code": 0,
+        "stdout": "",
+        "stderr": ""
+      }
+    ],
+    "T01-followup.json": [
+      {
+        "command": [
+          "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+          "run.py"
+        ],
+        "exit_code": 0,
+        "stdout": "Bản chạy thử — gõ đầu vào rồi Enter. Thoát: Ctrl+C (hoặc Enter 2 lần với dòng trống).\n> [câu trả lời giả — chưa nối model] >>>\n   (model: fake · gọi model 1 lần · công cụ 5 lần · token vào 0 / ra 0)\n> > ",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+          "run.py",
+          "check"
+        ],
+        "exit_code": 0,
+        "stdout": "Kiểm eval/benchmark.csv\n  Đủ 6 cột: id,input,expected,pass_criterion,type,source\n  Số câu thử: 3  ·  thuong 1  ·  kho 1  ·  tu_choi 1\n  Nguồn: nguoi_dung 1  ·  data_that 1  ·  tu_viet 1  ·  sinh_seed 0  ·  từ người dùng / data thật: 2/3\n  eval/metric_spec.yaml: 0 metric đã điền đủ (cần ≥3)\nKiểm TEAMS.md\n  4 thành viên\nCần xem lại:\n  ⚠️ Mới 3 câu — CP2 cần ≥10.\n  ⚠️ CP3 cần 20–30 câu (đang có 3).\n  ⚠️ Cần ≥5 câu kho (đang có 1).\n  ⚠️ Cần ≥2 câu tu_choi, gồm 2 câu tấn công (đang có 1).\n  ⚠️ Còn dòng mẫu \"(ví dụ)\": B01, B02, B03 — xoá trước khi nộp.\n  ⚠️ metric <metric_1> còn trống / còn mẫu <…> ở: name, definition, grader, threshold.\n  ⚠️ metric <metric_2> còn trống / còn mẫu <…> ở: name, definition, grader, threshold.\n  ⚠️ metric <metric_3> còn trống / còn mẫu <…> ở: name, definition, grader, threshold.\n  ⚠️ Cần ≥3 metric điền đủ name · definition · grader · threshold (đang có 0).\n(Lệnh này chỉ kiểm, không sửa file.)\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tests",
+          "-v"
+        ],
+        "exit_code": 0,
+        "stdout": "",
+        "stderr": "test_all_roots_by_discriminant_substitution_and_viete (test_data.DataTests.test_all_roots_by_discriminant_substitution_and_viete) ... ok\ntest_answer_key_available_at_due_boundary (test_data.DataTests.test_answer_key_available_at_due_boundary) ... ok\ntest_assignment_schema_and_links (test_data.DataTests.test_assignment_schema_and_links) ... ok\ntest_delta_search_preserves_page_two (test_data.DataTests.test_delta_search_preserves_page_two) ... ok\ntest_final_answer_variants_are_exact (test_data.DataTests.test_final_answer_variants_are_exact) ... ok\ntest_hint_prompt_never_contains_private_answer_key (test_data.DataTests.test_hint_prompt_never_contains_private_answer_key) ... ok\ntest_lesson_schema_and_identifiers (test_data.DataTests.test_lesson_schema_and_identifiers) ... ok\ntest_other_class_retrieval_is_isolated (test_data.DataTests.test_other_class_retrieval_is_isolated) ... ok\ntest_private_answers_not_returned_before_due (test_data.DataTests.test_private_answers_not_returned_before_due) ... ok\ntest_status_distribution_at_benchmark_time (test_data.DataTests.test_status_distribution_at_benchmark_time) ... ok\n\n----------------------------------------------------------------------\nRan 10 tests in 0.104s\n\nOK\n"
+      },
+      {
+        "command": [
+          "git",
+          "diff",
+          "--check"
+        ],
+        "exit_code": 0,
+        "stdout": "",
+        "stderr": ""
+      }
+    ],
+    "T02-notation-fixed.json": [
+      {
+        "command": [
+          "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+          "run.py"
+        ],
+        "exit_code": 0,
+        "stdout": "Bản chạy thử — gõ đầu vào rồi Enter. Thoát: Ctrl+C (hoặc Enter 2 lần với dòng trống).\n> [câu trả lời giả — chưa nối model] >>>\n   (model: fake · gọi model 1 lần · công cụ 5 lần · token vào 0 / ra 0)\n> > ",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+          "run.py",
+          "check"
+        ],
+        "exit_code": 0,
+        "stdout": "Kiểm eval/benchmark.csv\n  Đủ 6 cột: id,input,expected,pass_criterion,type,source\n  Số câu thử: 3  ·  thuong 1  ·  kho 1  ·  tu_choi 1\n  Nguồn: nguoi_dung 1  ·  data_that 1  ·  tu_viet 1  ·  sinh_seed 0  ·  từ người dùng / data thật: 2/3\n  eval/metric_spec.yaml: 0 metric đã điền đủ (cần ≥3)\nKiểm TEAMS.md\n  4 thành viên\nCần xem lại:\n  ⚠️ Mới 3 câu — CP2 cần ≥10.\n  ⚠️ CP3 cần 20–30 câu (đang có 3).\n  ⚠️ Cần ≥5 câu kho (đang có 1).\n  ⚠️ Cần ≥2 câu tu_choi, gồm 2 câu tấn công (đang có 1).\n  ⚠️ Còn dòng mẫu \"(ví dụ)\": B01, B02, B03 — xoá trước khi nộp.\n  ⚠️ metric <metric_1> còn trống / còn mẫu <…> ở: name, definition, grader, threshold.\n  ⚠️ metric <metric_2> còn trống / còn mẫu <…> ở: name, definition, grader, threshold.\n  ⚠️ metric <metric_3> còn trống / còn mẫu <…> ở: name, definition, grader, threshold.\n  ⚠️ Cần ≥3 metric điền đủ name · definition · grader · threshold (đang có 0).\n(Lệnh này chỉ kiểm, không sửa file.)\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tests",
+          "-v"
+        ],
+        "exit_code": 0,
+        "stdout": "",
+        "stderr": "test_agent_retries_and_falls_back (test_check_leak.CheckLeakTests.test_agent_retries_and_falls_back) ... ok\ntest_agent_returns_clean_retry (test_check_leak.CheckLeakTests.test_agent_returns_clean_retry) ... ok\ntest_chained_numeric_equalities (test_check_leak.CheckLeakTests.test_chained_numeric_equalities) ... ok\ntest_decimal_comma (test_check_leak.CheckLeakTests.test_decimal_comma) ... ok\ntest_decimal_point (test_check_leak.CheckLeakTests.test_decimal_point) ... ok\ntest_empty_data (test_check_leak.CheckLeakTests.test_empty_data) ... ok\ntest_every_packaged_answer_key_triggers_the_guard (test_check_leak.CheckLeakTests.test_every_packaged_answer_key_triggers_the_guard) ... ok\ntest_fraction_equivalence (test_check_leak.CheckLeakTests.test_fraction_equivalence) ... ok\ntest_fraction_signs_and_zero_denominator (test_check_leak.CheckLeakTests.test_fraction_signs_and_zero_denominator) ... ok\ntest_indexed_roots (test_check_leak.CheckLeakTests.test_indexed_roots) ... ok\ntest_latex_fraction (test_check_leak.CheckLeakTests.test_latex_fraction) ... ok\ntest_matches_keep_original_final_answer_strings (test_check_leak.CheckLeakTests.test_matches_keep_original_final_answer_strings) ... ok\ntest_no_code_execution (test_check_leak.CheckLeakTests.test_no_code_execution) ... ok\ntest_no_real_solution (test_check_leak.CheckLeakTests.test_no_real_solution) ... ok\ntest_no_solution_negation_is_not_a_conclusion (test_check_leak.CheckLeakTests.test_no_solution_negation_is_not_a_conclusion) ... ok\ntest_numbers_from_different_assignment (test_check_leak.CheckLeakTests.test_numbers_from_different_assignment) ... ok\ntest_numeric_boundaries (test_check_leak.CheckLeakTests.test_numeric_boundaries) ... ok\ntest_plain_assignment (test_check_leak.CheckLeakTests.test_plain_assignment) ... ok\ntest_plus_minus_root_notation (test_check_leak.CheckLeakTests.test_plus_minus_root_notation) ... ok\ntest_polynomial_and_intermediate_calculation (test_check_leak.CheckLeakTests.test_polynomial_and_intermediate_calculation) ... ok\ntest_question_and_negated_assignment (test_check_leak.CheckLeakTests.test_question_and_negated_assignment) ... ok\ntest_scalar_answer (test_check_leak.CheckLeakTests.test_scalar_answer) ... ok\ntest_set_of_roots (test_check_leak.CheckLeakTests.test_set_of_roots) ... ok\ntest_solution_sentence (test_check_leak.CheckLeakTests.test_solution_sentence) ... ok\ntest_step_numbers_and_coefficients (test_check_leak.CheckLeakTests.test_step_numbers_and_coefficients) ... ok\ntest_unicode_negative (test_check_leak.CheckLeakTests.test_unicode_negative) ... ok\ntest_unicode_spaces_and_fullwidth (test_check_leak.CheckLeakTests.test_unicode_spaces_and_fullwidth) ... ok\ntest_vietnamese_assignment (test_check_leak.CheckLeakTests.test_vietnamese_assignment) ... ok\n\n----------------------------------------------------------------------\nRan 28 tests in 0.055s\n\nOK\n"
+      },
+      {
+        "command": [
+          "git",
+          "diff",
+          "--check"
+        ],
+        "exit_code": 0,
+        "stdout": "",
+        "stderr": ""
+      }
+    ],
+    "T02-review-fixed.json": [
+      {
+        "command": [
+          "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+          "run.py"
+        ],
+        "exit_code": 0,
+        "stdout": "Bản chạy thử — gõ đầu vào rồi Enter. Thoát: Ctrl+C (hoặc Enter 2 lần với dòng trống).\n> [câu trả lời giả — chưa nối model] >>>\n   (model: fake · gọi model 1 lần · công cụ 5 lần · token vào 0 / ra 0)\n> > ",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+          "run.py",
+          "check"
+        ],
+        "exit_code": 0,
+        "stdout": "Kiểm eval/benchmark.csv\n  Đủ 6 cột: id,input,expected,pass_criterion,type,source\n  Số câu thử: 3  ·  thuong 1  ·  kho 1  ·  tu_choi 1\n  Nguồn: nguoi_dung 1  ·  data_that 1  ·  tu_viet 1  ·  sinh_seed 0  ·  từ người dùng / data thật: 2/3\n  eval/metric_spec.yaml: 0 metric đã điền đủ (cần ≥3)\nKiểm TEAMS.md\n  4 thành viên\nCần xem lại:\n  ⚠️ Mới 3 câu — CP2 cần ≥10.\n  ⚠️ CP3 cần 20–30 câu (đang có 3).\n  ⚠️ Cần ≥5 câu kho (đang có 1).\n  ⚠️ Cần ≥2 câu tu_choi, gồm 2 câu tấn công (đang có 1).\n  ⚠️ Còn dòng mẫu \"(ví dụ)\": B01, B02, B03 — xoá trước khi nộp.\n  ⚠️ metric <metric_1> còn trống / còn mẫu <…> ở: name, definition, grader, threshold.\n  ⚠️ metric <metric_2> còn trống / còn mẫu <…> ở: name, definition, grader, threshold.\n  ⚠️ metric <metric_3> còn trống / còn mẫu <…> ở: name, definition, grader, threshold.\n  ⚠️ Cần ≥3 metric điền đủ name · definition · grader · threshold (đang có 0).\n(Lệnh này chỉ kiểm, không sửa file.)\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tests",
+          "-v"
+        ],
+        "exit_code": 0,
+        "stdout": "",
+        "stderr": "test_agent_retries_and_falls_back (test_check_leak.CheckLeakTests.test_agent_retries_and_falls_back) ... ok\ntest_agent_returns_clean_retry (test_check_leak.CheckLeakTests.test_agent_returns_clean_retry) ... ok\ntest_chained_numeric_equalities (test_check_leak.CheckLeakTests.test_chained_numeric_equalities) ... ok\ntest_decimal_comma (test_check_leak.CheckLeakTests.test_decimal_comma) ... ok\ntest_decimal_point (test_check_leak.CheckLeakTests.test_decimal_point) ... ok\ntest_empty_data (test_check_leak.CheckLeakTests.test_empty_data) ... ok\ntest_every_packaged_answer_key_triggers_the_guard (test_check_leak.CheckLeakTests.test_every_packaged_answer_key_triggers_the_guard) ... ok\ntest_fraction_equivalence (test_check_leak.CheckLeakTests.test_fraction_equivalence) ... ok\ntest_fraction_signs_and_zero_denominator (test_check_leak.CheckLeakTests.test_fraction_signs_and_zero_denominator) ... ok\ntest_indexed_roots (test_check_leak.CheckLeakTests.test_indexed_roots) ... ok\ntest_latex_fraction (test_check_leak.CheckLeakTests.test_latex_fraction) ... ok\ntest_matches_keep_original_final_answer_strings (test_check_leak.CheckLeakTests.test_matches_keep_original_final_answer_strings) ... ok\ntest_no_code_execution (test_check_leak.CheckLeakTests.test_no_code_execution) ... ok\ntest_no_real_solution (test_check_leak.CheckLeakTests.test_no_real_solution) ... ok\ntest_no_solution_negation_is_not_a_conclusion (test_check_leak.CheckLeakTests.test_no_solution_negation_is_not_a_conclusion) ... ok\ntest_numbers_from_different_assignment (test_check_leak.CheckLeakTests.test_numbers_from_different_assignment) ... ok\ntest_numeric_boundaries (test_check_leak.CheckLeakTests.test_numeric_boundaries) ... ok\ntest_plain_assignment (test_check_leak.CheckLeakTests.test_plain_assignment) ... ok\ntest_plus_minus_root_notation (test_check_leak.CheckLeakTests.test_plus_minus_root_notation) ... ok\ntest_polynomial_and_intermediate_calculation (test_check_leak.CheckLeakTests.test_polynomial_and_intermediate_calculation) ... ok\ntest_question_and_negated_assignment (test_check_leak.CheckLeakTests.test_question_and_negated_assignment) ... ok\ntest_scalar_answer (test_check_leak.CheckLeakTests.test_scalar_answer) ... ok\ntest_set_of_roots (test_check_leak.CheckLeakTests.test_set_of_roots) ... ok\ntest_solution_sentence (test_check_leak.CheckLeakTests.test_solution_sentence) ... ok\ntest_step_numbers_and_coefficients (test_check_leak.CheckLeakTests.test_step_numbers_and_coefficients) ... ok\ntest_unicode_negative (test_check_leak.CheckLeakTests.test_unicode_negative) ... ok\ntest_unicode_spaces_and_fullwidth (test_check_leak.CheckLeakTests.test_unicode_spaces_and_fullwidth) ... ok\ntest_vietnamese_assignment (test_check_leak.CheckLeakTests.test_vietnamese_assignment) ... ok\n\n----------------------------------------------------------------------\nRan 28 tests in 0.043s\n\nOK\n"
+      },
+      {
+        "command": [
+          "git",
+          "diff",
+          "--check"
+        ],
+        "exit_code": 0,
+        "stdout": "",
+        "stderr": ""
+      }
+    ],
+    "T04-followup.json": [
+      {
+        "command": [
+          "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+          "run.py"
+        ],
+        "exit_code": 0,
+        "stdout": "Bản chạy thử — gõ đầu vào rồi Enter. Thoát: Ctrl+C (hoặc Enter 2 lần với dòng trống).\n> [câu trả lời giả — chưa nối model] >>>\n   (model: fake · gọi model 1 lần · công cụ 5 lần · token vào 0 / ra 0)\n> > ",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+          "run.py",
+          "check"
+        ],
+        "exit_code": 0,
+        "stdout": "Kiểm eval/benchmark.csv\n  Đủ 6 cột: id,input,expected,pass_criterion,type,source\n  Số câu thử: 3  ·  thuong 1  ·  kho 1  ·  tu_choi 1\n  Nguồn: nguoi_dung 1  ·  data_that 1  ·  tu_viet 1  ·  sinh_seed 0  ·  từ người dùng / data thật: 2/3\n  eval/metric_spec.yaml: 0 metric đã điền đủ (cần ≥3)\nKiểm TEAMS.md\n  4 thành viên\nCần xem lại:\n  ⚠️ Mới 3 câu — CP2 cần ≥10.\n  ⚠️ CP3 cần 20–30 câu (đang có 3).\n  ⚠️ Cần ≥5 câu kho (đang có 1).\n  ⚠️ Cần ≥2 câu tu_choi, gồm 2 câu tấn công (đang có 1).\n  ⚠️ Còn dòng mẫu \"(ví dụ)\": B01, B02, B03 — xoá trước khi nộp.\n  ⚠️ metric <metric_1> còn trống / còn mẫu <…> ở: name, definition, grader, threshold.\n  ⚠️ metric <metric_2> còn trống / còn mẫu <…> ở: name, definition, grader, threshold.\n  ⚠️ metric <metric_3> còn trống / còn mẫu <…> ở: name, definition, grader, threshold.\n  ⚠️ Cần ≥3 metric điền đủ name · definition · grader · threshold (đang có 0).\n(Lệnh này chỉ kiểm, không sửa file.)\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tests",
+          "-v"
+        ],
+        "exit_code": 0,
+        "stdout": "",
+        "stderr": "test_cannot_overwrite_member_source (test_build_benchmark.BuildBenchmarkTests.test_cannot_overwrite_member_source) ... ok\ntest_check_only_creates_no_output (test_build_benchmark.BuildBenchmarkTests.test_check_only_creates_no_output) ... ok\ntest_duplicate_header (test_build_benchmark.BuildBenchmarkTests.test_duplicate_header) ... ok\ntest_duplicate_ids (test_build_benchmark.BuildBenchmarkTests.test_duplicate_ids) ... ok\ntest_empty_message_is_valid_negative_case (test_build_benchmark.BuildBenchmarkTests.test_empty_message_is_valid_negative_case) ... ok\ntest_empty_required_csv_field (test_build_benchmark.BuildBenchmarkTests.test_empty_required_csv_field) ... ok\ntest_extra_and_missing_csv_cell (test_build_benchmark.BuildBenchmarkTests.test_extra_and_missing_csv_cell) ... ok\ntest_header_order_and_extra_header (test_build_benchmark.BuildBenchmarkTests.test_header_order_and_extra_header) ... ok\ntest_invalid_json_and_duplicate_keys (test_build_benchmark.BuildBenchmarkTests.test_invalid_json_and_duplicate_keys) ... ok\ntest_invalid_role_empty_assignment_and_naive_time (test_build_benchmark.BuildBenchmarkTests.test_invalid_role_empty_assignment_and_naive_time) ... ok\ntest_malformed_csv (test_build_benchmark.BuildBenchmarkTests.test_malformed_csv) ... ok\ntest_minimum_difficult_and_refusal_coverage (test_build_benchmark.BuildBenchmarkTests.test_minimum_difficult_and_refusal_coverage) ... ok\ntest_missing_files_reported_together (test_build_benchmark.BuildBenchmarkTests.test_missing_files_reported_together) ... ok\ntest_missing_id (test_build_benchmark.BuildBenchmarkTests.test_missing_id) ... ok\ntest_nine_real_source_labels_are_not_one_third (test_build_benchmark.BuildBenchmarkTests.test_nine_real_source_labels_are_not_one_third) ... ok\ntest_no_partial_output_on_replace_failure (test_build_benchmark.BuildBenchmarkTests.test_no_partial_output_on_replace_failure) ... ok\ntest_optional_class_id_types_and_unknown_fields_rejected (test_build_benchmark.BuildBenchmarkTests.test_optional_class_id_types_and_unknown_fields_rejected) ... ok\ntest_optional_system_class_id_is_preserved (test_build_benchmark.BuildBenchmarkTests.test_optional_system_class_id_is_preserved) ... ok\ntest_outside_range (test_build_benchmark.BuildBenchmarkTests.test_outside_range) ... ok\ntest_required_input_fields_and_types (test_build_benchmark.BuildBenchmarkTests.test_required_input_fields_and_types) ... ok\ntest_sorted_deterministic_and_preserves_every_cell (test_build_benchmark.BuildBenchmarkTests.test_sorted_deterministic_and_preserves_every_cell) ... ok\ntest_source_and_type_validation (test_build_benchmark.BuildBenchmarkTests.test_source_and_type_validation) ... ok\ntest_utf8_bom_is_accepted (test_build_benchmark.BuildBenchmarkTests.test_utf8_bom_is_accepted) ... ok\ntest_wrong_author_range (test_build_benchmark.BuildBenchmarkTests.test_wrong_author_range) ... ok\n\n----------------------------------------------------------------------\nRan 24 tests in 1.456s\n\nOK\n"
+      },
+      {
+        "command": [
+          "git",
+          "diff",
+          "--check"
+        ],
+        "exit_code": 0,
+        "stdout": "",
+        "stderr": ""
+      }
+    ],
+    "T06-current-main.json": [
+      {
+        "command": [
+          "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+          "run.py"
+        ],
+        "exit_code": 0,
+        "stdout": "Bản chạy thử — gõ đầu vào rồi Enter. Thoát: Ctrl+C (hoặc Enter 2 lần với dòng trống).\n> [câu trả lời giả — chưa nối model] >>>\n   (model: fake · gọi model 1 lần · công cụ 6 lần · token vào 0 / ra 0)\n> > ",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+          "run.py",
+          "check"
+        ],
+        "exit_code": 0,
+        "stdout": "Kiểm eval/benchmark.csv\n  Đủ 6 cột: id,input,expected,pass_criterion,type,source\n  Số câu thử: 3  ·  thuong 1  ·  kho 1  ·  tu_choi 1\n  Nguồn: nguoi_dung 1  ·  data_that 1  ·  tu_viet 1  ·  sinh_seed 0  ·  từ người dùng / data thật: 2/3\n  eval/metric_spec.yaml: 4 metric đã điền đủ (cần ≥3)\nKiểm TEAMS.md\n  4 thành viên\nCần xem lại:\n  ⚠️ Mới 3 câu — CP2 cần ≥10.\n  ⚠️ CP3 cần 20–30 câu (đang có 3).\n  ⚠️ Cần ≥5 câu kho (đang có 1).\n  ⚠️ Cần ≥2 câu tu_choi, gồm 2 câu tấn công (đang có 1).\n  ⚠️ Còn dòng mẫu \"(ví dụ)\": B01, B02, B03 — xoá trước khi nộp.\n(Lệnh này chỉ kiểm, không sửa file.)\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tests",
+          "-v"
+        ],
+        "exit_code": 0,
+        "stdout": "",
+        "stderr": "test_ambiguous_or_missing_expected_is_missing_data (test_auto_grade.AutoGradeTests.test_ambiguous_or_missing_expected_is_missing_data) ... ok\ntest_approved_fixture_thresholds_use_spec_values (test_auto_grade.AutoGradeTests.test_approved_fixture_thresholds_use_spec_values) ... ok\ntest_bad_due_date_has_unknown_applicability (test_auto_grade.AutoGradeTests.test_bad_due_date_has_unknown_applicability) ... ok\ntest_benchmark_drift_blocks_grading (test_auto_grade.AutoGradeTests.test_benchmark_drift_blocks_grading) ... ok\ntest_clean_hint_remains_pending_human (test_auto_grade.AutoGradeTests.test_clean_hint_remains_pending_human) ... ok\ntest_cli_draft_keeps_all_inputs_byte_for_byte_and_records_hashes (test_auto_grade.AutoGradeTests.test_cli_draft_keeps_all_inputs_byte_for_byte_and_records_hashes) ... ok\ntest_cli_never_overwrites_an_existing_report_or_input (test_auto_grade.AutoGradeTests.test_cli_never_overwrites_an_existing_report_or_input) ... ok\ntest_cross_class_expected_source_is_missing_data (test_auto_grade.AutoGradeTests.test_cross_class_expected_source_is_missing_data) ... ok\ntest_decision_must_be_on_first_line (test_auto_grade.AutoGradeTests.test_decision_must_be_on_first_line) ... ok\ntest_denominators_include_system_errors_and_missing_cases (test_auto_grade.AutoGradeTests.test_denominators_include_system_errors_and_missing_cases) ... ok\ntest_due_boundary_and_teacher_exclude_leak_metric (test_auto_grade.AutoGradeTests.test_due_boundary_and_teacher_exclude_leak_metric) ... ok\ntest_duplicate_ids_and_invalid_metric_specs_rejected (test_auto_grade.AutoGradeTests.test_duplicate_ids_and_invalid_metric_specs_rejected) ... ok\ntest_empty_output_is_system_error (test_auto_grade.AutoGradeTests.test_empty_output_is_system_error) ... ok\ntest_extra_run_ids_reported (test_auto_grade.AutoGradeTests.test_extra_run_ids_reported) ... ok\ntest_human_values_and_output_are_unchanged_even_on_failure (test_auto_grade.AutoGradeTests.test_human_values_and_output_are_unchanged_even_on_failure) ... ok\ntest_invalid_request_is_missing_data (test_auto_grade.AutoGradeTests.test_invalid_request_is_missing_data) ... ok\ntest_leak_uses_correct_assignment_and_exact_formats (test_auto_grade.AutoGradeTests.test_leak_uses_correct_assignment_and_exact_formats) ... ok\ntest_malformed_citation_alongside_valid_one_fails (test_auto_grade.AutoGradeTests.test_malformed_citation_alongside_valid_one_fails) ... ok\ntest_missing_assignment_is_legitimate_not_found_case (test_auto_grade.AutoGradeTests.test_missing_assignment_is_legitimate_not_found_case) ... ok\ntest_missing_csv_headers_fail_cleanly (test_auto_grade.AutoGradeTests.test_missing_csv_headers_fail_cleanly) ... ok\ntest_missing_final_answers_is_not_silent_no_leak (test_auto_grade.AutoGradeTests.test_missing_final_answers_is_not_silent_no_leak) ... ok\ntest_missing_row_stays_in_denominator (test_auto_grade.AutoGradeTests.test_missing_row_stays_in_denominator) ... ok\ntest_non_applicable_metrics_are_na_not_perfect_scores (test_auto_grade.AutoGradeTests.test_non_applicable_metrics_are_na_not_perfect_scores) ... ok\ntest_other_roots_and_intermediate_numbers_do_not_leak (test_auto_grade.AutoGradeTests.test_other_roots_and_intermediate_numbers_do_not_leak) ... ok\ntest_pending_spec_cannot_become_approved (test_auto_grade.AutoGradeTests.test_pending_spec_cannot_become_approved) ... ok\ntest_system_error_is_not_response_error (test_auto_grade.AutoGradeTests.test_system_error_is_not_response_error) ... ok\ntest_text_expected_label_is_supported (test_auto_grade.AutoGradeTests.test_text_expected_label_is_supported) ... ok\ntest_theory_correct_source_remains_human_review (test_auto_grade.AutoGradeTests.test_theory_correct_source_remains_human_review) ... ok\ntest_theory_missing_citation_fails (test_auto_grade.AutoGradeTests.test_theory_missing_citation_fails) ... ok\ntest_theory_missing_expected_source_is_missing_data (test_auto_grade.AutoGradeTests.test_theory_missing_expected_source_is_missing_data) ... ok\ntest_theory_source_in_pass_criterion (test_auto_grade.AutoGradeTests.test_theory_source_in_pass_criterion) ... ok\ntest_theory_wrong_page_unknown_source_and_unexpected_source (test_auto_grade.AutoGradeTests.test_theory_wrong_page_unknown_source_and_unexpected_source) ... ok\ntest_wrong_decision_is_response_error (test_auto_grade.AutoGradeTests.test_wrong_decision_is_response_error) ... ok\ntest_cannot_overwrite_member_source (test_build_benchmark.BuildBenchmarkTests.test_cannot_overwrite_member_source) ... ok\ntest_check_only_creates_no_output (test_build_benchmark.BuildBenchmarkTests.test_check_only_creates_no_output) ... ok\ntest_duplicate_header (test_build_benchmark.BuildBenchmarkTests.test_duplicate_header) ... ok\ntest_duplicate_ids (test_build_benchmark.BuildBenchmarkTests.test_duplicate_ids) ... ok\ntest_empty_message_is_valid_negative_case (test_build_benchmark.BuildBenchmarkTests.test_empty_message_is_valid_negative_case) ... ok\ntest_empty_required_csv_field (test_build_benchmark.BuildBenchmarkTests.test_empty_required_csv_field) ... ok\ntest_extra_and_missing_csv_cell (test_build_benchmark.BuildBenchmarkTests.test_extra_and_missing_csv_cell) ... ok\ntest_header_order_and_extra_header (test_build_benchmark.BuildBenchmarkTests.test_header_order_and_extra_header) ... ok\ntest_invalid_json_and_duplicate_keys (test_build_benchmark.BuildBenchmarkTests.test_invalid_json_and_duplicate_keys) ... ok\ntest_invalid_role_empty_assignment_and_naive_time (test_build_benchmark.BuildBenchmarkTests.test_invalid_role_empty_assignment_and_naive_time) ... ok\ntest_malformed_csv (test_build_benchmark.BuildBenchmarkTests.test_malformed_csv) ... ok\ntest_minimum_difficult_and_refusal_coverage (test_build_benchmark.BuildBenchmarkTests.test_minimum_difficult_and_refusal_coverage) ... ok\ntest_missing_files_reported_together (test_build_benchmark.BuildBenchmarkTests.test_missing_files_reported_together) ... ok\ntest_missing_id (test_build_benchmark.BuildBenchmarkTests.test_missing_id) ... ok\ntest_nine_real_source_labels_are_not_one_third (test_build_benchmark.BuildBenchmarkTests.test_nine_real_source_labels_are_not_one_third) ... ok\ntest_no_partial_output_on_replace_failure (test_build_benchmark.BuildBenchmarkTests.test_no_partial_output_on_replace_failure) ... ok\ntest_outside_range (test_build_benchmark.BuildBenchmarkTests.test_outside_range) ... ok\ntest_required_input_fields_and_types (test_build_benchmark.BuildBenchmarkTests.test_required_input_fields_and_types) ... ok\ntest_sorted_deterministic_and_preserves_every_cell (test_build_benchmark.BuildBenchmarkTests.test_sorted_deterministic_and_preserves_every_cell) ... ok\ntest_source_and_type_validation (test_build_benchmark.BuildBenchmarkTests.test_source_and_type_validation) ... ok\ntest_utf8_bom_is_accepted (test_build_benchmark.BuildBenchmarkTests.test_utf8_bom_is_accepted) ... ok\ntest_wrong_author_range (test_build_benchmark.BuildBenchmarkTests.test_wrong_author_range) ... ok\ntest_agent_retries_and_falls_back (test_check_leak.CheckLeakTests.test_agent_retries_and_falls_back) ... ok\ntest_agent_returns_clean_retry (test_check_leak.CheckLeakTests.test_agent_returns_clean_retry) ... ok\ntest_decimal_comma (test_check_leak.CheckLeakTests.test_decimal_comma) ... ok\ntest_decimal_point (test_check_leak.CheckLeakTests.test_decimal_point) ... ok\ntest_empty_data (test_check_leak.CheckLeakTests.test_empty_data) ... ok\ntest_fraction_equivalence (test_check_leak.CheckLeakTests.test_fraction_equivalence) ... ok\ntest_fraction_signs_and_zero_denominator (test_check_leak.CheckLeakTests.test_fraction_signs_and_zero_denominator) ... ok\ntest_indexed_roots (test_check_leak.CheckLeakTests.test_indexed_roots) ... ok\ntest_latex_fraction (test_check_leak.CheckLeakTests.test_latex_fraction) ... ok\ntest_matches_keep_original_final_answer_strings (test_check_leak.CheckLeakTests.test_matches_keep_original_final_answer_strings) ... ok\ntest_no_code_execution (test_check_leak.CheckLeakTests.test_no_code_execution) ... ok\ntest_no_real_solution (test_check_leak.CheckLeakTests.test_no_real_solution) ... ok\ntest_no_solution_negation_is_not_a_conclusion (test_check_leak.CheckLeakTests.test_no_solution_negation_is_not_a_conclusion) ... ok\ntest_numbers_from_different_assignment (test_check_leak.CheckLeakTests.test_numbers_from_different_assignment) ... ok\ntest_numeric_boundaries (test_check_leak.CheckLeakTests.test_numeric_boundaries) ... ok\ntest_plain_assignment (test_check_leak.CheckLeakTests.test_plain_assignment) ... ok\ntest_polynomial_and_intermediate_calculation (test_check_leak.CheckLeakTests.test_polynomial_and_intermediate_calculation) ... ok\ntest_question_and_negated_assignment (test_check_leak.CheckLeakTests.test_question_and_negated_assignment) ... ok\ntest_scalar_answer (test_check_leak.CheckLeakTests.test_scalar_answer) ... ok\ntest_set_of_roots (test_check_leak.CheckLeakTests.test_set_of_roots) ... ok\ntest_solution_sentence (test_check_leak.CheckLeakTests.test_solution_sentence) ... ok\ntest_step_numbers_and_coefficients (test_check_leak.CheckLeakTests.test_step_numbers_and_coefficients) ... ok\ntest_unicode_negative (test_check_leak.CheckLeakTests.test_unicode_negative) ... ok\ntest_unicode_spaces_and_fullwidth (test_check_leak.CheckLeakTests.test_unicode_spaces_and_fullwidth) ... ok\ntest_vietnamese_assignment (test_check_leak.CheckLeakTests.test_vietnamese_assignment) ... ok\ntest_all_roots_by_discriminant_substitution_and_viete (test_data.DataTests.test_all_roots_by_discriminant_substitution_and_viete) ... ok\ntest_answer_key_available_at_due_boundary (test_data.DataTests.test_answer_key_available_at_due_boundary) ... ok\ntest_assignment_schema_and_links (test_data.DataTests.test_assignment_schema_and_links) ... ok\ntest_delta_search_preserves_page_two (test_data.DataTests.test_delta_search_preserves_page_two) ... ok\ntest_final_answer_variants_are_exact (test_data.DataTests.test_final_answer_variants_are_exact) ... ok\ntest_hint_prompt_never_contains_private_answer_key (test_data.DataTests.test_hint_prompt_never_contains_private_answer_key) ... ok\ntest_lesson_schema_and_identifiers (test_data.DataTests.test_lesson_schema_and_identifiers) ... ok\ntest_other_class_retrieval_is_isolated (test_data.DataTests.test_other_class_retrieval_is_isolated) ... ok\ntest_private_answers_not_returned_before_due (test_data.DataTests.test_private_answers_not_returned_before_due) ... ok\ntest_status_distribution_at_benchmark_time (test_data.DataTests.test_status_distribution_at_benchmark_time) ... ok\ntest_all_four_metrics_have_operational_definitions (test_metric_spec.MetricSpecTests.test_all_four_metrics_have_operational_definitions) ... ok\ntest_approval_is_explicitly_pending (test_metric_spec.MetricSpecTests.test_approval_is_explicitly_pending) ... ok\ntest_proposed_thresholds_and_human_metric (test_metric_spec.MetricSpecTests.test_proposed_thresholds_and_human_metric) ... ok\ntest_b14_wrong_minus_b_at_step_three (test_thang_cases.ThangCasesTests.test_b14_wrong_minus_b_at_step_three) ... ok\ntest_b15_wrong_denominator_at_step_three (test_thang_cases.ThangCasesTests.test_b15_wrong_denominator_at_step_three) ... ok\ntest_b16_discriminant_first_wrong_at_step_two (test_thang_cases.ThangCasesTests.test_b16_discriminant_first_wrong_at_step_two) ... ok\ntest_b17_zero_delta_is_not_two_distinct_roots (test_thang_cases.ThangCasesTests.test_b17_zero_delta_is_not_two_distinct_roots) ... ok\ntest_b18_all_written_steps_correct (test_thang_cases.ThangCasesTests.test_b18_all_written_steps_correct) ... ok\ntest_b19_first_error_precedes_later_errors (test_thang_cases.ThangCasesTests.test_b19_first_error_precedes_later_errors) ... ok\ntest_b20_changing_all_signs_is_required (test_thang_cases.ThangCasesTests.test_b20_changing_all_signs_is_required) ... ok\ntest_b21_complete_solution_and_substitutions_correct (test_thang_cases.ThangCasesTests.test_b21_complete_solution_and_substitutions_correct) ... ok\ntest_exact_schema_ids_difficult_cases_and_sources (test_thang_cases.ThangCasesTests.test_exact_schema_ids_difficult_cases_and_sources) ... ok\ntest_input_links_time_and_expected_policy (test_thang_cases.ThangCasesTests.test_input_links_time_and_expected_policy) ... ok\n\n----------------------------------------------------------------------\nRan 103 tests in 3.974s\n\nOK\n"
+      },
+      {
+        "command": [
+          "git",
+          "diff",
+          "--check"
+        ],
+        "exit_code": 0,
+        "stdout": "",
+        "stderr": ""
+      }
+    ],
+    "T06-dependency-T02.json": [
+      {
+        "command": [
+          "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+          "run.py"
+        ],
+        "exit_code": 0,
+        "stdout": "Bản chạy thử — gõ đầu vào rồi Enter. Thoát: Ctrl+C (hoặc Enter 2 lần với dòng trống).\n> [câu trả lời giả — chưa nối model] >>>\n   (model: fake · gọi model 1 lần · công cụ 5 lần · token vào 0 / ra 0)\n> > ",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+          "run.py",
+          "check"
+        ],
+        "exit_code": 0,
+        "stdout": "Kiểm eval/benchmark.csv\n  Đủ 6 cột: id,input,expected,pass_criterion,type,source\n  Số câu thử: 3  ·  thuong 1  ·  kho 1  ·  tu_choi 1\n  Nguồn: nguoi_dung 1  ·  data_that 1  ·  tu_viet 1  ·  sinh_seed 0  ·  từ người dùng / data thật: 2/3\n  eval/metric_spec.yaml: 0 metric đã điền đủ (cần ≥3)\nKiểm TEAMS.md\n  4 thành viên\nCần xem lại:\n  ⚠️ Mới 3 câu — CP2 cần ≥10.\n  ⚠️ CP3 cần 20–30 câu (đang có 3).\n  ⚠️ Cần ≥5 câu kho (đang có 1).\n  ⚠️ Cần ≥2 câu tu_choi, gồm 2 câu tấn công (đang có 1).\n  ⚠️ Còn dòng mẫu \"(ví dụ)\": B01, B02, B03 — xoá trước khi nộp.\n  ⚠️ metric <metric_1> còn trống / còn mẫu <…> ở: name, definition, grader, threshold.\n  ⚠️ metric <metric_2> còn trống / còn mẫu <…> ở: name, definition, grader, threshold.\n  ⚠️ metric <metric_3> còn trống / còn mẫu <…> ở: name, definition, grader, threshold.\n  ⚠️ Cần ≥3 metric điền đủ name · definition · grader · threshold (đang có 0).\n(Lệnh này chỉ kiểm, không sửa file.)\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tests",
+          "-v"
+        ],
+        "exit_code": 0,
+        "stdout": "",
+        "stderr": "test_agent_retries_and_falls_back (test_check_leak.CheckLeakTests.test_agent_retries_and_falls_back) ... ok\ntest_agent_returns_clean_retry (test_check_leak.CheckLeakTests.test_agent_returns_clean_retry) ... ok\ntest_decimal_comma (test_check_leak.CheckLeakTests.test_decimal_comma) ... ok\ntest_decimal_point (test_check_leak.CheckLeakTests.test_decimal_point) ... ok\ntest_empty_data (test_check_leak.CheckLeakTests.test_empty_data) ... ok\ntest_fraction_equivalence (test_check_leak.CheckLeakTests.test_fraction_equivalence) ... ok\ntest_fraction_signs_and_zero_denominator (test_check_leak.CheckLeakTests.test_fraction_signs_and_zero_denominator) ... ok\ntest_indexed_roots (test_check_leak.CheckLeakTests.test_indexed_roots) ... ok\ntest_latex_fraction (test_check_leak.CheckLeakTests.test_latex_fraction) ... ok\ntest_matches_keep_original_final_answer_strings (test_check_leak.CheckLeakTests.test_matches_keep_original_final_answer_strings) ... ok\ntest_no_code_execution (test_check_leak.CheckLeakTests.test_no_code_execution) ... ok\ntest_no_real_solution (test_check_leak.CheckLeakTests.test_no_real_solution) ... ok\ntest_no_solution_negation_is_not_a_conclusion (test_check_leak.CheckLeakTests.test_no_solution_negation_is_not_a_conclusion) ... ok\ntest_numbers_from_different_assignment (test_check_leak.CheckLeakTests.test_numbers_from_different_assignment) ... ok\ntest_numeric_boundaries (test_check_leak.CheckLeakTests.test_numeric_boundaries) ... ok\ntest_plain_assignment (test_check_leak.CheckLeakTests.test_plain_assignment) ... ok\ntest_polynomial_and_intermediate_calculation (test_check_leak.CheckLeakTests.test_polynomial_and_intermediate_calculation) ... ok\ntest_question_and_negated_assignment (test_check_leak.CheckLeakTests.test_question_and_negated_assignment) ... ok\ntest_scalar_answer (test_check_leak.CheckLeakTests.test_scalar_answer) ... ok\ntest_set_of_roots (test_check_leak.CheckLeakTests.test_set_of_roots) ... ok\ntest_solution_sentence (test_check_leak.CheckLeakTests.test_solution_sentence) ... ok\ntest_step_numbers_and_coefficients (test_check_leak.CheckLeakTests.test_step_numbers_and_coefficients) ... ok\ntest_unicode_negative (test_check_leak.CheckLeakTests.test_unicode_negative) ... ok\ntest_unicode_spaces_and_fullwidth (test_check_leak.CheckLeakTests.test_unicode_spaces_and_fullwidth) ... ok\ntest_vietnamese_assignment (test_check_leak.CheckLeakTests.test_vietnamese_assignment) ... ok\ntest_all_roots_by_discriminant_substitution_and_viete (test_data.DataTests.test_all_roots_by_discriminant_substitution_and_viete) ... ok\ntest_answer_key_available_at_due_boundary (test_data.DataTests.test_answer_key_available_at_due_boundary) ... ok\ntest_assignment_schema_and_links (test_data.DataTests.test_assignment_schema_and_links) ... ok\ntest_delta_search_preserves_page_two (test_data.DataTests.test_delta_search_preserves_page_two) ... ok\ntest_final_answer_variants_are_exact (test_data.DataTests.test_final_answer_variants_are_exact) ... ok\ntest_hint_prompt_never_contains_private_answer_key (test_data.DataTests.test_hint_prompt_never_contains_private_answer_key) ... ok\ntest_lesson_schema_and_identifiers (test_data.DataTests.test_lesson_schema_and_identifiers) ... ok\ntest_other_class_retrieval_is_isolated (test_data.DataTests.test_other_class_retrieval_is_isolated) ... ok\ntest_private_answers_not_returned_before_due (test_data.DataTests.test_private_answers_not_returned_before_due) ... ok\ntest_status_distribution_at_benchmark_time (test_data.DataTests.test_status_distribution_at_benchmark_time) ... ok\ntest_b14_wrong_minus_b_at_step_three (test_thang_cases.ThangCasesTests.test_b14_wrong_minus_b_at_step_three) ... ok\ntest_b15_wrong_denominator_at_step_three (test_thang_cases.ThangCasesTests.test_b15_wrong_denominator_at_step_three) ... ok\ntest_b16_discriminant_first_wrong_at_step_two (test_thang_cases.ThangCasesTests.test_b16_discriminant_first_wrong_at_step_two) ... ok\ntest_b17_zero_delta_is_not_two_distinct_roots (test_thang_cases.ThangCasesTests.test_b17_zero_delta_is_not_two_distinct_roots) ... ok\ntest_b18_all_written_steps_correct (test_thang_cases.ThangCasesTests.test_b18_all_written_steps_correct) ... ok\ntest_b19_first_error_precedes_later_errors (test_thang_cases.ThangCasesTests.test_b19_first_error_precedes_later_errors) ... ok\ntest_b20_changing_all_signs_is_required (test_thang_cases.ThangCasesTests.test_b20_changing_all_signs_is_required) ... ok\ntest_b21_complete_solution_and_substitutions_correct (test_thang_cases.ThangCasesTests.test_b21_complete_solution_and_substitutions_correct) ... ok\ntest_exact_schema_ids_difficult_cases_and_sources (test_thang_cases.ThangCasesTests.test_exact_schema_ids_difficult_cases_and_sources) ... ok\ntest_input_links_time_and_expected_policy (test_thang_cases.ThangCasesTests.test_input_links_time_and_expected_policy) ... ok\n\n----------------------------------------------------------------------\nRan 45 tests in 0.104s\n\nOK\n"
+      },
+      {
+        "command": [
+          "git",
+          "diff",
+          "--check"
+        ],
+        "exit_code": 0,
+        "stdout": "",
+        "stderr": ""
+      }
+    ],
+    "T06-dependency-T03.json": [
+      {
+        "command": [
+          "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+          "run.py"
+        ],
+        "exit_code": 0,
+        "stdout": "Bản chạy thử — gõ đầu vào rồi Enter. Thoát: Ctrl+C (hoặc Enter 2 lần với dòng trống).\n> [câu trả lời giả — chưa nối model] >>>\n   (model: fake · gọi model 1 lần · công cụ 5 lần · token vào 0 / ra 0)\n> > ",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+          "run.py",
+          "check"
+        ],
+        "exit_code": 0,
+        "stdout": "Kiểm eval/benchmark.csv\n  Đủ 6 cột: id,input,expected,pass_criterion,type,source\n  Số câu thử: 3  ·  thuong 1  ·  kho 1  ·  tu_choi 1\n  Nguồn: nguoi_dung 1  ·  data_that 1  ·  tu_viet 1  ·  sinh_seed 0  ·  từ người dùng / data thật: 2/3\n  eval/metric_spec.yaml: 4 metric đã điền đủ (cần ≥3)\nKiểm TEAMS.md\n  4 thành viên\nCần xem lại:\n  ⚠️ Mới 3 câu — CP2 cần ≥10.\n  ⚠️ CP3 cần 20–30 câu (đang có 3).\n  ⚠️ Cần ≥5 câu kho (đang có 1).\n  ⚠️ Cần ≥2 câu tu_choi, gồm 2 câu tấn công (đang có 1).\n  ⚠️ Còn dòng mẫu \"(ví dụ)\": B01, B02, B03 — xoá trước khi nộp.\n(Lệnh này chỉ kiểm, không sửa file.)\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tests",
+          "-v"
+        ],
+        "exit_code": 0,
+        "stdout": "",
+        "stderr": "test_agent_retries_and_falls_back (test_check_leak.CheckLeakTests.test_agent_retries_and_falls_back) ... ok\ntest_agent_returns_clean_retry (test_check_leak.CheckLeakTests.test_agent_returns_clean_retry) ... ok\ntest_decimal_comma (test_check_leak.CheckLeakTests.test_decimal_comma) ... ok\ntest_decimal_point (test_check_leak.CheckLeakTests.test_decimal_point) ... ok\ntest_empty_data (test_check_leak.CheckLeakTests.test_empty_data) ... ok\ntest_fraction_equivalence (test_check_leak.CheckLeakTests.test_fraction_equivalence) ... ok\ntest_fraction_signs_and_zero_denominator (test_check_leak.CheckLeakTests.test_fraction_signs_and_zero_denominator) ... ok\ntest_indexed_roots (test_check_leak.CheckLeakTests.test_indexed_roots) ... ok\ntest_latex_fraction (test_check_leak.CheckLeakTests.test_latex_fraction) ... ok\ntest_matches_keep_original_final_answer_strings (test_check_leak.CheckLeakTests.test_matches_keep_original_final_answer_strings) ... ok\ntest_no_code_execution (test_check_leak.CheckLeakTests.test_no_code_execution) ... ok\ntest_no_real_solution (test_check_leak.CheckLeakTests.test_no_real_solution) ... ok\ntest_no_solution_negation_is_not_a_conclusion (test_check_leak.CheckLeakTests.test_no_solution_negation_is_not_a_conclusion) ... ok\ntest_numbers_from_different_assignment (test_check_leak.CheckLeakTests.test_numbers_from_different_assignment) ... ok\ntest_numeric_boundaries (test_check_leak.CheckLeakTests.test_numeric_boundaries) ... ok\ntest_plain_assignment (test_check_leak.CheckLeakTests.test_plain_assignment) ... ok\ntest_polynomial_and_intermediate_calculation (test_check_leak.CheckLeakTests.test_polynomial_and_intermediate_calculation) ... ok\ntest_question_and_negated_assignment (test_check_leak.CheckLeakTests.test_question_and_negated_assignment) ... ok\ntest_scalar_answer (test_check_leak.CheckLeakTests.test_scalar_answer) ... ok\ntest_set_of_roots (test_check_leak.CheckLeakTests.test_set_of_roots) ... ok\ntest_solution_sentence (test_check_leak.CheckLeakTests.test_solution_sentence) ... ok\ntest_step_numbers_and_coefficients (test_check_leak.CheckLeakTests.test_step_numbers_and_coefficients) ... ok\ntest_unicode_negative (test_check_leak.CheckLeakTests.test_unicode_negative) ... ok\ntest_unicode_spaces_and_fullwidth (test_check_leak.CheckLeakTests.test_unicode_spaces_and_fullwidth) ... ok\ntest_vietnamese_assignment (test_check_leak.CheckLeakTests.test_vietnamese_assignment) ... ok\ntest_all_roots_by_discriminant_substitution_and_viete (test_data.DataTests.test_all_roots_by_discriminant_substitution_and_viete) ... ok\ntest_answer_key_available_at_due_boundary (test_data.DataTests.test_answer_key_available_at_due_boundary) ... ok\ntest_assignment_schema_and_links (test_data.DataTests.test_assignment_schema_and_links) ... ok\ntest_delta_search_preserves_page_two (test_data.DataTests.test_delta_search_preserves_page_two) ... ok\ntest_final_answer_variants_are_exact (test_data.DataTests.test_final_answer_variants_are_exact) ... ok\ntest_hint_prompt_never_contains_private_answer_key (test_data.DataTests.test_hint_prompt_never_contains_private_answer_key) ... ok\ntest_lesson_schema_and_identifiers (test_data.DataTests.test_lesson_schema_and_identifiers) ... ok\ntest_other_class_retrieval_is_isolated (test_data.DataTests.test_other_class_retrieval_is_isolated) ... ok\ntest_private_answers_not_returned_before_due (test_data.DataTests.test_private_answers_not_returned_before_due) ... ok\ntest_status_distribution_at_benchmark_time (test_data.DataTests.test_status_distribution_at_benchmark_time) ... ok\ntest_all_four_metrics_have_operational_definitions (test_metric_spec.MetricSpecTests.test_all_four_metrics_have_operational_definitions) ... ok\ntest_approval_is_explicitly_pending (test_metric_spec.MetricSpecTests.test_approval_is_explicitly_pending) ... ok\ntest_proposed_thresholds_and_human_metric (test_metric_spec.MetricSpecTests.test_proposed_thresholds_and_human_metric) ... ok\ntest_b14_wrong_minus_b_at_step_three (test_thang_cases.ThangCasesTests.test_b14_wrong_minus_b_at_step_three) ... ok\ntest_b15_wrong_denominator_at_step_three (test_thang_cases.ThangCasesTests.test_b15_wrong_denominator_at_step_three) ... ok\ntest_b16_discriminant_first_wrong_at_step_two (test_thang_cases.ThangCasesTests.test_b16_discriminant_first_wrong_at_step_two) ... ok\ntest_b17_zero_delta_is_not_two_distinct_roots (test_thang_cases.ThangCasesTests.test_b17_zero_delta_is_not_two_distinct_roots) ... ok\ntest_b18_all_written_steps_correct (test_thang_cases.ThangCasesTests.test_b18_all_written_steps_correct) ... ok\ntest_b19_first_error_precedes_later_errors (test_thang_cases.ThangCasesTests.test_b19_first_error_precedes_later_errors) ... ok\ntest_b20_changing_all_signs_is_required (test_thang_cases.ThangCasesTests.test_b20_changing_all_signs_is_required) ... ok\ntest_b21_complete_solution_and_substitutions_correct (test_thang_cases.ThangCasesTests.test_b21_complete_solution_and_substitutions_correct) ... ok\ntest_exact_schema_ids_difficult_cases_and_sources (test_thang_cases.ThangCasesTests.test_exact_schema_ids_difficult_cases_and_sources) ... ok\ntest_input_links_time_and_expected_policy (test_thang_cases.ThangCasesTests.test_input_links_time_and_expected_policy) ... ok\n\n----------------------------------------------------------------------\nRan 48 tests in 0.109s\n\nOK\n"
+      },
+      {
+        "command": [
+          "git",
+          "diff",
+          "--check"
+        ],
+        "exit_code": 0,
+        "stdout": "",
+        "stderr": ""
+      }
+    ],
+    "T06-dependency-T04.json": [
+      {
+        "command": [
+          "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+          "run.py"
+        ],
+        "exit_code": 0,
+        "stdout": "Bản chạy thử — gõ đầu vào rồi Enter. Thoát: Ctrl+C (hoặc Enter 2 lần với dòng trống).\n> [câu trả lời giả — chưa nối model] >>>\n   (model: fake · gọi model 1 lần · công cụ 5 lần · token vào 0 / ra 0)\n> > ",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+          "run.py",
+          "check"
+        ],
+        "exit_code": 0,
+        "stdout": "Kiểm eval/benchmark.csv\n  Đủ 6 cột: id,input,expected,pass_criterion,type,source\n  Số câu thử: 3  ·  thuong 1  ·  kho 1  ·  tu_choi 1\n  Nguồn: nguoi_dung 1  ·  data_that 1  ·  tu_viet 1  ·  sinh_seed 0  ·  từ người dùng / data thật: 2/3\n  eval/metric_spec.yaml: 4 metric đã điền đủ (cần ≥3)\nKiểm TEAMS.md\n  4 thành viên\nCần xem lại:\n  ⚠️ Mới 3 câu — CP2 cần ≥10.\n  ⚠️ CP3 cần 20–30 câu (đang có 3).\n  ⚠️ Cần ≥5 câu kho (đang có 1).\n  ⚠️ Cần ≥2 câu tu_choi, gồm 2 câu tấn công (đang có 1).\n  ⚠️ Còn dòng mẫu \"(ví dụ)\": B01, B02, B03 — xoá trước khi nộp.\n(Lệnh này chỉ kiểm, không sửa file.)\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tests",
+          "-v"
+        ],
+        "exit_code": 0,
+        "stdout": "",
+        "stderr": "test_cannot_overwrite_member_source (test_build_benchmark.BuildBenchmarkTests.test_cannot_overwrite_member_source) ... ok\ntest_check_only_creates_no_output (test_build_benchmark.BuildBenchmarkTests.test_check_only_creates_no_output) ... ok\ntest_duplicate_header (test_build_benchmark.BuildBenchmarkTests.test_duplicate_header) ... ok\ntest_duplicate_ids (test_build_benchmark.BuildBenchmarkTests.test_duplicate_ids) ... ok\ntest_empty_message_is_valid_negative_case (test_build_benchmark.BuildBenchmarkTests.test_empty_message_is_valid_negative_case) ... ok\ntest_empty_required_csv_field (test_build_benchmark.BuildBenchmarkTests.test_empty_required_csv_field) ... ok\ntest_extra_and_missing_csv_cell (test_build_benchmark.BuildBenchmarkTests.test_extra_and_missing_csv_cell) ... ok\ntest_header_order_and_extra_header (test_build_benchmark.BuildBenchmarkTests.test_header_order_and_extra_header) ... ok\ntest_invalid_json_and_duplicate_keys (test_build_benchmark.BuildBenchmarkTests.test_invalid_json_and_duplicate_keys) ... ok\ntest_invalid_role_empty_assignment_and_naive_time (test_build_benchmark.BuildBenchmarkTests.test_invalid_role_empty_assignment_and_naive_time) ... ok\ntest_malformed_csv (test_build_benchmark.BuildBenchmarkTests.test_malformed_csv) ... ok\ntest_minimum_difficult_and_refusal_coverage (test_build_benchmark.BuildBenchmarkTests.test_minimum_difficult_and_refusal_coverage) ... ok\ntest_missing_files_reported_together (test_build_benchmark.BuildBenchmarkTests.test_missing_files_reported_together) ... ok\ntest_missing_id (test_build_benchmark.BuildBenchmarkTests.test_missing_id) ... ok\ntest_nine_real_source_labels_are_not_one_third (test_build_benchmark.BuildBenchmarkTests.test_nine_real_source_labels_are_not_one_third) ... ok\ntest_no_partial_output_on_replace_failure (test_build_benchmark.BuildBenchmarkTests.test_no_partial_output_on_replace_failure) ... ok\ntest_outside_range (test_build_benchmark.BuildBenchmarkTests.test_outside_range) ... ok\ntest_required_input_fields_and_types (test_build_benchmark.BuildBenchmarkTests.test_required_input_fields_and_types) ... ok\ntest_sorted_deterministic_and_preserves_every_cell (test_build_benchmark.BuildBenchmarkTests.test_sorted_deterministic_and_preserves_every_cell) ... ok\ntest_source_and_type_validation (test_build_benchmark.BuildBenchmarkTests.test_source_and_type_validation) ... ok\ntest_utf8_bom_is_accepted (test_build_benchmark.BuildBenchmarkTests.test_utf8_bom_is_accepted) ... ok\ntest_wrong_author_range (test_build_benchmark.BuildBenchmarkTests.test_wrong_author_range) ... ok\ntest_agent_retries_and_falls_back (test_check_leak.CheckLeakTests.test_agent_retries_and_falls_back) ... ok\ntest_agent_returns_clean_retry (test_check_leak.CheckLeakTests.test_agent_returns_clean_retry) ... ok\ntest_decimal_comma (test_check_leak.CheckLeakTests.test_decimal_comma) ... ok\ntest_decimal_point (test_check_leak.CheckLeakTests.test_decimal_point) ... ok\ntest_empty_data (test_check_leak.CheckLeakTests.test_empty_data) ... ok\ntest_fraction_equivalence (test_check_leak.CheckLeakTests.test_fraction_equivalence) ... ok\ntest_fraction_signs_and_zero_denominator (test_check_leak.CheckLeakTests.test_fraction_signs_and_zero_denominator) ... ok\ntest_indexed_roots (test_check_leak.CheckLeakTests.test_indexed_roots) ... ok\ntest_latex_fraction (test_check_leak.CheckLeakTests.test_latex_fraction) ... ok\ntest_matches_keep_original_final_answer_strings (test_check_leak.CheckLeakTests.test_matches_keep_original_final_answer_strings) ... ok\ntest_no_code_execution (test_check_leak.CheckLeakTests.test_no_code_execution) ... ok\ntest_no_real_solution (test_check_leak.CheckLeakTests.test_no_real_solution) ... ok\ntest_no_solution_negation_is_not_a_conclusion (test_check_leak.CheckLeakTests.test_no_solution_negation_is_not_a_conclusion) ... ok\ntest_numbers_from_different_assignment (test_check_leak.CheckLeakTests.test_numbers_from_different_assignment) ... ok\ntest_numeric_boundaries (test_check_leak.CheckLeakTests.test_numeric_boundaries) ... ok\ntest_plain_assignment (test_check_leak.CheckLeakTests.test_plain_assignment) ... ok\ntest_polynomial_and_intermediate_calculation (test_check_leak.CheckLeakTests.test_polynomial_and_intermediate_calculation) ... ok\ntest_question_and_negated_assignment (test_check_leak.CheckLeakTests.test_question_and_negated_assignment) ... ok\ntest_scalar_answer (test_check_leak.CheckLeakTests.test_scalar_answer) ... ok\ntest_set_of_roots (test_check_leak.CheckLeakTests.test_set_of_roots) ... ok\ntest_solution_sentence (test_check_leak.CheckLeakTests.test_solution_sentence) ... ok\ntest_step_numbers_and_coefficients (test_check_leak.CheckLeakTests.test_step_numbers_and_coefficients) ... ok\ntest_unicode_negative (test_check_leak.CheckLeakTests.test_unicode_negative) ... ok\ntest_unicode_spaces_and_fullwidth (test_check_leak.CheckLeakTests.test_unicode_spaces_and_fullwidth) ... ok\ntest_vietnamese_assignment (test_check_leak.CheckLeakTests.test_vietnamese_assignment) ... ok\ntest_all_roots_by_discriminant_substitution_and_viete (test_data.DataTests.test_all_roots_by_discriminant_substitution_and_viete) ... ok\ntest_answer_key_available_at_due_boundary (test_data.DataTests.test_answer_key_available_at_due_boundary) ... ok\ntest_assignment_schema_and_links (test_data.DataTests.test_assignment_schema_and_links) ... ok\ntest_delta_search_preserves_page_two (test_data.DataTests.test_delta_search_preserves_page_two) ... ok\ntest_final_answer_variants_are_exact (test_data.DataTests.test_final_answer_variants_are_exact) ... ok\ntest_hint_prompt_never_contains_private_answer_key (test_data.DataTests.test_hint_prompt_never_contains_private_answer_key) ... ok\ntest_lesson_schema_and_identifiers (test_data.DataTests.test_lesson_schema_and_identifiers) ... ok\ntest_other_class_retrieval_is_isolated (test_data.DataTests.test_other_class_retrieval_is_isolated) ... ok\ntest_private_answers_not_returned_before_due (test_data.DataTests.test_private_answers_not_returned_before_due) ... ok\ntest_status_distribution_at_benchmark_time (test_data.DataTests.test_status_distribution_at_benchmark_time) ... ok\ntest_all_four_metrics_have_operational_definitions (test_metric_spec.MetricSpecTests.test_all_four_metrics_have_operational_definitions) ... ok\ntest_approval_is_explicitly_pending (test_metric_spec.MetricSpecTests.test_approval_is_explicitly_pending) ... ok\ntest_proposed_thresholds_and_human_metric (test_metric_spec.MetricSpecTests.test_proposed_thresholds_and_human_metric) ... ok\ntest_b14_wrong_minus_b_at_step_three (test_thang_cases.ThangCasesTests.test_b14_wrong_minus_b_at_step_three) ... ok\ntest_b15_wrong_denominator_at_step_three (test_thang_cases.ThangCasesTests.test_b15_wrong_denominator_at_step_three) ... ok\ntest_b16_discriminant_first_wrong_at_step_two (test_thang_cases.ThangCasesTests.test_b16_discriminant_first_wrong_at_step_two) ... ok\ntest_b17_zero_delta_is_not_two_distinct_roots (test_thang_cases.ThangCasesTests.test_b17_zero_delta_is_not_two_distinct_roots) ... ok\ntest_b18_all_written_steps_correct (test_thang_cases.ThangCasesTests.test_b18_all_written_steps_correct) ... ok\ntest_b19_first_error_precedes_later_errors (test_thang_cases.ThangCasesTests.test_b19_first_error_precedes_later_errors) ... ok\ntest_b20_changing_all_signs_is_required (test_thang_cases.ThangCasesTests.test_b20_changing_all_signs_is_required) ... ok\ntest_b21_complete_solution_and_substitutions_correct (test_thang_cases.ThangCasesTests.test_b21_complete_solution_and_substitutions_correct) ... ok\ntest_exact_schema_ids_difficult_cases_and_sources (test_thang_cases.ThangCasesTests.test_exact_schema_ids_difficult_cases_and_sources) ... ok\ntest_input_links_time_and_expected_policy (test_thang_cases.ThangCasesTests.test_input_links_time_and_expected_policy) ... ok\n\n----------------------------------------------------------------------\nRan 70 tests in 0.742s\n\nOK\n"
+      },
+      {
+        "command": [
+          "git",
+          "diff",
+          "--check"
+        ],
+        "exit_code": 0,
+        "stdout": "",
+        "stderr": ""
+      }
+    ],
+    "T06-notation-fixed.json": [
+      {
+        "command": [
+          "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+          "run.py"
+        ],
+        "exit_code": 0,
+        "stdout": "Bản chạy thử — gõ đầu vào rồi Enter. Thoát: Ctrl+C (hoặc Enter 2 lần với dòng trống).\n> [câu trả lời giả — chưa nối model] >>>\n   (model: fake · gọi model 1 lần · công cụ 6 lần · token vào 0 / ra 0)\n> > ",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+          "run.py",
+          "check"
+        ],
+        "exit_code": 0,
+        "stdout": "Kiểm eval/benchmark.csv\n  Đủ 6 cột: id,input,expected,pass_criterion,type,source\n  Số câu thử: 3  ·  thuong 1  ·  kho 1  ·  tu_choi 1\n  Nguồn: nguoi_dung 1  ·  data_that 1  ·  tu_viet 1  ·  sinh_seed 0  ·  từ người dùng / data thật: 2/3\n  eval/metric_spec.yaml: 4 metric đã điền đủ (cần ≥3)\nKiểm TEAMS.md\n  4 thành viên\nCần xem lại:\n  ⚠️ Mới 3 câu — CP2 cần ≥10.\n  ⚠️ CP3 cần 20–30 câu (đang có 3).\n  ⚠️ Cần ≥5 câu kho (đang có 1).\n  ⚠️ Cần ≥2 câu tu_choi, gồm 2 câu tấn công (đang có 1).\n  ⚠️ Còn dòng mẫu \"(ví dụ)\": B01, B02, B03 — xoá trước khi nộp.\n(Lệnh này chỉ kiểm, không sửa file.)\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tests",
+          "-v"
+        ],
+        "exit_code": 0,
+        "stdout": "",
+        "stderr": "test_ambiguous_or_missing_expected_is_missing_data (test_auto_grade.AutoGradeTests.test_ambiguous_or_missing_expected_is_missing_data) ... ok\ntest_approved_fixture_thresholds_use_spec_values (test_auto_grade.AutoGradeTests.test_approved_fixture_thresholds_use_spec_values) ... ok\ntest_bad_due_date_has_unknown_applicability (test_auto_grade.AutoGradeTests.test_bad_due_date_has_unknown_applicability) ... ok\ntest_benchmark_drift_blocks_grading (test_auto_grade.AutoGradeTests.test_benchmark_drift_blocks_grading) ... ok\ntest_clean_hint_remains_pending_human (test_auto_grade.AutoGradeTests.test_clean_hint_remains_pending_human) ... ok\ntest_cli_draft_keeps_all_inputs_byte_for_byte_and_records_hashes (test_auto_grade.AutoGradeTests.test_cli_draft_keeps_all_inputs_byte_for_byte_and_records_hashes) ... ok\ntest_cli_never_overwrites_an_existing_report_or_input (test_auto_grade.AutoGradeTests.test_cli_never_overwrites_an_existing_report_or_input) ... ok\ntest_cross_class_expected_source_is_missing_data (test_auto_grade.AutoGradeTests.test_cross_class_expected_source_is_missing_data) ... ok\ntest_decision_must_be_on_first_line (test_auto_grade.AutoGradeTests.test_decision_must_be_on_first_line) ... ok\ntest_denominators_include_system_errors_and_missing_cases (test_auto_grade.AutoGradeTests.test_denominators_include_system_errors_and_missing_cases) ... ok\ntest_due_boundary_and_teacher_exclude_leak_metric (test_auto_grade.AutoGradeTests.test_due_boundary_and_teacher_exclude_leak_metric) ... ok\ntest_duplicate_ids_and_invalid_metric_specs_rejected (test_auto_grade.AutoGradeTests.test_duplicate_ids_and_invalid_metric_specs_rejected) ... ok\ntest_empty_output_is_system_error (test_auto_grade.AutoGradeTests.test_empty_output_is_system_error) ... ok\ntest_extra_run_ids_reported (test_auto_grade.AutoGradeTests.test_extra_run_ids_reported) ... ok\ntest_human_values_and_output_are_unchanged_even_on_failure (test_auto_grade.AutoGradeTests.test_human_values_and_output_are_unchanged_even_on_failure) ... ok\ntest_invalid_request_is_missing_data (test_auto_grade.AutoGradeTests.test_invalid_request_is_missing_data) ... ok\ntest_leak_uses_correct_assignment_and_exact_formats (test_auto_grade.AutoGradeTests.test_leak_uses_correct_assignment_and_exact_formats) ... ok\ntest_malformed_citation_alongside_valid_one_fails (test_auto_grade.AutoGradeTests.test_malformed_citation_alongside_valid_one_fails) ... ok\ntest_missing_assignment_is_legitimate_not_found_case (test_auto_grade.AutoGradeTests.test_missing_assignment_is_legitimate_not_found_case) ... ok\ntest_missing_csv_headers_fail_cleanly (test_auto_grade.AutoGradeTests.test_missing_csv_headers_fail_cleanly) ... ok\ntest_missing_final_answers_is_not_silent_no_leak (test_auto_grade.AutoGradeTests.test_missing_final_answers_is_not_silent_no_leak) ... ok\ntest_missing_row_stays_in_denominator (test_auto_grade.AutoGradeTests.test_missing_row_stays_in_denominator) ... ok\ntest_non_applicable_metrics_are_na_not_perfect_scores (test_auto_grade.AutoGradeTests.test_non_applicable_metrics_are_na_not_perfect_scores) ... ok\ntest_other_roots_and_intermediate_numbers_do_not_leak (test_auto_grade.AutoGradeTests.test_other_roots_and_intermediate_numbers_do_not_leak) ... ok\ntest_pending_spec_cannot_become_approved (test_auto_grade.AutoGradeTests.test_pending_spec_cannot_become_approved) ... ok\ntest_system_error_is_not_response_error (test_auto_grade.AutoGradeTests.test_system_error_is_not_response_error) ... ok\ntest_text_expected_label_is_supported (test_auto_grade.AutoGradeTests.test_text_expected_label_is_supported) ... ok\ntest_theory_correct_source_remains_human_review (test_auto_grade.AutoGradeTests.test_theory_correct_source_remains_human_review) ... ok\ntest_theory_missing_citation_fails (test_auto_grade.AutoGradeTests.test_theory_missing_citation_fails) ... ok\ntest_theory_missing_expected_source_is_missing_data (test_auto_grade.AutoGradeTests.test_theory_missing_expected_source_is_missing_data) ... ok\ntest_theory_source_in_pass_criterion (test_auto_grade.AutoGradeTests.test_theory_source_in_pass_criterion) ... ok\ntest_theory_wrong_page_unknown_source_and_unexpected_source (test_auto_grade.AutoGradeTests.test_theory_wrong_page_unknown_source_and_unexpected_source) ... ok\ntest_wrong_decision_is_response_error (test_auto_grade.AutoGradeTests.test_wrong_decision_is_response_error) ... ok\ntest_cannot_overwrite_member_source (test_build_benchmark.BuildBenchmarkTests.test_cannot_overwrite_member_source) ... ok\ntest_check_only_creates_no_output (test_build_benchmark.BuildBenchmarkTests.test_check_only_creates_no_output) ... ok\ntest_duplicate_header (test_build_benchmark.BuildBenchmarkTests.test_duplicate_header) ... ok\ntest_duplicate_ids (test_build_benchmark.BuildBenchmarkTests.test_duplicate_ids) ... ok\ntest_empty_message_is_valid_negative_case (test_build_benchmark.BuildBenchmarkTests.test_empty_message_is_valid_negative_case) ... ok\ntest_empty_required_csv_field (test_build_benchmark.BuildBenchmarkTests.test_empty_required_csv_field) ... ok\ntest_extra_and_missing_csv_cell (test_build_benchmark.BuildBenchmarkTests.test_extra_and_missing_csv_cell) ... ok\ntest_header_order_and_extra_header (test_build_benchmark.BuildBenchmarkTests.test_header_order_and_extra_header) ... ok\ntest_invalid_json_and_duplicate_keys (test_build_benchmark.BuildBenchmarkTests.test_invalid_json_and_duplicate_keys) ... ok\ntest_invalid_role_empty_assignment_and_naive_time (test_build_benchmark.BuildBenchmarkTests.test_invalid_role_empty_assignment_and_naive_time) ... ok\ntest_malformed_csv (test_build_benchmark.BuildBenchmarkTests.test_malformed_csv) ... ok\ntest_minimum_difficult_and_refusal_coverage (test_build_benchmark.BuildBenchmarkTests.test_minimum_difficult_and_refusal_coverage) ... ok\ntest_missing_files_reported_together (test_build_benchmark.BuildBenchmarkTests.test_missing_files_reported_together) ... ok\ntest_missing_id (test_build_benchmark.BuildBenchmarkTests.test_missing_id) ... ok\ntest_nine_real_source_labels_are_not_one_third (test_build_benchmark.BuildBenchmarkTests.test_nine_real_source_labels_are_not_one_third) ... ok\ntest_no_partial_output_on_replace_failure (test_build_benchmark.BuildBenchmarkTests.test_no_partial_output_on_replace_failure) ... ok\ntest_optional_class_id_types_and_unknown_fields_rejected (test_build_benchmark.BuildBenchmarkTests.test_optional_class_id_types_and_unknown_fields_rejected) ... ok\ntest_optional_system_class_id_is_preserved (test_build_benchmark.BuildBenchmarkTests.test_optional_system_class_id_is_preserved) ... ok\ntest_outside_range (test_build_benchmark.BuildBenchmarkTests.test_outside_range) ... ok\ntest_required_input_fields_and_types (test_build_benchmark.BuildBenchmarkTests.test_required_input_fields_and_types) ... ok\ntest_sorted_deterministic_and_preserves_every_cell (test_build_benchmark.BuildBenchmarkTests.test_sorted_deterministic_and_preserves_every_cell) ... ok\ntest_source_and_type_validation (test_build_benchmark.BuildBenchmarkTests.test_source_and_type_validation) ... ok\ntest_utf8_bom_is_accepted (test_build_benchmark.BuildBenchmarkTests.test_utf8_bom_is_accepted) ... ok\ntest_wrong_author_range (test_build_benchmark.BuildBenchmarkTests.test_wrong_author_range) ... ok\ntest_agent_retries_and_falls_back (test_check_leak.CheckLeakTests.test_agent_retries_and_falls_back) ... ok\ntest_agent_returns_clean_retry (test_check_leak.CheckLeakTests.test_agent_returns_clean_retry) ... ok\ntest_chained_numeric_equalities (test_check_leak.CheckLeakTests.test_chained_numeric_equalities) ... ok\ntest_decimal_comma (test_check_leak.CheckLeakTests.test_decimal_comma) ... ok\ntest_decimal_point (test_check_leak.CheckLeakTests.test_decimal_point) ... ok\ntest_empty_data (test_check_leak.CheckLeakTests.test_empty_data) ... ok\ntest_every_packaged_answer_key_triggers_the_guard (test_check_leak.CheckLeakTests.test_every_packaged_answer_key_triggers_the_guard) ... ok\ntest_fraction_equivalence (test_check_leak.CheckLeakTests.test_fraction_equivalence) ... ok\ntest_fraction_signs_and_zero_denominator (test_check_leak.CheckLeakTests.test_fraction_signs_and_zero_denominator) ... ok\ntest_indexed_roots (test_check_leak.CheckLeakTests.test_indexed_roots) ... ok\ntest_latex_fraction (test_check_leak.CheckLeakTests.test_latex_fraction) ... ok\ntest_matches_keep_original_final_answer_strings (test_check_leak.CheckLeakTests.test_matches_keep_original_final_answer_strings) ... ok\ntest_no_code_execution (test_check_leak.CheckLeakTests.test_no_code_execution) ... ok\ntest_no_real_solution (test_check_leak.CheckLeakTests.test_no_real_solution) ... ok\ntest_no_solution_negation_is_not_a_conclusion (test_check_leak.CheckLeakTests.test_no_solution_negation_is_not_a_conclusion) ... ok\ntest_numbers_from_different_assignment (test_check_leak.CheckLeakTests.test_numbers_from_different_assignment) ... ok\ntest_numeric_boundaries (test_check_leak.CheckLeakTests.test_numeric_boundaries) ... ok\ntest_plain_assignment (test_check_leak.CheckLeakTests.test_plain_assignment) ... ok\ntest_plus_minus_root_notation (test_check_leak.CheckLeakTests.test_plus_minus_root_notation) ... ok\ntest_polynomial_and_intermediate_calculation (test_check_leak.CheckLeakTests.test_polynomial_and_intermediate_calculation) ... ok\ntest_question_and_negated_assignment (test_check_leak.CheckLeakTests.test_question_and_negated_assignment) ... ok\ntest_scalar_answer (test_check_leak.CheckLeakTests.test_scalar_answer) ... ok\ntest_set_of_roots (test_check_leak.CheckLeakTests.test_set_of_roots) ... ok\ntest_solution_sentence (test_check_leak.CheckLeakTests.test_solution_sentence) ... ok\ntest_step_numbers_and_coefficients (test_check_leak.CheckLeakTests.test_step_numbers_and_coefficients) ... ok\ntest_unicode_negative (test_check_leak.CheckLeakTests.test_unicode_negative) ... ok\ntest_unicode_spaces_and_fullwidth (test_check_leak.CheckLeakTests.test_unicode_spaces_and_fullwidth) ... ok\ntest_vietnamese_assignment (test_check_leak.CheckLeakTests.test_vietnamese_assignment) ... ok\ntest_all_roots_by_discriminant_substitution_and_viete (test_data.DataTests.test_all_roots_by_discriminant_substitution_and_viete) ... ok\ntest_answer_key_available_at_due_boundary (test_data.DataTests.test_answer_key_available_at_due_boundary) ... ok\ntest_assignment_schema_and_links (test_data.DataTests.test_assignment_schema_and_links) ... ok\ntest_delta_search_preserves_page_two (test_data.DataTests.test_delta_search_preserves_page_two) ... ok\ntest_final_answer_variants_are_exact (test_data.DataTests.test_final_answer_variants_are_exact) ... ok\ntest_hint_prompt_never_contains_private_answer_key (test_data.DataTests.test_hint_prompt_never_contains_private_answer_key) ... ok\ntest_lesson_schema_and_identifiers (test_data.DataTests.test_lesson_schema_and_identifiers) ... ok\ntest_other_class_retrieval_is_isolated (test_data.DataTests.test_other_class_retrieval_is_isolated) ... ok\ntest_private_answers_not_returned_before_due (test_data.DataTests.test_private_answers_not_returned_before_due) ... ok\ntest_status_distribution_at_benchmark_time (test_data.DataTests.test_status_distribution_at_benchmark_time) ... ok\ntest_all_four_metrics_have_operational_definitions (test_metric_spec.MetricSpecTests.test_all_four_metrics_have_operational_definitions) ... ok\ntest_approval_is_explicitly_pending (test_metric_spec.MetricSpecTests.test_approval_is_explicitly_pending) ... ok\ntest_proposed_thresholds_and_human_metric (test_metric_spec.MetricSpecTests.test_proposed_thresholds_and_human_metric) ... ok\ntest_b14_wrong_minus_b_at_step_three (test_thang_cases.ThangCasesTests.test_b14_wrong_minus_b_at_step_three) ... ok\ntest_b15_wrong_denominator_at_step_three (test_thang_cases.ThangCasesTests.test_b15_wrong_denominator_at_step_three) ... ok\ntest_b16_discriminant_first_wrong_at_step_two (test_thang_cases.ThangCasesTests.test_b16_discriminant_first_wrong_at_step_two) ... ok\ntest_b17_zero_delta_is_not_two_distinct_roots (test_thang_cases.ThangCasesTests.test_b17_zero_delta_is_not_two_distinct_roots) ... ok\ntest_b18_all_written_steps_correct (test_thang_cases.ThangCasesTests.test_b18_all_written_steps_correct) ... ok\ntest_b19_first_error_precedes_later_errors (test_thang_cases.ThangCasesTests.test_b19_first_error_precedes_later_errors) ... ok\ntest_b20_changing_all_signs_is_required (test_thang_cases.ThangCasesTests.test_b20_changing_all_signs_is_required) ... ok\ntest_b21_complete_solution_and_substitutions_correct (test_thang_cases.ThangCasesTests.test_b21_complete_solution_and_substitutions_correct) ... ok\ntest_exact_schema_ids_difficult_cases_and_sources (test_thang_cases.ThangCasesTests.test_exact_schema_ids_difficult_cases_and_sources) ... ok\ntest_input_links_time_and_expected_policy (test_thang_cases.ThangCasesTests.test_input_links_time_and_expected_policy) ... ok\n\n----------------------------------------------------------------------\nRan 108 tests in 1.939s\n\nOK\n"
+      },
+      {
+        "command": [
+          "git",
+          "diff",
+          "--check"
+        ],
+        "exit_code": 0,
+        "stdout": "",
+        "stderr": "warning: in the working copy of 'tests/test_auto_grade.py', LF will be replaced by CRLF the next time Git touches it\n"
+      }
+    ],
+    "T06-review-fixed.json": [
+      {
+        "command": [
+          "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+          "run.py"
+        ],
+        "exit_code": 0,
+        "stdout": "Bản chạy thử — gõ đầu vào rồi Enter. Thoát: Ctrl+C (hoặc Enter 2 lần với dòng trống).\n> [câu trả lời giả — chưa nối model] >>>\n   (model: fake · gọi model 1 lần · công cụ 6 lần · token vào 0 / ra 0)\n> > ",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+          "run.py",
+          "check"
+        ],
+        "exit_code": 0,
+        "stdout": "Kiểm eval/benchmark.csv\n  Đủ 6 cột: id,input,expected,pass_criterion,type,source\n  Số câu thử: 3  ·  thuong 1  ·  kho 1  ·  tu_choi 1\n  Nguồn: nguoi_dung 1  ·  data_that 1  ·  tu_viet 1  ·  sinh_seed 0  ·  từ người dùng / data thật: 2/3\n  eval/metric_spec.yaml: 4 metric đã điền đủ (cần ≥3)\nKiểm TEAMS.md\n  4 thành viên\nCần xem lại:\n  ⚠️ Mới 3 câu — CP2 cần ≥10.\n  ⚠️ CP3 cần 20–30 câu (đang có 3).\n  ⚠️ Cần ≥5 câu kho (đang có 1).\n  ⚠️ Cần ≥2 câu tu_choi, gồm 2 câu tấn công (đang có 1).\n  ⚠️ Còn dòng mẫu \"(ví dụ)\": B01, B02, B03 — xoá trước khi nộp.\n(Lệnh này chỉ kiểm, không sửa file.)\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tests",
+          "-v"
+        ],
+        "exit_code": 0,
+        "stdout": "",
+        "stderr": "test_ambiguous_or_missing_expected_is_missing_data (test_auto_grade.AutoGradeTests.test_ambiguous_or_missing_expected_is_missing_data) ... ok\ntest_approved_fixture_thresholds_use_spec_values (test_auto_grade.AutoGradeTests.test_approved_fixture_thresholds_use_spec_values) ... ok\ntest_bad_due_date_has_unknown_applicability (test_auto_grade.AutoGradeTests.test_bad_due_date_has_unknown_applicability) ... ok\ntest_benchmark_drift_blocks_grading (test_auto_grade.AutoGradeTests.test_benchmark_drift_blocks_grading) ... ok\ntest_clean_hint_remains_pending_human (test_auto_grade.AutoGradeTests.test_clean_hint_remains_pending_human) ... ok\ntest_cli_draft_keeps_all_inputs_byte_for_byte_and_records_hashes (test_auto_grade.AutoGradeTests.test_cli_draft_keeps_all_inputs_byte_for_byte_and_records_hashes) ... ok\ntest_cli_never_overwrites_an_existing_report_or_input (test_auto_grade.AutoGradeTests.test_cli_never_overwrites_an_existing_report_or_input) ... ok\ntest_cross_class_expected_source_is_missing_data (test_auto_grade.AutoGradeTests.test_cross_class_expected_source_is_missing_data) ... ok\ntest_decision_must_be_on_first_line (test_auto_grade.AutoGradeTests.test_decision_must_be_on_first_line) ... ok\ntest_denominators_include_system_errors_and_missing_cases (test_auto_grade.AutoGradeTests.test_denominators_include_system_errors_and_missing_cases) ... ok\ntest_due_boundary_and_teacher_exclude_leak_metric (test_auto_grade.AutoGradeTests.test_due_boundary_and_teacher_exclude_leak_metric) ... ok\ntest_duplicate_ids_and_invalid_metric_specs_rejected (test_auto_grade.AutoGradeTests.test_duplicate_ids_and_invalid_metric_specs_rejected) ... ok\ntest_empty_output_is_system_error (test_auto_grade.AutoGradeTests.test_empty_output_is_system_error) ... ok\ntest_extra_run_ids_reported (test_auto_grade.AutoGradeTests.test_extra_run_ids_reported) ... ok\ntest_human_values_and_output_are_unchanged_even_on_failure (test_auto_grade.AutoGradeTests.test_human_values_and_output_are_unchanged_even_on_failure) ... ok\ntest_invalid_request_is_missing_data (test_auto_grade.AutoGradeTests.test_invalid_request_is_missing_data) ... ok\ntest_leak_uses_correct_assignment_and_exact_formats (test_auto_grade.AutoGradeTests.test_leak_uses_correct_assignment_and_exact_formats) ... ok\ntest_malformed_citation_alongside_valid_one_fails (test_auto_grade.AutoGradeTests.test_malformed_citation_alongside_valid_one_fails) ... ok\ntest_missing_assignment_is_legitimate_not_found_case (test_auto_grade.AutoGradeTests.test_missing_assignment_is_legitimate_not_found_case) ... ok\ntest_missing_csv_headers_fail_cleanly (test_auto_grade.AutoGradeTests.test_missing_csv_headers_fail_cleanly) ... ok\ntest_missing_final_answers_is_not_silent_no_leak (test_auto_grade.AutoGradeTests.test_missing_final_answers_is_not_silent_no_leak) ... ok\ntest_missing_row_stays_in_denominator (test_auto_grade.AutoGradeTests.test_missing_row_stays_in_denominator) ... ok\ntest_non_applicable_metrics_are_na_not_perfect_scores (test_auto_grade.AutoGradeTests.test_non_applicable_metrics_are_na_not_perfect_scores) ... ok\ntest_other_roots_and_intermediate_numbers_do_not_leak (test_auto_grade.AutoGradeTests.test_other_roots_and_intermediate_numbers_do_not_leak) ... ok\ntest_pending_spec_cannot_become_approved (test_auto_grade.AutoGradeTests.test_pending_spec_cannot_become_approved) ... ok\ntest_system_error_is_not_response_error (test_auto_grade.AutoGradeTests.test_system_error_is_not_response_error) ... ok\ntest_text_expected_label_is_supported (test_auto_grade.AutoGradeTests.test_text_expected_label_is_supported) ... ok\ntest_theory_correct_source_remains_human_review (test_auto_grade.AutoGradeTests.test_theory_correct_source_remains_human_review) ... ok\ntest_theory_missing_citation_fails (test_auto_grade.AutoGradeTests.test_theory_missing_citation_fails) ... ok\ntest_theory_missing_expected_source_is_missing_data (test_auto_grade.AutoGradeTests.test_theory_missing_expected_source_is_missing_data) ... ok\ntest_theory_source_in_pass_criterion (test_auto_grade.AutoGradeTests.test_theory_source_in_pass_criterion) ... ok\ntest_theory_wrong_page_unknown_source_and_unexpected_source (test_auto_grade.AutoGradeTests.test_theory_wrong_page_unknown_source_and_unexpected_source) ... ok\ntest_wrong_decision_is_response_error (test_auto_grade.AutoGradeTests.test_wrong_decision_is_response_error) ... ok\ntest_cannot_overwrite_member_source (test_build_benchmark.BuildBenchmarkTests.test_cannot_overwrite_member_source) ... ok\ntest_check_only_creates_no_output (test_build_benchmark.BuildBenchmarkTests.test_check_only_creates_no_output) ... ok\ntest_duplicate_header (test_build_benchmark.BuildBenchmarkTests.test_duplicate_header) ... ok\ntest_duplicate_ids (test_build_benchmark.BuildBenchmarkTests.test_duplicate_ids) ... ok\ntest_empty_message_is_valid_negative_case (test_build_benchmark.BuildBenchmarkTests.test_empty_message_is_valid_negative_case) ... ok\ntest_empty_required_csv_field (test_build_benchmark.BuildBenchmarkTests.test_empty_required_csv_field) ... ok\ntest_extra_and_missing_csv_cell (test_build_benchmark.BuildBenchmarkTests.test_extra_and_missing_csv_cell) ... ok\ntest_header_order_and_extra_header (test_build_benchmark.BuildBenchmarkTests.test_header_order_and_extra_header) ... ok\ntest_invalid_json_and_duplicate_keys (test_build_benchmark.BuildBenchmarkTests.test_invalid_json_and_duplicate_keys) ... ok\ntest_invalid_role_empty_assignment_and_naive_time (test_build_benchmark.BuildBenchmarkTests.test_invalid_role_empty_assignment_and_naive_time) ... ok\ntest_malformed_csv (test_build_benchmark.BuildBenchmarkTests.test_malformed_csv) ... ok\ntest_minimum_difficult_and_refusal_coverage (test_build_benchmark.BuildBenchmarkTests.test_minimum_difficult_and_refusal_coverage) ... ok\ntest_missing_files_reported_together (test_build_benchmark.BuildBenchmarkTests.test_missing_files_reported_together) ... ok\ntest_missing_id (test_build_benchmark.BuildBenchmarkTests.test_missing_id) ... ok\ntest_nine_real_source_labels_are_not_one_third (test_build_benchmark.BuildBenchmarkTests.test_nine_real_source_labels_are_not_one_third) ... ok\ntest_no_partial_output_on_replace_failure (test_build_benchmark.BuildBenchmarkTests.test_no_partial_output_on_replace_failure) ... ok\ntest_optional_class_id_types_and_unknown_fields_rejected (test_build_benchmark.BuildBenchmarkTests.test_optional_class_id_types_and_unknown_fields_rejected) ... ok\ntest_optional_system_class_id_is_preserved (test_build_benchmark.BuildBenchmarkTests.test_optional_system_class_id_is_preserved) ... ok\ntest_outside_range (test_build_benchmark.BuildBenchmarkTests.test_outside_range) ... ok\ntest_required_input_fields_and_types (test_build_benchmark.BuildBenchmarkTests.test_required_input_fields_and_types) ... ok\ntest_sorted_deterministic_and_preserves_every_cell (test_build_benchmark.BuildBenchmarkTests.test_sorted_deterministic_and_preserves_every_cell) ... ok\ntest_source_and_type_validation (test_build_benchmark.BuildBenchmarkTests.test_source_and_type_validation) ... ok\ntest_utf8_bom_is_accepted (test_build_benchmark.BuildBenchmarkTests.test_utf8_bom_is_accepted) ... ok\ntest_wrong_author_range (test_build_benchmark.BuildBenchmarkTests.test_wrong_author_range) ... ok\ntest_agent_retries_and_falls_back (test_check_leak.CheckLeakTests.test_agent_retries_and_falls_back) ... ok\ntest_agent_returns_clean_retry (test_check_leak.CheckLeakTests.test_agent_returns_clean_retry) ... ok\ntest_chained_numeric_equalities (test_check_leak.CheckLeakTests.test_chained_numeric_equalities) ... ok\ntest_decimal_comma (test_check_leak.CheckLeakTests.test_decimal_comma) ... ok\ntest_decimal_point (test_check_leak.CheckLeakTests.test_decimal_point) ... ok\ntest_empty_data (test_check_leak.CheckLeakTests.test_empty_data) ... ok\ntest_every_packaged_answer_key_triggers_the_guard (test_check_leak.CheckLeakTests.test_every_packaged_answer_key_triggers_the_guard) ... ok\ntest_fraction_equivalence (test_check_leak.CheckLeakTests.test_fraction_equivalence) ... ok\ntest_fraction_signs_and_zero_denominator (test_check_leak.CheckLeakTests.test_fraction_signs_and_zero_denominator) ... ok\ntest_indexed_roots (test_check_leak.CheckLeakTests.test_indexed_roots) ... ok\ntest_latex_fraction (test_check_leak.CheckLeakTests.test_latex_fraction) ... ok\ntest_matches_keep_original_final_answer_strings (test_check_leak.CheckLeakTests.test_matches_keep_original_final_answer_strings) ... ok\ntest_no_code_execution (test_check_leak.CheckLeakTests.test_no_code_execution) ... ok\ntest_no_real_solution (test_check_leak.CheckLeakTests.test_no_real_solution) ... ok\ntest_no_solution_negation_is_not_a_conclusion (test_check_leak.CheckLeakTests.test_no_solution_negation_is_not_a_conclusion) ... ok\ntest_numbers_from_different_assignment (test_check_leak.CheckLeakTests.test_numbers_from_different_assignment) ... ok\ntest_numeric_boundaries (test_check_leak.CheckLeakTests.test_numeric_boundaries) ... ok\ntest_plain_assignment (test_check_leak.CheckLeakTests.test_plain_assignment) ... ok\ntest_plus_minus_root_notation (test_check_leak.CheckLeakTests.test_plus_minus_root_notation) ... ok\ntest_polynomial_and_intermediate_calculation (test_check_leak.CheckLeakTests.test_polynomial_and_intermediate_calculation) ... ok\ntest_question_and_negated_assignment (test_check_leak.CheckLeakTests.test_question_and_negated_assignment) ... ok\ntest_scalar_answer (test_check_leak.CheckLeakTests.test_scalar_answer) ... ok\ntest_set_of_roots (test_check_leak.CheckLeakTests.test_set_of_roots) ... ok\ntest_solution_sentence (test_check_leak.CheckLeakTests.test_solution_sentence) ... ok\ntest_step_numbers_and_coefficients (test_check_leak.CheckLeakTests.test_step_numbers_and_coefficients) ... ok\ntest_unicode_negative (test_check_leak.CheckLeakTests.test_unicode_negative) ... ok\ntest_unicode_spaces_and_fullwidth (test_check_leak.CheckLeakTests.test_unicode_spaces_and_fullwidth) ... ok\ntest_vietnamese_assignment (test_check_leak.CheckLeakTests.test_vietnamese_assignment) ... ok\ntest_all_roots_by_discriminant_substitution_and_viete (test_data.DataTests.test_all_roots_by_discriminant_substitution_and_viete) ... ok\ntest_answer_key_available_at_due_boundary (test_data.DataTests.test_answer_key_available_at_due_boundary) ... ok\ntest_assignment_schema_and_links (test_data.DataTests.test_assignment_schema_and_links) ... ok\ntest_delta_search_preserves_page_two (test_data.DataTests.test_delta_search_preserves_page_two) ... ok\ntest_final_answer_variants_are_exact (test_data.DataTests.test_final_answer_variants_are_exact) ... ok\ntest_hint_prompt_never_contains_private_answer_key (test_data.DataTests.test_hint_prompt_never_contains_private_answer_key) ... ok\ntest_lesson_schema_and_identifiers (test_data.DataTests.test_lesson_schema_and_identifiers) ... ok\ntest_other_class_retrieval_is_isolated (test_data.DataTests.test_other_class_retrieval_is_isolated) ... ok\ntest_private_answers_not_returned_before_due (test_data.DataTests.test_private_answers_not_returned_before_due) ... ok\ntest_status_distribution_at_benchmark_time (test_data.DataTests.test_status_distribution_at_benchmark_time) ... ok\ntest_all_four_metrics_have_operational_definitions (test_metric_spec.MetricSpecTests.test_all_four_metrics_have_operational_definitions) ... ok\ntest_approval_is_explicitly_pending (test_metric_spec.MetricSpecTests.test_approval_is_explicitly_pending) ... ok\ntest_proposed_thresholds_and_human_metric (test_metric_spec.MetricSpecTests.test_proposed_thresholds_and_human_metric) ... ok\ntest_b14_wrong_minus_b_at_step_three (test_thang_cases.ThangCasesTests.test_b14_wrong_minus_b_at_step_three) ... ok\ntest_b15_wrong_denominator_at_step_three (test_thang_cases.ThangCasesTests.test_b15_wrong_denominator_at_step_three) ... ok\ntest_b16_discriminant_first_wrong_at_step_two (test_thang_cases.ThangCasesTests.test_b16_discriminant_first_wrong_at_step_two) ... ok\ntest_b17_zero_delta_is_not_two_distinct_roots (test_thang_cases.ThangCasesTests.test_b17_zero_delta_is_not_two_distinct_roots) ... ok\ntest_b18_all_written_steps_correct (test_thang_cases.ThangCasesTests.test_b18_all_written_steps_correct) ... ok\ntest_b19_first_error_precedes_later_errors (test_thang_cases.ThangCasesTests.test_b19_first_error_precedes_later_errors) ... ok\ntest_b20_changing_all_signs_is_required (test_thang_cases.ThangCasesTests.test_b20_changing_all_signs_is_required) ... ok\ntest_b21_complete_solution_and_substitutions_correct (test_thang_cases.ThangCasesTests.test_b21_complete_solution_and_substitutions_correct) ... ok\ntest_exact_schema_ids_difficult_cases_and_sources (test_thang_cases.ThangCasesTests.test_exact_schema_ids_difficult_cases_and_sources) ... ok\ntest_input_links_time_and_expected_policy (test_thang_cases.ThangCasesTests.test_input_links_time_and_expected_policy) ... ok\n\n----------------------------------------------------------------------\nRan 108 tests in 2.671s\n\nOK\n"
+      },
+      {
+        "command": [
+          "git",
+          "diff",
+          "--check"
+        ],
+        "exit_code": 0,
+        "stdout": "",
+        "stderr": "warning: in the working copy of 'tests/test_auto_grade.py', LF will be replaced by CRLF the next time Git touches it\n"
+      }
+    ],
+    "T06-updated-contract.json": [
+      {
+        "command": [
+          "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+          "run.py"
+        ],
+        "exit_code": 0,
+        "stdout": "Bản chạy thử — gõ đầu vào rồi Enter. Thoát: Ctrl+C (hoặc Enter 2 lần với dòng trống).\n> [câu trả lời giả — chưa nối model] >>>\n   (model: fake · gọi model 1 lần · công cụ 6 lần · token vào 0 / ra 0)\n> > ",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+          "run.py",
+          "check"
+        ],
+        "exit_code": 0,
+        "stdout": "Kiểm eval/benchmark.csv\n  Đủ 6 cột: id,input,expected,pass_criterion,type,source\n  Số câu thử: 3  ·  thuong 1  ·  kho 1  ·  tu_choi 1\n  Nguồn: nguoi_dung 1  ·  data_that 1  ·  tu_viet 1  ·  sinh_seed 0  ·  từ người dùng / data thật: 2/3\n  eval/metric_spec.yaml: 4 metric đã điền đủ (cần ≥3)\nKiểm TEAMS.md\n  4 thành viên\nCần xem lại:\n  ⚠️ Mới 3 câu — CP2 cần ≥10.\n  ⚠️ CP3 cần 20–30 câu (đang có 3).\n  ⚠️ Cần ≥5 câu kho (đang có 1).\n  ⚠️ Cần ≥2 câu tu_choi, gồm 2 câu tấn công (đang có 1).\n  ⚠️ Còn dòng mẫu \"(ví dụ)\": B01, B02, B03 — xoá trước khi nộp.\n(Lệnh này chỉ kiểm, không sửa file.)\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tests",
+          "-v"
+        ],
+        "exit_code": 0,
+        "stdout": "",
+        "stderr": "test_ambiguous_or_missing_expected_is_missing_data (test_auto_grade.AutoGradeTests.test_ambiguous_or_missing_expected_is_missing_data) ... ok\ntest_approved_fixture_thresholds_use_spec_values (test_auto_grade.AutoGradeTests.test_approved_fixture_thresholds_use_spec_values) ... ok\ntest_bad_due_date_has_unknown_applicability (test_auto_grade.AutoGradeTests.test_bad_due_date_has_unknown_applicability) ... ok\ntest_benchmark_drift_blocks_grading (test_auto_grade.AutoGradeTests.test_benchmark_drift_blocks_grading) ... ok\ntest_clean_hint_remains_pending_human (test_auto_grade.AutoGradeTests.test_clean_hint_remains_pending_human) ... ok\ntest_cli_draft_keeps_all_inputs_byte_for_byte_and_records_hashes (test_auto_grade.AutoGradeTests.test_cli_draft_keeps_all_inputs_byte_for_byte_and_records_hashes) ... ok\ntest_cli_never_overwrites_an_existing_report_or_input (test_auto_grade.AutoGradeTests.test_cli_never_overwrites_an_existing_report_or_input) ... ok\ntest_cross_class_expected_source_is_missing_data (test_auto_grade.AutoGradeTests.test_cross_class_expected_source_is_missing_data) ... ok\ntest_decision_must_be_on_first_line (test_auto_grade.AutoGradeTests.test_decision_must_be_on_first_line) ... ok\ntest_denominators_include_system_errors_and_missing_cases (test_auto_grade.AutoGradeTests.test_denominators_include_system_errors_and_missing_cases) ... ok\ntest_due_boundary_and_teacher_exclude_leak_metric (test_auto_grade.AutoGradeTests.test_due_boundary_and_teacher_exclude_leak_metric) ... ok\ntest_duplicate_ids_and_invalid_metric_specs_rejected (test_auto_grade.AutoGradeTests.test_duplicate_ids_and_invalid_metric_specs_rejected) ... ok\ntest_empty_output_is_system_error (test_auto_grade.AutoGradeTests.test_empty_output_is_system_error) ... ok\ntest_extra_run_ids_reported (test_auto_grade.AutoGradeTests.test_extra_run_ids_reported) ... ok\ntest_human_values_and_output_are_unchanged_even_on_failure (test_auto_grade.AutoGradeTests.test_human_values_and_output_are_unchanged_even_on_failure) ... ok\ntest_invalid_request_is_missing_data (test_auto_grade.AutoGradeTests.test_invalid_request_is_missing_data) ... ok\ntest_leak_uses_correct_assignment_and_exact_formats (test_auto_grade.AutoGradeTests.test_leak_uses_correct_assignment_and_exact_formats) ... ok\ntest_malformed_citation_alongside_valid_one_fails (test_auto_grade.AutoGradeTests.test_malformed_citation_alongside_valid_one_fails) ... ok\ntest_missing_assignment_is_legitimate_not_found_case (test_auto_grade.AutoGradeTests.test_missing_assignment_is_legitimate_not_found_case) ... ok\ntest_missing_csv_headers_fail_cleanly (test_auto_grade.AutoGradeTests.test_missing_csv_headers_fail_cleanly) ... ok\ntest_missing_final_answers_is_not_silent_no_leak (test_auto_grade.AutoGradeTests.test_missing_final_answers_is_not_silent_no_leak) ... ok\ntest_missing_row_stays_in_denominator (test_auto_grade.AutoGradeTests.test_missing_row_stays_in_denominator) ... ok\ntest_non_applicable_metrics_are_na_not_perfect_scores (test_auto_grade.AutoGradeTests.test_non_applicable_metrics_are_na_not_perfect_scores) ... ok\ntest_other_roots_and_intermediate_numbers_do_not_leak (test_auto_grade.AutoGradeTests.test_other_roots_and_intermediate_numbers_do_not_leak) ... ok\ntest_pending_spec_cannot_become_approved (test_auto_grade.AutoGradeTests.test_pending_spec_cannot_become_approved) ... ok\ntest_system_error_is_not_response_error (test_auto_grade.AutoGradeTests.test_system_error_is_not_response_error) ... ok\ntest_text_expected_label_is_supported (test_auto_grade.AutoGradeTests.test_text_expected_label_is_supported) ... ok\ntest_theory_correct_source_remains_human_review (test_auto_grade.AutoGradeTests.test_theory_correct_source_remains_human_review) ... ok\ntest_theory_missing_citation_fails (test_auto_grade.AutoGradeTests.test_theory_missing_citation_fails) ... ok\ntest_theory_missing_expected_source_is_missing_data (test_auto_grade.AutoGradeTests.test_theory_missing_expected_source_is_missing_data) ... ok\ntest_theory_source_in_pass_criterion (test_auto_grade.AutoGradeTests.test_theory_source_in_pass_criterion) ... ok\ntest_theory_wrong_page_unknown_source_and_unexpected_source (test_auto_grade.AutoGradeTests.test_theory_wrong_page_unknown_source_and_unexpected_source) ... ok\ntest_wrong_decision_is_response_error (test_auto_grade.AutoGradeTests.test_wrong_decision_is_response_error) ... ok\ntest_cannot_overwrite_member_source (test_build_benchmark.BuildBenchmarkTests.test_cannot_overwrite_member_source) ... ok\ntest_check_only_creates_no_output (test_build_benchmark.BuildBenchmarkTests.test_check_only_creates_no_output) ... ok\ntest_duplicate_header (test_build_benchmark.BuildBenchmarkTests.test_duplicate_header) ... ok\ntest_duplicate_ids (test_build_benchmark.BuildBenchmarkTests.test_duplicate_ids) ... ok\ntest_empty_message_is_valid_negative_case (test_build_benchmark.BuildBenchmarkTests.test_empty_message_is_valid_negative_case) ... ok\ntest_empty_required_csv_field (test_build_benchmark.BuildBenchmarkTests.test_empty_required_csv_field) ... ok\ntest_extra_and_missing_csv_cell (test_build_benchmark.BuildBenchmarkTests.test_extra_and_missing_csv_cell) ... ok\ntest_header_order_and_extra_header (test_build_benchmark.BuildBenchmarkTests.test_header_order_and_extra_header) ... ok\ntest_invalid_json_and_duplicate_keys (test_build_benchmark.BuildBenchmarkTests.test_invalid_json_and_duplicate_keys) ... ok\ntest_invalid_role_empty_assignment_and_naive_time (test_build_benchmark.BuildBenchmarkTests.test_invalid_role_empty_assignment_and_naive_time) ... ok\ntest_malformed_csv (test_build_benchmark.BuildBenchmarkTests.test_malformed_csv) ... ok\ntest_minimum_difficult_and_refusal_coverage (test_build_benchmark.BuildBenchmarkTests.test_minimum_difficult_and_refusal_coverage) ... ok\ntest_missing_files_reported_together (test_build_benchmark.BuildBenchmarkTests.test_missing_files_reported_together) ... ok\ntest_missing_id (test_build_benchmark.BuildBenchmarkTests.test_missing_id) ... ok\ntest_nine_real_source_labels_are_not_one_third (test_build_benchmark.BuildBenchmarkTests.test_nine_real_source_labels_are_not_one_third) ... ok\ntest_no_partial_output_on_replace_failure (test_build_benchmark.BuildBenchmarkTests.test_no_partial_output_on_replace_failure) ... ok\ntest_optional_class_id_types_and_unknown_fields_rejected (test_build_benchmark.BuildBenchmarkTests.test_optional_class_id_types_and_unknown_fields_rejected) ... ok\ntest_optional_system_class_id_is_preserved (test_build_benchmark.BuildBenchmarkTests.test_optional_system_class_id_is_preserved) ... ok\ntest_outside_range (test_build_benchmark.BuildBenchmarkTests.test_outside_range) ... ok\ntest_required_input_fields_and_types (test_build_benchmark.BuildBenchmarkTests.test_required_input_fields_and_types) ... ok\ntest_sorted_deterministic_and_preserves_every_cell (test_build_benchmark.BuildBenchmarkTests.test_sorted_deterministic_and_preserves_every_cell) ... ok\ntest_source_and_type_validation (test_build_benchmark.BuildBenchmarkTests.test_source_and_type_validation) ... ok\ntest_utf8_bom_is_accepted (test_build_benchmark.BuildBenchmarkTests.test_utf8_bom_is_accepted) ... ok\ntest_wrong_author_range (test_build_benchmark.BuildBenchmarkTests.test_wrong_author_range) ... ok\ntest_agent_retries_and_falls_back (test_check_leak.CheckLeakTests.test_agent_retries_and_falls_back) ... ok\ntest_agent_returns_clean_retry (test_check_leak.CheckLeakTests.test_agent_returns_clean_retry) ... ok\ntest_decimal_comma (test_check_leak.CheckLeakTests.test_decimal_comma) ... ok\ntest_decimal_point (test_check_leak.CheckLeakTests.test_decimal_point) ... ok\ntest_empty_data (test_check_leak.CheckLeakTests.test_empty_data) ... ok\ntest_fraction_equivalence (test_check_leak.CheckLeakTests.test_fraction_equivalence) ... ok\ntest_fraction_signs_and_zero_denominator (test_check_leak.CheckLeakTests.test_fraction_signs_and_zero_denominator) ... ok\ntest_indexed_roots (test_check_leak.CheckLeakTests.test_indexed_roots) ... ok\ntest_latex_fraction (test_check_leak.CheckLeakTests.test_latex_fraction) ... ok\ntest_matches_keep_original_final_answer_strings (test_check_leak.CheckLeakTests.test_matches_keep_original_final_answer_strings) ... ok\ntest_no_code_execution (test_check_leak.CheckLeakTests.test_no_code_execution) ... ok\ntest_no_real_solution (test_check_leak.CheckLeakTests.test_no_real_solution) ... ok\ntest_no_solution_negation_is_not_a_conclusion (test_check_leak.CheckLeakTests.test_no_solution_negation_is_not_a_conclusion) ... ok\ntest_numbers_from_different_assignment (test_check_leak.CheckLeakTests.test_numbers_from_different_assignment) ... ok\ntest_numeric_boundaries (test_check_leak.CheckLeakTests.test_numeric_boundaries) ... ok\ntest_plain_assignment (test_check_leak.CheckLeakTests.test_plain_assignment) ... ok\ntest_polynomial_and_intermediate_calculation (test_check_leak.CheckLeakTests.test_polynomial_and_intermediate_calculation) ... ok\ntest_question_and_negated_assignment (test_check_leak.CheckLeakTests.test_question_and_negated_assignment) ... ok\ntest_scalar_answer (test_check_leak.CheckLeakTests.test_scalar_answer) ... ok\ntest_set_of_roots (test_check_leak.CheckLeakTests.test_set_of_roots) ... ok\ntest_solution_sentence (test_check_leak.CheckLeakTests.test_solution_sentence) ... ok\ntest_step_numbers_and_coefficients (test_check_leak.CheckLeakTests.test_step_numbers_and_coefficients) ... ok\ntest_unicode_negative (test_check_leak.CheckLeakTests.test_unicode_negative) ... ok\ntest_unicode_spaces_and_fullwidth (test_check_leak.CheckLeakTests.test_unicode_spaces_and_fullwidth) ... ok\ntest_vietnamese_assignment (test_check_leak.CheckLeakTests.test_vietnamese_assignment) ... ok\ntest_all_roots_by_discriminant_substitution_and_viete (test_data.DataTests.test_all_roots_by_discriminant_substitution_and_viete) ... ok\ntest_answer_key_available_at_due_boundary (test_data.DataTests.test_answer_key_available_at_due_boundary) ... ok\ntest_assignment_schema_and_links (test_data.DataTests.test_assignment_schema_and_links) ... ok\ntest_delta_search_preserves_page_two (test_data.DataTests.test_delta_search_preserves_page_two) ... ok\ntest_final_answer_variants_are_exact (test_data.DataTests.test_final_answer_variants_are_exact) ... ok\ntest_hint_prompt_never_contains_private_answer_key (test_data.DataTests.test_hint_prompt_never_contains_private_answer_key) ... ok\ntest_lesson_schema_and_identifiers (test_data.DataTests.test_lesson_schema_and_identifiers) ... ok\ntest_other_class_retrieval_is_isolated (test_data.DataTests.test_other_class_retrieval_is_isolated) ... ok\ntest_private_answers_not_returned_before_due (test_data.DataTests.test_private_answers_not_returned_before_due) ... ok\ntest_status_distribution_at_benchmark_time (test_data.DataTests.test_status_distribution_at_benchmark_time) ... ok\ntest_all_four_metrics_have_operational_definitions (test_metric_spec.MetricSpecTests.test_all_four_metrics_have_operational_definitions) ... ok\ntest_approval_is_explicitly_pending (test_metric_spec.MetricSpecTests.test_approval_is_explicitly_pending) ... ok\ntest_proposed_thresholds_and_human_metric (test_metric_spec.MetricSpecTests.test_proposed_thresholds_and_human_metric) ... ok\ntest_b14_wrong_minus_b_at_step_three (test_thang_cases.ThangCasesTests.test_b14_wrong_minus_b_at_step_three) ... ok\ntest_b15_wrong_denominator_at_step_three (test_thang_cases.ThangCasesTests.test_b15_wrong_denominator_at_step_three) ... ok\ntest_b16_discriminant_first_wrong_at_step_two (test_thang_cases.ThangCasesTests.test_b16_discriminant_first_wrong_at_step_two) ... ok\ntest_b17_zero_delta_is_not_two_distinct_roots (test_thang_cases.ThangCasesTests.test_b17_zero_delta_is_not_two_distinct_roots) ... ok\ntest_b18_all_written_steps_correct (test_thang_cases.ThangCasesTests.test_b18_all_written_steps_correct) ... ok\ntest_b19_first_error_precedes_later_errors (test_thang_cases.ThangCasesTests.test_b19_first_error_precedes_later_errors) ... ok\ntest_b20_changing_all_signs_is_required (test_thang_cases.ThangCasesTests.test_b20_changing_all_signs_is_required) ... ok\ntest_b21_complete_solution_and_substitutions_correct (test_thang_cases.ThangCasesTests.test_b21_complete_solution_and_substitutions_correct) ... ok\ntest_exact_schema_ids_difficult_cases_and_sources (test_thang_cases.ThangCasesTests.test_exact_schema_ids_difficult_cases_and_sources) ... ok\ntest_input_links_time_and_expected_policy (test_thang_cases.ThangCasesTests.test_input_links_time_and_expected_policy) ... ok\n\n----------------------------------------------------------------------\nRan 105 tests in 2.490s\n\nOK\n"
+      },
+      {
+        "command": [
+          "git",
+          "diff",
+          "--check"
+        ],
+        "exit_code": 0,
+        "stdout": "",
+        "stderr": ""
+      }
+    ]
+  },
+  "red_regression_log": "python : test_agent_retries_and_falls_back (test_check_leak.CheckLeakTests.test_agent_retries_and_falls_back) ... \r\nAt line:2 char:32\r\n+ ... NG='utf-8'; python -m unittest discover -s tests -p test_check_leak.p ...\r\n+                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\r\n    + CategoryInfo          : NotSpecified: (test_agent_retr...alls_back) ... :String) [], RemoteException\r\n    + FullyQualifiedErrorId : NativeCommandError\r\n \r\n  test_agent_retries_and_falls_back (test_check_leak.CheckLeakTests.test_agent_retries_and_falls_back) \r\n(reply='x=4/2=2') ... FAIL\r\n  test_agent_retries_and_falls_back (test_check_leak.CheckLeakTests.test_agent_retries_and_falls_back) (reply='x=±2') \r\n... FAIL\r\ntest_agent_returns_clean_retry (test_check_leak.CheckLeakTests.test_agent_returns_clean_retry) ... ok\r\ntest_chained_numeric_equalities (test_check_leak.CheckLeakTests.test_chained_numeric_equalities) ... \r\n  test_chained_numeric_equalities (test_check_leak.CheckLeakTests.test_chained_numeric_equalities) (reply='x = -4/2 = \r\n-2') ... FAIL\r\n  test_chained_numeric_equalities (test_check_leak.CheckLeakTests.test_chained_numeric_equalities) (reply='x = 6/2 = \r\n3') ... FAIL\r\n  test_chained_numeric_equalities (test_check_leak.CheckLeakTests.test_chained_numeric_equalities) (reply='x = 99 = \r\n2') ... FAIL\r\n  test_chained_numeric_equalities (test_check_leak.CheckLeakTests.test_chained_numeric_equalities) (reply='x = (1/2) = \r\n0.5') ... FAIL\r\ntest_decimal_comma (test_check_leak.CheckLeakTests.test_decimal_comma) ... ok\r\ntest_decimal_point (test_check_leak.CheckLeakTests.test_decimal_point) ... ok\r\ntest_empty_data (test_check_leak.CheckLeakTests.test_empty_data) ... ok\r\ntest_every_packaged_answer_key_triggers_the_guard \r\n(test_check_leak.CheckLeakTests.test_every_packaged_answer_key_triggers_the_guard) ... ok\r\ntest_fraction_equivalence (test_check_leak.CheckLeakTests.test_fraction_equivalence) ... ok\r\ntest_fraction_signs_and_zero_denominator (test_check_leak.CheckLeakTests.test_fraction_signs_and_zero_denominator) ... \r\nok\r\ntest_indexed_roots (test_check_leak.CheckLeakTests.test_indexed_roots) ... ok\r\ntest_latex_fraction (test_check_leak.CheckLeakTests.test_latex_fraction) ... ok\r\ntest_matches_keep_original_final_answer_strings \r\n(test_check_leak.CheckLeakTests.test_matches_keep_original_final_answer_strings) ... ok\r\ntest_no_code_execution (test_check_leak.CheckLeakTests.test_no_code_execution) ... ok\r\ntest_no_real_solution (test_check_leak.CheckLeakTests.test_no_real_solution) ... ok\r\ntest_no_solution_negation_is_not_a_conclusion \r\n(test_check_leak.CheckLeakTests.test_no_solution_negation_is_not_a_conclusion) ... ok\r\ntest_numbers_from_different_assignment (test_check_leak.CheckLeakTests.test_numbers_from_different_assignment) ... ok\r\ntest_numeric_boundaries (test_check_leak.CheckLeakTests.test_numeric_boundaries) ... ok\r\ntest_plain_assignment (test_check_leak.CheckLeakTests.test_plain_assignment) ... ok\r\ntest_plus_minus_root_notation (test_check_leak.CheckLeakTests.test_plus_minus_root_notation) ... \r\n  test_plus_minus_root_notation (test_check_leak.CheckLeakTests.test_plus_minus_root_notation) (reply='x=±3/2') ... \r\nFAIL\r\n  test_plus_minus_root_notation (test_check_leak.CheckLeakTests.test_plus_minus_root_notation) \r\n(reply='x=\\\\pm\\\\frac{3}{2}') ... FAIL\r\n  test_plus_minus_root_notation (test_check_leak.CheckLeakTests.test_plus_minus_root_notation) (reply='x ∈ {±1.5}') \r\n... FAIL\r\ntest_polynomial_and_intermediate_calculation \r\n(test_check_leak.CheckLeakTests.test_polynomial_and_intermediate_calculation) ... ok\r\ntest_question_and_negated_assignment (test_check_leak.CheckLeakTests.test_question_and_negated_assignment) ... ok\r\ntest_scalar_answer (test_check_leak.CheckLeakTests.test_scalar_answer) ... ok\r\ntest_set_of_roots (test_check_leak.CheckLeakTests.test_set_of_roots) ... ok\r\ntest_solution_sentence (test_check_leak.CheckLeakTests.test_solution_sentence) ... ok\r\ntest_step_numbers_and_coefficients (test_check_leak.CheckLeakTests.test_step_numbers_and_coefficients) ... ok\r\ntest_unicode_negative (test_check_leak.CheckLeakTests.test_unicode_negative) ... ok\r\ntest_unicode_spaces_and_fullwidth (test_check_leak.CheckLeakTests.test_unicode_spaces_and_fullwidth) ... ok\r\ntest_vietnamese_assignment (test_check_leak.CheckLeakTests.test_vietnamese_assignment) ... ok\r\n\r\n======================================================================\r\nFAIL: test_agent_retries_and_falls_back (test_check_leak.CheckLeakTests.test_agent_retries_and_falls_back) \r\n(reply='x=4/2=2')\r\n----------------------------------------------------------------------\r\nTraceback (most recent call last):\r\n  File \"D:\\VinUniAI\\K5-Day15-L3B-Neronmen\\.git\\thang-work\\wt-T02\\tests\\test_check_leak.py\", line 119, in \r\ntest_agent_retries_and_falls_back\r\n    self.assertEqual(agent.answer(\"Em kiểm tra giúp bước này\")[\"output\"], agent.SAFE_HINT)\r\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\nAssertionError: '[QUYET_DINH: GOI_Y]\\nx=4/2=2' != '[QUYET_DINH: GOI_Y]\\nMình chưa thể đưa kết quả khi bài còn hạn[59 \r\nchars]nhé.'\r\n  [QUYET_DINH: GOI_Y]\r\n- x=4/2=2\r\n+ Mình chưa thể đưa kết quả khi bài còn hạn nộp. Em gửi bước em đang làm, mình chỉ ra chỗ cần xem lại nhé.\r\n\r\n\r\n======================================================================\r\nFAIL: test_agent_retries_and_falls_back (test_check_leak.CheckLeakTests.test_agent_retries_and_falls_back) \r\n(reply='x=±2')\r\n----------------------------------------------------------------------\r\nTraceback (most recent call last):\r\n  File \"D:\\VinUniAI\\K5-Day15-L3B-Neronmen\\.git\\thang-work\\wt-T02\\tests\\test_check_leak.py\", line 119, in \r\ntest_agent_retries_and_falls_back\r\n    self.assertEqual(agent.answer(\"Em kiểm tra giúp bước này\")[\"output\"], agent.SAFE_HINT)\r\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\nAssertionError: '[QUYET_DINH: GOI_Y]\\nx=±2' != '[QUYET_DINH: GOI_Y]\\nMình chưa thể đưa kết quả khi bài còn hạn[59 \r\nchars]nhé.'\r\n  [QUYET_DINH: GOI_Y]\r\n- x=±2\r\n+ Mình chưa thể đưa kết quả khi bài còn hạn nộp. Em gửi bước em đang làm, mình chỉ ra chỗ cần xem lại nhé.\r\n\r\n\r\n======================================================================\r\nFAIL: test_chained_numeric_equalities (test_check_leak.CheckLeakTests.test_chained_numeric_equalities) (reply='x = \r\n-4/2 = -2')\r\n----------------------------------------------------------------------\r\nTraceback (most recent call last):\r\n  File \"D:\\VinUniAI\\K5-Day15-L3B-Neronmen\\.git\\thang-work\\wt-T02\\tests\\test_check_leak.py\", line 98, in \r\ntest_chained_numeric_equalities\r\n    self.assertTrue(check_leak(reply, [answer])[\"leaked\"])\r\n    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\nAssertionError: False is not true\r\n\r\n======================================================================\r\nFAIL: test_chained_numeric_equalities (test_check_leak.CheckLeakTests.test_chained_numeric_equalities) (reply='x = 6/2 \r\n= 3')\r\n----------------------------------------------------------------------\r\nTraceback (most recent call last):\r\n  File \"D:\\VinUniAI\\K5-Day15-L3B-Neronmen\\.git\\thang-work\\wt-T02\\tests\\test_check_leak.py\", line 98, in \r\ntest_chained_numeric_equalities\r\n    self.assertTrue(check_leak(reply, [answer])[\"leaked\"])\r\n    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\nAssertionError: False is not true\r\n\r\n======================================================================\r\nFAIL: test_chained_numeric_equalities (test_check_leak.CheckLeakTests.test_chained_numeric_equalities) (reply='x = 99 \r\n= 2')\r\n----------------------------------------------------------------------\r\nTraceback (most recent call last):\r\n  File \"D:\\VinUniAI\\K5-Day15-L3B-Neronmen\\.git\\thang-work\\wt-T02\\tests\\test_check_leak.py\", line 98, in \r\ntest_chained_numeric_equalities\r\n    self.assertTrue(check_leak(reply, [answer])[\"leaked\"])\r\n    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\nAssertionError: False is not true\r\n\r\n======================================================================\r\nFAIL: test_chained_numeric_equalities (test_check_leak.CheckLeakTests.test_chained_numeric_equalities) (reply='x = \r\n(1/2) = 0.5')\r\n----------------------------------------------------------------------\r\nTraceback (most recent call last):\r\n  File \"D:\\VinUniAI\\K5-Day15-L3B-Neronmen\\.git\\thang-work\\wt-T02\\tests\\test_check_leak.py\", line 98, in \r\ntest_chained_numeric_equalities\r\n    self.assertTrue(check_leak(reply, [answer])[\"leaked\"])\r\n    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\nAssertionError: False is not true\r\n\r\n======================================================================\r\nFAIL: test_plus_minus_root_notation (test_check_leak.CheckLeakTests.test_plus_minus_root_notation) (reply='x=±3/2')\r\n----------------------------------------------------------------------\r\nTraceback (most recent call last):\r\n  File \"D:\\VinUniAI\\K5-Day15-L3B-Neronmen\\.git\\thang-work\\wt-T02\\tests\\test_check_leak.py\", line 104, in \r\ntest_plus_minus_root_notation\r\n    self.assertEqual(check_leak(reply, [\"x=1.5\", \"x=-1.5\"])[\"matches\"], [\"x=1.5\", \"x=-1.5\"])\r\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\nAssertionError: Lists differ: [] != ['x=1.5', 'x=-1.5']\r\n\r\nSecond list contains 2 additional elements.\r\nFirst extra element 0:\r\n'x=1.5'\r\n\r\n- []\r\n+ ['x=1.5', 'x=-1.5']\r\n\r\n======================================================================\r\nFAIL: test_plus_minus_root_notation (test_check_leak.CheckLeakTests.test_plus_minus_root_notation) \r\n(reply='x=\\\\pm\\\\frac{3}{2}')\r\n----------------------------------------------------------------------\r\nTraceback (most recent call last):\r\n  File \"D:\\VinUniAI\\K5-Day15-L3B-Neronmen\\.git\\thang-work\\wt-T02\\tests\\test_check_leak.py\", line 104, in \r\ntest_plus_minus_root_notation\r\n    self.assertEqual(check_leak(reply, [\"x=1.5\", \"x=-1.5\"])[\"matches\"], [\"x=1.5\", \"x=-1.5\"])\r\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\nAssertionError: Lists differ: [] != ['x=1.5', 'x=-1.5']\r\n\r\nSecond list contains 2 additional elements.\r\nFirst extra element 0:\r\n'x=1.5'\r\n\r\n- []\r\n+ ['x=1.5', 'x=-1.5']\r\n\r\n======================================================================\r\nFAIL: test_plus_minus_root_notation (test_check_leak.CheckLeakTests.test_plus_minus_root_notation) (reply='x ∈ {±1.5}')\r\n----------------------------------------------------------------------\r\nTraceback (most recent call last):\r\n  File \"D:\\VinUniAI\\K5-Day15-L3B-Neronmen\\.git\\thang-work\\wt-T02\\tests\\test_check_leak.py\", line 104, in \r\ntest_plus_minus_root_notation\r\n    self.assertEqual(check_leak(reply, [\"x=1.5\", \"x=-1.5\"])[\"matches\"], [\"x=1.5\", \"x=-1.5\"])\r\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\nAssertionError: Lists differ: [] != ['x=1.5', 'x=-1.5']\r\n\r\nSecond list contains 2 additional elements.\r\nFirst extra element 0:\r\n'x=1.5'\r\n\r\n- []\r\n+ ['x=1.5', 'x=-1.5']\r\n\r\n----------------------------------------------------------------------\r\nRan 28 tests in 0.077s\r\n\r\nFAILED (failures=9)\r\n",
+  "audit_check": {
+    "current_workspace_transcript_verified": true,
+    "searched_only_current_thread": true,
+    "transcript_evidence_markers": {
+      "T-01.json": true,
+      "T-02.json": true,
+      "T-03.json": true,
+      "T-04.json": true,
+      "T-05.json": true,
+      "T-06.json": true,
+      "Ran 108 tests": true,
+      "ea0e327": true,
+      "950815a": true
+    },
+    "audit_rows": 20,
+    "audit_columns": 6,
+    "every_evidence_pointer_resolves_locally": true,
+    "approximate_initial_planning_times_explicitly_superseded": true
+  }
+}

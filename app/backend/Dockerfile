@@ -20,5 +20,5 @@ RUN useradd --create-home --uid 1000 minutes && mkdir -p /app/storage && chown -
 USER minutes
 
 EXPOSE 8000
-# Cập nhật schema DB (Alembic) rồi mới mở API
-CMD ["sh", "-c", "alembic upgrade head && exec uvicorn app.main:app --host 0.0.0.0 --port 8000 --workers 2 --proxy-headers --forwarded-allow-ips '*'"]
+# Cập nhật schema DB (Alembic) rồi mới mở API. PORT do Render/Railway cấp; WEB_CONCURRENCY=1 cho gói RAM nhỏ
+CMD ["sh", "-c", "alembic upgrade head && exec uvicorn app.main:app --host 0.0.0.0 --port ${PORT:-8000} --workers ${WEB_CONCURRENCY:-1} --proxy-headers --forwarded-allow-ips '*'"]
