@@ -10,13 +10,16 @@
 ```bash
 git clone https://github.com/Neronmen/K5-Day15-L3B-Neronmen.git
 cd K5-Day15-L3B-Neronmen
-git checkout -b <ten>/<ma-ticket>        # vd: ninh/N-02
+git checkout -b <ten>                   # MỖI NGƯỜI MỘT NHÁNH: khoa · ninh · thang · nhai (tạo 1 lần)
+git pull origin main                    # mỗi lần bắt đầu làm: lấy bản mới nhất của main về nhánh mình
 # ... làm, chạy python run.py để chắc không vỡ ...
-git add <file của mình> && git commit -m "N-02: BM25 không dấu cho search_lesson"
-git push -u origin <ten>/<ma-ticket>     # rồi mở Pull Request vào main trên GitHub
+git add <file của mình> && git commit -m "N-02: BM25 không dấu cho search_lesson"   # ghi mã ticket trong message
+git push -u origin <ten>                # rồi mở Pull Request <ten> → main trên GitHub
 ```
 
-- **Khoa review và merge.** Ticket gấp sát giờ checkpoint thì Khoa merge luôn, review sau.
+- **Không commit thẳng lên `main`.** Mọi thứ đi qua nhánh của mình + Pull Request.
+- **Khoa review và merge.** Sát giờ checkpoint thì Khoa merge luôn, review sau. Merge xong, mọi người `git pull origin main` vào nhánh mình.
+- Ghi `Closes #<số issue>` trong mô tả PR để issue tự đóng khi merge.
 - Không commit `.env`, không commit API key (−10 điểm).
 - Trước khi mở PR: `python run.py` chạy không lỗi.
 
