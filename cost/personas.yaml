@@ -16,23 +16,23 @@ users:              # số học sinh THPT dùng gia sư nếu đưa vào dùng 
 
 personas:           # ≥3 kiểu người dùng; share cộng lại = 1. 1 phiên = 1 lần em bí bài và mở gia sư
                     # Nguồn: khảo sát câu 5 "Trong 1 tuần qua, em dùng app giải bài / chatbot cho bài tập về nhà khoảng mấy lần?"
-                    # (evidence/survey/results.csv, n = 12 lúc 17:57 27/11 — cập nhật khi chốt khảo sát)
+                    # (evidence/survey/results.csv, n = 22 lúc 18:09 27/11)
                     # Giả định (tự ước tính): em dùng gia sư thay cho app / chatbot với cùng tần suất; 1 tháng = 4 tuần
   - name: it_hoi
-    share: 0.25             # 3/12 em chọn 0 hoặc 1–2 lần / tuần
-    uses_per_month: 4       # trung bình nhóm ≈ 1 lần / tuần × 4
+    share: 0.32             # 7/22 em chọn 0 hoặc 1–2 lần / tuần
+    uses_per_month: 3       # trung bình nhóm ≈ 0,86 lần / tuần (3 em × 0, 4 em × 1,5) × 4
     turns_per_session: 2    # (tự ước tính) gửi bước làm → nhận gợi ý → hỏi lại 1 lần
-    source: "khảo sát câu 5: 3/12 chọn 0 hoặc 1–2 lần / tuần (điểm giữa 0 và 1,5) × 4 tuần; số lượt / phiên (tự ước tính)"
+    source: "khảo sát câu 5: 7/22 chọn 0 hoặc 1–2 lần / tuần (điểm giữa 0 và 1,5) × 4 tuần; số lượt / phiên (tự ước tính)"
   - name: hoi_vua
-    share: 0.33             # 4/12 em chọn 6–10 lần / tuần
-    uses_per_month: 32      # điểm giữa 8 lần / tuần × 4
+    share: 0.27             # 6/22 em chọn 3–5 hoặc 6–10 lần / tuần
+    uses_per_month: 29      # trung bình nhóm ≈ 7,3 lần / tuần (1 em × 4, 5 em × 8) × 4
     turns_per_session: 3    # (tự ước tính)
-    source: "khảo sát câu 5: 4/12 chọn 6–10 lần / tuần (điểm giữa 8) × 4 tuần; số lượt / phiên (tự ước tính)"
+    source: "khảo sát câu 5: 6/22 chọn 3–5 hoặc 6–10 lần / tuần (điểm giữa 4 và 8) × 4 tuần; số lượt / phiên (tự ước tính)"
   - name: hoi_nhieu
-    share: 0.42             # 5/12 em chọn Trên 10 lần / tuần
+    share: 0.41             # 9/22 em chọn Trên 10 lần / tuần
     uses_per_month: 48      # 12 lần / tuần × 4 — khoảng "Trên 10" không có cận trên, lấy 12 (tự ước tính)
     turns_per_session: 4    # (tự ước tính)
-    source: "khảo sát câu 5: 5/12 chọn Trên 10 lần / tuần (lấy 12, tự ước tính) × 4 tuần; số lượt / phiên (tự ước tính)"
+    source: "khảo sát câu 5: 9/22 chọn Trên 10 lần / tuần (lấy 12, tự ước tính) × 4 tuần; số lượt / phiên (tự ước tính)"
 # Mỗi lượt hỏi lấy ngẫu nhiên một đầu vào trong eval/benchmark.csv (type thuong và kho).
 # Persona hỏi kiểu riêng: thêm vào persona đó
 #     types: [thuong, kho, tu_choi]

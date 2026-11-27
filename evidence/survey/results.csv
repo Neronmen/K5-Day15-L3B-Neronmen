@@ -11,3 +11,13 @@ R9,10,Hôm nay / hôm qua,Chụp ảnh lên app giải bài,Đọc hiểu rồi 
 R10,12,Trong tuần này,"Chụp ảnh lên app giải bài, Hỏi ChatGPT / chatbot, Tìm lời giải trên mạng, Hỏi bạn, Xem lại vở, sách",Xem gợi ý một bước rồi tự làm,6–10,Làm được một phần,"Không có ai để hỏi lúc đó, ",Tuỳ bài,
 R11,12,Trong tuần này,"Chụp ảnh lên app giải bài, Hỏi ChatGPT / chatbot, Tìm lời giải trên mạng",Chỉ xem đáp số để so,6–10,Làm được một phần,Làm sai mà không biết sai ở đâu,Tuỳ bài,
 R12,11,Tuần trước,"Hỏi ChatGPT / chatbot, Hỏi thầy cô / gia sư",Đọc hiểu rồi tự viết lại,6–10,Làm được hết,"Quá nhiều bài, không đủ thời gian",Tuỳ bài,
+R13,10,Tuần trước,"Chụp ảnh lên app giải bài, Hỏi ChatGPT / chatbot, Tìm lời giải trên mạng, Hỏi bố mẹ, anh chị, Hỏi thầy cô / gia sư",Chép gần như nguyên vào bài,3–5,Làm được một phần,"Không biết bắt đầu từ đâu, Làm sai mà không biết sai ở đâu, Quá nhiều bài, không đủ thời gian, Chỉ cần nộp cho đủ","Không, em muốn có đáp án luôn","Em làm bài tập môn Toán, em khó khăn trong việc nhớ công thức Toán Nâng Cao, Em đã suy nghĩ và cố gắng tự làm."
+R14,12,Lâu hơn,"Tìm lời giải trên mạng, Hỏi bạn, Hỏi thầy cô / gia sư, Xem lại vở, sách",Xem gợi ý một bước rồi tự làm,0,Làm được một phần,Không biết bắt đầu từ đâu,Có,
+R15,12,Hôm nay / hôm qua,"Chụp ảnh lên app giải bài, Hỏi ChatGPT / chatbot",Chép gần như nguyên vào bài,Trên 10,Làm được một phần,"Không biết bắt đầu từ đâu, Quá nhiều bài, không đủ thời gian",Có,
+R16,12,Hôm nay / hôm qua,Hỏi bạn,Xem gợi ý một bước rồi tự làm,1–2,Làm được một phần,"Quá nhiều bài, không đủ thời gian",Có,
+R17,11,Trong tuần này,"Hỏi ChatGPT / chatbot, Tìm lời giải trên mạng",Chỉ xem đáp số để so,Trên 10,Không làm được,"Làm sai mà không biết sai ở đâu, Quá nhiều bài, không đủ thời gian",Có,nhìu bài muốn tư duy nhưng tra là ra lun đáp án
+R18,11,Chưa bao giờ,"Xem lại vở, sách",Chỉ xem đáp số để so,1–2,Làm được hết,"Quá nhiều bài, không đủ thời gian",Có,
+R19,10,Trong tuần này,"Chụp ảnh lên app giải bài, Hỏi ChatGPT / chatbot, Hỏi bạn",Chép gần như nguyên vào bài,Trên 10,Làm được một phần,"Làm sai mà không biết sai ở đâu, Không có ai để hỏi lúc đó",Có,
+R20,12,Tuần trước,"Xem lại vở, sách",Chỉ xem đáp số để so,0,Làm được một phần,Làm sai mà không biết sai ở đâu,Có,
+R21,12,Hôm nay / hôm qua,"Chụp ảnh lên app giải bài, Hỏi ChatGPT / chatbot, Tìm lời giải trên mạng",Xem gợi ý một bước rồi tự làm,Trên 10,Không làm được,"Quá nhiều bài, không đủ thời gian",Có,
+R22,11,Trong tuần này,"Chụp ảnh lên app giải bài, Hỏi ChatGPT / chatbot, Hỏi bố mẹ, anh chị",Chép gần như nguyên vào bài,6–10,Làm được một phần,"Không biết bắt đầu từ đâu, Làm sai mà không biết sai ở đâu, Quá nhiều bài, không đủ thời gian, Không có ai để hỏi lúc đó",Tuỳ bài,
