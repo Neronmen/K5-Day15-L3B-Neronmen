@@ -238,6 +238,20 @@ def _leak_values(text, roots_only):
     return values
 
 
+_LEAK_FACTOR = re.compile(r"\(\s*x\s*([+-])\s*(" + _LEAK_NUMBER + r")\s*\)")
+
+
+def _leak_factor_roots(text):
+    """Nghiệm lộ qua dạng nhân tử có số cụ thể: (x - 2)(x + 3) → {2, -3}. Thêm bởi Khoa sau thử tấn công.
+    Chỉ đọc nhân tử dạng (x ± số); (2x - 1) hay (x - r) bằng chữ không tính."""
+    roots = set()
+    for sign, literal in _LEAK_FACTOR.findall(text):
+        value = _leak_fraction(literal)
+        if value is not None:
+            roots.add(value if sign == "-" else -value)
+    return roots
+
+
 def _leak_empty_solution(text):
     for match in _LEAK_EMPTY.finditer(text):
         prefix = re.split(r"[.!?;\n]", text[:match.start()])[-1]
@@ -265,6 +279,7 @@ def check_leak(reply: str, final_answers: list) -> dict:
     for line in normalized.splitlines():
         if re.fullmatch(r"\s*" + _LEAK_VALUE + r"\s*[.!]?\s*", line):
             roots.update(_leak_values(line, roots_only=False))
+    roots.update(_leak_factor_roots(normalized))
     matches = []
     for answer in final_answers:
         if not isinstance(answer, str) or not answer.strip():

@@ -22,7 +22,7 @@ import os
 
 from ai import call_model
 from prompts import NOT_FOUND, SYSTEM_ANSWER, SYSTEM_HINT
-from tools import (check_leak, citations, final_answers_of, get_assignment, get_passages,
+from tools import (check_leak, citations, final_answers_of, flag_message, get_assignment, get_passages,
                    get_tutor_mode, search_lesson)
 from tracing import note
 
@@ -55,7 +55,8 @@ def _fixed(tag: str, msg: str) -> dict:
 
 def answer(text: str) -> dict:
     req = parse_input(text)
-    message = (req.get("message") or "").strip()[:MAX_MESSAGE_CHARS]
+    # Vô hiệu hoá dấu bao <<< >>>: học sinh không thể "đóng" khối tin nhắn để chèn lệnh giả hệ thống.
+    message = (req.get("message") or "").strip()[:MAX_MESSAGE_CHARS].replace("<<<", "‹‹‹").replace(">>>", "›››")
     if not message:
         return _fixed("KHONG_CO", "Em gửi câu hỏi hoặc bước em đang làm nhé.")
     if not req.get("assignment_id"):
@@ -70,6 +71,9 @@ def answer(text: str) -> dict:
 
     # Chế độ do code quyết theo vai từ HỆ THỐNG + giờ máy chủ; "tôi là giáo viên" trong tin nhắn không có tác dụng.
     mode = get_tutor_mode(req["role"], asg["due_at"], req["asked_at"])
+    flag = flag_message(message, mode)  # chỉ gắn cờ để giáo viên xem lại; không chặn, không đổi chế độ
+    if flag:
+        note("gắn cờ tin nhắn: %s" % flag)
 
     # Ngữ cảnh: luôn có đoạn bài giảng của bài tập, cộng đoạn tìm theo câu hỏi (nếu đủ liên quan).
     chunks = get_passages(asg.get("lesson_codes", []))
