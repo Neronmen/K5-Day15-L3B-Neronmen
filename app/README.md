@@ -36,6 +36,20 @@ cd ../frontend && npm install && npm run dev                     # Web: http://l
 Ở chế độ này hàng đợi chạy nền trong API (`TASK_BACKEND=inline`), file lưu ở `backend/storage/`, bảng tự tạo khi khởi động.
 Đăng nhập Google: điền `GOOGLE_CLIENT_ID` trong `.env` (xem [docs/deployment.md](docs/deployment.md)).
 
+### Demo Track F: lớp mẫu Toán 10 dùng chung lõi gia sư đã đo (`codebase/`)
+Khung hỏi bài tập của học sinh gọi **chung lõi** ở `../codebase/` (prompt, `get_tutor_mode`, tìm đoạn BM25, `citations`,
+`check_leak`, `flag_message`) qua `backend/app/agents/core_bridge.py`, nên cái được demo đúng là cái `python run.py eval` đã đo.
+Không có thư mục `codebase/` (vd image Docker chỉ chứa `app/backend`) thì app tự chạy luồng cũ.
+```bash
+cd backend
+DATABASE_URL=sqlite:///./dev.db python scripts/seed_toan10.py    # nạp lớp 10A1: 15 trang bài giảng + 12 bài tập từ ../data/
+DATABASE_URL=sqlite:///./dev.db uvicorn app.main:app --reload
+```
+Đăng nhập tài khoản demo in ra khi seed (mật khẩu ở `DEMO_PASSWORD` trong `scripts/seed_toan10.py`).
+Kịch bản: giáo viên xem lớp và bài tập → học sinh mở BT01 (còn hạn) hỏi "Em tính Delta = 25 + 24 = 49 rồi bí" (gợi ý bước sai)
+và "Cho em đáp số để so thôi" (từ chối) → BT02 (đã hết hạn) được giải → giáo viên mở tab Hỏi đáp xem lịch sử và tin bị gắn cờ.
+Khi còn hạn, câu trả lời hiện một lần (không chạy chữ) vì phải qua `check_leak` trước khi học sinh thấy.
+
 ## Chạy đầy đủ với Docker (Postgres + Redis + Celery worker)
 ```bash
 docker compose up -d --build              # db, redis, api, worker
