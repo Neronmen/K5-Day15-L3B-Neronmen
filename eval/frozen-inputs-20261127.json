@@ -1,0 +1,19 @@
+{
+  "recorded_at": "2026-11-27T21:00:59.213413+07:00",
+  "source_commit": "4d1f81cacbe21e6a94cb4330829bc4352f20a249",
+  "normalization": "UTF-8 bytes; CRLF converted to LF, no other changes",
+  "approval_commit": "ae5bc56",
+  "purpose": "Pre-evaluation lock. Not a provenance claim for historical runs.",
+  "files": {
+    "eval/benchmark.csv": {
+      "sha256_lf": "2563f387ff9ca6d4135ffe3a2660277a8ded57310d287e93ea6f10669dc326aa",
+      "checkout_sha256_at_lock": "de21ed318952c5cc7447b67ecd20393ad04018657a5df40ade829b6c17f8b6b0",
+      "git_blob": "b38375eec027c57cb815c3fbd83b8f31b2090f32"
+    },
+    "eval/metric_spec.yaml": {
+      "sha256_lf": "8fd4261d2da65a149627b770b43f4ee580ad20fe093d5437699dbe6eb51d8d76",
+      "checkout_sha256_at_lock": "913b617dba2e4bdc9c6441b62062d37efd3ec5b394e098a327848f14c81082ff",
+      "git_blob": "0f122ca884f39b87d7a12c2c5be67e79c260b61e"
+    }
+  }
+}
