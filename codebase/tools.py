@@ -10,6 +10,7 @@ HỢP ĐỒNG (giữ nguyên chữ ký để 4 người làm song song, xem TICK
     check_leak(reply, final_answers)    -> {"leaked": bool, "matches": [str]}
     citations(reply, chunks)            -> {"reply": str, "sources": [{"code","page"}]}
     flag_message(message, mode)         -> "jailbreak" | "impersonation" | "ask_answer" | None   (N-03, chỉ gắn cờ)
+    check_open_assignments(message, class_id, now, exclude_id) -> {"matches": [...], "final_answers": [...]}
 
 Bản hiện tại là v0 chạy được, đơn giản. Ai phụ trách thay bằng bản thật theo ticket ghi trong từng hàm.
 """
@@ -389,3 +390,82 @@ _IMPERSONATE = re.compile(
 _ASK_ANSWER = re.compile(
     r"\b(cho|xin|dua|gui|noi|in|bao)\W+(\w+\W+){0,3}?(dap an|dap so|ket qua|loi giai|nghiem cuoi)"
     r"|\bgiai\W+(ho|giup|ho em|chi tiet|het|luon|full)\b|\blam\W+(ho|giup)\b|\bdap (an|so)\W+(\w+\W+){0,2}?de\W+(so|doi chieu|kiem tra)")
+
+
+# ---------- So đề: tin nhắn có chứa đề của một bài CÒN HẠN không (chống "mượn" bài đã hết hạn để xin giải) ----------
+_PROBLEM_SUBS = [
+    (r"\\left|\\right|\\,|\\;|\\!|\$", ""), (r"\\cdot|\\times|·|×", "*"), (r"[−–﹣]", "-"),
+    (r"²", "^2"), (r"³", "^3"), (r"\^\{\s*(\d)\s*\}", r"^\1"), (r"\*\*", "^"),
+    (r"(?<=\d),(?=\d)", "."),  # "2,5" là số thập phân; dấu phẩy còn lại là dấu câu
+]
+_EQUATION = re.compile(r"([0-9x\^\+\-\*\./\s\(\)]{1,60})=([0-9x\^\+\-\*\./\s\(\)]{1,60})")
+_POLY_TERM = re.compile(r"([+-]?)(\d+(?:\.\d+)?(?:/\d+)?)?\*?(x(?:\^(\d))?)?")
+
+
+def _poly(side):
+    """'2x^2 - 3x + 1' → {2: 2, 1: -3, 0: 1} (Fraction). Không đọc được (ngoặc, bậc > 3…) → None."""
+    s = side.replace(" ", "").rstrip(".")
+    if not s or "(" in s or ")" in s:
+        return None
+    out, pos = {}, 0
+    while pos < len(s):
+        m = _POLY_TERM.match(s, pos)
+        if not m or m.end() == pos or (not m.group(2) and not m.group(3)):
+            return None
+        coef = Fraction(m.group(2)) if m.group(2) else Fraction(1)
+        if m.group(1) == "-":
+            coef = -coef
+        deg = (int(m.group(4)) if m.group(4) else 1) if m.group(3) else 0
+        if deg > 3:
+            return None
+        out[deg] = out.get(deg, 0) + coef
+        pos = m.end()
+    return out
+
+
+def problem_keys(text: str) -> set:
+    """Các "dấu vân tay" phương trình trong một đoạn chữ, chuẩn hoá để nhận ra cùng một đề:
+    chuyển hết về một vế, chia cho ước chung, hệ số bậc cao nhất dương → 'x^2 - 5x + 6 = 0', '6 - 5x + x² = 0',
+    '2x^2 - 10x + 12 = 0' cho cùng một khoá. Bỏ qua dòng nghiệm kiểu 'x = 3' (bậc 1, vế trái chỉ có x).
+    Không bắt được thì không có khoá (không đoán)."""
+    t = (text or "").lower()
+    for pat, rep in _PROBLEM_SUBS:  # trước NFKC: NFKC đổi "x²" thành "x2"
+        t = re.sub(pat, rep, t)
+    t = unicodedata.normalize("NFKC", t)
+    keys = set()
+    for left, right in _EQUATION.findall(t):
+        if "x" not in left + right:
+            continue
+        a, b = _poly(left), _poly(right)
+        if a is None or b is None:
+            continue
+        diff = {d: a.get(d, 0) - b.get(d, 0) for d in set(a) | set(b)}
+        diff = {d: c for d, c in diff.items() if c}
+        if not diff or max(diff) < 1:
+            continue
+        if max(diff) == 1 and len(diff) <= 2 and left.strip() == "x":
+            continue  # 'x = 3' là kết luận nghiệm, không phải một đề
+        lead = diff[max(diff)]
+        coefs = tuple(diff.get(d, Fraction(0)) / lead for d in range(max(diff), -1, -1))
+        keys.add("poly:" + ",".join(str(c) for c in coefs))
+    return keys
+
+
+def same_problem(message: str, candidates: list) -> list:
+    """Các bài trong candidates (mỗi bài có "question") mà đề trùng với một phương trình trong message."""
+    mine = problem_keys(message)
+    return [c for c in candidates if mine & problem_keys(c.get("question", ""))] if mine else []
+
+
+@tool
+def check_open_assignments(message: str, class_id: str, now: str, exclude_id: str = None) -> dict:
+    """check_open_assignments · Input: tin nhắn, mã lớp, giờ hỏi (ISO), mã bài đang mở (bỏ qua) ·
+    Output: {"matches": [{"id","title","due_at"}], "final_answers": [str]} — các bài CÒN HẠN cùng lớp có đề trùng
+    phương trình học sinh gửi, kèm đáp án cuối của chúng để check_leak chặn · Không tác động ra ngoài. Owner: Ninh.
+    Dùng ở chế độ answer: học sinh mở bài đã hết hạn rồi dán đề bài còn hạn → agent chuyển về hint cho lượt đó."""
+    now_dt = _parse_dt(now)
+    opens = [a for a in _load("assignments.json")
+             if a.get("class_id") == class_id and a.get("id") != exclude_id and _parse_dt(a["due_at"]) > now_dt]
+    hits = same_problem(message, opens)
+    return {"matches": [{"id": a["id"], "title": a["title"], "due_at": a["due_at"]} for a in hits],
+            "final_answers": [f for a in hits for f in a.get("final_answers", [])]}
