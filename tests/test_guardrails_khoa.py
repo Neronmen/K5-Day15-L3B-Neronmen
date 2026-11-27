@@ -48,3 +48,11 @@ class DelimiterTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class CitationFormatTests(unittest.TestCase):
+    def test_multi_source_tag_is_split_one_code_per_tag(self):
+        from tools import citations
+        chunks = [{"code": "T10-C3-P02", "page": 2}, {"code": "T10-C3-P03", "page": 3}]
+        out = citations("Xem [Nguồn: T10-C3-P02 - Trang 2; T10-C3-P03 - Trang 3].", chunks)["reply"]
+        self.assertIn("[Nguồn: T10-C3-P02 - Trang 2] [Nguồn: T10-C3-P03 - Trang 3]", out)

@@ -336,7 +336,7 @@ def citations(reply: str, chunks: list) -> dict:
             if code not in seen:
                 seen.add(code)
                 sources.append({"code": code, "page": page})
-        return "[Nguồn: %s]" % "; ".join(kept) if kept else ""
+        return " ".join("[Nguồn: %s]" % k for k in kept)  # mỗi nguồn một thẻ: bộ chấm grounding đọc 1 mã / thẻ
 
     clean = _CITE_TAG.sub(rewrite, reply or "")
     if removed:
