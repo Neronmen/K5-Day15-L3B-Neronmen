@@ -157,8 +157,10 @@ class DataTests(unittest.TestCase):
         with patch.object(agent, "call_model", side_effect=model):
             for a in self.assignments:
                 if datetime.fromisoformat(a["due_at"]) > datetime.fromisoformat(ASKED_AT):
-                    result = agent.answer(json.dumps({"assignment_id": a["id"], "role": "student", "asked_at": ASKED_AT, "message": "Em cần kiểm tra công thức."}))
+                    before = len(calls)
+                    result = agent.answer(json.dumps({"assignment_id": a["id"], "role": "student", "class_id": a["class_id"], "asked_at": ASKED_AT, "message": "Em cần kiểm tra công thức."}))
                     self.assertIn("output", result)
+                    self.assertEqual(len(calls), before + 1)
                     self.assertNotIn("ĐÁP ÁN MẪU", calls[-1])
                     self.assertNotIn(a["answer_key"], calls[-1])
 
