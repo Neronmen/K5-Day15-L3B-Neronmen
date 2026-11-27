@@ -55,7 +55,8 @@ def _fixed(tag: str, msg: str) -> dict:
 
 def answer(text: str) -> dict:
     req = parse_input(text)
-    message = (req.get("message") or "").strip()[:MAX_MESSAGE_CHARS]
+    # Vô hiệu hoá dấu bao <<< >>>: học sinh không thể "đóng" khối tin nhắn để chèn lệnh giả hệ thống.
+    message = (req.get("message") or "").strip()[:MAX_MESSAGE_CHARS].replace("<<<", "‹‹‹").replace(">>>", "›››")
     if not message:
         return _fixed("KHONG_CO", "Em gửi câu hỏi hoặc bước em đang làm nhé.")
     if not req.get("assignment_id"):
