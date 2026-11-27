@@ -108,11 +108,17 @@ def _leak_normalize(text):
     text = re.sub(r"\\(?:in)\b", "∈", text)
     text = re.sub(r"\\(?:dfrac|tfrac|frac)\s*\{\s*(" + _LEAK_DECIMAL + r")\s*\}\s*\{\s*(" + _LEAK_DECIMAL + r")\s*\}", r"\1/\2", text)
     text = re.sub(r"\\(?:left|right|quad|qquad)\b|\\[!,;:]", " ", text)
-    text = re.sub(r"\\([(){}\[\]])", r"\1", text).replace("$", "")
+    text = re.sub(r"\\[()\[\]]", " ", text)
+    text = re.sub(r"\\([{}])", r"\1", text).replace("$", "")
     text = re.sub(r"(?<=\d),(?=\d)", ".", text)
     text = re.sub(r"(?<=[+-])\s+(?=[\d.])", "", text)
     text = re.sub(r"\s*/\s*", "/", text)
-    text = re.sub(r"\(\s*(" + _LEAK_NUMBER + r")\s*\)", r"\1", text)
+    # Strip a bounded number of literal-value wrappers, never evaluate expressions.
+    for _ in range(8):
+        unwrapped = re.sub(r"\(\s*(" + _LEAK_VALUE + r")\s*\)", r"\1", text)
+        if unwrapped == text:
+            break
+        text = unwrapped
     return text
 
 
@@ -179,8 +185,9 @@ def check_leak(reply: str, final_answers: list) -> dict:
     normalized = _leak_normalize(reply)
     roots = _leak_values(normalized, roots_only=True)
     scalars = _leak_values(normalized, roots_only=False)
-    if re.fullmatch(r"\s*" + _LEAK_NUMBER + r"\s*[.!]?\s*", normalized):
-        roots.update(scalars)
+    for line in normalized.splitlines():
+        if re.fullmatch(r"\s*" + _LEAK_VALUE + r"\s*[.!]?\s*", line):
+            roots.update(_leak_values(line, roots_only=False))
     matches = []
     for answer in final_answers:
         if not isinstance(answer, str) or not answer.strip():

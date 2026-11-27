@@ -42,7 +42,7 @@ class CheckLeakTests(unittest.TestCase):
         self.assertTrue(check_leak("ｘ\u200b＝\u00a0２", ["x=2"])["leaked"])
 
     def test_set_of_roots(self):
-        for text in (r"S = \{2; 3\}", r"x \in \{2;3\}", "Đáp số: 2 và 3", "2"):
+        for text in (r"S = \{2; 3\}", r"x \in \{2;3\}", "Đáp số: 2 và 3", "2", "[QUYET_DINH: GOI_Y]\n2"):
             with self.subTest(text=text):
                 self.assertTrue(check_leak(text, ["x=2", "x=3"])["leaked"])
 
@@ -99,7 +99,7 @@ class CheckLeakTests(unittest.TestCase):
         self.assertFalse(check_leak("x=2+1", ["x=2"])["leaked"])
 
     def test_plus_minus_root_notation(self):
-        for reply in ("x=±3/2", r"x=\pm\frac{3}{2}", "x ∈ {±1.5}"):
+        for reply in ("x=±3/2", r"x=\pm\frac{3}{2}", "x ∈ {±1.5}", "x=(±3/2)", "±3/2", "[QUYET_DINH: GOI_Y]\n±1.5", r"\[\pm\frac{3}{2}\]", "x=(((±1.5)))"):
             with self.subTest(reply=reply):
                 self.assertEqual(check_leak(reply, ["x=1.5", "x=-1.5"])["matches"], ["x=1.5", "x=-1.5"])
         self.assertFalse(check_leak("x=±2a", ["x=2"])["leaked"])
@@ -114,7 +114,7 @@ class CheckLeakTests(unittest.TestCase):
         self.assertFalse(check_leak("x=__import__('os').system('echo bad')", ["x=2"])["leaked"])
 
     def test_agent_retries_and_falls_back(self):
-        for reply in ("x1 bằng 2", "x=4/2=2", "x=±2"):
+        for reply in ("x1 bằng 2", "x=4/2=2", "x=±2", "x=(±2)", "±2"):
             with self.subTest(reply=reply), patch.object(agent, "call_model", return_value={"text": "[QUYET_DINH: GOI_Y]\n" + reply}) as model:
                 self.assertEqual(agent.answer("Em kiểm tra giúp bước này")["output"], agent.SAFE_HINT)
                 self.assertEqual(model.call_count, 2)
