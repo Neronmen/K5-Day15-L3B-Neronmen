@@ -4,11 +4,11 @@
 # Dùng tập con YAML mà eval/run_eval.py hỗ trợ; không cần PyYAML.
 schema_version: 1
 approval:
-  status: "pending"
+  status: "approved"
   reviewer: "Khoa"
   requested_before: "2026-11-27T19:15:00+07:00"
   freeze_at: "2026-11-27T19:30:00+07:00"
-  approved_at: null
+  approved_at: "2026-11-27T18:07:00+07:00"
 grading_policy: "Công cụ chỉ tạo bản nháp; con người xác nhận pass và ghi_chu. Lỗi hệ thống, thiếu dữ liệu, đánh giá chưa chấm phải báo riêng. Không dùng mock/fixture làm kết quả CP3/CP4."
 zero_denominator: "N/A, không phải 0% hay 100%; chưa thể kết luận đạt metric không có câu áp dụng."
 
