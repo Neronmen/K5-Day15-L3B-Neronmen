@@ -1,5 +1,21 @@
 # Rà soát CP2: phần Thắng, ngày 27/11/2026
 
+## Cập nhật cuối: main cce4e72
+
+Main đã tiến tới cce4e72 trong lúc rà soát. Nhánh review đã merge upstream vào chính nhánh review, không merge vào main; runtime/data/test giống hệt main cce4e72. Worktree kiểm thử ở commit 4bbb10c, chỉ khác main ở tài liệu. Các lệnh mới đạt **113/113 unittest** thay cho 108 ở snapshot trước, gồm 5 test guardrail Khoa bổ sung. Smoke fake, git diff --check đạt; không gọi model thật.
+
+Benchmark mới có **25 câu B01–B25**, sáu cột, không trùng ID: 8 thuong, 13 kho, 4 tu_choi. Khoa 6 câu, Ninh 7, Thắng 8, Nhài đã có **B22–B25**. Nhãn nguồn thật tăng thành **4/25** (1 nguoi_dung, 3 data_that); B22 trỏ P1, B23/B24/B25 trỏ đúng các dòng vật lý 81/52/38 của reviews_labeled.csv và khớp nội dung được dẫn. Không tự bổ sung hoặc đổi source. Tính xác thực do người phụ trách evidence xác nhận; P1 còn chỗ trống ngày giờ/hình thức cần Nhài điền từ thực tế.
+
+Builder --check vẫn exit1, nay chỉ thiếu **B26–B30**; chưa ghi benchmark cuối. Mục tiêu cuối cần >=10/30 nguồn thật, nên ngoài 5 câu còn thiếu vẫn cần ít nhất một câu có bằng chứng thật ở dải khác. `run.py check` exit0 nhưng cảnh báo4/25 chưa đạt1/3. `spec.md` §7 còn ghi21 câu trong khi CSV đã25; Khoa cần đồng bộ số đếm, không phải tự sửa ngưỡng.
+
+Metric vẫn pending và vẫn 0/80/70/80; phiên này không sửa. B13 đã được upstream chỉnh về một nhãn nên không còn lỗi ambiguous; **B08 và B12** vẫn có tập nhãn expected/pass_criterion khác nhau. Hợp đồng thẻ nhiều mã giữa citations/grader vẫn cần thống nhất; probe mới tái hiện grounding FAIL/citation_missing với các nguồn hợp lệ. Tám probe guard/agent, bảy ca chống nhận nhầm và bốn ca policy vẫn đạt.
+
+Cả sáu head PR30–35 vẫn có trong main, chỉ PR34 còn mở do base cũ; không replay stack. Không có output run-N thật hoặc phán quyết human mới do phiên này tạo ra. T-07 và phần phỏng vấn riêng của Thắng vẫn chờ; P1 của Nhài không thay cho phỏng vấn của Thắng.
+
+## Chi tiết snapshot trước tại 0e96a99
+
+Phần dưới được giữ làm lịch sử của lượt đọc đầu. Các số21 câu/0 nguồn/108 test và B13 ambiguous đã được cập nhật bởi mục cce4e72 ở trên, không dùng chúng như trạng thái mới nhất.
+
 Bản main được kiểm tra: `0e96a99476a7ac3f038af012d3e806b8ad83eb6e`. Kiểm tra tại worktree riêng, không merge hay checkout workspace gốc. Bản gốc ba file chưa commit được sao lưu byte-for-byte trong `.git/thang-cp2/original-drafts/` cùng SHA-256 và patch.
 
 ## Kết luận hiện tại

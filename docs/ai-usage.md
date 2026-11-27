@@ -25,3 +25,7 @@ Phần trên chỉ khai báo việc AI hỗ trợ Thắng trong phiên này. Cá
 Codex đọc trạng thái GitHub, dependency, commit/file, CI/review và chạy kiểm chứng trên main 0e96a99 trong worktree riêng. Đã xác minh cả sáu head có trong main, 108 unittest đạt; smoke dùng MODEL_PROVIDER=fake, probe dùng stub synthetic, không gọi model thật trong phiên rà soát. Ghi lại hai điểm hợp đồng chấm cần Khoa/Ninh thống nhất, không sửa agent, CSV, metric hoặc ngưỡng. Chỉ bổ sung tài liệu bàn giao và gợi ý xử lý PR34 dư; không merge main hay đóng Issue.
 
 Ba file nháp T-07 có backup byte-for-byte trước fetch; cập nhật local được thêm vào mà không xóa bản gốc. Không tạo output eval hay human grading/phỏng vấn giả. Dữ liệu kiểm thử synthetic không phải bằng chứng người dùng. Các dòng khai báo của thành viên khác được giữ nguyên. Hướng dẫn và biên nhận: docs/cp2-review-thang.md, docs/verification/thang-cp2-20261127.json.
+
+### Cập nhật cuối theo main cce4e72
+
+Trong cùng phiên rà soát, upstream bổ sung code app/core, 5 test của Khoa và 4 câu có nhãn nguồn thật của Nhài. Codex merge upstream vào nhánh review riêng, không merge main; kiểm113/113 unittest và các probe bằng fake/stub trên runtime/data/test giống main cce4e72. Benchmark hiện25 câu, 4/25 nguồn thật theo nhãn và có điểm đối chiếu P1/review; không tạo interview, nguồn mới hoặc đổi nhãn. Không sửa code/metric/CSV. Các khai báo Nhài và thành viên khác được giữ từ main mới; snapshot0e96a99 phía trên là lịch sử lượt đầu.
