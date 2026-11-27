@@ -20,6 +20,7 @@ class Settings(BaseSettings):
     s3_bucket: str = "minutesstudy"
     s3_access_key: str = "minioadmin"
     s3_secret_key: str = "minioadmin"
+    s3_region: str = ""  # Supabase Storage: vùng của project (vd ap-southeast-1) · R2: auto · MinIO: để trống
 
     # provider:model
     model_chat: str = "deepseek:deepseek-chat"

@@ -85,16 +85,16 @@ git push -u origin <ten>                # rồi mở Pull Request <ten> → main
 
 **Sở hữu:** `data/`, hàm `check_leak` trong `codebase/tools.py`, `tests/`, `eval/build_benchmark.py`, `eval/auto_grade.py`, `eval/metric_spec.yaml`, `eval/cases/thang.csv`
 
-- [ ] **T-01 · Dữ liệu bài học (17:00 → 18:30)**: **giữ nguyên mã `BT01`, `BT02` và lớp `10A1`** (câu thử B01–B06 đang dùng); `data/lesson.json` 1 chương Toán 10 (phương trình bậc hai, ~15 trang, tự viết lại, không chép SGK); `data/assignments.json` ≥12 bài (đề, hạn: ≥8 còn hạn, ≥2 đã hết hạn, ≥1 của lớp khác; `answer_key`; `final_answers` nhiều dạng viết); `data/DATA_CARD.md` (nguồn, cách viết, số dòng).
-- [ ] **T-02 · Chốt chặn lộ đáp án (18:30 → 19:15)**: nâng `check_leak`: số thập phân / phân số / "x bằng 2" / "nghiệm là 2 và 3" / LaTeX; viết `tests/test_check_leak.py` (≥10 ca, gồm ca **không** được báo lộ: số 2 xuất hiện trong "bước 2").
-- [ ] **T-03 · Metric (trước 19:15)**: `eval/metric_spec.yaml` ≥3 metric, cùng Khoa chốt ngưỡng:
+- [x] **T-01 · Dữ liệu bài học (17:00 → 18:30)**: `data/lesson.json` 1 chương Toán 10 (phương trình bậc hai, ~15 trang, tự viết lại, không chép SGK); `data/assignments.json` ≥12 bài (đề, hạn: ≥8 còn hạn, ≥2 đã hết hạn, ≥1 của lớp khác; `answer_key`; `final_answers` nhiều dạng viết); `data/DATA_CARD.md` (nguồn, cách viết, số dòng). Code và 10 test hoàn tất ngày 27/11/2026; giờ kiểm chứng trong `docs/thang-handoff.md` khi bàn giao. Branch `thang/T-01`, chờ Khoa review và merge.
+- [x] **T-02 · Chốt chặn lộ đáp án (18:30 → 19:15)**: nâng `check_leak`: số thập phân / phân số / "x bằng 2" / "nghiệm là 2 và 3" / LaTeX; viết `tests/test_check_leak.py` (≥10 ca, gồm ca **không** được báo lộ: số 2 xuất hiện trong "bước 2"). Trạng thái 2026-11-27T14:54:10+07:00: 25/25 test dat; branch thang/T-02, cho Khoa review va merge.
+- [ ] **T-03 · Metric (trước 19:15)**: `eval/metric_spec.yaml` ≥3 metric, cùng Khoa chốt ngưỡng: Trạng thái 2026-11-27T14:55:46+07:00: Ban de xuat 4 metric da qua 3/3 test; can Khoa duyet truoc 19:15 ngay 27/11/2026 UTC+7, chua khoa chuan.
   - `leak_rate`: % câu còn hạn mà output chứa đáp án cuối (code `check_leak`) → **0%**
   - `decision_accuracy`: % câu đúng nhãn `[QUYET_DINH]` (code)
   - `error_pinpoint`: % câu gợi ý chỉ đúng bước sai (so nhãn lỗi trong `expected`, người chấm)
   - `grounding`: % câu lý thuyết có thẻ nguồn đúng mã đoạn (code)
-- [ ] **T-04 · Ghép bộ câu thử (tối)**: `eval/build_benchmark.py` ghép `eval/cases/*.csv` → `eval/benchmark.csv`, kiểm trùng mã, đúng dải; chạy `python run.py check` sạch cảnh báo.
-- [ ] **T-05 · Câu thử B14–B21 (tối)**: `eval/cases/thang.csv`: bước sai (sai dấu −b, quên 2a, tính Delta sai, kết luận sai số nghiệm), bước đúng hết (không được bịa lỗi), ≥3 câu `kho`.
-- [ ] **T-06 · Chấm tự động (tối)**: `eval/auto_grade.py` đọc `eval/run-N.csv`, gợi ý cột `pass` theo các metric chấm bằng code; người chấm xác nhận, ghi `ghi_chu`.
+- [ ] **T-04 · Ghép bộ câu thử (tối)**: `eval/build_benchmark.py` ghép `eval/cases/*.csv` → `eval/benchmark.csv`, kiểm trùng mã, đúng dải; chạy `python run.py check` sạch cảnh báo. Trạng thái 2026-11-27T14:58:07+07:00: Script va 22/22 test dat; cho du 4 file cases hop le va >=10/30 nguon that; khong thay benchmark mau.
+- [x] **T-05 · Câu thử B14–B21 (tối)**: `eval/cases/thang.csv`: bước sai (sai dấu −b, quên 2a, tính Delta sai, kết luận sai số nghiệm), bước đúng hết (không được bịa lỗi), ≥3 câu `kho`. Trạng thái 2026-11-27T15:00:15+07:00: B14-B21, 4 cau kho; 10 test rieng va 20/20 test tren branch dat; dependency T-01, cho Khoa review.
+- [x] **T-06 · Chấm tự động (tối)**: `eval/auto_grade.py` đọc `eval/run-N.csv`, gợi ý cột `pass` theo các metric chấm bằng code; người chấm xác nhận, ghi `ghi_chu`. Trạng thái 2026-11-27T15:08:30+07:00: Cong cu nhap chi doc; 33 test rieng, 103/103 test tich hop dat; chua co output model that de doi chieu, cho Khoa review. Trạng thái 2026-11-27T16:06:36+07:00: Cap nhat ban tich hop main 0652fc9: 108/108 test dat; hoi quy chuoi dang thuc va ± da duoc review doc lap, cho output that va Khoa duyet.
 - [ ] **T-07 · Báo cáo đánh giá (10:00 → 12:30 T7)**: `eval/report.md` (lượt 1 → lượt 2, ≥3 lỗi có input / output / vì sao sai, gom nhóm có tên) + `eval/README.md` (người thứ hai chấm 5 output, khớp ≥4/5).
 
 ## 📊 Nhài · Bằng chứng + chi phí
