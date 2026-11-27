@@ -1,4 +1,4 @@
-# Render Blueprint: backend FastAPI của MinutesStudy (thư mục app/backend, chạy bằng Dockerfile).
+# Render Blueprint: backend FastAPI của MinutesStudy (app/backend + lõi gia sư codebase/, chạy bằng app/backend/Dockerfile.render).
 # Render → New → Blueprint → chọn repo này. Biến có `sync: false` sẽ được hỏi khi tạo (dán giá trị trong dashboard,
 # KHÔNG ghi vào file này). Hướng dẫn đầy đủ: app/docs/deploy-vercel-supabase-render.md
 services:
@@ -7,8 +7,8 @@ services:
     runtime: docker
     plan: free
     region: singapore
-    rootDir: app/backend
-    dockerfilePath: ./Dockerfile
+    dockerContext: .                           # gốc repo: image mang theo lõi codebase/ + data/ (demo đúng cái đã đo)
+    dockerfilePath: ./app/backend/Dockerfile.render
     healthCheckPath: /docs
     autoDeploy: false
     envVars:

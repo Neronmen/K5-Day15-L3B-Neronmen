@@ -1,0 +1,28 @@
+# Image cho Render: giống app/backend/Dockerfile nhưng build từ GỐC repo để mang theo lõi gia sư codebase/ + data/.
+# Nhờ vậy khung bài tập trên web gọi đúng lõi đã đo bằng eval (app/backend/app/agents/core_bridge.py), không chạy luồng cũ.
+# Build thử trên máy:  docker build -f app/backend/Dockerfile.render -t minutesstudy-api .
+FROM python:3.12-slim
+
+ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1 PIP_NO_CACHE_DIR=1
+WORKDIR /app
+
+COPY app/backend/pyproject.toml ./
+ARG EXTRAS="monitoring"
+RUN mkdir app && touch app/__init__.py \
+ && pip install ".[${EXTRAS}]" \
+ && rm -rf app
+
+COPY app/backend/app ./app
+COPY app/backend/scripts ./scripts
+COPY app/backend/alembic.ini ./
+COPY app/backend/migrations ./migrations
+# Lõi gia sư (chỉ thư viện chuẩn) + dữ liệu mà lõi đọc lúc import. ROOT của lõi = /core
+COPY codebase /core/codebase
+COPY data /core/data
+ENV TUTOR_CORE_DIR=/core/codebase
+
+RUN useradd --create-home --uid 1000 minutes && mkdir -p /app/storage && chown -R minutes /app
+USER minutes
+
+EXPOSE 8000
+CMD ["sh", "-c", "alembic upgrade head && exec uvicorn app.main:app --host 0.0.0.0 --port ${PORT:-8000} --workers ${WEB_CONCURRENCY:-1} --proxy-headers --forwarded-allow-ips '*'"]
