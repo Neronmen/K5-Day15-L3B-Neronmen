@@ -8,7 +8,7 @@ README của nhóm có mục "Dùng AI vào việc gì" (2–3 dòng, bắt bu�
 |---|---|---|---|---|
 | Code bản chạy thử | | | | |
 | Prompt / thiết kế lời gọi mô hình | | | | |
-| Đào data (viết script đếm, gợi ý nhãn) | Claude Code (Claude Opus 5.5) | Viết `evidence/count_reviews.py` (đếm nhãn review) và `evidence/survey/analyze_survey.py` (ẩn danh + đếm khảo sát theo luật đọc ở `questions.md`); chạy thử trên dữ liệu giả ngoài repo. Viết `evidence/fetch_reviews.py` (Nhài chạy, lấy 150 review thật). **Gợi ý nhãn** cho 149 review (cột `nhan_ai`, 11 dòng ghi "CẦN DUYỆT"). **Không** tạo review hay câu trả lời khảo sát | Nhài duyệt từng dòng cột `nhan`; khớp với nhãn AI: __/149 (`count_reviews.py` in số này) | Nhài |
+| Đào data (viết script đếm, gợi ý nhãn) | Claude Code (Claude Opus 5.5) | Viết `evidence/count_reviews.py` (đếm nhãn review) và `evidence/survey/analyze_survey.py` (ẩn danh + đếm khảo sát theo luật đọc ở `questions.md`); chạy thử trên dữ liệu giả ngoài repo. Viết `evidence/fetch_reviews.py` (Nhài chạy, lấy 150 review thật). **Gợi ý nhãn** cho 149 review (cột `nhan_ai`, 11 dòng ghi "CẦN DUYỆT"). **Không** tạo review hay câu trả lời khảo sát | Nhài duyệt từng dòng cột `nhan`; khớp với nhãn AI: 144/149, Nhài đổi 5 dòng (4, 15, 20, 69, 102), lý do ở cột `ghi_chu` | Nhài |
 | Rà câu hỏi phỏng vấn / khảo sát | Claude Code (Claude Opus 5.5) | Chuyển nguyên văn `evidence/survey/questions.md` thành Apps Script `create_form.gs` tạo Google Form (ẩn danh, không thu email); không đổi câu hỏi | Nhài chạy script, mở form kiểm đủ 9 câu | Nhài |
 | Viết câu thử (benchmark) | | | Mỗi câu thử có `source`; câu thử AI viết được ghi rõ | |
 | Sinh data `synthetic` (nếu có) | | | Seed __ · kiểm tay __ dòng | |

@@ -31,15 +31,15 @@ Các *kiểu* nội dung thấy khi đọc:
 
 ## 3. Kết quả
 
-> ⚠️ **BẢN NHÁP — nhãn do AI gợi ý, Nhài chưa duyệt.** Duyệt cột `nhan` trong `reviews_labeled.csv` (11 dòng có ghi chú "CẦN DUYỆT"), chạy lại `python evidence/count_reviews.py` rồi thay số dưới đây. Script in luôn số dòng người đã sửa so với AI.
+Nhãn: AI gợi ý (cột `nhan_ai`), Nhài duyệt và quyết định 11 dòng chưa chắc (cột `nhan`, lý do ở `ghi_chu`). Khớp AI 144/149, Nhài đổi 5 dòng: 4, 15, 20, 69, 102.
 
 | Đếm gì | x / N | % | Ghi chú |
 |---|---|---|---|
-| Review nói về cách dùng lời giải (`giai_ho` + `hieu_bai`) | 23/149 | 15% | 85% còn lại là lỗi app, tiền, khen chung |
-| `giai_ho` trong số review nói về cách dùng | 14/23 | 61% | mẫu số (b) — kết luận chính |
-| `hieu_bai` trong số review nói về cách dùng | 9/23 | 39% | |
-| `giai_ho` trên tất cả review | 14/149 | 9% | mẫu số (a) |
-| Theo app — `giai_ho` / nói về cách dùng | Photomath 3/8 · QANDA 9/10 · AI Hay 2/5 | — | n từng app rất nhỏ, không so % giữa app |
+| Review nói về cách dùng lời giải (`giai_ho` + `hieu_bai`) | 19/149 | 13% | 87% còn lại là lỗi app, tiền, khen chung |
+| **`giai_ho` trong số review nói về cách dùng** | **11/19** | **58%** | mẫu số (b) — kết luận chính |
+| `hieu_bai` trong số review nói về cách dùng | 8/19 | 42% | |
+| `giai_ho` trên tất cả review | 11/149 | 7% | mẫu số (a) |
+| Theo app — `giai_ho` / nói về cách dùng | Photomath 2/5 · QANDA 8/10 · AI Hay 1/4 | — | n từng app rất nhỏ, không so % giữa app |
 
 Ghi dạng "x/N (y%)". "Nhiều bạn…" không phải số.
 
@@ -51,12 +51,12 @@ Ghi dạng "x/N (y%)". "Nhiều bạn…" không phải số.
 4. Dòng 100 · QANDA · 4★ · `giai_ho`: "có những bài ko có trên google thì lại thấy trên này"
 5. Dòng 37 · Photomath · 5★ · `hieu_bai`: "hay quá còn có chỉ bài đẫ lm"
 6. Dòng 38 · Photomath · 4★ · `hieu_bai`: "giải thích hơi khó hiểu"
-7. Dòng 15 · Photomath · 1★ · `hieu_bai`: "ra đáp án sai, ko hiểu, dài dòng, ko đúng trọng tâm, chỉ ra đáp án chung chung"
+7. Dòng 69 · QANDA · 5★ · `hieu_bai`: "chỉ cần chụp cái xong nó tự giải mà còn phân tích cho nữa"
 
 ## 5. Giới hạn của data
 
 Data cho biết người ta **làm gì**, không cho biết **vì sao**. Thiếu gì, lệch về phía nào:
-- Chỉ 23/149 review nói về cách dùng → n nhỏ, % dao động mạnh nếu đổi vài nhãn.
+- Chỉ 19/149 review nói về cách dùng → n nhỏ, % dao động mạnh nếu đổi vài nhãn.
 - Không biết người viết có phải học sinh THPT không (dòng 62 tự nhận lớp 9).
 - Review lệch về 1★ / 5★, đa số chê lỗi kỹ thuật, không nói chuyện học.
 - AI Hay là chatbot đa năng, không hẳn "app giải bài bằng ảnh" như luật chọn app đã ghi → kéo tỉ lệ "nói về cách dùng" xuống.
