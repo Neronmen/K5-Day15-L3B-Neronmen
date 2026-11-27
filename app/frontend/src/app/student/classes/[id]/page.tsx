@@ -58,7 +58,7 @@ export default function StudentClassPage() {
             <Empty>Lớp chưa có bài tập.</Empty>
           ) : (
             data.assignments.map((a) => (
-              <Link key={a.id} href={`/student/assignments/${a.id}`} className="flex items-center gap-3 rounded-[10px] p-3 hover:bg-sunken">
+              <Link key={a.id} href={`/student/assignments/${a.id}`} className="flex items-center gap-3 rounded-xl p-3 hover:bg-sunken">
                 <div className="min-w-0 flex-1">
                   <b className="block truncate">{a.title}</b>
                   <span className="text-xs text-muted">Hạn {fmtDate(a.due_at)}</span>
@@ -77,7 +77,7 @@ export default function StudentClassPage() {
               <Link
                 key={d.id}
                 href={`/student/documents/${d.id}`}
-                className="flex w-full items-center gap-3 rounded-[10px] p-3 text-left hover:bg-sunken"
+                className="flex w-full items-center gap-3 rounded-xl p-3 text-left hover:bg-sunken"
               >
                 <FileText className="flex-none text-muted" />
                 <span className="min-w-0 flex-1">

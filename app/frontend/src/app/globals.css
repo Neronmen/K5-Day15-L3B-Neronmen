@@ -1,58 +1,90 @@
 @import "tailwindcss";
 
-/* Bảng màu MinutesStudy: xanh coban làm điểm nhấn, vàng dạ quang cho thẻ trích nguồn, giấy ô ly cho bài làm. */
-:root {
-  --bg: #f2f4f8;
-  --surface: #ffffff;
-  --sunken: #e9edf4;
-  --ink: #141b2d;
-  --muted: #5a6377;
-  --line: #dce1ea;
-  --accent: #2747d9;
-  --accent-ink: #ffffff;
-  --accent-soft: #e5eafd;
-  --mark: #ffe27a;
-  --mark-ink: #141b2d;
-  --ok: #17804f;
-  --ok-soft: #ddf3e8;
-  --warn: #9a6312;
-  --warn-soft: #fbefd8;
-  --bad: #b8362f;
-  --bad-soft: #fbe3e1;
-  --grid: rgba(39, 71, 217, 0.09);
+/*
+  MinutesStudy — "Bảng & phấn".
+  Bản chính là bảng tối (dark): nền than xanh như bảng lớp học, chữ trắng phấn, MỘT màu nhấn duy nhất là
+  vàng phấn — dùng cho hành động chính, trạng thái đang chọn và dấu dạ quang của thẻ trích nguồn.
+  Bản sáng là giấy vở: nền giấy ngà, dòng kẻ ô ly xanh nhạt, màu nhấn chuyển sang vàng đồng đậm để đủ tương phản.
+  Màu trạng thái (ok / warn / bad) đã giảm bão hoà để không tranh với màu nhấn.
+  Chọn chế độ: <html data-theme="dark|light">, mặc định dark (xem script trong app/layout.tsx).
+*/
+:root,
+[data-theme="dark"] {
+  --bg: #0d1311;
+  --surface: #141b19;
+  --sunken: #1a2320;
+  --field: #111816;
+  --ink: #eceee7;
+  --muted: #98a59e;
+  --faint: #6b7972;
+  --line: #24302c;
+  --line-strong: #33423c;
+  --accent: #f0b94a;
+  --accent-ink: #1b1404;
+  --accent-soft: rgba(240, 185, 74, 0.13);
+  --mark: rgba(240, 185, 74, 0.2);
+  --mark-ink: #fbe2a6;
+  --ok: #6fc69c;
+  --ok-soft: rgba(111, 198, 156, 0.13);
+  --warn: #e9a06a;
+  --warn-soft: rgba(233, 160, 106, 0.13);
+  --bad: #ee7f73;
+  --bad-soft: rgba(238, 127, 115, 0.13);
+  --grid: rgba(236, 238, 231, 0.045);
+  --shadow: 0 1px 0 rgba(255, 255, 255, 0.03) inset, 0 12px 32px -18px rgba(0, 0, 0, 0.7);
+  --glow: 0 0 0 1px rgba(240, 185, 74, 0.35), 0 8px 24px -12px rgba(240, 185, 74, 0.45);
+  --cal-1: #f0b94a;
+  --cal-2: #7fbf9f;
+  --cal-3: #8fa8d6;
+  --cal-4: #d39a86;
+  --cal-5: #b59fd1;
+  --cal-6: #7cbcc4;
+  color-scheme: dark;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #0e131e;
-    --surface: #161d2b;
-    --sunken: #1c2435;
-    --ink: #e6eaf2;
-    --muted: #9aa3b6;
-    --line: #2a3347;
-    --accent: #8199ff;
-    --accent-ink: #0e131e;
-    --accent-soft: #1f2850;
-    --mark: rgba(255, 214, 80, 0.32);
-    --mark-ink: #fff4cc;
-    --ok: #52c78f;
-    --ok-soft: #173326;
-    --warn: #e3b354;
-    --warn-soft: #352812;
-    --bad: #f0796f;
-    --bad-soft: #3a1c1a;
-    --grid: rgba(129, 153, 255, 0.1);
-    color-scheme: dark;
-  }
+[data-theme="light"] {
+  --bg: #f4f2eb;
+  --surface: #fffdf8;
+  --sunken: #efebe1;
+  --field: #fffdf8;
+  --ink: #1b2220;
+  --muted: #5c6661;
+  --faint: #8a928d;
+  --line: #e2dccd;
+  --line-strong: #cfc7b4;
+  --accent: #a46a00;
+  --accent-ink: #fffdf8;
+  --accent-soft: #f8ecd2;
+  --mark: #ffe7a1;
+  --mark-ink: #3b2900;
+  --ok: #1e7650;
+  --ok-soft: #e0f0e6;
+  --warn: #ad5a1f;
+  --warn-soft: #f9e7d8;
+  --bad: #b3392f;
+  --bad-soft: #f7e1dd;
+  --grid: rgba(64, 104, 170, 0.1);
+  --shadow: 0 1px 2px rgba(60, 50, 20, 0.05), 0 10px 28px -20px rgba(60, 50, 20, 0.35);
+  --glow: 0 0 0 1px rgba(164, 106, 0, 0.35), 0 8px 22px -14px rgba(164, 106, 0, 0.45);
+  --cal-1: #b67a0c;
+  --cal-2: #3f8a66;
+  --cal-3: #4a68a6;
+  --cal-4: #a8604a;
+  --cal-5: #7a5fa3;
+  --cal-6: #3d8790;
+  color-scheme: light;
 }
 
 @theme inline {
   --color-bg: var(--bg);
   --color-surface: var(--surface);
   --color-sunken: var(--sunken);
+  --color-field: var(--field);
   --color-ink: var(--ink);
   --color-muted: var(--muted);
+  --color-faint: var(--faint);
   --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
   --color-accent: var(--accent);
   --color-accent-ink: var(--accent-ink);
   --color-accent-soft: var(--accent-soft);
@@ -64,9 +96,41 @@
   --color-warn-soft: var(--warn-soft);
   --color-bad: var(--bad);
   --color-bad-soft: var(--bad-soft);
+  --shadow-card: var(--shadow);
+  --shadow-glow: var(--glow);
   --font-sans: var(--font-body), system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-display: var(--font-heading), var(--font-body), system-ui, sans-serif;
   --font-mono: ui-monospace, "JetBrains Mono", Consolas, monospace;
+  --animate-rise: rise 0.35s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  --animate-shimmer: shimmer 1.4s ease-in-out infinite;
+  --animate-tick: tick 2s ease-in-out infinite;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}
+
+@keyframes shimmer {
+  0%,
+  100% {
+    opacity: 0.45;
+  }
+  50% {
+    opacity: 0.9;
+  }
+}
+
+@keyframes tick {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 45%, transparent);
+  }
+  50% {
+    box-shadow: 0 0 0 5px transparent;
+  }
 }
 
 html,
@@ -78,25 +142,59 @@ body {
 body {
   font-family: var(--font-sans);
   font-size: 15px;
-  line-height: 1.55;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
-h1, h2, h3 {
+h1,
+h2,
+h3 {
   font-family: var(--font-display);
+  letter-spacing: -0.012em;
   text-wrap: balance;
+}
+
+::selection {
+  background: var(--mark);
+  color: var(--ink);
 }
 
 :focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 2px;
+  border-radius: 6px;
 }
 
+/* Thanh cuộn mảnh, cùng tông nền */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--line-strong) transparent;
+}
+
+/* Giấy ô ly: khung bài làm, ô chat của học sinh */
 .paper {
-  background-color: var(--surface);
+  background-color: var(--field);
   background-image: linear-gradient(var(--grid) 1px, transparent 1px),
     linear-gradient(90deg, var(--grid) 1px, transparent 1px);
   background-size: 20px 20px;
   line-height: 20px;
+}
+
+/* Lưới bảng phấn mờ dần — dấu ấn riêng ở đầu trang và màn đăng nhập */
+.chalkboard {
+  background-image: linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 28px 28px;
+  mask-image: radial-gradient(ellipse at top left, black 30%, transparent 75%);
+}
+
+/* Gạch chân phấn dưới tiêu đề trang */
+.chalk-underline {
+  background-image: linear-gradient(90deg, var(--accent), color-mix(in srgb, var(--accent) 10%, transparent));
+  background-size: 100% 2px;
+  background-repeat: no-repeat;
+  background-position: 0 100%;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -104,4 +202,12 @@ h1, h2, h3 {
     animation: none !important;
     transition: none !important;
   }
+}
+
+/* Hàng tab / menu cuộn ngang: không hiện thanh cuộn */
+.no-scrollbar {
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
 }

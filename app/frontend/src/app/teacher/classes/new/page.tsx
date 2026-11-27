@@ -85,7 +85,7 @@ function ModeOption({
   desc: string;
 }) {
   return (
-    <label className="flex cursor-pointer items-start gap-2.5 rounded-[10px] border border-line p-3 has-[:checked]:border-accent has-[:checked]:bg-accent-soft">
+    <label className="flex cursor-pointer items-start gap-2.5 rounded-xl border border-line p-3 has-[:checked]:border-accent has-[:checked]:bg-accent-soft">
       <input type="radio" name="mode" className="mt-1 accent-accent" checked={current === value} onChange={() => onChange(value)} />
       <span>
         <b className="block text-sm">{title}</b>

@@ -49,7 +49,7 @@ export function AnnouncementList({
           <article
             key={a.id}
             className={cn(
-              "flex gap-3 rounded-[10px] border border-line p-3.5",
+              "flex gap-3 rounded-xl border border-line p-3.5",
               a.kind === "cancel" && "border-bad/40 bg-bad-soft/40",
               a.pinned && "border-accent/50",
             )}

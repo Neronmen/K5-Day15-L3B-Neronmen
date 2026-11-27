@@ -61,13 +61,14 @@ export function NotificationBell() {
       >
         <Bell size={18} />
         {unread > 0 && (
-          <span className="absolute right-1 top-1 grid min-w-4 place-items-center rounded-full bg-bad px-1 text-[10px] font-bold text-surface">
+          <span className="absolute right-1 top-1 grid min-w-4 place-items-center rounded-full bg-accent px-1 text-[10px] font-bold text-accent-ink ring-2 ring-bg">
             {unread}
           </span>
         )}
       </button>
       {open && (
-        <div className="absolute right-0 top-11 z-20 w-[min(340px,calc(100vw-32px))] rounded-xl border border-line bg-surface p-2 shadow-lg">
+        <div className="absolute right-0 top-11 z-30 w-[min(360px,calc(100vw-32px))] animate-rise rounded-2xl border border-line-strong bg-surface p-2 shadow-card">
+          <div className="px-2.5 pb-1.5 pt-1 text-xs font-semibold uppercase tracking-[0.12em] text-faint">Thông báo</div>
           {items.length === 0 ? (
             <p className="p-3 text-sm text-muted">Chưa có thông báo.</p>
           ) : (
@@ -76,11 +77,11 @@ export function NotificationBell() {
               const body = (
                 <>
                   <span className="block text-sm">{d.text}</span>
-                  <span className="text-xs text-muted">{fmtDate(n.created_at)}</span>
+                  <span className="text-xs text-faint">{fmtDate(n.created_at)}</span>
                 </>
               );
               return d.href ? (
-                <Link key={n.id} href={d.href} onClick={() => setOpen(false)} className="block rounded-lg p-2.5 hover:bg-sunken">
+                <Link key={n.id} href={d.href} onClick={() => setOpen(false)} className="block rounded-xl p-2.5 transition hover:bg-sunken">
                   {body}
                 </Link>
               ) : (

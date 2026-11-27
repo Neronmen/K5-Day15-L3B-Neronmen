@@ -249,7 +249,7 @@ function SearchPanel({ scope, onOpen }: { scope: Scope; onOpen: (docId: string, 
           <button
             key={`${h.document_id}-${h.page_number}-${i}`}
             onClick={() => onOpen(h.document_id, h.page_number)}
-            className="rounded-[10px] border border-line p-3 text-left hover:border-accent"
+            className="rounded-xl border border-line p-3 text-left hover:border-accent"
           >
             <div className="flex flex-wrap items-center gap-2 text-xs">
               <span className="rounded bg-mark px-1.5 py-0.5 font-semibold text-mark-ink">{h.source_label}</span>
@@ -421,7 +421,7 @@ function AssistantChat({
         )}
         {msgs.map((m) =>
           m.role === "user" ? (
-            <div key={m.id} className="max-w-[88%] self-end whitespace-pre-wrap break-words rounded-xl rounded-br-sm bg-accent px-3.5 py-2.5 text-sm text-accent-ink">
+            <div key={m.id} className="max-w-[85%] self-end whitespace-pre-wrap break-words rounded-2xl rounded-br-md border border-accent/25 bg-accent-soft px-4 py-2.5 text-sm text-ink">
               {m.content}
             </div>
           ) : (
@@ -474,12 +474,12 @@ function AssistantChat({
             }
           }}
           placeholder={`${current.label}: ${web ? WEB_HINT : current.hint}`}
-          className="max-h-40 min-w-0 flex-1 resize-none rounded-[9px] border border-line bg-surface px-3 py-2 text-sm"
+          className="max-h-40 min-w-0 flex-1 resize-none rounded-xl border border-line-strong bg-field px-3 py-2 text-sm transition placeholder:text-faint focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/20"
         />
         <button
           disabled={busy || !input.trim()}
           aria-label="Gửi"
-          className="grid size-10 flex-none place-items-center self-end rounded-[9px] bg-accent text-accent-ink disabled:opacity-50"
+          className="grid size-10 flex-none place-items-center self-end rounded-xl bg-accent text-accent-ink transition hover:brightness-105 disabled:bg-sunken disabled:text-faint"
         >
           <SendHorizontal size={17} />
         </button>

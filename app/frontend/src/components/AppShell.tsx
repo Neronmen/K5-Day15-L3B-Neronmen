@@ -7,7 +7,7 @@ import { BookOpen, CalendarDays, LayoutGrid, LogOut, Sparkles } from "lucide-rea
 import { initials } from "@/lib/format";
 import { useAuth } from "@/lib/auth";
 import { NotificationBell } from "./NotificationBell";
-import { Avatar, cn } from "./ui";
+import { Avatar, cn, Logo, ThemeToggle, Wordmark } from "./ui";
 
 const NAV = {
   teacher: [
@@ -27,60 +27,92 @@ export function AppShell({ children }: { children: React.ReactNode }) {
   const router = useRouter();
   if (!user) return null;
   const nav = NAV[user.role];
+  const roleLabel = user.role === "teacher" ? "Giáo viên" : "Học sinh";
+  // Mục dài nhất khớp đường dẫn mới sáng (để /teacher/schedule không làm sáng cả /teacher)
+  const active = nav
+    .filter((n) => pathname === n.href || pathname.startsWith(n.href + "/"))
+    .sort((a, b) => b.href.length - a.href.length)[0]?.href;
+  const signOut = () => {
+    logout();
+    router.replace("/login");
+  };
+
+  const links = nav.map(({ href, label, icon: Icon }) => (
+    <Link
+      key={href}
+      href={href}
+      aria-current={active === href ? "page" : undefined}
+      className={cn(
+        "group relative flex flex-none items-center gap-3 whitespace-nowrap rounded-lg px-3 py-2 text-[0.9rem] font-medium text-muted transition hover:bg-sunken hover:text-ink",
+        active === href && "bg-sunken text-ink",
+      )}
+    >
+      {/* vạch phấn đánh dấu mục đang mở */}
+      <span
+        className={cn(
+          "absolute left-0 top-1/2 hidden h-5 w-[3px] -translate-y-1/2 rounded-r bg-accent lg:block",
+          active === href ? "opacity-100" : "opacity-0",
+        )}
+      />
+      <Icon size={18} className={cn("transition", active === href ? "text-accent" : "text-faint group-hover:text-muted")} />
+      {label}
+    </Link>
+  ));
 
   return (
-    <div className="flex min-h-screen flex-col">
-      <header className="sticky top-0 z-10 border-b border-line bg-surface">
-        <div className="flex items-center gap-2 px-4 py-2.5 sm:gap-4">
-          <Link href={nav[0].href} className="mr-auto flex items-center gap-2.5 font-display text-lg font-bold">
-            <span className="grid size-[30px] place-items-center rounded-lg bg-accent font-mono text-xs text-accent-ink">MS</span>
-            MinutesStudy
-          </Link>
-          <span className="hidden text-xs uppercase tracking-[0.08em] text-muted sm:inline">
-            {user.role === "teacher" ? "Giáo viên" : "Học sinh"}
-          </span>
-          <NotificationBell />
-          <div className="flex items-center gap-2 text-sm">
+    <div className="min-h-screen lg:grid lg:grid-cols-[248px_minmax(0,1fr)]">
+      {/* Thanh bên — máy tính */}
+      <aside className="sticky top-0 hidden h-screen flex-col border-r border-line bg-surface lg:flex">
+        <Link href={nav[0].href} className="flex items-center gap-2.5 px-5 pb-5 pt-6 text-[1.05rem]">
+          <Logo size={30} />
+          <Wordmark />
+        </Link>
+        <div className="px-5 pb-2 text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-faint">{roleLabel}</div>
+        <nav className="flex flex-col gap-0.5 px-3">{links}</nav>
+        <div className="mt-auto border-t border-line p-3">
+          <div className="flex items-center gap-2.5 rounded-xl px-2 py-2">
             <Avatar text={initials(user.name)} />
-            <span className="hidden sm:inline">{user.name}</span>
+            <div className="min-w-0 flex-1">
+              <div className="truncate text-sm font-semibold">{user.name}</div>
+              <div className="truncate text-xs text-faint">{user.email}</div>
+            </div>
           </div>
-          <button
-            onClick={() => {
-              logout();
-              router.replace("/login");
-            }}
-            aria-label="Đăng xuất"
-            title="Đăng xuất"
-            className="inline-flex items-center gap-1.5 rounded-lg px-2 py-1.5 text-sm text-muted hover:bg-sunken hover:text-ink"
-          >
-            <LogOut size={16} /> <span className="hidden sm:inline">Đăng xuất</span>
-          </button>
+          <div className="mt-1 flex items-center gap-1">
+            <ThemeToggle withLabel className="flex-1" />
+            <button
+              onClick={signOut}
+              aria-label="Đăng xuất"
+              title="Đăng xuất"
+              className="inline-flex items-center rounded-lg p-2 text-muted transition hover:bg-bad-soft hover:text-bad"
+            >
+              <LogOut size={16} />
+            </button>
+          </div>
         </div>
-      </header>
-      <div className="grid flex-1 grid-rows-[auto_minmax(0,1fr)] md:grid-cols-[220px_minmax(0,1fr)] md:grid-rows-1">
-        <nav className="flex gap-1 overflow-x-auto border-b border-line bg-surface px-4 py-2 md:flex-col md:border-b-0 md:border-r md:px-2.5 md:py-4">
-          {nav.map(({ href, label, icon: Icon }) => {
-            // Mục dài nhất khớp đường dẫn mới sáng (để /teacher/schedule không làm sáng cả /teacher)
-            const best = nav.filter((n) => pathname === n.href || pathname.startsWith(n.href + "/")).sort((a, b) => b.href.length - a.href.length)[0];
-            const active = best?.href === href;
-            return (
-              <Link
-                key={href}
-                href={href}
-                aria-current={active ? "page" : undefined}
-                className={cn(
-                  "flex flex-none items-center gap-2.5 whitespace-nowrap rounded-lg px-2.5 py-2 text-[0.92rem] font-medium hover:bg-sunken",
-                  active && "bg-accent-soft text-accent hover:bg-accent-soft",
-                )}
-              >
-                <Icon size={18} />
-                {label}
-              </Link>
-            );
-          })}
-        </nav>
-        <main className="min-w-0 px-4 pb-12 pt-6">
-          <div className="mx-auto flex max-w-[1180px] flex-col gap-5">{children}</div>
+      </aside>
+
+      <div className="flex min-w-0 flex-col">
+        {/* Thanh trên — điện thoại; trên máy tính chỉ còn chuông thông báo */}
+        <header className="sticky top-0 z-20 border-b border-line bg-bg/85 backdrop-blur lg:border-b-0 lg:bg-transparent lg:backdrop-blur-none">
+          <div className="flex items-center gap-2 px-4 py-2.5 lg:justify-end lg:px-8 lg:pt-5">
+            <Link href={nav[0].href} className="mr-auto flex items-center gap-2 lg:hidden">
+              <Logo size={28} />
+              <Wordmark />
+            </Link>
+            <NotificationBell />
+            <ThemeToggle className="lg:hidden" />
+            <button
+              onClick={signOut}
+              aria-label="Đăng xuất"
+              className="inline-flex items-center rounded-lg p-2 text-muted hover:bg-sunken hover:text-ink lg:hidden"
+            >
+              <LogOut size={16} />
+            </button>
+          </div>
+          <nav className="no-scrollbar flex gap-1 overflow-x-auto px-3 pb-2 lg:hidden">{links}</nav>
+        </header>
+        <main className="min-w-0 px-4 pb-16 pt-4 lg:px-8 lg:pt-1">
+          <div className="mx-auto flex max-w-[1180px] flex-col gap-6">{children}</div>
         </main>
       </div>
     </div>

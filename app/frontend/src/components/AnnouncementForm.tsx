@@ -69,7 +69,7 @@ export function AnnouncementForm({ classId, sessions, onDone }: { classId: strin
 
   return (
     <form onSubmit={submit} className="flex flex-col gap-3">
-      <div role="radiogroup" aria-label="Loại thông báo" className="grid grid-cols-3 gap-1 rounded-[10px] bg-sunken p-1">
+      <div role="radiogroup" aria-label="Loại thông báo" className="grid grid-cols-3 gap-1 rounded-xl bg-sunken p-1">
         {KINDS.map((k) => (
           <button
             key={k.id}
@@ -79,7 +79,7 @@ export function AnnouncementForm({ classId, sessions, onDone }: { classId: strin
             onClick={() => setKind(k.id)}
             className={cn(
               "rounded-lg px-2 py-1.5 text-sm font-medium text-muted",
-              kind === k.id && "bg-surface text-ink shadow-sm",
+              kind === k.id && "bg-surface text-ink shadow-card",
             )}
           >
             {k.label}

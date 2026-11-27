@@ -48,7 +48,7 @@ export default function ClassPage() {
         <ModeLabel mode={c.ai_mode} />
       </PageHeader>
       <ClassCode code={c.class_code} />
-      <div role="tablist" className="flex gap-1 overflow-x-auto border-b border-line">
+      <div role="tablist" className="no-scrollbar flex gap-1 overflow-x-auto border-b border-line">
         {TABS.map((t) => (
           <button
             key={t.id}
@@ -442,7 +442,7 @@ function AssignmentsTab({ classId, data }: { classId: string; data: ClassDetail 
 
 function LinkRow({ href, children }: { href: string; children: React.ReactNode }) {
   return (
-    <Link href={href} className="flex items-center gap-3 rounded-[10px] px-3 py-3 hover:bg-sunken">
+    <Link href={href} className="flex items-center gap-3 rounded-xl px-3 py-3 hover:bg-sunken">
       {children}
     </Link>
   );

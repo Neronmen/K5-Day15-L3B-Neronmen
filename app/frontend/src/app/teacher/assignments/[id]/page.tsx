@@ -270,7 +270,7 @@ function GradePanel({ row, onChanged }: { row: SubmissionRow; onChanged: () => v
           <Loading />
         ) : (
           <div className="flex flex-col gap-3">
-            {sub.content && <div className="paper whitespace-pre-wrap break-words rounded-[10px] border border-line p-3.5">{sub.content}</div>}
+            {sub.content && <div className="paper whitespace-pre-wrap break-words rounded-xl border border-line p-3.5">{sub.content}</div>}
             {sub.has_image && <AuthImage path={`/files/submissions/${sub.id}/image`} alt={`Ảnh bài làm của ${row.name}`} />}
           </div>
         )}

@@ -9,14 +9,14 @@ import type { CalendarItem } from "@/lib/types";
 import { useLoad } from "@/lib/useLoad";
 import { Button, ErrorText, Loading, cn } from "./ui";
 
-// Màu theo lớp để phân biệt các lớp trên cùng một lịch
+// Màu theo lớp: 6 tông dịu cùng độ sáng (định nghĩa --cal-1..6 trong globals.css, có bản tối / sáng)
 const PALETTE = [
-  "border-l-[#2747D9]",
-  "border-l-[#0E9F6E]",
-  "border-l-[#D97706]",
-  "border-l-[#C026D3]",
-  "border-l-[#0891B2]",
-  "border-l-[#DC2626]",
+  "border-l-[var(--cal-1)]",
+  "border-l-[var(--cal-2)]",
+  "border-l-[var(--cal-3)]",
+  "border-l-[var(--cal-4)]",
+  "border-l-[var(--cal-5)]",
+  "border-l-[var(--cal-6)]",
 ];
 
 function colorFor(classId: string, order: string[]) {
