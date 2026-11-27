@@ -1,0 +1,12 @@
+node_modules/
+.next/
+.env
+__pycache__/
+*.pyc
+.venv/
+backend/storage/
+*.db
+.pytest_cache/
+backend/storage-*/
+*.egg-info/
+*.tsbuildinfo

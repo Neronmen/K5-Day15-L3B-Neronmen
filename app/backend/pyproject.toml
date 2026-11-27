@@ -1,0 +1,45 @@
+[project]
+name = "minutesstudy-backend"
+version = "0.2.0"
+requires-python = ">=3.11"
+dependencies = [
+  # API & dữ liệu
+  "fastapi",
+  "uvicorn[standard]",
+  "sqlalchemy>=2.0",
+  "psycopg[binary]",
+  "pgvector",
+  "pydantic-settings",
+  "pydantic[email]",
+  "pyjwt",
+  "python-multipart",
+  "boto3",
+  "alembic",
+  "httpx",
+  # AI, hàng đợi, bóc tách tài liệu, xử lý ảnh
+  "openai",
+  "anthropic",
+  "google-genai",
+  "langgraph",
+  "celery[redis]",
+  "pypdf",
+  "python-docx",
+  "python-pptx",
+  "Pillow",
+]
+
+[project.optional-dependencies]
+docling = ["docling"]                       # bóc tách PDF giữ bảng/công thức tốt hơn (nặng, cần torch)
+embeddings = ["sentence-transformers"]      # EMBEDDING_MODEL=bge-m3
+monitoring = ["sentry-sdk[fastapi]"]        # SENTRY_DSN
+dev = ["pytest", "httpx"]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["app*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

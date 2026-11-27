@@ -1,0 +1,101 @@
+# MinutesStudy — toàn bộ hệ thống.
+#
+# Dev (chỉ hạ tầng, chạy API/web trên máy):   docker compose up -d db redis
+# Chạy cả backend + worker:                   docker compose up -d --build
+# Kèm frontend:                               docker compose --profile web up -d --build
+# VPS có tên miền + HTTPS tự động (Caddy):     DOMAIN=minutesstudy.vn docker compose --profile web --profile proxy up -d --build
+# MinIO lưu file (thay cho R2):               docker compose --profile minio up -d
+
+x-backend: &backend
+  build: ./backend
+  env_file: .env
+  environment:
+    DATABASE_URL: postgresql+psycopg://minutes:${POSTGRES_PASSWORD:-minutes}@db:5432/minutesstudy
+    REDIS_URL: redis://redis:6379/0
+    TASK_BACKEND: celery
+    LOCAL_STORAGE_DIR: /app/storage
+    AUTO_CREATE_TABLES: "false"   # schema do Alembic quản lý (container api chạy alembic upgrade head)
+  volumes:
+    - uploads:/app/storage
+  depends_on:
+    db: { condition: service_healthy }
+    redis: { condition: service_healthy }
+  restart: unless-stopped
+
+services:
+  db:
+    image: pgvector/pgvector:pg16
+    environment:
+      POSTGRES_USER: minutes
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-minutes}
+      POSTGRES_DB: minutesstudy
+    ports: ["127.0.0.1:5432:5432"]
+    volumes: [pgdata:/var/lib/postgresql/data]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U minutes -d minutesstudy"]
+      interval: 5s
+      retries: 10
+    restart: unless-stopped
+
+  redis:
+    image: redis:7-alpine
+    command: ["redis-server", "--appendonly", "yes"]
+    ports: ["127.0.0.1:6379:6379"]
+    volumes: [redisdata:/data]
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      retries: 10
+    restart: unless-stopped
+
+  api:
+    <<: *backend
+    ports: ["127.0.0.1:8000:8000"]
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"]
+      interval: 15s
+      retries: 5
+
+  worker:
+    <<: *backend
+    # 4 tiến trình chấm/bóc tách song song; tăng nếu VPS nhiều CPU. Giới hạn 30 bài/phút/tiến trình trong app/worker.py
+    command: ["celery", "-A", "app.worker", "worker", "--loglevel=info", "--concurrency=4"]
+
+  web:
+    profiles: [web]
+    build:
+      context: ./frontend
+      args:
+        NEXT_PUBLIC_API_URL: ${PUBLIC_API_URL:-http://localhost:8000}
+    ports: ["127.0.0.1:3000:3000"]
+    depends_on: [api]
+    restart: unless-stopped
+
+  caddy:
+    profiles: [proxy]
+    image: caddy:2-alpine
+    environment:
+      DOMAIN: ${DOMAIN:-localhost}
+    ports: ["80:80", "443:443"]
+    volumes:
+      - ./deploy/Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddydata:/data
+    depends_on: [api]
+    restart: unless-stopped
+
+  minio:
+    profiles: [minio]
+    image: minio/minio
+    command: server /data --console-address ":9001"
+    environment:
+      MINIO_ROOT_USER: ${S3_ACCESS_KEY:-minioadmin}
+      MINIO_ROOT_PASSWORD: ${S3_SECRET_KEY:-minioadmin}
+    ports: ["127.0.0.1:9000:9000", "127.0.0.1:9001:9001"]
+    volumes: [miniodata:/data]
+
+volumes:
+  pgdata:
+  redisdata:
+  uploads:
+  caddydata:
+  miniodata:

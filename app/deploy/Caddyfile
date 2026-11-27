@@ -1,0 +1,18 @@
+# Caddy tự xin và gia hạn chứng chỉ HTTPS (Let's Encrypt) cho tên miền.
+# Trỏ bản ghi A của {DOMAIN} và api.{DOMAIN} về IP của VPS trước khi chạy.
+
+api.{$DOMAIN} {
+	encode gzip
+	# SSE: không gom bộ đệm để chữ AI hiện ra ngay
+	reverse_proxy api:8000 {
+		flush_interval -1
+	}
+	request_body {
+		max_size 60MB
+	}
+}
+
+{$DOMAIN} {
+	encode gzip
+	reverse_proxy web:3000
+}

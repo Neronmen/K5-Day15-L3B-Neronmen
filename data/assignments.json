@@ -1,0 +1,14 @@
+[
+  {"id": "BT01", "class_id": "10A1", "title": "Giải phương trình bậc hai",
+   "question": "Giải phương trình x^2 - 5x + 6 = 0.",
+   "due_at": "2026-12-05T23:59:00+07:00",
+   "answer_key": "Delta = 25 - 24 = 1. x = (5 ± 1)/2, nên x = 3 hoặc x = 2.",
+   "final_answers": ["x = 2", "x = 3", "x=2", "x=3"],
+   "lesson_codes": ["T10-C3-P02", "T10-C3-P03"]},
+  {"id": "BT02", "class_id": "10A1", "title": "Biệt thức (đã hết hạn)",
+   "question": "Tính Delta của phương trình 2x^2 + 3x - 2 = 0.",
+   "due_at": "2026-11-20T23:59:00+07:00",
+   "answer_key": "Delta = 9 + 16 = 25.",
+   "final_answers": ["25"],
+   "lesson_codes": ["T10-C3-P02"]}
+]

@@ -1,0 +1,8 @@
+[
+  {"code": "T10-C3-P01", "class_id": "10A1", "page": 1, "title": "Phương trình bậc hai: dạng tổng quát",
+   "text": "Phương trình bậc hai một ẩn có dạng ax^2 + bx + c = 0 với a khác 0. Hệ số a, b, c là các số thực."},
+  {"code": "T10-C3-P02", "class_id": "10A1", "page": 2, "title": "Biệt thức Delta",
+   "text": "Biệt thức Delta = b^2 - 4ac. Nếu Delta > 0 phương trình có hai nghiệm phân biệt; Delta = 0 có nghiệm kép; Delta < 0 vô nghiệm."},
+  {"code": "T10-C3-P03", "class_id": "10A1", "page": 3, "title": "Công thức nghiệm",
+   "text": "Khi Delta >= 0, nghiệm là x = (-b ± căn Delta) / (2a). Chú ý dấu trừ trước b."}
+]
