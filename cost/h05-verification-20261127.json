@@ -1,0 +1,228 @@
+{
+  "recorded_at": "2026-11-27T18:45:18+07:00",
+  "base_main_commit": "12250ae84e7fe0bb47e048fafd4badcc6bde3946",
+  "branch": "thang-h05-t08",
+  "requested_branch_blocker": {
+    "requested": "thang",
+    "creation_exit_code": 128,
+    "stderr": "fatal: cannot lock ref 'refs/heads/thang': 'refs/heads/thang/T-01' exists; cannot create 'refs/heads/thang'"
+  },
+  "official_50_session_simulation_run": false,
+  "real_model_evaluation_available": false,
+  "run2_human_grading_available": false,
+  "paid_model_calls": 0,
+  "checks": [
+    {
+      "command": [
+        "python",
+        "run.py"
+      ],
+      "exit_code": 0,
+      "stdout": "Bản chạy thử — gõ đầu vào rồi Enter. Thoát: Ctrl+C (hoặc Enter 2 lần với dòng trống).\n> [câu trả lời giả — chưa nối model] >>>\n   (model: fake · gọi model 1 lần · công cụ 7 lần · token vào 0 / ra 0)\n> > ",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python",
+        "run.py",
+        "check"
+      ],
+      "exit_code": 0,
+      "stdout": "Kiểm eval/benchmark.csv\n  Đủ 6 cột: id,input,expected,pass_criterion,type,source\n  Số câu thử: 25  ·  thuong 8  ·  kho 13  ·  tu_choi 4\n  Nguồn: nguoi_dung 1  ·  data_that 3  ·  tu_viet 21  ·  sinh_seed 0  ·  từ người dùng / data thật: 4/25\n  eval/metric_spec.yaml: 4 metric đã điền đủ (cần ≥3)\nKiểm TEAMS.md\n  4 thành viên\nCần xem lại:\n  ⚠️ Cần ≥1/3 câu từ lời người dùng hoặc data thật (nguoi_dung / data_that): đang 4/25.\n(Lệnh này chỉ kiểm, không sửa file.)\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python",
+        "run.py",
+        "simulate",
+        "--help"
+      ],
+      "exit_code": 0,
+      "stdout": "Cách dùng:\n  python run.py simulate --try [N]    chạy thử N phiên (mặc định 10) → cost/simulate-try.csv\n  python run.py simulate              chạy đủ số phiên trong cost/personas.yaml → cost/simulate-N.csv + bản tóm tắt\n  python run.py simulate --wait 4     nghỉ 4 giây giữa hai lượt hỏi\n  python run.py simulate --rate-from eval/run-2.csv   lấy tỉ lệ đạt từ đúng lượt này\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python",
+        "run.py",
+        "simulate",
+        "--try"
+      ],
+      "exit_code": 1,
+      "stdout": "Mô phỏng 10 phiên (seed 42) — CHẠY THỬ ...\n  [1/10] S001 dung_nhieu   token vào 0 · ra 0\n  [2/10] S002 dung_nhieu   token vào 0 · ra 0\n  [3/10] S003 dung_it      token vào 0 · ra 0\n  [4/10] S004 dung_it      token vào 0 · ra 0\n  [5/10] S005 dung_nhieu   token vào 0 · ra 0\n  [6/10] S006 dung_nhieu   token vào 0 · ra 0\n  [7/10] S007 dung_it      token vào 0 · ra 0\n  [8/10] S008 dung_it      token vào 0 · ra 0\n  [9/10] S009 dung_it      token vào 0 · ra 0\n  [10/10] S010 dung_nhieu   token vào 0 · ra 0\n⚠️ Bản chạy thử chưa gọi model thật (model fake / không gọi model / token = 0) → cost/simulate-mock.csv.\n   Lượt này KHÔNG được tính. Nối model thật theo docs/connect-model.md rồi chạy lại.\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python",
+        "run.py",
+        "simulate",
+        "--rate-from",
+        "eval/run-2.csv"
+      ],
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "Không tìm thấy file: eval/run-2.csv\nCác file đang có trong eval/: README.md, __pycache__, auto_grade.py, benchmark.csv, build_benchmark.py, cases, metric_spec.yaml, redteam.md, redteam.py, report.md, run_eval.py\n"
+    },
+    {
+      "command": [
+        "python",
+        "eval/build_benchmark.py",
+        "--cases-dir",
+        "D:\\VinUniAI\\K5-Day15-L3B-Neronmen\\.git\\thang-h05\\candidate-cases",
+        "--check"
+      ],
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "Benchmark not written:\nNeed >=1/3 real-source cases: 9/30; 30 cases require >=10. B22-B30 alone supply only 9. Verify real evidence, never relabel synthetic cases.\n"
+    },
+    {
+      "command": [
+        "python",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-v"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "test_ambiguous_or_missing_expected_is_missing_data (test_auto_grade.AutoGradeTests.test_ambiguous_or_missing_expected_is_missing_data) ... ok\ntest_approved_fixture_thresholds_use_spec_values (test_auto_grade.AutoGradeTests.test_approved_fixture_thresholds_use_spec_values) ... ok\ntest_bad_due_date_has_unknown_applicability (test_auto_grade.AutoGradeTests.test_bad_due_date_has_unknown_applicability) ... ok\ntest_benchmark_drift_blocks_grading (test_auto_grade.AutoGradeTests.test_benchmark_drift_blocks_grading) ... ok\ntest_clean_hint_remains_pending_human (test_auto_grade.AutoGradeTests.test_clean_hint_remains_pending_human) ... ok\ntest_cli_draft_keeps_all_inputs_byte_for_byte_and_records_hashes (test_auto_grade.AutoGradeTests.test_cli_draft_keeps_all_inputs_byte_for_byte_and_records_hashes) ... ok\ntest_cli_never_overwrites_an_existing_report_or_input (test_auto_grade.AutoGradeTests.test_cli_never_overwrites_an_existing_report_or_input) ... ok\ntest_cross_class_expected_source_is_missing_data (test_auto_grade.AutoGradeTests.test_cross_class_expected_source_is_missing_data) ... ok\ntest_decision_must_be_on_first_line (test_auto_grade.AutoGradeTests.test_decision_must_be_on_first_line) ... ok\ntest_denominators_include_system_errors_and_missing_cases (test_auto_grade.AutoGradeTests.test_denominators_include_system_errors_and_missing_cases) ... ok\ntest_due_boundary_and_teacher_exclude_leak_metric (test_auto_grade.AutoGradeTests.test_due_boundary_and_teacher_exclude_leak_metric) ... ok\ntest_duplicate_ids_and_invalid_metric_specs_rejected (test_auto_grade.AutoGradeTests.test_duplicate_ids_and_invalid_metric_specs_rejected) ... ok\ntest_empty_output_is_system_error (test_auto_grade.AutoGradeTests.test_empty_output_is_system_error) ... ok\ntest_extra_run_ids_reported (test_auto_grade.AutoGradeTests.test_extra_run_ids_reported) ... ok\ntest_human_values_and_output_are_unchanged_even_on_failure (test_auto_grade.AutoGradeTests.test_human_values_and_output_are_unchanged_even_on_failure) ... ok\ntest_invalid_request_is_missing_data (test_auto_grade.AutoGradeTests.test_invalid_request_is_missing_data) ... ok\ntest_leak_uses_correct_assignment_and_exact_formats (test_auto_grade.AutoGradeTests.test_leak_uses_correct_assignment_and_exact_formats) ... ok\ntest_malformed_citation_alongside_valid_one_fails (test_auto_grade.AutoGradeTests.test_malformed_citation_alongside_valid_one_fails) ... ok\ntest_missing_assignment_is_legitimate_not_found_case (test_auto_grade.AutoGradeTests.test_missing_assignment_is_legitimate_not_found_case) ... ok\ntest_missing_csv_headers_fail_cleanly (test_auto_grade.AutoGradeTests.test_missing_csv_headers_fail_cleanly) ... ok\ntest_missing_final_answers_is_not_silent_no_leak (test_auto_grade.AutoGradeTests.test_missing_final_answers_is_not_silent_no_leak) ... ok\ntest_missing_row_stays_in_denominator (test_auto_grade.AutoGradeTests.test_missing_row_stays_in_denominator) ... ok\ntest_non_applicable_metrics_are_na_not_perfect_scores (test_auto_grade.AutoGradeTests.test_non_applicable_metrics_are_na_not_perfect_scores) ... ok\ntest_other_roots_and_intermediate_numbers_do_not_leak (test_auto_grade.AutoGradeTests.test_other_roots_and_intermediate_numbers_do_not_leak) ... ok\ntest_pending_spec_cannot_become_approved (test_auto_grade.AutoGradeTests.test_pending_spec_cannot_become_approved) ... ok\ntest_system_error_is_not_response_error (test_auto_grade.AutoGradeTests.test_system_error_is_not_response_error) ... ok\ntest_text_expected_label_is_supported (test_auto_grade.AutoGradeTests.test_text_expected_label_is_supported) ... ok\ntest_theory_correct_source_remains_human_review (test_auto_grade.AutoGradeTests.test_theory_correct_source_remains_human_review) ... ok\ntest_theory_missing_citation_fails (test_auto_grade.AutoGradeTests.test_theory_missing_citation_fails) ... ok\ntest_theory_missing_expected_source_is_missing_data (test_auto_grade.AutoGradeTests.test_theory_missing_expected_source_is_missing_data) ... ok\ntest_theory_source_in_pass_criterion (test_auto_grade.AutoGradeTests.test_theory_source_in_pass_criterion) ... ok\ntest_theory_wrong_page_unknown_source_and_unexpected_source (test_auto_grade.AutoGradeTests.test_theory_wrong_page_unknown_source_and_unexpected_source) ... ok\ntest_wrong_decision_is_response_error (test_auto_grade.AutoGradeTests.test_wrong_decision_is_response_error) ... ok\ntest_cannot_overwrite_member_source (test_build_benchmark.BuildBenchmarkTests.test_cannot_overwrite_member_source) ... ok\ntest_check_only_creates_no_output (test_build_benchmark.BuildBenchmarkTests.test_check_only_creates_no_output) ... ok\ntest_duplicate_header (test_build_benchmark.BuildBenchmarkTests.test_duplicate_header) ... ok\ntest_duplicate_ids (test_build_benchmark.BuildBenchmarkTests.test_duplicate_ids) ... ok\ntest_empty_message_is_valid_negative_case (test_build_benchmark.BuildBenchmarkTests.test_empty_message_is_valid_negative_case) ... ok\ntest_empty_required_csv_field (test_build_benchmark.BuildBenchmarkTests.test_empty_required_csv_field) ... ok\ntest_extra_and_missing_csv_cell (test_build_benchmark.BuildBenchmarkTests.test_extra_and_missing_csv_cell) ... ok\ntest_header_order_and_extra_header (test_build_benchmark.BuildBenchmarkTests.test_header_order_and_extra_header) ... ok\ntest_invalid_json_and_duplicate_keys (test_build_benchmark.BuildBenchmarkTests.test_invalid_json_and_duplicate_keys) ... ok\ntest_invalid_role_empty_assignment_and_naive_time (test_build_benchmark.BuildBenchmarkTests.test_invalid_role_empty_assignment_and_naive_time) ... ok\ntest_malformed_csv (test_build_benchmark.BuildBenchmarkTests.test_malformed_csv) ... ok\ntest_minimum_difficult_and_refusal_coverage (test_build_benchmark.BuildBenchmarkTests.test_minimum_difficult_and_refusal_coverage) ... ok\ntest_missing_files_reported_together (test_build_benchmark.BuildBenchmarkTests.test_missing_files_reported_together) ... ok\ntest_missing_id (test_build_benchmark.BuildBenchmarkTests.test_missing_id) ... ok\ntest_nine_real_source_labels_are_not_one_third (test_build_benchmark.BuildBenchmarkTests.test_nine_real_source_labels_are_not_one_third) ... ok\ntest_no_partial_output_on_replace_failure (test_build_benchmark.BuildBenchmarkTests.test_no_partial_output_on_replace_failure) ... ok\ntest_optional_class_id_types_and_unknown_fields_rejected (test_build_benchmark.BuildBenchmarkTests.test_optional_class_id_types_and_unknown_fields_rejected) ... ok\ntest_optional_system_class_id_is_preserved (test_build_benchmark.BuildBenchmarkTests.test_optional_system_class_id_is_preserved) ... ok\ntest_outside_range (test_build_benchmark.BuildBenchmarkTests.test_outside_range) ... ok\ntest_required_input_fields_and_types (test_build_benchmark.BuildBenchmarkTests.test_required_input_fields_and_types) ... ok\ntest_sorted_deterministic_and_preserves_every_cell (test_build_benchmark.BuildBenchmarkTests.test_sorted_deterministic_and_preserves_every_cell) ... ok\ntest_source_and_type_validation (test_build_benchmark.BuildBenchmarkTests.test_source_and_type_validation) ... ok\ntest_utf8_bom_is_accepted (test_build_benchmark.BuildBenchmarkTests.test_utf8_bom_is_accepted) ... ok\ntest_wrong_author_range (test_build_benchmark.BuildBenchmarkTests.test_wrong_author_range) ... ok\ntest_agent_retries_and_falls_back (test_check_leak.CheckLeakTests.test_agent_retries_and_falls_back) ... ok\ntest_agent_returns_clean_retry (test_check_leak.CheckLeakTests.test_agent_returns_clean_retry) ... ok\ntest_chained_numeric_equalities (test_check_leak.CheckLeakTests.test_chained_numeric_equalities) ... ok\ntest_decimal_comma (test_check_leak.CheckLeakTests.test_decimal_comma) ... ok\ntest_decimal_point (test_check_leak.CheckLeakTests.test_decimal_point) ... ok\ntest_empty_data (test_check_leak.CheckLeakTests.test_empty_data) ... ok\ntest_every_packaged_answer_key_triggers_the_guard (test_check_leak.CheckLeakTests.test_every_packaged_answer_key_triggers_the_guard) ... ok\ntest_fraction_equivalence (test_check_leak.CheckLeakTests.test_fraction_equivalence) ... ok\ntest_fraction_signs_and_zero_denominator (test_check_leak.CheckLeakTests.test_fraction_signs_and_zero_denominator) ... ok\ntest_indexed_roots (test_check_leak.CheckLeakTests.test_indexed_roots) ... ok\ntest_latex_fraction (test_check_leak.CheckLeakTests.test_latex_fraction) ... ok\ntest_matches_keep_original_final_answer_strings (test_check_leak.CheckLeakTests.test_matches_keep_original_final_answer_strings) ... ok\ntest_no_code_execution (test_check_leak.CheckLeakTests.test_no_code_execution) ... ok\ntest_no_real_solution (test_check_leak.CheckLeakTests.test_no_real_solution) ... ok\ntest_no_solution_negation_is_not_a_conclusion (test_check_leak.CheckLeakTests.test_no_solution_negation_is_not_a_conclusion) ... ok\ntest_numbers_from_different_assignment (test_check_leak.CheckLeakTests.test_numbers_from_different_assignment) ... ok\ntest_numeric_boundaries (test_check_leak.CheckLeakTests.test_numeric_boundaries) ... ok\ntest_plain_assignment (test_check_leak.CheckLeakTests.test_plain_assignment) ... ok\ntest_plus_minus_root_notation (test_check_leak.CheckLeakTests.test_plus_minus_root_notation) ... ok\ntest_polynomial_and_intermediate_calculation (test_check_leak.CheckLeakTests.test_polynomial_and_intermediate_calculation) ... ok\ntest_question_and_negated_assignment (test_check_leak.CheckLeakTests.test_question_and_negated_assignment) ... ok\ntest_scalar_answer (test_check_leak.CheckLeakTests.test_scalar_answer) ... ok\ntest_set_of_roots (test_check_leak.CheckLeakTests.test_set_of_roots) ... ok\ntest_solution_sentence (test_check_leak.CheckLeakTests.test_solution_sentence) ... ok\ntest_step_numbers_and_coefficients (test_check_leak.CheckLeakTests.test_step_numbers_and_coefficients) ... ok\ntest_unicode_negative (test_check_leak.CheckLeakTests.test_unicode_negative) ... ok\ntest_unicode_spaces_and_fullwidth (test_check_leak.CheckLeakTests.test_unicode_spaces_and_fullwidth) ... ok\ntest_vietnamese_assignment (test_check_leak.CheckLeakTests.test_vietnamese_assignment) ... ok\ntest_duplicate_ids_are_rejected (test_cost_q5.SurveyCostTests.test_duplicate_ids_are_rejected) ... ok\ntest_empty_valid_denominator_has_no_invented_rate (test_cost_q5.SurveyCostTests.test_empty_valid_denominator_has_no_invented_rate) ... ok\ntest_identifying_columns_are_rejected (test_cost_q5.SurveyCostTests.test_identifying_columns_are_rejected) ... ok\ntest_missing_and_unknown_answers_are_not_silently_imputed (test_cost_q5.SurveyCostTests.test_missing_and_unknown_answers_are_not_silently_imputed) ... ok\ntest_non_thpt_does_not_change_the_target_population (test_cost_q5.SurveyCostTests.test_non_thpt_does_not_change_the_target_population) ... ok\ntest_requested_three_groups_use_the_right_bands (test_cost_q5.SurveyCostTests.test_requested_three_groups_use_the_right_bands) ... ok\ntest_top_bucket_stress_is_not_an_observed_upper_bound (test_cost_q5.SurveyCostTests.test_top_bucket_stress_is_not_an_observed_upper_bound) ... ok\ntest_zero_use_is_kept_in_the_population_and_mean (test_cost_q5.SurveyCostTests.test_zero_use_is_kept_in_the_population_and_mean) ... ok\ntest_all_roots_by_discriminant_substitution_and_viete (test_data.DataTests.test_all_roots_by_discriminant_substitution_and_viete) ... ok\ntest_answer_key_available_at_due_boundary (test_data.DataTests.test_answer_key_available_at_due_boundary) ... ok\ntest_assignment_schema_and_links (test_data.DataTests.test_assignment_schema_and_links) ... ok\ntest_delta_search_preserves_page_two (test_data.DataTests.test_delta_search_preserves_page_two) ... ok\ntest_final_answer_variants_are_exact (test_data.DataTests.test_final_answer_variants_are_exact) ... ok\ntest_hint_prompt_never_contains_private_answer_key (test_data.DataTests.test_hint_prompt_never_contains_private_answer_key) ... ok\ntest_lesson_schema_and_identifiers (test_data.DataTests.test_lesson_schema_and_identifiers) ... ok\ntest_other_class_retrieval_is_isolated (test_data.DataTests.test_other_class_retrieval_is_isolated) ... ok\ntest_private_answers_not_returned_before_due (test_data.DataTests.test_private_answers_not_returned_before_due) ... ok\ntest_status_distribution_at_benchmark_time (test_data.DataTests.test_status_distribution_at_benchmark_time) ... ok\ntest_multi_source_tag_is_split_one_code_per_tag (test_guardrails_khoa.CitationFormatTests.test_multi_source_tag_is_split_one_code_per_tag) ... ok\ntest_student_cannot_close_message_block (test_guardrails_khoa.DelimiterTests.test_student_cannot_close_message_block) ... ok\ntest_factor_form_reveals_roots (test_guardrails_khoa.FactorLeakTests.test_factor_form_reveals_roots) ... ok\ntest_other_numbers_are_not_a_leak (test_guardrails_khoa.FactorLeakTests.test_other_numbers_are_not_a_leak) ... ok\ntest_single_factor_reveals_one_root (test_guardrails_khoa.FactorLeakTests.test_single_factor_reveals_one_root) ... ok\ntest_symbolic_factor_is_not_a_leak (test_guardrails_khoa.FactorLeakTests.test_symbolic_factor_is_not_a_leak) ... ok\ntest_all_four_metrics_have_operational_definitions (test_metric_spec.MetricSpecTests.test_all_four_metrics_have_operational_definitions) ... ok\ntest_approval_is_locked_before_cp2 (test_metric_spec.MetricSpecTests.test_approval_is_locked_before_cp2) ... ok\ntest_proposed_thresholds_and_human_metric (test_metric_spec.MetricSpecTests.test_proposed_thresholds_and_human_metric) ... ok\ntest_b14_wrong_minus_b_at_step_three (test_thang_cases.ThangCasesTests.test_b14_wrong_minus_b_at_step_three) ... ok\ntest_b15_wrong_denominator_at_step_three (test_thang_cases.ThangCasesTests.test_b15_wrong_denominator_at_step_three) ... ok\ntest_b16_discriminant_first_wrong_at_step_two (test_thang_cases.ThangCasesTests.test_b16_discriminant_first_wrong_at_step_two) ... ok\ntest_b17_zero_delta_is_not_two_distinct_roots (test_thang_cases.ThangCasesTests.test_b17_zero_delta_is_not_two_distinct_roots) ... ok\ntest_b18_all_written_steps_correct (test_thang_cases.ThangCasesTests.test_b18_all_written_steps_correct) ... ok\ntest_b19_first_error_precedes_later_errors (test_thang_cases.ThangCasesTests.test_b19_first_error_precedes_later_errors) ... ok\ntest_b20_changing_all_signs_is_required (test_thang_cases.ThangCasesTests.test_b20_changing_all_signs_is_required) ... ok\ntest_b21_complete_solution_and_substitutions_correct (test_thang_cases.ThangCasesTests.test_b21_complete_solution_and_substitutions_correct) ... ok\ntest_exact_schema_ids_difficult_cases_and_sources (test_thang_cases.ThangCasesTests.test_exact_schema_ids_difficult_cases_and_sources) ... ok\ntest_input_links_time_and_expected_policy (test_thang_cases.ThangCasesTests.test_input_links_time_and_expected_policy) ... ok\n\n----------------------------------------------------------------------\nRan 122 tests in 4.102s\n\nOK\n"
+    },
+    {
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "preliminary_harness": {
+    "classification": "PRELIMINARY_MOCK_ONLY_NOT_A_COST_MEASUREMENT",
+    "sessions": 10,
+    "turns": 10,
+    "model_calls_including_fake": 8,
+    "models": [
+      "",
+      "fake"
+    ],
+    "tokens_in": 0,
+    "tokens_out": 0,
+    "rows_with_error": 0,
+    "latency_sum_seconds_fake_local_only": 0.197,
+    "persona_counts": {
+      "dung_nhieu": 5,
+      "dung_it": 5
+    },
+    "network_api_attempts": 0,
+    "actual_api_retries": 0,
+    "quota": "Cannot verify account quota without API credentials; no API request made.",
+    "quality_success": "Not assessed. An empty error field is not a human-confirmed successful task.",
+    "original_artifacts": [
+      {
+        "path": "cost/simulate-mock.csv",
+        "sha256": "5c209c2202010a14c0814a068e1f7a1a23ba9b6df2e0e684a7bcfc4084b0e456",
+        "bytes": 2074
+      },
+      {
+        "path": "traces/simulate-mock.jsonl",
+        "sha256": "13620be9e0e82b2d0f3b37115845c5a2e4c7e03b2bb98025567e00612e0ae846",
+        "bytes": 32198
+      }
+    ],
+    "trace_jsonl_records": 78,
+    "summary_md_generated": false
+  },
+  "candidate_benchmark": {
+    "count": 30,
+    "real_source_labels": 9,
+    "duplicates": [],
+    "sources": {
+      "khoa": {
+        "commit": "12250ae84e7fe0bb47e048fafd4badcc6bde3946",
+        "sha256": "2c81aaae81b856b25429fcc25f0c5dfc51314e5353a19da9d7ad7d119d8bf600",
+        "ids": [
+          "B01",
+          "B02",
+          "B03",
+          "B04",
+          "B05",
+          "B06"
+        ]
+      },
+      "ninh": {
+        "commit": "12250ae84e7fe0bb47e048fafd4badcc6bde3946",
+        "sha256": "2af6816ef41f4478b661688d5e47814882b72715be174cfd0d03027340c3a01c",
+        "ids": [
+          "B07",
+          "B08",
+          "B09",
+          "B10",
+          "B11",
+          "B12",
+          "B13"
+        ]
+      },
+      "thang": {
+        "commit": "12250ae84e7fe0bb47e048fafd4badcc6bde3946",
+        "sha256": "268f5a48582443e9738f21f6c2d30d30859f157a096682faa713153b5d3158d8",
+        "ids": [
+          "B14",
+          "B15",
+          "B16",
+          "B17",
+          "B18",
+          "B19",
+          "B20",
+          "B21"
+        ]
+      },
+      "nhai": {
+        "commit": "5f8b6aecc12bf94339c8d05387fa60cc0978b485",
+        "sha256": "40490dcbd1af000454ecb209382143e41d2660cb1667116a97e5b62c6dcabde1",
+        "ids": [
+          "B22",
+          "B23",
+          "B24",
+          "B25",
+          "B26",
+          "B27",
+          "B28",
+          "B29",
+          "B30"
+        ]
+      }
+    }
+  },
+  "protected_files_sha256": {
+    "cost/simulate.py": "602c056cb243497bfc082b8e5fd2a78bf02bea75ac848c2c97517de85c6e71c8",
+    "codebase/ai.py": "755371a7a8856c9ff83ea6469566d5d1c4f18ad8dcc31239084514689b68549c",
+    "codebase/agent.py": "3b0d49b34641258ea5847396cd899371c170315831541f71324d4bc5af6d9902",
+    "codebase/tools.py": "1dd0b2eb3685ffc067de1e2cd46732470770b64eaa42b812810fff43f5b7e35d",
+    "codebase/tracing.py": "e32fe1bbd2ad55c9d072304308cc2b1791daf1a378dd7169322b03064f595b83",
+    "eval/run_eval.py": "a76c93b7195a09b90d0504629be26ee4abcfe9243264cb071be6d876cc136173",
+    "eval/metric_spec.yaml": "913b617dba2e4bdc9c6441b62062d37efd3ec5b394e098a327848f14c81082ff",
+    "eval/benchmark.csv": "c85cdb875cd8fa343199d8a78411cb829c7fa19d3a00c47420c850a8f1a68dc2",
+    "eval/cases/thang.csv": "378f686a478376386c587120633dd4e0c1138d71fb396ed88fcfc63af5af7396",
+    "run.py": "ac63c04deff7dec26360261a5adf512bd17a5e3389aa0e30f2248cd0e90c0eb4"
+  },
+  "frozen_input_sha256": {
+    "cost/personas.yaml": "1be7a124465b60fca1f7c1ffab259b7bb3901656730a46448421f8149c7f5040",
+    "data/assignments.json": "81527511f1dfa108538f3a88c54144324c8d1a28b62e6cd3d78a776fbf74ea8f",
+    "data/lesson.json": "617013254e352b8457004b7be601d469210c243d594a37c84fdafc9e669bf7a0",
+    "eval/benchmark.csv": "c85cdb875cd8fa343199d8a78411cb829c7fa19d3a00c47420c850a8f1a68dc2",
+    "eval/metric_spec.yaml": "913b617dba2e4bdc9c6441b62062d37efd3ec5b394e098a327848f14c81082ff"
+  },
+  "root_T07_and_all_starting_drafts_unchanged": true,
+  "budget": {
+    "spent_on_model_api_usd": 0,
+    "bulk_calls_authorized_by_this_check": false,
+    "live_measurements_required_before_budgeting_bulk": true
+  },
+  "status": "PARTIAL; no API credentials, benchmark9/30 real sources, no human-graded run2, no P3 content supplied."
+}

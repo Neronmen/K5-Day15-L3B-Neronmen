@@ -1,0 +1,65 @@
+{
+  "checked_at": "2026-11-27T21:03:10.275450+07:00",
+  "currency": "USD",
+  "units": "per 1 million tokens",
+  "selected_provider_by_user": "openai",
+  "api_availability_verified": false,
+  "usage_measurement_available": false,
+  "sources": [
+    {
+      "provider": "deepseek",
+      "url": "https://api-docs.deepseek.com/quick_start/pricing/",
+      "resolved_url": "https://api-docs.deepseek.com/quick_start/pricing/",
+      "sha256": "92048d20fbc5dd6be1f045cb3d09c706a8a60262f638cfe5f2688be0053ed157",
+      "bytes": 29510,
+      "retrieved_at": "2026-11-27T21:03:09.034213+07:00"
+    },
+    {
+      "provider": "gemini",
+      "url": "https://aistudio.google.com/docs/pricing",
+      "resolved_url": "https://aistudio.google.com/docs/pricing",
+      "sha256": "52689e5507b3a9680da4ceae304deaac09fb3ac350671baf06e16eb50c2f2636",
+      "bytes": 157004,
+      "retrieved_at": "2026-11-27T21:03:10.208768+07:00"
+    },
+    {
+      "provider": "openai",
+      "url": "https://developers.openai.com/api/docs/models/gpt-4.1-mini.md",
+      "resolved_url": "https://developers.openai.com/api/docs/models/gpt-4.1-mini.md",
+      "sha256": "c04810187c24bc24b5b9c97ce92eb0b565eabb84c0c31b05fbf458174919cf9a",
+      "bytes": 3719,
+      "retrieved_at": "2026-11-27T21:03:09.035395+07:00"
+    }
+  ],
+  "models": [
+    {
+      "model": "deepseek-flash",
+      "input_uncached": 0.3,
+      "input_cached": 0.006,
+      "output": 1.2,
+      "basis": "paid peak; all input uncached; conservative reference pricing, not measured billing",
+      "off_peak": {
+        "input_uncached": 0.15,
+        "input_cached": 0.003,
+        "output": 0.6
+      },
+      "provider": "deepseek"
+    },
+    {
+      "model": "gemini-2.5-flash-lite",
+      "input_uncached": 0.1,
+      "input_cached": 0.01,
+      "output": 0.4,
+      "basis": "paid standard text; output includes thinking; no caching storage or search",
+      "provider": "gemini"
+    },
+    {
+      "model": "gpt-4.1-mini",
+      "input_uncached": 0.4,
+      "input_cached": 0.1,
+      "output": 1.6,
+      "basis": "standard text; all input uncached; model page marks deprecated; account availability pending",
+      "provider": "openai"
+    }
+  ]
+}

@@ -1,54 +1,46 @@
-# Mô phỏng chi phí khi dùng thật — điền ở guide bước 4.2.
-# Ôn lại: ngày 13, ngày 1, ngày 14 · lab ngày 13, lab ngày 14.
-# Mọi số phải có nguồn (data / phỏng vấn / khảo sát / quy mô khoá có nguồn) hoặc ghi rõ "(tự ước tính)".
-# Chạy: python run.py simulate --try   (10 phiên, kiểm khung — làm trước CP3)
-#       python run.py simulate         (đủ số phiên dưới đây — bản nộp CP4)
-# Thay mọi dòng "(ví dụ)" bằng số và nguồn của nhóm; simulate nhắc nếu còn sót.
+# H-05: snapshot khảo sát 26 học sinh THPT, không phải số mẫu starter.
+# Một tháng quy đổi 52/12 tuần. Số phiên và số lượt/phiên là giả định được ghi ở cost-estimate.md.
+sessions: 50
+seed: 42
 
-sessions: 50        # số phiên mô phỏng — bản nộp ≥50
-seed: 42            # giữ cố định để chạy lại ra cùng chuỗi phiên
-
-users:              # số học sinh THPT dùng gia sư nếu đưa vào dùng — 3 kịch bản
+users:
   low: 300
   base: 1000
   high: 3000
-  source: "(tự ước tính) Cơ sở 1.000 = thí điểm 1 trường THPT, khớp spec.md §2; thấp 300 = một khối lớp của trường đó; cao 3.000 = 3 trường. Chưa có số công khai có link — cần thay nếu nhóm tìm được"
+  source: "(tự ước tính) Cohort thí điểm: thấp 300 học sinh tương đương một khối; cơ sở 1000 tương đương một trường theo quy mô giả định spec.md §2; cao 3000 tương đương ba trường. Chưa có cam kết triển khai hoặc số người dùng hoạt động thực đo. Giữ cả người trả lời 0 lần."
 
-personas:           # ≥3 kiểu người dùng; share cộng lại = 1. 1 phiên = 1 lần em bí bài và mở gia sư
-                    # Nguồn: khảo sát câu 5 "Trong 1 tuần qua, em dùng app giải bài / chatbot cho bài tập về nhà khoảng mấy lần?"
-                    # (evidence/survey/results.csv, n = 26 lúc 18:17 27/11)
-                    # Giả định (tự ước tính): em dùng gia sư thay cho app / chatbot với cùng tần suất; 1 tháng = 4 tuần
-  - name: it_hoi
-    share: 0.27             # 7/26 em chọn 0 hoặc 1–2 lần / tuần
-    uses_per_month: 3       # trung bình nhóm ≈ 0,86 lần / tuần (3 em × 0, 4 em × 1,5) × 4
-    turns_per_session: 2    # (tự ước tính) gửi bước làm → nhận gợi ý → hỏi lại 1 lần
-    source: "khảo sát câu 5: 7/26 chọn 0 hoặc 1–2 lần / tuần (điểm giữa 0 và 1,5) × 4 tuần; số lượt / phiên (tự ước tính)"
-  - name: hoi_vua
-    share: 0.35             # 9/26 em chọn 3–5 hoặc 6–10 lần / tuần
-    uses_per_month: 28      # trung bình nhóm ≈ 7,1 lần / tuần (2 em × 4, 7 em × 8) × 4
-    turns_per_session: 3    # (tự ước tính)
-    source: "khảo sát câu 5: 9/26 chọn 3–5 hoặc 6–10 lần / tuần (điểm giữa 4 và 8) × 4 tuần; số lượt / phiên (tự ước tính)"
-  - name: hoi_nhieu
-    share: 0.38             # 10/26 em chọn Trên 10 lần / tuần
-    uses_per_month: 48      # 12 lần / tuần × 4 — khoảng "Trên 10" không có cận trên, lấy 12 (tự ước tính)
-    turns_per_session: 4    # (tự ước tính)
-    source: "khảo sát câu 5: 10/26 chọn Trên 10 lần / tuần (lấy 12, tự ước tính) × 4 tuần; số lượt / phiên (tự ước tính)"
-# Mỗi lượt hỏi lấy ngẫu nhiên một đầu vào trong eval/benchmark.csv (type thuong và kho).
-# Persona hỏi kiểu riêng: thêm vào persona đó
-#     types: [thuong, kho, tu_choi]
-# hoặc
-#     inputs: ["câu hỏi kiểu 1", "câu hỏi kiểu 2"]
+personas:
+  - name: dung_it
+    share: 0.2692307692307692
+    uses_per_month: 3.714285714285714
+    turns_per_session: 1
+    types: [thuong, kho, tu_choi]
+    source: "Khảo sát câu 5, 7/26, nhóm 0 và 1-2; commit 08e05ba26b980c5a17c8a909580c4d477ff7b473, SHA256 05ba7a50928d9252555e6506a95a210190a706264d7471d29bdca104473c9939. Điểm giữa 0/1.5/4/8; trên10 lấy12 (tự ước tính), tháng=52/12 tuần. Một lần dùng=1 phiên, turns=1 và adoption100% thay app cũ đều (tự ước tính), không phải số đo."
+  - name: dung_vua
+    share: 0.07692307692307693
+    uses_per_month: 17.333333333333332
+    turns_per_session: 1
+    types: [thuong, kho, tu_choi]
+    source: "Khảo sát câu 5, 2/26, nhóm 3-5; commit 08e05ba26b980c5a17c8a909580c4d477ff7b473, SHA256 05ba7a50928d9252555e6506a95a210190a706264d7471d29bdca104473c9939. Điểm giữa 0/1.5/4/8; trên10 lấy12 (tự ước tính), tháng=52/12 tuần. Một lần dùng=1 phiên, turns=1 và adoption100% thay app cũ đều (tự ước tính), không phải số đo."
+  - name: dung_nhieu
+    share: 0.6538461538461539
+    uses_per_month: 44.86274509803921
+    turns_per_session: 1
+    types: [thuong, kho, tu_choi]
+    source: "Khảo sát câu 5, 17/26, nhóm 6-10 và Trên 10; commit 08e05ba26b980c5a17c8a909580c4d477ff7b473, SHA256 05ba7a50928d9252555e6506a95a210190a706264d7471d29bdca104473c9939. Điểm giữa 0/1.5/4/8; trên10 lấy12 (tự ước tính), tháng=52/12 tuần. Một lần dùng=1 phiên, turns=1 và adoption100% thay app cũ đều (tự ước tính), không phải số đo."
 
-prices:             # USD / 1 triệu token — chép từ further-reading/model-prices.md của repo đề. ≥2 mức model
-  - model: gemini-3.1-flash-lite
-    input: 0.25
-    output: 1.50
-    source: "(ví dụ) https://ai.google.dev/gemini-api/docs/pricing · xem 25/11/2026"
-  - model: gemini-4-hydrogen
-    input: 1.50
-    output: 7.50
-    source: "(ví dụ) https://ai.google.dev/gemini-api/docs/pricing · xem 25/11/2026"
+prices:
+  - model: gpt-6-luna
+    input: 0.1
+    output: 0.5
+    source: "https://developers.openai.com/api/docs/models/gpt-6-luna ; xem 2026-11-27 ; paid standard text, input uncached ; cache writes 0.125 USD/1M chưa đo, giá token bảo thủ chưa phải hóa đơn provider"
+  - model: deepseek-flash
+    input: 0.3
+    output: 1.2
+    source: "https://api-docs.deepseek.com/quick_start/pricing/ ; xem 2026-11-27 ; paid peak; input uncached ; chưa đo token model thật"
+  - model: gemini-2.5-flash-lite
+    input: 0.1
+    output: 0.4
+    source: "https://aistudio.google.com/docs/pricing#gemini-2.5-flash-lite ; xem 2026-11-27 ; paid standard text; output includes thinking ; chưa đo token model thật"
 
-usd_to_vnd:         # tuỳ chọn: điền thì bản tóm tắt in thêm tiền Việt
-  rate:
-  source:
+# USD only; không đưa tỷ giá chưa có nguồn vào cấu hình.

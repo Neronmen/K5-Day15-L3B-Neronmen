@@ -1,0 +1,46 @@
+# H-05: snapshot khảo sát 26 học sinh THPT, không phải số mẫu starter.
+# Một tháng quy đổi 52/12 tuần. Số phiên và số lượt/phiên là giả định được ghi ở cost-estimate.md.
+sessions: 50
+seed: 42
+
+users:
+  low: 300
+  base: 1000
+  high: 3000
+  source: "(tự ước tính) Cohort thí điểm: thấp 300 học sinh tương đương một khối; cơ sở 1000 tương đương một trường theo quy mô giả định spec.md §2; cao 3000 tương đương ba trường. Chưa có cam kết triển khai hoặc số người dùng hoạt động thực đo. Giữ cả người trả lời 0 lần."
+
+personas:
+  - name: dung_it
+    share: 0.2692307692307692
+    uses_per_month: 3.714285714285714
+    turns_per_session: 1
+    types: [thuong, kho, tu_choi]
+    source: "Khảo sát câu 5, 7/26, nhóm 0 và 1-2; commit 08e05ba26b980c5a17c8a909580c4d477ff7b473, SHA256 05ba7a50928d9252555e6506a95a210190a706264d7471d29bdca104473c9939. Điểm giữa 0/1.5/4/8; trên10 lấy12 (tự ước tính), tháng=52/12 tuần. Một lần dùng=1 phiên, turns=1 và adoption100% thay app cũ đều (tự ước tính), không phải số đo."
+  - name: dung_vua
+    share: 0.07692307692307693
+    uses_per_month: 17.333333333333332
+    turns_per_session: 1
+    types: [thuong, kho, tu_choi]
+    source: "Khảo sát câu 5, 2/26, nhóm 3-5; commit 08e05ba26b980c5a17c8a909580c4d477ff7b473, SHA256 05ba7a50928d9252555e6506a95a210190a706264d7471d29bdca104473c9939. Điểm giữa 0/1.5/4/8; trên10 lấy12 (tự ước tính), tháng=52/12 tuần. Một lần dùng=1 phiên, turns=1 và adoption100% thay app cũ đều (tự ước tính), không phải số đo."
+  - name: dung_nhieu
+    share: 0.6538461538461539
+    uses_per_month: 44.86274509803921
+    turns_per_session: 1
+    types: [thuong, kho, tu_choi]
+    source: "Khảo sát câu 5, 17/26, nhóm 6-10 và Trên 10; commit 08e05ba26b980c5a17c8a909580c4d477ff7b473, SHA256 05ba7a50928d9252555e6506a95a210190a706264d7471d29bdca104473c9939. Điểm giữa 0/1.5/4/8; trên10 lấy12 (tự ước tính), tháng=52/12 tuần. Một lần dùng=1 phiên, turns=1 và adoption100% thay app cũ đều (tự ước tính), không phải số đo."
+
+prices:
+  - model: gpt-6-luna
+    input: 0.1
+    output: 0.5
+    source: "https://developers.openai.com/api/docs/models/gpt-6-luna ; xem 2026-11-27 ; paid standard text, input uncached ; cache writes 0.125 USD/1M chưa đo, giá token bảo thủ chưa phải hóa đơn provider"
+  - model: deepseek-flash
+    input: 0.3
+    output: 1.2
+    source: "https://api-docs.deepseek.com/quick_start/pricing/ ; xem 2026-11-27 ; paid peak; input uncached ; chưa đo token model thật"
+  - model: gemini-2.5-flash-lite
+    input: 0.1
+    output: 0.4
+    source: "https://aistudio.google.com/docs/pricing#gemini-2.5-flash-lite ; xem 2026-11-27 ; paid standard text; output includes thinking ; chưa đo token model thật"
+
+# USD only; không đưa tỷ giá chưa có nguồn vào cấu hình.

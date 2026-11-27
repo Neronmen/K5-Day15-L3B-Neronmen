@@ -1,0 +1,232 @@
+{
+  "total_records": 26,
+  "valid_thpt_records": 26,
+  "excluded_non_thpt_records": 0,
+  "valid_q5_answers": 26,
+  "missing_q5": 0,
+  "invalid_q5": 0,
+  "zero_use_respondents_retained": 3,
+  "distribution": [
+    {
+      "bucket": "0",
+      "count": 3,
+      "fraction_of_valid_q5": 0.11538461538461539,
+      "fraction_of_thpt": 0.11538461538461539
+    },
+    {
+      "bucket": "1-2",
+      "count": 4,
+      "fraction_of_valid_q5": 0.15384615384615385,
+      "fraction_of_thpt": 0.15384615384615385
+    },
+    {
+      "bucket": "3-5",
+      "count": 2,
+      "fraction_of_valid_q5": 0.07692307692307693,
+      "fraction_of_thpt": 0.07692307692307693
+    },
+    {
+      "bucket": "6-10",
+      "count": 7,
+      "fraction_of_valid_q5": 0.2692307692307692,
+      "fraction_of_thpt": 0.2692307692307692
+    },
+    {
+      "bucket": "Trên 10",
+      "count": 10,
+      "fraction_of_valid_q5": 0.38461538461538464,
+      "fraction_of_thpt": 0.38461538461538464
+    }
+  ],
+  "personas": [
+    {
+      "name": "dung_it",
+      "buckets": [
+        "0",
+        "1-2"
+      ],
+      "respondents": 7,
+      "share": 0.2692307692307692,
+      "weekly_uses_assumed_mean": 0.8571428571428571,
+      "uses_per_month": 3.714285714285714,
+      "turns_per_session": 1
+    },
+    {
+      "name": "dung_vua",
+      "buckets": [
+        "3-5"
+      ],
+      "respondents": 2,
+      "share": 0.07692307692307693,
+      "weekly_uses_assumed_mean": 4.0,
+      "uses_per_month": 17.333333333333332,
+      "turns_per_session": 1
+    },
+    {
+      "name": "dung_nhieu",
+      "buckets": [
+        "6-10",
+        "Trên 10"
+      ],
+      "respondents": 17,
+      "share": 0.6538461538461539,
+      "weekly_uses_assumed_mean": 10.352941176470589,
+      "uses_per_month": 44.86274509803921,
+      "turns_per_session": 1
+    }
+  ],
+  "sensitivity": [
+    {
+      "scenario": "minimum_integer_11",
+      "top_bucket_weekly_assumption": 11,
+      "personas": [
+        {
+          "name": "dung_it",
+          "buckets": [
+            "0",
+            "1-2"
+          ],
+          "respondents": 7,
+          "share": 0.2692307692307692,
+          "weekly_uses_assumed_mean": 0.8571428571428571,
+          "uses_per_month": 3.714285714285714,
+          "turns_per_session": 1
+        },
+        {
+          "name": "dung_vua",
+          "buckets": [
+            "3-5"
+          ],
+          "respondents": 2,
+          "share": 0.07692307692307693,
+          "weekly_uses_assumed_mean": 4.0,
+          "uses_per_month": 17.333333333333332,
+          "turns_per_session": 1
+        },
+        {
+          "name": "dung_nhieu",
+          "buckets": [
+            "6-10",
+            "Trên 10"
+          ],
+          "respondents": 17,
+          "share": 0.6538461538461539,
+          "weekly_uses_assumed_mean": 9.764705882352942,
+          "uses_per_month": 42.31372549019608,
+          "turns_per_session": 1
+        }
+      ],
+      "population_uses_per_month": 30.0
+    },
+    {
+      "scenario": "baseline_assumed_12",
+      "top_bucket_weekly_assumption": 12,
+      "personas": [
+        {
+          "name": "dung_it",
+          "buckets": [
+            "0",
+            "1-2"
+          ],
+          "respondents": 7,
+          "share": 0.2692307692307692,
+          "weekly_uses_assumed_mean": 0.8571428571428571,
+          "uses_per_month": 3.714285714285714,
+          "turns_per_session": 1
+        },
+        {
+          "name": "dung_vua",
+          "buckets": [
+            "3-5"
+          ],
+          "respondents": 2,
+          "share": 0.07692307692307693,
+          "weekly_uses_assumed_mean": 4.0,
+          "uses_per_month": 17.333333333333332,
+          "turns_per_session": 1
+        },
+        {
+          "name": "dung_nhieu",
+          "buckets": [
+            "6-10",
+            "Trên 10"
+          ],
+          "respondents": 17,
+          "share": 0.6538461538461539,
+          "weekly_uses_assumed_mean": 10.352941176470589,
+          "uses_per_month": 44.86274509803921,
+          "turns_per_session": 1
+        }
+      ],
+      "population_uses_per_month": 31.666666666666664
+    },
+    {
+      "scenario": "stress_assumed_20_not_upper_bound",
+      "top_bucket_weekly_assumption": 20,
+      "personas": [
+        {
+          "name": "dung_it",
+          "buckets": [
+            "0",
+            "1-2"
+          ],
+          "respondents": 7,
+          "share": 0.2692307692307692,
+          "weekly_uses_assumed_mean": 0.8571428571428571,
+          "uses_per_month": 3.714285714285714,
+          "turns_per_session": 1
+        },
+        {
+          "name": "dung_vua",
+          "buckets": [
+            "3-5"
+          ],
+          "respondents": 2,
+          "share": 0.07692307692307693,
+          "weekly_uses_assumed_mean": 4.0,
+          "uses_per_month": 17.333333333333332,
+          "turns_per_session": 1
+        },
+        {
+          "name": "dung_nhieu",
+          "buckets": [
+            "6-10",
+            "Trên 10"
+          ],
+          "respondents": 17,
+          "share": 0.6538461538461539,
+          "weekly_uses_assumed_mean": 15.058823529411764,
+          "uses_per_month": 65.25490196078431,
+          "turns_per_session": 1
+        }
+      ],
+      "population_uses_per_month": 45.0
+    }
+  ],
+  "assumptions": {
+    "weeks_per_month": 4.333333333333333,
+    "conversion": "52 weeks / 12 months",
+    "closed_band_midpoints_per_week": {
+      "0": 0.0,
+      "1-2": 1.5,
+      "3-5": 4.0,
+      "6-10": 8.0
+    },
+    "top_band_per_week": 12,
+    "top_band_has_no_finite_upper_bound": true,
+    "turns_per_session": 1,
+    "turns_basis": "(tự ước tính) one independent question per session; Q5 does not measure turns",
+    "adoption_fraction": 1.0,
+    "adoption_basis": "(tự ước tính) pilot cohort replaces existing app use with tutor use; survey is not adoption evidence",
+    "shares_denominator": "valid THPT Q5 answers, including zero-use respondents",
+    "missing_answers": "not imputed; reported separately",
+    "zero_within_dung_it": "zero-use members retained in within-group mean; no individual non-user is claimed to use the product"
+  },
+  "source": {
+    "git_commit": "08e05ba26b980c5a17c8a909580c4d477ff7b473",
+    "repo_path": "evidence/survey/results.csv",
+    "sha256": "05ba7a50928d9252555e6506a95a210190a706264d7471d29bdca104473c9939"
+  },
+  "snapshot_recorded_at": "2026-11-27T18:42:16+07:00",
+  "notice": "Aggregates from the author's anonymized survey snapshot. Not model usage, user adoption, interview evidence or simulation output."
+}

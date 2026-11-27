@@ -1,0 +1,36 @@
+{
+  "started_at": "2026-11-27T21:14:03.122856+07:00",
+  "source_commit": "ef61707f2038b4a7b749d975a63261e7b8b1c00c",
+  "working_status": " M TICKETS.md\n M cost/cost-estimate.md\n M cost/personas.yaml\n M docs/ai-usage.md\n?? cost/analyze_q5.py\n?? cost/h05-verification-20261127.json\n?? cost/inputs/\n?? cost/openai-luna-price-20261127.json\n?? cost/price-refresh-20261127.json\n?? cost/price-sources-20261127.json\n?? cost/survey-q5-analysis.json\n?? docs/ai-usage-h05-thang.md\n?? docs/h05-thang-handoff.md\n?? docs/thang-issue-audit-20261127.md\n?? tests/test_cost_q5.py\n",
+  "config": {
+    "MODEL_PROVIDER": "openai",
+    "MODEL_NAME": "gpt-6-luna",
+    "MODEL_MAX_TOKENS": null,
+    "MODEL_TEMPERATURE": null,
+    "MODEL_BASE_URL": null
+  },
+  "input_sha256": {
+    "eval/benchmark.csv": "de21ed318952c5cc7447b67ecd20393ad04018657a5df40ade829b6c17f8b6b0",
+    "eval/metric_spec.yaml": "913b617dba2e4bdc9c6441b62062d37efd3ec5b394e098a327848f14c81082ff",
+    "data/assignments.json": "81527511f1dfa108538f3a88c54144324c8d1a28b62e6cd3d78a776fbf74ea8f",
+    "data/lesson.json": "617013254e352b8457004b7be601d469210c243d594a37c84fdafc9e669bf7a0",
+    "cost/personas.yaml": "c2176b595e170a2ffb400f9d6b02b8fb6c621473799357d572caac46203ed3d1",
+    "cost/openai-luna-price-20261127.json": "0a3ad33b706dee2b6f450f4bc6f1745fdc74a77387f23859c94acc718fbe6e46",
+    "codebase/ai.py": "1c6b35879455541ddfabe5a1526f93106e3e056cb4c2a2912357fb1b4d2246b1",
+    "codebase/prompts.py": "4a06b7c7dcf10c4e1fd0bf459ed8321306611fe8bb1deb8fc98e6fbabd3dba0d",
+    "codebase/agent.py": "3b0d49b34641258ea5847396cd899371c170315831541f71324d4bc5af6d9902",
+    "codebase/tools.py": "1dd0b2eb3685ffc067de1e2cd46732470770b64eaa42b812810fff43f5b7e35d",
+    "cost/simulate.py": "602c056cb243497bfc082b8e5fd2a78bf02bea75ac848c2c97517de85c6e71c8",
+    "eval/run_eval.py": "a76c93b7195a09b90d0504629be26ee4abcfe9243264cb071be6d876cc136173"
+  },
+  "credentials": "Provided by local .env, passed in memory, not stored in manifest",
+  "name": "simulate-1",
+  "requested_sessions": 50,
+  "command": [
+    "python",
+    "run.py",
+    "simulate",
+    "--wait",
+    "1"
+  ]
+}

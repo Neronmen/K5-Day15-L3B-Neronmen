@@ -1,0 +1,98 @@
+{
+  "run_id": "simulate-1@20261127-211403",
+  "sessions": 50,
+  "model": "gpt-6-luna",
+  "zero_model_call_sessions": 5,
+  "model_calls": 45,
+  "error_sessions": 0,
+  "tokens_in": 84621,
+  "tokens_out": 10106,
+  "per_persona": {
+    "dung_it": {
+      "sessions": 16,
+      "model_calls": 15,
+      "tokens_in": 28774,
+      "tokens_out": 3779,
+      "mean_tokens_in": 1798.375,
+      "mean_tokens_out": 236.1875
+    },
+    "dung_vua": {
+      "sessions": 2,
+      "model_calls": 2,
+      "tokens_in": 3665,
+      "tokens_out": 302,
+      "mean_tokens_in": 1832.5,
+      "mean_tokens_out": 151.0
+    },
+    "dung_nhieu": {
+      "sessions": 32,
+      "model_calls": 28,
+      "tokens_in": 52182,
+      "tokens_out": 6025,
+      "mean_tokens_in": 1630.6875,
+      "mean_tokens_out": 188.28125
+    }
+  },
+  "costs": [
+    {
+      "price_model": "gpt-6-luna",
+      "token_measurement_model": "gpt-6-luna",
+      "sum_token_reference_usd": 0.0135151,
+      "mean_usd_per_session": 0.000270302,
+      "persona_mean_usd": {
+        "dung_it": 0.00029793125,
+        "dung_vua": 0.00025875000000000003,
+        "dung_nhieu": 0.000257209375
+      },
+      "monthly_usd": {
+        "low": 2.456321875,
+        "base": 8.187739583333332,
+        "high": 24.56321875
+      },
+      "usd_per_student_month": 0.008187739583333332,
+      "cost_per_successful_task": null,
+      "cost_basis": "Uncached input + output reference prices; not an invoice; cache writes/discounts/HTTP retries are not itemized by existing adapter."
+    },
+    {
+      "price_model": "deepseek-flash",
+      "token_measurement_model": "gpt-6-luna",
+      "sum_token_reference_usd": 0.0375135,
+      "mean_usd_per_session": 0.0007502699999999999,
+      "persona_mean_usd": {
+        "dung_it": 0.0008229375,
+        "dung_vua": 0.00073095,
+        "dung_nhieu": 0.0007151437499999999
+      },
+      "monthly_usd": {
+        "low": 6.83252625,
+        "base": 22.775087499999994,
+        "high": 68.3252625
+      },
+      "usd_per_student_month": 0.022775087499999996,
+      "cost_per_successful_task": null,
+      "cost_basis": "Uncached input + output reference prices; not an invoice; cache writes/discounts/HTTP retries are not itemized by existing adapter."
+    },
+    {
+      "price_model": "gemini-2.5-flash-lite",
+      "token_measurement_model": "gpt-6-luna",
+      "sum_token_reference_usd": 0.0125045,
+      "mean_usd_per_session": 0.00025009,
+      "persona_mean_usd": {
+        "dung_it": 0.00027431250000000003,
+        "dung_vua": 0.00024365,
+        "dung_nhieu": 0.00023838125000000002
+      },
+      "monthly_usd": {
+        "low": 2.2775087500000004,
+        "base": 7.591695833333333,
+        "high": 22.7750875
+      },
+      "usd_per_student_month": 0.007591695833333333,
+      "cost_per_successful_task": null,
+      "cost_basis": "Uncached input + output reference prices; not an invoice; cache writes/discounts/HTTP retries are not itemized by existing adapter."
+    }
+  ],
+  "quality_pass_rate": null,
+  "quality_status": "Pending human-graded evaluation; error=0 is not pedagogical success",
+  "trace_sha256": "f536e9df42879feda559f5d7d2fba45ccf09592ffb8786bc328b2584e5768174"
+}

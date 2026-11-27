@@ -1,0 +1,23 @@
+{
+  "finished_at": "2026-11-27T21:16:55.996237+07:00",
+  "exit_code": 0,
+  "name": "simulate-1",
+  "sessions": 50,
+  "models": [
+    "",
+    "gpt-6-luna"
+  ],
+  "model_calls": 45,
+  "tokens_in": 84621,
+  "tokens_out": 10106,
+  "persona_counts": {
+    "dung_nhieu": 32,
+    "dung_it": 16,
+    "dung_vua": 2
+  },
+  "artifacts": {
+    "cost/simulate-1.csv": "ca50f9d8f96ed5653fa69bd9985dd5e974b3e2c109d7c0d53dd0f8d881d6f157",
+    "cost/simulate-1-summary.md": "69891dc3dd3b2a34ffffaf4dbce16e2b5974664d827d31aa49fa4e891d9dbb5c",
+    "traces/simulate-1.jsonl": "f536e9df42879feda559f5d7d2fba45ccf09592ffb8786bc328b2584e5768174"
+  }
+}
