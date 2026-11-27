@@ -48,4 +48,6 @@ Codex chạy smoke fake, check, 114 unittest, diff-check và các probe fake/stu
 
 ## Tiếp tục H-05 và rà Issue ngày 27/11/2026
 
+Lượt xử lý PR #34/#47: Codex kiểm ancestry, diff, dependency, CI/protection, chạy lại 125 unittest, đối chiếu raw usage/trace và công thức ba kịch bản. Xác nhận T-05 đã tích hợp để đóng PR dư, giữ B16/R24; H-05 đủ acceptance gốc, USD/task thành công còn chờ human pass rate. Không gọi model hoặc tạo lượt simulation mới khi review, không sửa benchmark/metric/evidence hoặc kết quả chấm.
+
 Codex kế thừa phân tích Q5/persona đã có, xác minh lại giá OpenAI/DeepSeek/Gemini, lưu lock SHA256 trước evaluation và đối chiếu acceptance các Issue của Thắng. Chỉ đóng Issue đã đủ bằng chứng, giữ mở H-05/T-07 vì thiếu output evaluation/human grading cho USD/task thành công, dù đã đo 50 phiên OpenAI thật. Không tạo số token, run hoặc phỏng vấn giả; bảo toàn draft T-07, worktree H-05 cũ và PR #39. Chi tiết công cụ, giới hạn và phần người kiểm tại docs/ai-usage-h05-thang.md.
