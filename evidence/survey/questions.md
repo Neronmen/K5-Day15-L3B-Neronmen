@@ -2,7 +2,7 @@
 
 - **Đối tượng:** học sinh THPT (lớp 10–12), **ngoài nhóm**. Mục tiêu ≥20 người, tốt nhất ≥30.
 - **Kênh gửi:** em, cháu, con của thành viên và đồng nghiệp; nhờ phụ huynh quen chuyển vào nhóm Zalo phụ huynh; nhờ giáo viên / gia sư quen gửi học sinh. Ghi kênh thật đã gửi: ____
-- **Mở lúc:** 14:50 27/11/2026 — **form chính thức là form của Nhài** (tạo bằng `create_form.gs`), cả nhóm chỉ gửi link này: ____ · Form thử của Khoa (mở 14:43) đã **ngừng nhận câu trả lời**; câu trả lời đã có ở form đó (nếu có) xuất riêng, ghi rõ trong `results.csv`, không gộp lẫn · **Chốt lúc:** ____ (chốt trước 08:00 Thứ Bảy 28/11 để kịp CP3)
+- **Mở lúc:** 14:50 27/11/2026 — **form chính thức là form của Nhài** (tạo bằng `create_form.gs`), cả nhóm chỉ gửi link này: https://docs.google.com/forms/d/e/1FAIpQLSd6bRMF8Y8Cd-G3xis1M9toEj7V98FB5WFF-wzwVpEu0D4ODw/viewform · Form thử của Khoa (mở 14:43) đã **ngừng nhận câu trả lời**; câu trả lời đã có ở form đó (nếu có) xuất riêng, ghi rõ trong `results.csv`, không gộp lẫn · **Chốt lúc:** ____ (chốt trước 08:00 Thứ Bảy 28/11 để kịp CP3)
 - **Đếm:** `python evidence/survey/analyze_survey.py anonymize evidence/survey/raw-<ngay>.csv` → `results.csv`, rồi `python evidence/survey/analyze_survey.py` (đếm đúng luật ở mục "Cách đọc kết quả")
 - **Không thu** tên, số điện thoại, tên trường, lớp cụ thể. Người trả lời là trẻ vị thành niên: form ghi rõ ẩn danh, chỉ hỏi hành vi, **không phán xét** việc dùng app.
 - Xuất kết quả thành `results.csv` (đã xoá cột nhận diện). Bản gốc đặt tên `raw-*.csv`, không commit.
