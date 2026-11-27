@@ -16,6 +16,7 @@
    - Script lấy review ban đầu in sai số review đã đọc ("đọc 200"), đã sửa.
    - AI viết câu thử từ câu kể khảo sát; mình duyệt từng câu trước khi ghi (B22–B30).
    - AI nhắc phải ghi cả kết quả n = 22 (dưới ngưỡng) bên cạnh n = 26, không chỉ ghi số đẹp.
+   - AI từ chối đưa một đoạn phỏng vấn "mô phỏng" vào làm P2, và chỉ ra thời điểm ghi chép P1 (17:30) có trước giờ cuộc gọi được khai (18:30). Mình quyết định gỡ P1 và thay B22 bằng câu từ khảo sát R26: số câu thật không giảm, bằng chứng vẫn đạt ngưỡng nhờ khảo sát và review. Bài học: chỉ đưa vào `evidence/` những gì mình tự thu được và ghi được thời điểm, nguồn rõ ràng; kết quả trượt ngưỡng ghi trung thực vẫn tốt hơn bằng chứng không giải thích được.
    - __ (tự thêm bằng lời của mình)
 
 3. **Một câu thử trượt của nhóm và mình học được gì từ nó:** __ (điền sau khi có `eval/run-1.csv` đã chấm)
