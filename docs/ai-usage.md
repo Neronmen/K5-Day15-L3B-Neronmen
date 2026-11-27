@@ -29,3 +29,7 @@ Ba file nháp T-07 có backup byte-for-byte trước fetch; cập nhật local �
 ### Cập nhật cuối theo main cce4e72
 
 Trong cùng phiên rà soát, upstream bổ sung code app/core, 5 test của Khoa và 4 câu có nhãn nguồn thật của Nhài. Codex merge upstream vào nhánh review riêng, không merge main; kiểm113/113 unittest và các probe bằng fake/stub trên runtime/data/test giống main cce4e72. Benchmark hiện25 câu, 4/25 nguồn thật theo nhãn và có điểm đối chiếu P1/review; không tạo interview, nguồn mới hoặc đổi nhãn. Không sửa code/metric/CSV. Các khai báo Nhài và thành viên khác được giữ từ main mới; snapshot0e96a99 phía trên là lịch sử lượt đầu.
+
+### Chốt kiểm chứng tại main1711525
+
+Khoa đã sửa hợp đồng nguồn và đồng bộ số đếm trong lúc review. Codex kiểm lại114/114 test trên runtime/data/test giống main1711525; probe thẻ nhiều nguồn PASS, không còn ghi đó là blocker. Giữ các lượt0e96a99/cce4e72 như lịch sử. Chỉ cập nhật docs, không đổi runtime/metric/CSV, không gọi model thật hoặc tạo human grading/phỏng vấn. PR38 lượt đầu đã được tích hợp bởi Khoa; phần cập nhật cuối được bàn giao riêng bằng diff tài liệu.

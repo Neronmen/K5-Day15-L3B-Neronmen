@@ -1,5 +1,17 @@
 # Rà soát CP2: phần Thắng, ngày 27/11/2026
 
+## Trạng thái mới nhất tại main 1711525
+
+Main1711525 đã có tài liệu lượt đầu của PR38, sửa citations thành mỗi nguồn một thẻ, bổ sung test guardrail và đồng bộ spec§7 thành25 câu. Nhánh review chỉ merge upstream vào chính nhánh review. Runtime/data/test trong worktree04d837f giống hệt main1711525; các khác biệt còn lại chỉ là tài liệu. Không merge main, không tự sửa agent/metric/CSV.
+
+Kết quả cuối là **114/114 unittest PASS**. Smoke fake/token0, git diff --check đạt; 8 ca leak/agent, 7 ca chống nhận nhầm và 4 ca tutor mode vẫn đạt. Probe thẻ nhiều nguồn nay cho hai thẻ riêng đúng chuẩn và grader grounding **PASS**, nên lỗi tương thích nguồn của hai snapshot trước đã được Khoa khắc phục, không còn là blocker. B13 cũng đã được upstream thống nhất. Chỉ B08/B12 còn khác tập nhãn giữa expected và pass_criterion.
+
+Benchmark25 câu B01–B25, 8 thuong/13 kho/4 tu_choi; Nhài đã có B22–B25. Có4/25 nhãn nguồn thật (1 nguoi_dung, 3 data_that), có P1 và các dòng review81/52/38 để đối chiếu. Nhài cần bổ sung ngày giờ/hình thức P1 từ thực tế. Thiếu B26–B30 và chưa đạt10/30 nguồn thật; builder --check từ chối đúng, không ghi benchmark cuối. Chưa tự gán hay đổi nguồn.
+
+Sáu head PR30–35 đều đã trong main. PR30–33/35 merged, PR34 còn draft do base thang/T-01 nhưng không còn commit chưa tích hợp; không merge lại. PR38 lượt đầu đã vào main; bản tài liệu tiếp theo chỉ cập nhật trạng thái mới này. Không có CI check/status hoặc review comment cho sáu PR ở thời điểm đọc. Metric vẫn pending0/80/70/80, không bị phiên này sửa. T-06 vẫn chưa đối chiếu run-N/trace thật; T-07 và phỏng vấn riêng của Thắng vẫn chờ. P1 của Nhài không thay cho phỏng vấn Thắng.
+
+Các mục snapshot cce4e72 và0e96a99 phía dưới là lịch sử. Lỗi citation_missing, B13 ambiguous, số21 câu/0 nguồn và các bộ108/113 test trong đó không phải trạng thái hiện tại.
+
 ## Cập nhật cuối: main cce4e72
 
 Main đã tiến tới cce4e72 trong lúc rà soát. Nhánh review đã merge upstream vào chính nhánh review, không merge vào main; runtime/data/test giống hệt main cce4e72. Worktree kiểm thử ở commit 4bbb10c, chỉ khác main ở tài liệu. Các lệnh mới đạt **113/113 unittest** thay cho 108 ở snapshot trước, gồm 5 test guardrail Khoa bổ sung. Smoke fake, git diff --check đạt; không gọi model thật.
