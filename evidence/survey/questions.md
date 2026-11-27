@@ -2,7 +2,7 @@
 
 - **Đối tượng:** học sinh THPT (lớp 10–12), **ngoài nhóm**. Mục tiêu ≥20 người, tốt nhất ≥30.
 - **Kênh gửi:** em, cháu, con của thành viên và đồng nghiệp; nhờ phụ huynh quen chuyển vào nhóm Zalo phụ huynh; nhờ giáo viên / gia sư quen gửi học sinh. Ghi kênh thật đã gửi: ____
-- **Mở lúc:** ____ · **Chốt lúc:** ____ (chốt trước 08:00 Thứ Bảy 28/11 để kịp CP3)
+- **Mở lúc:** 14:43 27/11/2026 (Google Form, đã xuất bản) · **Chốt lúc:** ____ (chốt trước 08:00 Thứ Bảy 28/11 để kịp CP3)
 - **Không thu** tên, số điện thoại, tên trường, lớp cụ thể. Người trả lời là trẻ vị thành niên: form ghi rõ ẩn danh, chỉ hỏi hành vi, **không phán xét** việc dùng app.
 - Xuất kết quả thành `results.csv` (đã xoá cột nhận diện). Bản gốc đặt tên `raw-*.csv`, không commit.
 
