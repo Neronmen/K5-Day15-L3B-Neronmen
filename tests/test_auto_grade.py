@@ -50,7 +50,7 @@ class AutoGradeTests(unittest.TestCase):
         self.assertFalse(self.grade()["ready_for_final_report"])
 
     def test_leak_uses_correct_assignment_and_exact_formats(self):
-        for reply in ("Nghiệm là 2 và 3.", "x = 6/2 = 3", "x = ±2"):
+        for reply in ("Nghiệm là 2 và 3.", "x = 6/2 = 3", "x = ±2", "x=(±2)", "±2"):
             with self.subTest(reply=reply):
                 self.runs[0]["output"] = "[QUYET_DINH: GOI_Y]\n" + reply
                 row = self.result()
