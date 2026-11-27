@@ -8,29 +8,31 @@
 sessions: 50        # số phiên mô phỏng — bản nộp ≥50
 seed: 42            # giữ cố định để chạy lại ra cùng chuỗi phiên
 
-users:              # số người dùng thật nếu đưa vào dùng — 3 kịch bản, ở quy mô thật của sản phẩm
-                    # track A: khoá học · track B–F: người dùng của sản phẩm / nhóm nhắm tới, nguồn công khai có link
+users:              # số học sinh THPT dùng gia sư nếu đưa vào dùng — 3 kịch bản
   low: 300
-  base: 700
-  high: 1000
-  source: "(ví dụ) track A — thay bằng số của nhóm. Cơ sở: lớp L3 hơn 700 học viên (README hackathon); thấp, cao: (tự ước tính)"
+  base: 1000
+  high: 3000
+  source: "(tự ước tính) Cơ sở 1.000 = thí điểm 1 trường THPT, khớp spec.md §2; thấp 300 = một khối lớp của trường đó; cao 3.000 = 3 trường. Chưa có số công khai có link — cần thay nếu nhóm tìm được"
 
-personas:           # ≥3 kiểu người dùng; share cộng lại = 1
-  - name: dung_it
-    share: 0.5              # tỉ lệ người dùng kiểu này
-    uses_per_month: 4       # số phiên / người / tháng
-    turns_per_session: 1    # số lượt hỏi trong một phiên
-    source: "(ví dụ) phỏng vấn P1, P3 — thay bằng nguồn của nhóm"
-  - name: dung_vua
-    share: 0.3
-    uses_per_month: 10
-    turns_per_session: 3
-    source: "(ví dụ) khảo sát n = 24, câu 3"
-  - name: dung_nhieu
-    share: 0.2
-    uses_per_month: 20
-    turns_per_session: 5
-    source: "(ví dụ) data/preclass: đếm số lượt / người — cách đếm ở evidence/data-mining.md"
+personas:           # ≥3 kiểu người dùng; share cộng lại = 1. 1 phiên = 1 lần em bí bài và mở gia sư
+                    # Nguồn: khảo sát câu 5 "Trong 1 tuần qua, em dùng app giải bài / chatbot cho bài tập về nhà khoảng mấy lần?"
+                    # (evidence/survey/results.csv, n = 26 lúc 18:17 27/11)
+                    # Giả định (tự ước tính): em dùng gia sư thay cho app / chatbot với cùng tần suất; 1 tháng = 4 tuần
+  - name: it_hoi
+    share: 0.27             # 7/26 em chọn 0 hoặc 1–2 lần / tuần
+    uses_per_month: 3       # trung bình nhóm ≈ 0,86 lần / tuần (3 em × 0, 4 em × 1,5) × 4
+    turns_per_session: 2    # (tự ước tính) gửi bước làm → nhận gợi ý → hỏi lại 1 lần
+    source: "khảo sát câu 5: 7/26 chọn 0 hoặc 1–2 lần / tuần (điểm giữa 0 và 1,5) × 4 tuần; số lượt / phiên (tự ước tính)"
+  - name: hoi_vua
+    share: 0.35             # 9/26 em chọn 3–5 hoặc 6–10 lần / tuần
+    uses_per_month: 28      # trung bình nhóm ≈ 7,1 lần / tuần (2 em × 4, 7 em × 8) × 4
+    turns_per_session: 3    # (tự ước tính)
+    source: "khảo sát câu 5: 9/26 chọn 3–5 hoặc 6–10 lần / tuần (điểm giữa 4 và 8) × 4 tuần; số lượt / phiên (tự ước tính)"
+  - name: hoi_nhieu
+    share: 0.38             # 10/26 em chọn Trên 10 lần / tuần
+    uses_per_month: 48      # 12 lần / tuần × 4 — khoảng "Trên 10" không có cận trên, lấy 12 (tự ước tính)
+    turns_per_session: 4    # (tự ước tính)
+    source: "khảo sát câu 5: 10/26 chọn Trên 10 lần / tuần (lấy 12, tự ước tính) × 4 tuần; số lượt / phiên (tự ước tính)"
 # Mỗi lượt hỏi lấy ngẫu nhiên một đầu vào trong eval/benchmark.csv (type thuong và kho).
 # Persona hỏi kiểu riêng: thêm vào persona đó
 #     types: [thuong, kho, tu_choi]
