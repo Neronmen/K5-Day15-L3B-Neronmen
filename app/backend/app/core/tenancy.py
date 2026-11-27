@@ -87,6 +87,12 @@ def search_chunks(db: Session, scope: TenantScope, query: str, k: int = 8,
     return _bm25(query, list(db.scalars(stmt.limit(5000))), k)
 
 
+def scoped_chunks(db: Session, scope: TenantScope, limit: int = 5000) -> list[LectureChunk]:
+    """Mọi đoạn bài giảng của ĐÚNG một lớp (lọc đủ 3 khoá tenant). Lõi codebase/ tự chấm điểm BM25 trên danh sách này
+    (agents/core_bridge.py, ticket N-08), nên app không có bản tìm kiếm thứ hai cho khung bài tập."""
+    return list(db.scalars(_scoped(scope).limit(limit)))
+
+
 def search_teacher_chunks(db: Session, teacher_id: str, class_ids: list[str], query: str, k: int = 12,
                           document_ids: list[str] | None = None) -> list[LectureChunk]:
     """Tìm trong tài liệu của NHIỀU lớp cùng một giáo viên (Trợ lý AI giáo viên).

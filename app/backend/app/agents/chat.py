@@ -18,7 +18,7 @@ from app.core.tenancy import TenantScope
 from app.db import SessionLocal
 from app.models import Assignment, AssignmentVersion, ChatMessage, Classroom, Document
 
-from . import knowledge_graph
+from . import core_bridge, knowledge_graph
 from .policy import get_tutor_mode
 from .prompts import NOT_FOUND
 from .tutor import AssignmentCtx, build_system, citations, flag_message
@@ -33,13 +33,14 @@ class ChatPlan:
     class_id: str
     student_id: str
     mode: str                      # lecture | hint | answer
-    route: str                     # answer | extended | no_source
+    route: str                     # answer | extended | no_source | core (khung bài tập qua lõi codebase/, N-08)
     system: str
     messages: list[dict]
     chunks: list[dict]
     document_id: str | None = None
     assignment_id: str | None = None
     meta: dict = field(default_factory=dict)
+    core: dict | None = None       # route "core": tham số cho core_bridge.answer
 
 
 def _check_quota(db: Session, student_id: str) -> int:
@@ -70,6 +71,9 @@ def plan_chat(db: Session, *, student_id: str, cls: Classroom, question: str,
     if not llm.provider_ready(llm.Task.CHAT):
         raise HTTPException(status.HTTP_503_SERVICE_UNAVAILABLE, "Trợ lý AI chưa được cấu hình khoá API.")
     remaining = _check_quota(db, student_id)
+    if assignment is not None and core_bridge.available():
+        return _plan_core(db, student_id=student_id, cls=cls, question=question, assignment=assignment,
+                          remaining=remaining)
 
     ctx = None
     mode = "lecture"
@@ -107,6 +111,51 @@ def plan_chat(db: Session, *, student_id: str, cls: Classroom, question: str,
     )
 
 
+def _plan_core(db: Session, *, student_id: str, cls: Classroom, question: str, assignment: Assignment,
+               remaining: int) -> ChatPlan:
+    """Khung bài tập qua lõi codebase/ (N-08): chế độ, gắn cờ, prompt, tìm đoạn, citations, check_leak đều của lõi."""
+    v = db.get(AssignmentVersion, (assignment.id, assignment.current_version))
+    mode = core_bridge.tutor_mode(_aware(assignment.due_at), datetime.now(timezone.utc))  # Rule 3, giờ server
+    history = _history(db, student_id, None, assignment.id)
+    db.add(ChatMessage(class_id=cls.id, assignment_id=assignment.id, student_id=student_id, role="user", mode=mode,
+                       content=question, flagged=core_bridge.flag(question, mode)))
+    db.commit()
+    return ChatPlan(
+        class_id=cls.id, student_id=student_id, mode=mode, route="core", system="", messages=[], chunks=[],
+        assignment_id=assignment.id, meta={"remaining_today": remaining},
+        core={"cls": cls, "mode": mode, "title": v.title, "prompt": assignment.full_prompt(v.prompt),
+              "reference_answer": v.reference_answer, "question": question, "history": history},
+    )
+
+
+def _core_stream(plan: ChatPlan) -> Iterator[str]:
+    """Không stream từng mẩu: chế độ hint phải chạy check_leak trên CẢ câu trả lời trước khi học sinh thấy."""
+    yield _sse({"type": "start", "mode": plan.mode, "route": plan.route, **plan.meta})
+    db = SessionLocal()
+    failed = False
+    try:
+        try:
+            out = core_bridge.answer(db, **plan.core)
+            for n in out["notes"]:
+                log.info("core tutor: %s", n)
+        except Exception as e:  # noqa: BLE001
+            log.exception("core tutor lỗi")
+            failed = True
+            out = {"text": f"(lỗi: {type(e).__name__})", "decision": None, "citations": []}
+            yield _sse({"type": "error", "message": "Trợ lý AI đang bận hoặc lỗi kết nối, em thử lại sau ít phút."})
+        if not failed:
+            yield _sse({"type": "delta", "text": out["text"]})
+        db.add(ChatMessage(class_id=plan.class_id, assignment_id=plan.assignment_id, student_id=plan.student_id,
+                           role="assistant", mode=plan.mode, content=out["text"],
+                           citations=json.dumps(out["citations"], ensure_ascii=False)))
+        db.commit()
+    finally:
+        db.close()
+    if not failed:
+        yield _sse({"type": "done", "citations": out["citations"], "mode": plan.mode, "route": plan.route,
+                    "decision": out["decision"]})
+
+
 def _aware(dt: datetime) -> datetime:
     return dt if dt.tzinfo else dt.replace(tzinfo=timezone.utc)
 
@@ -116,6 +165,9 @@ def _sse(obj: dict) -> str:
 
 
 def sse_stream(plan: ChatPlan) -> Iterator[str]:
+    if plan.route == "core":
+        yield from _core_stream(plan)
+        return
     yield _sse({"type": "start", "mode": plan.mode, "route": plan.route, **plan.meta})
     text, failed = "", False
     if plan.route == "no_source":
