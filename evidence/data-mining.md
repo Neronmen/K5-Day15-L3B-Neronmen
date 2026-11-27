@@ -6,10 +6,17 @@
 
 ## 1. Cách đếm — viết TRƯỚC khi chạy
 
-- Data dùng: __ (file nào, từ ngày nào đến ngày nào)
-- Đếm gì: __ · trên tập nào: __ · lọc gì: __
-- **Mẫu số là gì:** __ *(lỗi hay gặp nhất là mẫu số sai)*
-- Script / công thức: __
+*(Viết lúc __:__ 27/11/2026, trước khi đọc review nào.)*
+
+- Data dùng: review công khai trên Google Play của 2–3 app giải bài bằng ảnh: __ · __ · __ (link trang app + ngày xem __). Cách chọn app: các app hiện ra đầu tiên khi tìm "giải bài tập bằng ảnh" trên Google Play, có ≥10.000 lượt tải và có review tiếng Việt.
+- Đếm gì: review tiếng Việt nhắc tới **cách dùng lời giải**, gắn tay một trong 3 nhãn:
+  - `giai_ho`: khen app giải hộ, chép bài, nộp bài nhanh, "không cần học"
+  - `hieu_bai`: dùng để hiểu cách làm, xem từng bước, kiểm tra lại bài đã tự làm
+  - `khac`: lỗi app, quảng cáo, giá tiền, khen chung chung không nói cách dùng
+- Trên tập nào: mỗi app lấy **~50 review tiếng Việt mới nhất** (sắp xếp "Gần đây nhất"), theo thứ tự hiện ra, không chọn lọc. Lọc: bỏ review không phải tiếng Việt và review chỉ có emoji hoặc 1–2 chữ.
+- **Mẫu số là gì:** (a) tất cả review đã đọc sau khi lọc; (b) chỉ các review nói về cách dùng (`giai_ho` + `hieu_bai`). Báo cả hai, kết luận chính dùng (b).
+- Script / công thức: `python evidence/count_reviews.py` đọc `evidence/reviews_labeled.csv` (cột `id, app, ngay, so_sao, trich, nhan, ghi_chu`). Mỗi review trích ≤2 câu, **không chép tên người viết**.
+- Giới hạn biết trước: người viết review không chắc là học sinh THPT; review hay lệch về hai đầu 1 sao / 5 sao.
 
 ## 2. Đọc trước, đếm sau
 
