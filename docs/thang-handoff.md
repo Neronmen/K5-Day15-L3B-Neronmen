@@ -1,5 +1,11 @@
 # Bàn giao của Thắng ngày 27/11/2026
 
+## T-08, cập nhật ngày 27/11/2026
+
+Phần bổ sung benchmark đã chuẩn bị cho Khoa review trong PR riêng: thay B16 bằng tình huống dựa trên khảo sát R24, giữ BT09 và lỗi Delta sai dấu ở bước 2. R26 đã dùng ở B22 trên main mới; người giao việc chọn phiếu chưa dùng. Bộ ghép đủ 30 câu, 10/30 nguồn thật, 114/114 unittest đạt; builder và `run.py check` không cảnh báo. Expected TU_CHOI nhất quán yêu cầu giải để chép; chỉ bước sai vẫn bắt buộc trong acceptance. Phỏng vấn P3 vẫn chưa hoàn tất.
+
+Xem [hồ sơ T-08](t08-benchmark-handoff.md) để đọc trích dẫn nguyên văn, nội dung trước/sau, ranh giới giữa khảo sát và toán học biên soạn, hợp đồng chấm và receipt. Worktree T-07, H-05 và PR #39 giữ nguyên. Các số liệu ở những mục cũ bên dưới là snapshot lịch sử trước T-08.
+
 ## Snapshot hiện hành
 
 Main đã fetch và kiểm chứng: `12250ae84e7fe0bb47e048fafd4badcc6bde3946`. Worktree `.git/thang-cp2/integration` đã merge upstream vào nhánh review của Thắng và có mã chạy, data, test, benchmark, metric giống main này. Nhánh main và worktree gốc `thang/T-07` không được checkout hoặc rebase. PR #39 tiếp tục là draft để Khoa review; không merge lại #34 hoặc stack T-01 đến T-06.

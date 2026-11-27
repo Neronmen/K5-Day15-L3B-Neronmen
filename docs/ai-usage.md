@@ -1,5 +1,11 @@
 # Khai báo dùng AI
 
+## T-08, ngày 27/11/2026
+
+Codex đối chiếu khảo sát với các nhánh origin, phát hiện R26 đã dùng ở B22. Người giao việc chọn phiếu chưa dùng; Codex chọn R24, chuyển hai câu trả lời lựa chọn "Chép gần như nguyên vào bài" và "Làm sai mà không biết sai ở đâu" thành B16 trên BT09. Câu nhắn, phương trình và bước Delta sai được biên soạn, không phải trích nguyên văn bài làm của R24; câu 9 của R24 để trống. Codex đổi expected sang TU_CHOI theo chính sách xin lời giải còn hạn, giữ lỗi bước 2 trong acceptance, cập nhật kiểm thử hiện có và ghép benchmark bằng CLI sẵn có.
+
+Builder và check đạt với 10/30 nguồn thật; 114/114 unittest đạt. Chưa có đánh giá model thật hoặc người chấm trong T-08. Khoa và Thắng còn review nguồn, cách chuyển đổi và tiêu chí trước khi merge. Không tạo phỏng vấn P3, human grading hoặc số liệu mô phỏng; không đưa draft T-07/H-05 vào commit. Xem `docs/t08-benchmark-handoff.md` và receipt `docs/verification/thang-t08-20261127.json`.
+
 README của nhóm có mục "Dùng AI vào việc gì" (2–3 dòng, bắt buộc). Ghi chi tiết vào bảng dưới đây.
 
 > Luật của đề: dùng AI để làm bài thoải mái, nhưng **ai không giải thích được phần có tên mình thì phần đó nhận 0 điểm**. Khai thiếu không bị trừ; giấu mới bị.
