@@ -366,7 +366,7 @@ function DocumentsTab({ classId, docs, reload }: { classId: string; docs: Docume
   );
 }
 
-const FLAG_LABEL: Record<string, string> = { jailbreak: "Cố bẻ khoá AI", ask_answer: "Xin đáp án khi còn hạn" };
+const FLAG_LABEL: Record<string, string> = { jailbreak: "Cố bẻ khoá AI", impersonation: "Tự nhận là giáo viên", ask_answer: "Xin đáp án khi còn hạn" };
 
 function ChatsTab({ classId }: { classId: string }) {
   const [flagged, setFlagged] = useState(false);
