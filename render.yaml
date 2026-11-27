@@ -1,0 +1,46 @@
+# Render Blueprint: backend FastAPI của MinutesStudy (thư mục app/backend, chạy bằng Dockerfile).
+# Render → New → Blueprint → chọn repo này. Biến có `sync: false` sẽ được hỏi khi tạo (dán giá trị trong dashboard,
+# KHÔNG ghi vào file này). Hướng dẫn đầy đủ: app/docs/deploy-vercel-supabase-render.md
+services:
+  - type: web
+    name: minutesstudy-api
+    runtime: docker
+    plan: free
+    region: singapore
+    rootDir: app/backend
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /docs
+    autoDeploy: false
+    envVars:
+      - key: DATABASE_URL          # Supabase → Connect → Session pooler (cổng 5432), dạng postgresql+psycopg://...
+        sync: false
+      - key: JWT_SECRET
+        generateValue: true
+      - key: CORS_ORIGINS          # URL Vercel của frontend, vd https://minutesstudy.vercel.app
+        sync: false
+      - key: AUTO_CREATE_TABLES
+        value: "false"             # schema do Alembic tạo (Dockerfile chạy alembic upgrade head)
+      - key: TASK_BACKEND
+        value: inline              # gói free không có Redis/worker riêng
+      - key: WEB_CONCURRENCY
+        value: "1"
+      - key: STORAGE_BACKEND
+        value: s3
+      - key: S3_ENDPOINT           # https://<project-ref>.supabase.co/storage/v1/s3
+        sync: false
+      - key: S3_REGION             # vùng của project Supabase, vd ap-southeast-1
+        sync: false
+      - key: S3_BUCKET
+        value: minutesstudy
+      - key: S3_ACCESS_KEY
+        sync: false
+      - key: S3_SECRET_KEY
+        sync: false
+      - key: MODEL_CHAT
+        value: deepseek:deepseek-chat
+      - key: MODEL_GRADING
+        value: deepseek:deepseek-chat
+      - key: DEEPSEEK_API_KEY
+        sync: false
+      - key: WEB_SEARCH_PROVIDER
+        value: none
