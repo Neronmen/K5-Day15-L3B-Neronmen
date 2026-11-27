@@ -21,7 +21,7 @@ Phỏng vấn nhiều vai thì đếm theo từng vai, không cộng chung.
 
 | | Vai | Gặp pain? | Số lần / 1 tháng qua | Lần gần nhất mất | Đang xoay xở bằng |
 |---|---|---|---|---|---|
-| P1 | | | | | |
+| P1 | gia sư Toán, kèm 2 HS lớp 11 | Có (lần cụ thể 25/11) | không hỏi | 40–50 phút / tuần rà bài tìm chỗ hổng | bắt làm lại tại chỗ + nhờ phụ huynh thu điện thoại |
 | P2 | | | | | |
 | P3 | | | | | |
 
@@ -30,8 +30,8 @@ Phỏng vấn nhiều vai thì đếm theo từng vai, không cộng chung.
 1. "App hay quá, chụp ảnh là có ngay đáp án" — review QANDA 5★, dòng data 81 (`reviews_labeled.csv`)
 2. "nó không giải mà là nó lấy đáp án giống chứ không giải, nên khi cô cho mấy bài khác đi là coi như vô dụng" — review QANDA 4★, dòng data 52
 3. "Rat hieu ich ,cho dap an phe qua" — review Photomath 5★, dòng data 48
-4.
-5.
+4. "Hôm sau mình đổi số và cho làm lại ngay một câu lượng giác tương tự trong 10 phút đầu giờ thì bạn ấy chỉ viết được mỗi dòng chép lại đề bài rồi bỏ giấy trắng" — P1 (gia sư Toán)
+5. "Cách này chỉ giải quyết được lúc có mặt mình ở đó, còn 5 ngày còn lại trong tuần mình không ngồi cạnh được" — P1
 
 ## 4. Các nguồn có khớp nhau không
 
