@@ -41,19 +41,21 @@ def _invalid_constant(value):
 
 
 def parse_input(value):
-    """Strict JSON envelope. Empty message is valid for deliberate empty-input cases."""
+    """Four required fields plus optional system class_id from the current agent."""
     try:
         request = json.loads(value, object_pairs_hook=_unique_keys, parse_constant=_invalid_constant)
     except (ValueError, TypeError, RecursionError) as error:
         raise ValidationError("input JSON invalid: " + str(error)) from error
-    if not isinstance(request, dict) or set(request) != INPUT_FIELDS:
-        raise ValidationError("input requires exactly assignment_id, role, asked_at, message")
+    if not isinstance(request, dict) or not INPUT_FIELDS <= set(request) or set(request) - INPUT_FIELDS - {"class_id"}:
+        raise ValidationError("input requires exactly assignment_id, role, asked_at, message plus optional class_id")
     if any(not isinstance(request[field], str) for field in INPUT_FIELDS):
         raise ValidationError("all four input fields must be strings")
     if not request["assignment_id"].strip():
         raise ValidationError("assignment_id is empty")
     if request["role"] not in {"student", "teacher"}:
         raise ValidationError("role must be student or teacher")
+    if "class_id" in request and (not isinstance(request["class_id"], str) or not request["class_id"].strip()):
+        raise ValidationError("optional class_id must be a nonempty string")
     try:
         asked_at = datetime.fromisoformat(request["asked_at"].replace("Z", "+00:00"))
     except ValueError as error:
