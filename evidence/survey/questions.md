@@ -2,7 +2,8 @@
 
 - **Đối tượng:** học sinh THPT (lớp 10–12), **ngoài nhóm**. Mục tiêu ≥20 người, tốt nhất ≥30.
 - **Kênh gửi:** em, cháu, con của thành viên và đồng nghiệp; nhờ phụ huynh quen chuyển vào nhóm Zalo phụ huynh; nhờ giáo viên / gia sư quen gửi học sinh. Ghi kênh thật đã gửi: ____
-- **Mở lúc:** ____ · **Chốt lúc:** ____ (chốt trước 08:00 Thứ Bảy 28/11 để kịp CP3)
+- **Mở lúc:** 14:50 Thứ Sáu 27/11/2026 (form tạo bằng `create_form.gs`) · **Chốt lúc:** ____ (chốt trước 08:00 Thứ Bảy 28/11 để kịp CP3)
+- **Đếm:** `python evidence/survey/analyze_survey.py anonymize evidence/survey/raw-<ngay>.csv` → `results.csv`, rồi `python evidence/survey/analyze_survey.py` (đếm đúng luật ở mục "Cách đọc kết quả")
 - **Không thu** tên, số điện thoại, tên trường, lớp cụ thể. Người trả lời là trẻ vị thành niên: form ghi rõ ẩn danh, chỉ hỏi hành vi, **không phán xét** việc dùng app.
 - Xuất kết quả thành `results.csv` (đã xoá cột nhận diện). Bản gốc đặt tên `raw-*.csv`, không commit.
 
@@ -31,4 +32,4 @@
 - Câu 7 cho biết lý do: nếu "Quá nhiều bài" hoặc "Chỉ cần nộp cho đủ" chiếm đa số → giả thuyết sai một phần (gợi ý từng bước không giải quyết được).
 - Câu 8 là câu thái độ, chỉ để tham khảo, **không dùng làm bằng chứng pain**.
 - Câu 5 → số lần / tuần, dùng cho persona chi phí.
-- Câu 9 → trích nguyên văn (bỏ tên) vào `evidence/summary.md`, và làm nguồn câu thử (`source = khao_sat`).
+- Câu 9 → trích nguyên văn (bỏ tên) vào `evidence/summary.md`, và làm nguồn câu thử (`source = nguoi_dung: khao_sat R5` — `run.py check` chỉ nhận mã `nguoi_dung / data_that / tu_viet / sinh_seed`, nên **không** ghi `khao_sat: …` ở đầu).
