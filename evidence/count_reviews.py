@@ -43,6 +43,10 @@ def main(path):
     on_topic = total["giai_ho"] + total["hieu_bai"]
     print("| giai_ho trong số review nói về cách dùng (bỏ 'khac') | %s | mẫu số = giai_ho + hieu_bai |"
           % pct(total["giai_ho"], on_topic))
+    if "nhan_ai" in rows[0]:
+        same = sum(1 for r in rows if r["nhan"].strip() == (r.get("nhan_ai") or "").strip())
+        print("\nNhãn người duyệt khớp nhãn AI gợi ý: %s (dòng người đã sửa: %s)"
+              % (pct(same, n), ", ".join(r["id"] for r in rows if r["nhan"].strip() != (r.get("nhan_ai") or "").strip()) or "không có"))
     print("\nTheo app:\n\n| App | N | giai_ho | hieu_bai | khac |\n|---|---|---|---|---|")
     for app, c in sorted(by_app.items()):
         m = sum(c.values())
