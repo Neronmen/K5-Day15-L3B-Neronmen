@@ -1,5 +1,15 @@
 # Rà soát CP2: phần Thắng, ngày 27/11/2026
 
+## Cập nhật hiện hành theo main 12250ae
+
+Khoa đã duyệt metric lúc 18:07 ngày 27/11/2026 tại ae5bc56. Approval pending trong các snapshot cũ bên dưới đã hết hiệu lực. Phiên này không đổi metric hoặc ngưỡng. Mã main mới vẫn đạt 114/114 unittest; smoke/check/diff-check exit 0, check còn cảnh báo nguồn thật 4/25. Probe 8 leak/agent, 7 ca biên, 4 policy và nguồn PASS bằng fake/stub.
+
+B26 đến B30 đã có trên nhai/H-02 b35509a nhưng chưa trong main. Candidate ghép riêng đủ B01 đến B30, không trùng, đúng schema, có 9/30 nguồn thật. Đã đối chiếu năm nguồn với R5/R1/R3/R17/R13 trong khảo sát 26 dòng ẩn danh. Builder từ chối vì còn thiếu một nguồn thật; không ghi benchmark và không đổi nhãn. P1 vẫn thiếu metadata. Main giữ 25 câu, 4/25 nguồn thật. Thắng được giao P3 và H-05 tại db01ba2; chờ nội dung phỏng vấn thật, chưa mở rộng sang mô phỏng chi phí.
+
+B08/B12 khác giữa expected duy nhất và các nhãn tiêu chí cho phép. Khoa/Ninh cần xác nhận cách báo cáo hoặc thống nhất trước evaluation. Không tìm thấy run CSV/trace trong các remote ref và hai worktree đã kiểm tra. eval/redteam.md có tóm tắt thử model, chưa đủ raw provenance để chấm như lượt 1/2. Không có auto-grade trên model thật, human grading, đồng thuận hoặc kết quả hai lượt được tạo trong phiên này.
+
+README/report/TICKETS T-07 đã cập nhật local, giữ backup nguyên byte và chưa đưa thành báo cáo hoàn tất. Reflection vẫn là draft chờ Thắng xác nhận. Chi tiết hiện hành ở docs/thang-handoff.md và docs/verification/thang-t07-followup-20261127.json. Các mục 1711525/cce4e72/0e96a99 dưới đây là lịch sử, không phải blocker hiện tại.
+
 ## Trạng thái mới nhất tại main 1711525
 
 Main1711525 đã có tài liệu lượt đầu của PR38, sửa citations thành mỗi nguồn một thẻ, bổ sung test guardrail và đồng bộ spec§7 thành25 câu. Nhánh review chỉ merge upstream vào chính nhánh review. Runtime/data/test trong worktree04d837f giống hệt main1711525; các khác biệt còn lại chỉ là tài liệu. Không merge main, không tự sửa agent/metric/CSV.

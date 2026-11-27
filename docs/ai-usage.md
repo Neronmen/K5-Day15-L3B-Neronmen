@@ -33,3 +33,9 @@ Trong cùng phiên rà soát, upstream bổ sung code app/core, 5 test của Kho
 ### Chốt kiểm chứng tại main1711525
 
 Khoa đã sửa hợp đồng nguồn và đồng bộ số đếm trong lúc review. Codex kiểm lại114/114 test trên runtime/data/test giống main1711525; probe thẻ nhiều nguồn PASS, không còn ghi đó là blocker. Giữ các lượt0e96a99/cce4e72 như lịch sử. Chỉ cập nhật docs, không đổi runtime/metric/CSV, không gọi model thật hoặc tạo human grading/phỏng vấn. PR38 lượt đầu đã được tích hợp bởi Khoa; phần cập nhật cuối được bàn giao riêng bằng diff tài liệu.
+
+## Tiếp tục T-03, T-04, T-06 và draft T-07 theo main 12250ae
+
+Codex đối chiếu commit duyệt metric ae5bc56 và các Issue/PR mới; kiểm benchmark main cùng candidate CSV Nhài tại b35509a, đối chiếu năm đoạn nguồn khảo sát. Chỉ đọc dữ liệu khảo sát ẩn danh, không tạo câu trả lời, phỏng vấn hoặc gán lại source. Không sửa metric, expected, agent hay dữ liệu của tác giả khác.
+
+Codex chạy smoke fake, check, 114 unittest, diff-check và các probe fake/stub; builder từ chối đúng candidate 9/30 nguồn thật. Đã ghi fingerprint SHA-256 hiện tại, không gán thành provenance của lượt model thật. Không tìm thấy run/trace phù hợp nên không chạy auto grader trên dữ liệu tự tạo, không chấm human hay người thứ hai. T-07 được cập nhật local bằng số đã kiểm chứng; reflection chỉ bổ sung hồ sơ công việc, Thắng còn phải tự xác nhận. Không gọi API model thật, không chạy mô phỏng H-05, không merge main hoặc đóng Issue.
