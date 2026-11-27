@@ -55,6 +55,14 @@ def get_assignment(assignment_id: str, now: str) -> dict:
     return None
 
 
+@tool
+def get_passages(codes: list) -> list:
+    """get_passages · Input: danh sách mã đoạn (vd lesson_codes của bài tập) · Output: các đoạn tài liệu kèm trang ·
+    Không tác động ra ngoài. Dùng để luôn đưa đúng phần bài giảng của bài tập vào ngữ cảnh. Owner: Khoa (K-02)."""
+    want = set(codes or [])
+    return [dict(p, score=0) for p in _load("lesson.json") if p["code"] in want]
+
+
 def final_answers_of(assignment_id: str) -> list:
     """Chỉ dùng cho chốt chặn check_leak trong code. KHÔNG bao giờ đưa vào prompt khi bài còn hạn."""
     for a in _load("assignments.json"):
