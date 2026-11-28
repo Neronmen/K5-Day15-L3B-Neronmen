@@ -13,26 +13,29 @@ Data BTC cấp đã dùng: không (Track F, dữ liệu chạy thử tự dựng
   3. Gặp bài khó: chụp ảnh đề lên app giải bài bằng ảnh, hoặc dán đề vào chatbot, nhận lời giải đầy đủ ngay.
   4. Chép lời giải vào vở / bài nộp. Giáo viên nhận bài đủ, không thấy em kẹt ở bước nào.
   5. Đến bài kiểm tra cùng dạng trên lớp (không có điện thoại) thì không làm được.
-- Công cụ đang được dùng: app giải bài bằng ảnh trên điện thoại và chatbot đa năng — **chưa kiểm** tỉ lệ dùng; sẽ đo bằng khảo sát (câu 3, 5) và đếm review công khai (`evidence/data-mining.md`). Chưa có ảnh chụp tài khoản.
+- Công cụ đang được dùng: chatbot đa năng và app giải bài bằng ảnh. Khảo sát n = 26 (câu 3, chọn nhiều): lần bí gần nhất **17/26 hỏi ChatGPT / chatbot**, **13/26 chụp lên app giải bài**; 17/26 dùng app / chatbot ≥ 6 lần / tuần (câu 5). Đếm 149 review Google Play: 11/19 review nói về cách dùng là để lấy đáp án (`evidence/data-mining.md`).
 
 ## §1. Người dùng & bằng chứng *(guide 1.1, 1.2)*
 - Người dùng chính: học sinh THPT (lớp 10–12) làm bài tập Toán về nhà buổi tối một mình. Người dùng phụ: giáo viên giao bài, đăng tài liệu, xem lại học sinh hỏi gì.
 - Việc họ cố làm xong: *tự giải xong bài tập Toán về nhà trước hạn nộp khi bị kẹt ở một bước.*
 - Hôm nay họ giải bằng: app giải bài bằng ảnh / chatbot / hỏi bạn. Hỏng ở chỗ: nhận **lời giải đầy đủ** thay vì chỉ ra bước mình sai, nên chép mà không hiểu; lời giải không theo cách thầy cô dạy. Vì sao chưa bỏ: nhanh, miễn phí, lúc 10 giờ tối không có ai khác để hỏi, và bài nộp vẫn "đủ".
 - Pain (không chữ AI): học sinh THPT làm bài Toán về nhà, bí thì chép lời giải từ app → nộp đủ bài nhưng không tự làm được → kiểm tra cùng dạng bị điểm thấp; giáo viên không biết em hổng ở đâu.
-- Bằng chứng — số chính + kết luận: **chờ số thật** (chi tiết sẽ ở `evidence/summary.md`). Nguồn: khảo sát học sinh THPT (Google Form của Nhài, mở 14:50 27/11) · phỏng vấn ≥3 giáo viên / phụ huynh / học sinh (issue #20) · đếm review công khai app giải bài (`evidence/data-mining.md`). Giả thuyết và ngưỡng đúng / sai viết trước ở `evidence/hypothesis.md`.
+- Bằng chứng — số chính + kết luận (chi tiết `evidence/summary.md`):
+  - **Khảo sát học sinh lớp 10–12, n = 26** (bản ẩn danh `evidence/survey/results.csv`): **14/26 (54%) chép gần như nguyên lời giải**; trong 14 em đó **12/14 không làm được hết bài kiểm tra cùng dạng** (10 làm được một phần, 2 không làm được). Lý do: "không biết bắt đầu từ đâu" 11/26, "sai mà không biết sai ở đâu" 11/26. **16/26 muốn có người chỉ bước sai rồi tự làm tiếp** (9/26 "tuỳ bài", 1/26 "không, muốn đáp án luôn").
+  - **Đếm 149 review Google Play** (Photomath, QANDA, AI Hay): 19 review nói về cách dùng lời giải, **11/19 (58%) dùng để lấy đáp án / giải hộ**.
+  - Kết luận: giả thuyết ở `evidence/hypothesis.md` **đúng nhưng sát ngưỡng** — chép 14/26 vừa qua ngưỡng 50% (ở n = 22 là 10/22, dưới ngưỡng); phần vững hơn là hậu quả (12/14) và nhu cầu "chỉ bước sai". Phỏng vấn: chưa có cuộc nào đã xác minh (một ghi chép không xác minh được thời điểm đã bị gỡ).
 
 ## §2. Impact & quyết định chọn *(guide 1.3)*
 
 | Hướng | Bao nhiêu người gặp | Bao nhiêu lần / tháng | Mỗi lần tốn gì | Impact / tháng | Làm kịp không | Chọn? |
 |---|---|---|---|---|---|---|
-| **A. Gia sư gợi ý bước sai, không lộ đáp án khi bài còn hạn** | __% học sinh chép lời giải từ app trong tuần qua *(khảo sát câu 4)* | __ lần / học sinh *(khảo sát câu 5 × 4 tuần)* | 1 bài "nộp đủ nhưng không hiểu"; __% không làm được bài kiểm tra cùng dạng *(khảo sát câu 6)* | xem công thức dưới | Có — lõi gia sư + dữ liệu Toán 10 đã chạy | ✅ |
+| **A. Gia sư gợi ý bước sai, không lộ đáp án khi bài còn hạn** | 14/26 (54%) học sinh chép gần như nguyên lời giải lần bí gần nhất *(khảo sát câu 4)* | ~36 lần / em chép *(khảo sát câu 5, điểm giữa khoảng, tháng = 52/12 tuần, tự ước tính)* | 1 bài "nộp đủ nhưng không hiểu"; 12/14 em chép không làm được hết bài kiểm tra cùng dạng *(khảo sát câu 6)* | xem công thức dưới | Có — lõi gia sư + dữ liệu Toán 10 đã chạy | ✅ |
 | B. Gom bài tập + hạn nộp từ nhiều nhóm Zalo / LMS về một danh sách | chưa đo | chưa đo | quên / nộp muộn bài | — | Khó — cần đọc tin nhắn ngoài, tranh chấp với LMS của trường | ❌ |
 | C. AI chấm bài ảnh viết tay, giáo viên duyệt | giáo viên THPT *(chưa phỏng vấn đủ)* | theo số bài giao | giờ chấm bài của giáo viên | — | Khó — cần bộ bài có điểm chuẩn để đo đúng / sai trong 10 giờ | ❌ (để lộ trình) |
 
-- **Impact / tháng** của hướng A (quy mô thí điểm 1 trường THPT) = __ học sinh dùng app chép *(1.000 học sinh *(tự ước tính)* × % khảo sát câu 4)* × __ lần / tháng *(khảo sát câu 5)* = __ lần chép bài không hiểu / tháng; trong đó __% dẫn tới không làm được bài kiểm tra cùng dạng *(khảo sát câu 6)*. Phía giáo viên: __ phút / tuần dò học sinh hổng ở bước nào *(phỏng vấn giáo viên câu 5)*.
+- **Impact / tháng** của hướng A (quy mô thí điểm 1 trường THPT) = **~540 học sinh chép lời giải** *(1.000 học sinh (tự ước tính) × 14/26)* × **~36 lần dùng app / chatbot / tháng** *(khảo sát câu 5, trung bình nhóm chép)* ≈ **19.000 lần / tháng** học sinh nhận lời giải đầy đủ thay vì được chỉ bước sai; nhóm này 12/14 hổng bài kiểm tra cùng dạng. Đây là trần (giả định adoption 100%); adoption 25% → ~4.900 lần / tháng. Phía giáo viên: chưa đo (chưa có phỏng vấn giáo viên đã xác minh).
 - Hướng ĐÃ LOẠI + vì sao: B — vấn đề nằm ở kênh thông báo của trường, nhóm không truy cập được Zalo / LMS thật, khó đo trong 2 ngày. C — có trong web MinutesStudy nhưng cần giáo viên thật + bộ bài có điểm chuẩn; giữ ở slide lộ trình.
-- Số lần / tháng của từng kiểu người dùng (persona §8): ít hỏi ~3 câu / tuần · vừa ~10 câu / tuần · trước kiểm tra ~30 câu / tuần *(tự ước tính, thay bằng khảo sát câu 5)*.
+- Số lần / tháng của từng kiểu người dùng (persona §8, `cost/personas.yaml`, từ khảo sát câu 5): dùng ít 7/26 (~3,7 phiên / tháng) · dùng vừa 2/26 (~17 phiên / tháng) · dùng nhiều 17/26 (~45 phiên / tháng).
 
 ## §3. Giải pháp tương tự *(guide 2.1)*
 *(Mô tả sản phẩm ngoài: **chưa kiểm** bằng tài khoản của nhóm — kiểm lại và ghi nguồn trước CP4.)*
