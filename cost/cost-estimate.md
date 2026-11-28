@@ -2,6 +2,29 @@
 
 Cập nhật 27/11/2026 sau main `4d1f81c`. Đã kế thừa và kiểm lại phân tích khảo sát, ba persona, ba quy mô và giá chính thức. Người giao việc cấu hình OpenAI/gpt-6-luna local; đã chạy 10 phiên thử và 50 phiên chính thức bằng API thật. Token từ usage đã đối chiếu trace. Chi phí/task thành công vẫn pending vì chưa có tỷ lệ đạt do người chấm xác nhận; không lấy lỗi kỹ thuật bằng 0 làm chất lượng đạt.
 
+## ⭐ Cập nhật 28/11 11:15 — đo trên deepseek-chat (model của sản phẩm) · số dùng cho spec §8 và slide
+
+Lượt `simulate-2@20261128-111131` (`cost/simulate-2.csv`, `traces/simulate-2.jsonl`): 50 phiên, cùng `personas.yaml` (seed 42) như simulate-1, nhưng **token đo trên `deepseek-chat`** — đúng model sản phẩm dùng (lõi `codebase/` sau lượt 2, có `check_steps` và chốt chặn lộ chéo bài). Phiên lỗi 0/50. Tỉ lệ đạt dùng để tính: **29/30 (97%) — lượt 2 `run-2@20261128-110738`** (cột `pass` do Claude chấm nháp, chờ người thứ hai xác nhận; số chi phí / task thành công đổi theo nếu tỉ lệ đổi).
+
+| Persona | Phiên | Token vào / phiên | Token ra / phiên | Gọi model / phiên |
+|---|---:|---:|---:|---:|
+| dung_it (7/26) | 16 | 2670 | 260 | 0,9 |
+| dung_vua (2/26) | 2 | 2718 | 223 | 1,0 |
+| dung_nhieu (17/26) | 32 | 2416 | 227 | 0,9 |
+
+| Giá áp dụng trên token deepseek-chat | USD / phiên | **USD / task thành công** | Thấp 300 HS / tháng | Cơ sở 1.000 HS / tháng | Cao 3.000 HS / tháng | USD / HS / tháng |
+|---|---:|---:|---:|---:|---:|---:|
+| **DeepSeek** (giá `deepseek-flash` 0,3 / 1,2 $ per 1M, trang giá DeepSeek xem 27/11) | 0,0010 | **0,0011** | 9,54 | **31,79** | 95,37 | **0,0318** |
+| gpt-6-luna (0,1 / 0,5) — chỉ định giá trên token DeepSeek | 0,00037 | 0,00038 | 3,40 | 11,32 | 33,95 | 0,0113 |
+| gemini-2.5-flash-lite (0,1 / 0,4) — chỉ định giá trên token DeepSeek | 0,00035 | 0,00036 | 3,18 | 10,60 | 31,79 | 0,0106 |
+
+- Hàng DeepSeek là **token thực đo + giá DeepSeek**; hai hàng còn lại chỉ áp giá của model khác lên token đo trên deepseek-chat (bộ tách token khác nhau → số thật có thể lệch).
+- **Cần xác nhận:** tên giá `deepseek-flash` trong `personas.yaml` được lấy từ trang giá DeepSeek ngày 27/11 cho model chat; nếu trang giá tách riêng `deepseek-chat` với mức khác, thay hàng giá và chạy lại `python run.py simulate` (không sửa tay simulate-2).
+- So với simulate-1 (đo trên gpt-6-luna): token vào / phiên tăng ~1.700 → ~2.500 vì lõi sau lượt 2 đưa thêm mục kiểm tra bước bằng code và đoạn tài liệu vào prompt.
+- ≈ **800 đồng / học sinh / tháng** ở quy mô cơ sở (tỉ giá ~25.000 đ/$, *tự ước tính*). Chưa gồm hosting / DB (gói free khi thí điểm), Trợ lý AI giáo viên và AI chấm nháp.
+
+Các mục bên dưới là phân tích của Thắng cho simulate-1 (27/11), giữ nguyên để đối chiếu.
+
 ## Khảo sát và persona
 
 Nguồn là `evidence/survey/results.csv`, bản ẩn danh 26 phiếu của Nhài đã nằm trong main. Git blob hiện tại khớp snapshot `08e05ba26b980c5a17c8a909580c4d477ff7b473`, SHA256 `05ba7a50928d9252555e6506a95a210190a706264d7471d29bdca104473c9939`. [Bản tổng hợp gốc](survey-q5-analysis.json) giữ thời điểm phân tích cũ. Phiên này chạy lại script trên origin/main và đối chiếu mọi số tổng hợp, không thay survey.

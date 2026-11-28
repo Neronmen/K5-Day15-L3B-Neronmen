@@ -51,3 +51,14 @@ Codex chạy smoke fake, check, 114 unittest, diff-check và các probe fake/stu
 Lượt xử lý PR #34/#47: Codex kiểm ancestry, diff, dependency, CI/protection, chạy lại 125 unittest, đối chiếu raw usage/trace và công thức ba kịch bản. Xác nhận T-05 đã tích hợp để đóng PR dư, giữ B16/R24; H-05 đủ acceptance gốc, USD/task thành công còn chờ human pass rate. Không gọi model hoặc tạo lượt simulation mới khi review, không sửa benchmark/metric/evidence hoặc kết quả chấm.
 
 Codex kế thừa phân tích Q5/persona đã có, xác minh lại giá OpenAI/DeepSeek/Gemini, lưu lock SHA256 trước evaluation và đối chiếu acceptance các Issue của Thắng. Chỉ đóng Issue đã đủ bằng chứng, giữ mở H-05/T-07 vì thiếu output evaluation/human grading cho USD/task thành công, dù đã đo 50 phiên OpenAI thật. Không tạo số token, run hoặc phỏng vấn giả; bảo toàn draft T-07, worktree H-05 cũ và PR #39. Chi tiết công cụ, giới hạn và phần người kiểm tại docs/ai-usage-h05-thang.md.
+
+## Khoa + Claude Code (Claude Opus 5.5), 27–28/11/2026
+
+| Việc | Công cụ AI | AI làm gì | Người kiểm/sửa gì | Ai phụ trách |
+|---|---|---|---|---|
+| Code lõi + web | Claude Code | `agent.py` (workflow cố định), chặn lộ đáp án qua nhân tử / dấu bao, `leak_targets` (lộ chéo bài còn hạn), `check_steps` (kiểm hệ số / biến đổi / Delta bằng Fraction), nối lõi vào web (`core_bridge`), giao diện vừa 1 màn hình, PDF mở đúng trang | 135 test lõi + 70 test web; thử tấn công bằng web thật (`eval/redteam.md` vòng 1–3); Khoa duyệt từng commit trên nhánh `khoa` trước khi merge | Khoa |
+| Chạy eval + chấm nháp | Claude Code | Chạy lượt 1, lượt 2 (DeepSeek thật), **chấm nháp cột `pass`** theo `pass_criterion`, viết `eval/report.md` | Cột `pass` ghi rõ "Claude chấm nháp, chờ người duyệt"; người thứ hai (không phải Claude, không viết spec) chấm độc lập 5 câu ở `eval/second-grader-run1.md` — **chưa xong** | Khoa |
+| Mô phỏng chi phí | Claude Code | Chạy `simulate-2` trên deepseek-chat, cập nhật `cost/cost-estimate.md` mục 28/11 và `spec.md` §8 | Số lấy nguyên từ `cost/simulate-2-summary.md`; giá theo `personas.yaml` của Thắng | Khoa |
+| Video demo | Claude Code | Script Playwright quay web thật + AI thật, script dựng video có giọng đọc edge-tts (`demo/video/`) | Khoa xem lại video trước khi nộp; mọi câu trả lời trong video là output thật | Khoa |
+| Văn bản | Claude Code | Nháp `spec.md`, `canvas.md`, `README.md`, kịch bản demo, tin nhắn giao việc | Khoa đọc và chốt | Khoa |
+| **Không** dùng AI cho | — | Tạo người được phỏng vấn, câu trả lời khảo sát, review, người dùng thử hay số liệu. Khi được đề nghị "mock dữ liệu người dùng cho trông thật", Claude từ chối; nhóm ghi phần đó là chưa làm | — | — |
