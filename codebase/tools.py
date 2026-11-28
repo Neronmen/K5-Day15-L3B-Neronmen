@@ -506,3 +506,101 @@ def leak_targets(other_finals: list, own_finals: list) -> list:
         out |= {"x = %s" % r for r in roots(answers) - own_roots}
         out |= {str(s) for s in scalars(answers) - own_scalars}
     return sorted(out)
+
+
+# ---------- Kiểm bước làm của học sinh bằng code (lượt 2: B16 — model tính nhẩm Delta sai rồi xác nhận bước sai) ----------
+_STEP_NUM = r"(-?\s*\d+(?:[.,]\d+)?(?:\s*/\s*\d+)?)"
+_COEF = {k: re.compile(r"(?<![a-z])%s\s*=\s*%s" % (k, _STEP_NUM)) for k in "abc"}
+_DELTA_LINE = re.compile(r"(?:delta|Δ|∆)\s*=([^\n]*)", re.I)
+
+
+def _quadratic(text):
+    """(a, b, c) của phương trình bậc hai đầu tiên trong đề (đưa hết về một vế, GIỮ nguyên hệ số). Không đọc được → None."""
+    t = (text or "").lower()
+    for pat, rep in _PROBLEM_SUBS:
+        t = re.sub(pat, rep, t)
+    t = unicodedata.normalize("NFKC", t)
+    for left, right in _EQUATION.findall(t):
+        p, q = _poly(left.strip()), _poly(right.strip())
+        if p is None or q is None:
+            continue
+        d = {k: p.get(k, 0) - q.get(k, 0) for k in set(p) | set(q)}
+        if d.get(2):
+            return Fraction(d[2]), Fraction(d.get(1, 0)), Fraction(d.get(0, 0))
+    return None
+
+
+def _frac(s):
+    try:
+        return Fraction(s.replace(" ", "").replace(",", "."))
+    except (ValueError, ZeroDivisionError):
+        return None
+
+
+@tool
+def check_steps(message: str, question: str) -> dict:
+    """check_steps · Input: tin nhắn học sinh, đề bài · Output: {"notes": [str], "first_error": str|None}.
+    Chỉ tính toán (Fraction, không làm tròn), không tác động ra ngoài. Lượt 2 (Khoa).
+
+    Đọc các bước học sinh tự ghi "a = …, b = …, c = …" và "Delta = … = <số>", so với hệ số của đề và
+    Delta = b² − 4ac tính bằng code. Ghi chú KHÔNG nêu giá trị Delta đúng hay nghiệm — chỉ nói bước nào khớp / lệch
+    và lệch ở đâu, để model khỏi tính nhẩm (lỗi B16 lượt 1). Học sinh nhân / chia cả phương trình cho cùng một số
+    (hệ số tỉ lệ với đề) vẫn được coi là đúng và Delta được kiểm theo hệ số của học sinh.
+    """
+    notes, first = [], None
+    q = _quadratic(question)
+    msg = unicodedata.normalize("NFKC", (message or "").replace("−", "-").replace("–", "-"))
+    got = {k: _frac(m.group(1)) for k, rx in _COEF.items() for m in [rx.search(msg)] if m}
+    if q is None or (not got and not _DELTA_LINE.search(msg)):
+        return {"notes": [], "first_error": None}
+    a0, b0, c0 = q
+    coefs = (a0, b0, c0)
+    # Học sinh tự viết lại phương trình (vd nhân −1): không tương đương đề → đó là bước sai đầu tiên;
+    # các bước sau được kiểm theo CHÍNH phương trình học sinh viết.
+    mine = _quadratic(msg)
+    if mine and mine != q:
+        k = mine[0] / a0
+        if (mine[1], mine[2]) == (b0 * k, c0 * k):
+            coefs = mine
+        else:
+            notes.append("Phương trình sau biến đổi học sinh ghi: KHÔNG tương đương đề (khi nhân / chia hay chuyển vế phải "
+                         "đổi đủ mọi hạng tử, kể cả hằng số). Đây là bước sai đầu tiên.")
+            first = "bien_doi"
+            coefs = mine
+    if len(got) == 3 and None not in got.values():
+        ga, gb, gc = got["a"], got["b"], got["c"]
+        a0, b0, c0 = coefs
+        k = ga / a0 if a0 else None
+        if k and (gb, gc) == (b0 * k, c0 * k):
+            notes.append("Hệ số a, b, c học sinh ghi: KHỚP với đề" + ("" if k == 1 else " (đã nhân cả phương trình với cùng một số — hợp lệ)") + ".")
+            coefs = (ga, gb, gc)
+        else:
+            wrong = [n for n, g, t in (("a", ga, a0), ("b", gb, b0), ("c", gc, c0)) if g != t]
+            signs = [n for n, g, t in (("a", ga, a0), ("b", gb, b0), ("c", gc, c0)) if g == -t and g != 0]
+            msg_err = "Hệ số học sinh ghi: SAI ở %s" % ", ".join(wrong)
+            if signs:
+                msg_err += " (sai DẤU — hệ số phải lấy cả dấu đứng trước trong đề)"
+            notes.append(msg_err + (". Đây là bước sai đầu tiên." if first is None else "."))
+            first = first or "he_so"
+            coefs = (ga, gb, gc)  # kiểm Delta theo chính hệ số học sinh dùng, để biết có thêm lỗi tính không
+    m = _DELTA_LINE.search(msg)
+    if m:
+        nums = re.findall(_STEP_NUM, m.group(1).split("rồi")[0].split(",")[0])
+        claimed = _frac(nums[-1]) if nums else None
+        a, b, c = coefs
+        truth = b * b - 4 * a * c
+        if claimed is not None:
+            if claimed == truth:
+                notes.append("Delta học sinh ghi: ĐÚNG theo các hệ số %s." % ("của đề" if first is None else
+                             "học sinh đang dùng (nhưng các hệ số đó đã sai từ bước trước)"))
+            else:
+                hint = "kiểm lại công thức b² − 4ac và dấu của −4ac"
+                if "+ 4ac" in m.group(1).replace(" ", " ") or "+4ac" in m.group(1).replace(" ", ""):
+                    hint = "học sinh dùng b² + 4ac — sai CÔNG THỨC"
+                elif a * c < 0:
+                    hint = "a và c trái dấu nên −4ac là số DƯƠNG (phép trừ thành phép cộng) — học sinh tính sai dấu này"
+                notes.append("Delta học sinh ghi: SAI (%s). KHÔNG nêu giá trị Delta đúng, để học sinh tự tính lại." % hint)
+                first = first or "delta"
+    if notes:
+        note("check_steps: %s" % " | ".join(notes))
+    return {"notes": notes, "first_error": first}

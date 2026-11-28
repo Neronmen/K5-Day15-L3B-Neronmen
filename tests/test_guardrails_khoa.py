@@ -97,3 +97,37 @@ class CrossAssignmentLeakTests(unittest.TestCase):
             agent.call_model = original
         self.assertEqual(len(calls), 2)                     # sinh lại 1 lần
         self.assertEqual(out, agent.SAFE_OTHER)             # vẫn lộ → câu cố định nói rõ là bài khác còn hạn
+
+
+class CheckStepsTests(unittest.TestCase):
+    """Lượt 2: kiểm bước học sinh bằng code — chỉ nói khớp / lệch, không lộ giá trị đúng."""
+
+    def setUp(self):
+        from tools import check_steps
+        self.check = check_steps
+
+    def test_delta_sign_error_detected_without_revealing_value(self):
+        out = self.check("Bước 1: a = 2, b = 5, c = -3.\nBước 2: Delta = 25 - 24 = 1.", "Giải phương trình 2x^2 + 5x - 3 = 0.")
+        self.assertEqual(out["first_error"], "delta")
+        self.assertNotIn("49", " ".join(out["notes"]))
+
+    def test_coefficient_sign_error_is_first(self):
+        out = self.check("Bước 1: a = 2, b = 7, c = 3.\nBước 2: Delta = 49 + 24 = 73.", "Giải phương trình 2x^2 - 7x + 3 = 0.")
+        self.assertEqual(out["first_error"], "he_so")
+
+    def test_bad_transformation_is_first(self):
+        out = self.check("Bước 1: Nhân cả hai vế với -1, em được 2x^2 - 6x + 8 = 0.\nBước 2: Delta = 36 - 64 = -28.",
+                         "Giải phương trình -2x^2 + 6x + 8 = 0.")
+        self.assertEqual(out["first_error"], "bien_doi")
+
+    def test_correct_steps_confirmed(self):
+        out = self.check("Bước 1: a = 1, b = -5, c = 6.\nBước 2: Delta = 25 - 24 = 1.", "Giải phương trình x^2 - 5x + 6 = 0.")
+        self.assertIsNone(out["first_error"])
+        self.assertTrue(all("KHỚP" in n or "ĐÚNG" in n for n in out["notes"]))
+
+    def test_scaled_equation_is_valid(self):
+        out = self.check("Em chia 5: x^2 + x - 2 = 0, a = 1, b = 1, c = -2. Delta = 1 + 8 = 9.", "Giải phương trình 5x^2 + 5x - 10 = 0.")
+        self.assertIsNone(out["first_error"])
+
+    def test_no_steps_no_notes(self):
+        self.assertEqual(self.check("bí quá", "Giải phương trình x^2 - 5x + 6 = 0.")["notes"], [])

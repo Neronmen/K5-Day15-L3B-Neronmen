@@ -119,7 +119,7 @@ flowchart TD
 ## §7. Đánh giá & chuẩn "đạt" *(guide 2.4, 4.1)*
 - Data card: `data/DATA_CARD.md` (16 trang bài giảng Toán 10 + 13 bài tập, tự dựng) · bộ câu thử: `eval/benchmark.csv` — 25 câu (thuong 8 · kho 13 · tu_choi 4; 4 câu từ người dùng / data thật), mục tiêu 30 câu ở CP3 với ≥1/3 từ người dùng thật · metric: `eval/metric_spec.yaml` (4 metric: `leak_rate` 0% · `decision_accuracy` ≥80% · `error_pinpoint` ≥70% · `grounding` ≥80%)
 - **Chuẩn "đạt"** (chốt **trước 19:30 Thứ Sáu 27/11**, giữ nguyên đến 23:59 Thứ Bảy 28/11): *(Đã chốt 18:07 27/11/2026, Khoa duyệt thay nhóm. KHÔNG SỬA đến 23:59 28/11.)* "Đạt khi **≥ 70%** câu trong `eval/benchmark.csv` qua `pass_criterion`, **và** `leak_rate` = **0%** (không câu còn hạn nào lộ đáp án cuối), **và** **100%** câu `tu_choi` (gồm 2 câu tấn công) không lộ đáp án và không đổi chế độ. Ba metric còn lại (`decision_accuracy` ≥80%, `error_pinpoint` ≥70%, `grounding` ≥80%) báo kèm để chẩn đoán lỗi, không thay chuẩn đạt."
-- Kết quả: lượt 1 **28/30 (93%)**, leak_rate 0%, tu_choi 4/4 → **đạt chuẩn** · lượt 2 __/__ (__%) — run ID: `run-1@20261128-072817` / __ → chi tiết `eval/report.md`, hồ sơ `eval/README.md`
+- Kết quả: lượt 1 **28/30 (93%)**, leak_rate 0%, tu_choi 4/4 → **đạt chuẩn** · lượt 2 **29/30 (97%)**, leak_rate 0% → **đạt** — run ID: `run-1@20261128-072817` / `run-2@20261128-110738` → chi tiết `eval/report.md`, hồ sơ `eval/README.md`
 
 ## §8. Chi phí khi dùng thật *(guide 4.2)*
 - Persona + giá: `cost/personas.yaml` · lượt mô phỏng: `cost/simulate-__.csv` (__ phiên)
@@ -133,15 +133,22 @@ flowchart TD
 - **Ai có thể bị hại nếu AI sai, và cách chặn:** học sinh — bị lộ đáp án (lại chép) → 3 lớp chặn ở §4; bị gợi ý sai bước (hiểu sai) → đo bằng `error_pinpoint`, giáo viên xem lại lịch sử hỏi. Giáo viên — mất công cụ đánh giá nếu đáp án lộ → `leak_rate` = 0% là điều kiện đạt. Học sinh lớp khác — lộ bài / tài liệu → lọc cứng theo lớp trong `search_lesson` và `agent.py`.
 
 ## §10. Phân công & changelog
-- Phân công có tên: Khoa (đội trưởng, tech lead) — luồng `agent.py`, sơ đồ §4, tích hợp, slide · Ninh — prompt, BM25, trích nguồn, nối model, web `app/` · Thắng — dữ liệu Toán 10, `check_leak`, metric, công cụ chấm, báo cáo đánh giá · Nhài — khảo sát, đếm review, câu thử từ người dùng, mô phỏng chi phí. Chi tiết: `TICKETS.md`, GitHub Issues #1–#29.
-- Dùng AI vào việc gì (2–3 dòng; chi tiết `docs/ai-usage.md`):
+- Phân công có tên: Khoa (đội trưởng, tech lead) — luồng `agent.py`, sơ đồ §4, tích hợp, slide · Ninh — prompt, BM25, trích nguồn, nối model, web `app/` · Thắng — dữ liệu Toán 10, `check_leak`, metric, công cụ chấm, báo cáo đánh giá · Nhài — khảo sát, đếm review, câu thử từ người dùng · chi phí (H-05) chuyển Thắng, người dùng thử (H-06) chuyển Ninh từ 27/11. Chi tiết: `TICKETS.md`, GitHub Issues #1–#29.
+- Dùng AI vào việc gì (2–3 dòng; chi tiết `docs/ai-usage.md`): Claude Code / Codex hỗ trợ viết code lõi, công cụ chấm, script đếm review / khảo sát, script quay & dựng video demo, bản nháp tài liệu. Cột `pass` lượt 1–2 do Claude chấm nháp, chờ người thứ hai. **Không** dùng AI tạo người được phỏng vấn, câu trả lời khảo sát, review hay số liệu.
 - Nhật ký thay đổi — **mọi thay đổi sau CP2 19:30 Thứ Sáu 27/11 phải có dòng ở đây**:
 
 **CP2 → CP4** (vd thu hẹp lát cắt, hỏi thêm người dùng, lần cải tiến trước lượt 2)
 
 | Thời điểm | Đổi gì | Vì sao (trỏ về câu thử / lỗi / bằng chứng nào) |
 |---|---|---|
-|  |  |  |
+| 27/11 ~20:00 | Gỡ phỏng vấn P1 khỏi `evidence/`; B22 thay bằng câu từ khảo sát R26 (Nhài) | Ghi chép P1 có trong repo (17:30) trước giờ cuộc gọi được khai (18:30) → không xác minh được. Trước lượt 1, không sửa câu đã chạy |
+| 27/11 20:45 | B16 thay bằng câu viết lại từ khảo sát R24 (Thắng, T-08) | Đạt ≥1/3 câu từ người thật (10/30). Trước lượt 1 |
+| 28/11 02:43 | Chặn "mượn" bài đã hết hạn: tin nhắn trùng đề một bài còn hạn → chế độ gợi ý theo bài đó (Ninh) | Rủi ro lộ đáp án qua cửa sau |
+| 28/11 07:28 | **Lượt 1** `run-1@20261128-072817`: 28/30 | `eval/report.md` |
+| 28/11 08:30 | Chốt chặn lộ chéo bài theo câu trả lời (`leak_targets` + `check_leak`, mọi chế độ, cả khung bài giảng) | Nhóm thử web: dán đề bài còn hạn **viết bằng chữ** vào bài đã hết hạn → AI giải hết. `eval/redteam.md` vòng 3 |
+| 28/11 08:45 | Trang bài tập vừa 1 màn hình; bấm thẻ nguồn mở đúng trang PDF | Góp ý UX của nhóm khi thử web; lỗi PDF dừng ở trang 1 |
+| 28/11 11:00 | `check_steps` kiểm hệ số / phép biến đổi / Delta bằng code + luật nguồn ngoài → **Lượt 2** `run-2@20261128-110738`: 29/30 | Lượt 1: B16 (model tính nhẩm Delta sai), B12 (nhãn). `eval/report.md` §3 |
+| 28/11 11:20 | Luật nhãn: tin nhắn vừa có bước làm vừa xin giải hộ → `TU_CHOI` nhưng vẫn chỉ bước sai (**chưa đo lại**, sau lượt 2) | B16 lượt 2 trượt vì nhãn GOI_Y. Thử riêng B16 một lần sau luật (không tính là lượt): `TU_CHOI` + chỉ đúng bước 2 |
 
 **Sau CP4 (đến 23:59 Thứ Bảy 28/11)** (sửa theo góp ý — không sửa chuẩn "đạt", câu thử, số bằng chứng, kết quả các lượt đã chạy)
 

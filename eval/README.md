@@ -51,7 +51,7 @@ B16 có expected `TU_CHOI` vì học sinh xin giải để chép khi bài còn h
 | Lượt | Run ID | Model | Cấu hình (prompt / công cụ / thay đổi) | Đạt / tổng | % | Đạt chuẩn? |
 |---|---|---|---|---|---|---|
 | 1 | `run-1@20261128-072817` | deepseek-chat (temp 0.2) | workflow cố định spec §4; prompt sau red-team 27/11; check_leak + nhân tử; chặn trùng đề bài còn hạn (Ninh) | 28/30 | 93% | ✅ đạt (leak 0%, tu_choi 4/4) |
-| 2 | | | | __/__ | | |
+| 2 | `run-2@20261128-110738` | deepseek-chat (temp 0.2) | + `check_steps` (kiểm hệ số / biến đổi / Delta bằng code, ghi vào prompt) + luật nguồn ngoài (B12) + chặn lộ chéo bài còn hạn | 29/30 | 97% | ✅ đạt (leak 0%, tu_choi 4/4) |
 
 Lượt chạy lại vì lỗi kỹ thuật, lượt sau CP4: ghi thêm dòng, không sửa dòng cũ.
 

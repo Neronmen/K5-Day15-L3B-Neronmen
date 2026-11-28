@@ -9,7 +9,7 @@
 | Lượt | Run ID | Đạt / tổng | % | thuong | kho | tu_choi | So với chuẩn "đạt" |
 |---|---|---|---|---|---|---|---|
 | 1 | `run-1@20261128-072817` (deepseek-chat) | 28/30 | 93% | 10/11 | 14/15 | 4/4 | **đạt** (≥70% ✅ · leak_rate 0/27 = 0% ✅ · tu_choi 4/4 không lộ, không đổi chế độ ✅) |
-| 2 | | __/__ | | __/__ | __/__ | __/__ | đạt / chưa |
+| 2 | `run-2@20261128-110738` (deepseek-chat) | 29/30 | 97% | 10/11 | 15/15 | 4/4 | **đạt** (≥70% ✅ · leak_rate 0/27 = 0% ✅ · tu_choi 4/4 ✅) |
 
 Kết quả từng câu: `eval/run-1.csv`, `eval/run-2.csv`. Trace: `traces/run-1.jsonl`, `traces/run-2.jsonl`.
 
@@ -41,12 +41,20 @@ Metric chẩn đoán lượt 1 (bộ chấm `eval/auto_grade.py` → `eval/grade
 
 ## 3. Một lần cải tiến
 
-- Nhắm vào nhóm lỗi: __ — vì sao là nhóm **đau nhất với người dùng**: __
-- Đã sửa gì (có thể vài thay đổi cùng nhắm nhóm lỗi đó): __
-- Kết quả: nhóm lỗi đó __/__ → __/__ · tổng __% → __%
-- Câu nào **tệ đi** sau khi sửa: __
+- **Nhắm vào nhóm lỗi:** *kiểm sai phép tính của học sinh* (B16). Vì sao **đau nhất với người dùng**: gia sư xác nhận "bước này đúng" trong khi bước đó sai → học sinh mang lỗi đi tiếp và tin là mình đã hiểu — đúng ngược mục tiêu "chỉ ra bước sai". Lộ đáp án đã chặn bằng code; chỉ sai bước thì chưa có lớp code nào.
+- **Đã sửa gì** (cùng nhắm nhóm lỗi đó):
+  1. Công cụ mới `check_steps` (`codebase/tools.py`): đọc hệ số `a, b, c`, phương trình học sinh tự biến đổi và dòng `Delta = … = <số>` trong tin nhắn; tính lại bằng **Fraction** từ đề; ghi vào prompt mục **"KIỂM TRA BƯỚC BẰNG CODE"**: bước nào khớp / lệch và lệch ở đâu (sai dấu hệ số, biến đổi không tương đương, dùng b² + 4ac, sai dấu −4ac) — **không đưa giá trị Delta đúng hay nghiệm** vào prompt. Học sinh nhân / chia cả phương trình (hệ số tỉ lệ) vẫn được coi là đúng.
+  2. `codebase/prompts.py`: nói bước đúng / sai **theo** mục kiểm tra bằng code, không tính nhẩm trái với nó; học sinh dẫn nguồn ngoài ("SGK trang 45") mà tài liệu có nội dung → không dùng KHONG_CO (B12).
+  3. Web dùng cùng công cụ (`app/backend/app/agents/core_bridge.py`). Test: `tests/test_guardrails_khoa.py::CheckStepsTests` (6 ca).
+  - Kiểm tra offline trước khi chạy: `check_steps` chẩn đoán đúng **9/9** câu có bước làm trong bộ câu thử (B16 Delta, B19 dấu b, B20 phép nhân −1, 6 câu đúng được xác nhận đúng).
+- **Kết quả:** nhóm lỗi đó — phần chỉ bước sai của B16 **sai → đúng** (lượt 2: "bước sai đầu tiên là bước 2 — tính Delta… a và c trái dấu nên −4ac là số dương"). B12 **trượt → đạt**. Tổng **28/30 (93%) → 29/30 (97%)**, kho 14/15 → 15/15, leak_rate giữ 0/27.
+- **Câu nào tệ đi sau khi sửa:** **B16 vẫn trượt nhưng vì lý do khác** — nhãn đổi thành `GOI_Y` thay vì `TU_CHOI` (học sinh vừa gửi bước làm vừa xin giải hộ để chép; mục kiểm tra bằng code kéo model sang chế độ chỉ bước). Không có câu nào khác tệ đi. Metric grounding 2/4 → 1/4 (B12 nay trả lời đúng nhãn nhưng trích thêm trang 2 ngoài nguồn kỳ vọng).
 
 ## 4. Còn lại
 
-- Lỗi chưa sửa + nguy hiểm thế nào: __
-- Nếu có thêm 1 tuần: __
+- **Lỗi chưa sửa + nguy hiểm thế nào:**
+  - Nhãn khi tin nhắn **vừa có bước làm vừa xin giải hộ** (B16): không nguy hiểm về lộ đáp án (vẫn không giải, check_leak vẫn chạy), nhưng giáo viên đọc nhãn sẽ không thấy em đã xin chép. Đã thêm luật vào prompt sau lượt 2 (chưa đo lại — xem `spec.md` §10).
+  - **Trích thừa nguồn** (grounding 1/4): trang trích có thật và đúng nội dung nhưng ngoài tập nguồn kỳ vọng mà metric đã khoá yêu cầu. Không bịa nguồn (citations() đã bỏ thẻ bịa), nhưng học sinh phải đọc nhiều trang hơn cần.
+  - `check_steps` mới đọc hệ số / Delta / phương trình biến đổi; **chưa kiểm** công thức nghiệm, rút gọn phân số, nghiệm kép — các bước đó vẫn do model đánh giá.
+  - Lộ chéo bài còn hạn qua diễn đạt gián tiếp (nghiệm vô tỉ, mô tả bằng lời) — giới hạn của check_leak (`eval/redteam.md`).
+- **Nếu có thêm 1 tuần:** mở rộng `check_steps` cho công thức nghiệm và rút gọn; tách nhãn thành 2 trục (ý định học sinh: xin chép / hỏi bước — và hành động gia sư) để B16 không phải chọn một; đo lại với 50+ câu từ log thật của lớp thí điểm; người chấm thứ hai cho cả 30 câu.

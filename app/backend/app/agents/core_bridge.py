@@ -145,6 +145,9 @@ def answer(db, *, cls, mode: str, title: str, prompt: str, reference_answer: str
 
     docs = "\n".join("[%s - Trang %s] %s: %s" % (c["code"], c["page"], c["title"], c["text"]) for c in chunks)
     user = "TÀI LIỆU:\n%s\n\nĐỀ BÀI: %s\n%s\n" % (docs, title, prompt)
+    steps = tools.check_steps(question, prompt)  # lượt 2: kiểm bước học sinh bằng code, như codebase/agent.py
+    if steps["notes"]:
+        user += "KIỂM TRA BƯỚC BẰNG CODE (hệ thống tính chính xác):\n%s\n" % "\n".join("- " + n for n in steps["notes"])
     if mode == "answer" and reference_answer:
         user += "ĐÁP ÁN MẪU: %s\n" % reference_answer          # chỉ sau hạn: khi còn hạn model không có gì để lộ
     if notice:
