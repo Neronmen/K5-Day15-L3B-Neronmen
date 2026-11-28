@@ -170,7 +170,7 @@ def answer(db, *, cls, mode: str, title: str, prompt: str, reference_answer: str
         own = final_answers(reference_answer) if mode == "hint" else []
         if tools.check_leak(reply, guard + own)["leaked"]:
             notes.append("vẫn lộ đáp án bài khác ở lần 2 → trả câu cố định")
-            reply = agent.SAFE_HINT
+            reply = agent.SAFE_OTHER
 
     m = _DECISION.match(reply)
     decision = m.group(1) if m else None

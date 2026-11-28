@@ -33,11 +33,19 @@ export default function PdfViewer({ documentId, page, flashKey }: { documentId: 
     return () => ro.disconnect();
   }, []);
 
+  // Cuộn tới trang `page`. Trang PDF vẽ dần: mỗi khung trang giữ sẵn chiều cao khổ A4, và cuộn lại lần nữa khi
+  // chính trang đích vẽ xong (onRenderSuccess) — nếu không, bấm thẻ nguồn "Trang 3" có thể dừng ở trang 1.
+  function scrollToPage(smooth: boolean) {
+    const target = wrapRef.current?.querySelector<HTMLElement>(`[data-page="${page}"]`);
+    if (!target || !wrapRef.current) return null;
+    wrapRef.current.scrollTo({ top: target.offsetTop - wrapRef.current.offsetTop - 8, behavior: smooth ? "smooth" : "auto" });
+    return target;
+  }
+
   useEffect(() => {
     if (!numPages) return;
-    const target = wrapRef.current?.querySelector<HTMLElement>(`[data-page="${page}"]`);
-    if (!target || !wrapRef.current) return;
-    wrapRef.current.scrollTo({ top: target.offsetTop - wrapRef.current.offsetTop - 8, behavior: "smooth" });
+    const target = scrollToPage(true);
+    if (!target) return;
     if (flashKey === 0 && page === 1) return; // mới mở tài liệu: không đánh dấu
     target.classList.add("ring-4", "ring-mark");
     const t = setTimeout(() => target.classList.remove("ring-4", "ring-mark"), 1800);
@@ -56,8 +64,10 @@ export default function PdfViewer({ documentId, page, flashKey }: { documentId: 
         >
           <div className="flex flex-col gap-3.5">
             {Array.from({ length: numPages }, (_, i) => (
-              <div key={i} data-page={i + 1} className="relative rounded-sm bg-white shadow transition-shadow">
-                <Page pageNumber={i + 1} width={width} renderTextLayer={false} renderAnnotationLayer={false} />
+              <div key={i} data-page={i + 1} className="relative rounded-sm bg-white shadow transition-shadow"
+                   style={{ minHeight: Math.round(width * 1.414) }}>
+                <Page pageNumber={i + 1} width={width} renderTextLayer={false} renderAnnotationLayer={false}
+                      onRenderSuccess={i + 1 === page ? () => scrollToPage(false) : undefined} />
                 <span className="absolute bottom-1.5 right-3 font-mono text-[11px] text-neutral-500">Trang {i + 1}</span>
               </div>
             ))}

@@ -60,7 +60,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
   ));
 
   return (
-    <div className="min-h-screen lg:grid lg:grid-cols-[248px_minmax(0,1fr)]">
+    <div className="min-h-screen lg:grid lg:h-screen lg:grid-cols-[248px_minmax(0,1fr)] lg:overflow-hidden">
       {/* Thanh bên — máy tính */}
       <aside className="sticky top-0 hidden h-screen flex-col border-r border-line bg-surface lg:flex">
         <Link href={nav[0].href} className="flex items-center gap-2.5 px-5 pb-5 pt-6 text-[1.05rem]">
@@ -91,10 +91,11 @@ export function AppShell({ children }: { children: React.ReactNode }) {
         </div>
       </aside>
 
-      <div className="flex min-w-0 flex-col">
+      {/* Máy tính: khung phải cao đúng 1 màn hình; chỉ vùng nội dung tự cuộn khi trang dài (trang vừa màn hình thì không cuộn) */}
+      <div className="flex min-w-0 flex-col lg:h-screen lg:min-h-0">
         {/* Thanh trên — điện thoại; trên máy tính chỉ còn chuông thông báo */}
         <header className="sticky top-0 z-20 border-b border-line bg-bg/85 backdrop-blur lg:border-b-0 lg:bg-transparent lg:backdrop-blur-none">
-          <div className="flex items-center gap-2 px-4 py-2.5 lg:justify-end lg:px-8 lg:pt-5">
+          <div className="flex items-center gap-2 px-4 py-2.5 lg:justify-end lg:px-8 lg:py-2">
             <Link href={nav[0].href} className="mr-auto flex items-center gap-2 lg:hidden">
               <Logo size={28} />
               <Wordmark />
@@ -111,8 +112,8 @@ export function AppShell({ children }: { children: React.ReactNode }) {
           </div>
           <nav className="no-scrollbar flex gap-1 overflow-x-auto px-3 pb-2 lg:hidden">{links}</nav>
         </header>
-        <main className="min-w-0 px-4 pb-16 pt-4 lg:px-8 lg:pt-1">
-          <div className="mx-auto flex max-w-[1180px] flex-col gap-6">{children}</div>
+        <main className="min-w-0 px-4 pb-16 pt-4 lg:min-h-0 lg:flex-1 lg:overflow-y-auto lg:px-8 lg:pb-6 lg:pt-0">
+          <div className="mx-auto flex max-w-[1180px] flex-col gap-6 lg:h-full">{children}</div>
         </main>
       </div>
     </div>

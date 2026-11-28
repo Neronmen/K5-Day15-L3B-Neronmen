@@ -96,4 +96,4 @@ class CrossAssignmentLeakTests(unittest.TestCase):
         finally:
             agent.call_model = original
         self.assertEqual(len(calls), 2)                     # sinh lại 1 lần
-        self.assertEqual(out, agent.SAFE_HINT)              # vẫn lộ → câu cố định
+        self.assertEqual(out, agent.SAFE_OTHER)             # vẫn lộ → câu cố định nói rõ là bài khác còn hạn

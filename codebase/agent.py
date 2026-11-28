@@ -36,6 +36,9 @@ MAX_MESSAGE_CHARS = 2000
 TAG = "[QUYET_DINH: %s]\n"
 SAFE_HINT = TAG % "GOI_Y" + ("Mình chưa thể đưa kết quả khi bài còn hạn nộp. "
                              "Em gửi bước em đang làm, mình chỉ ra chỗ cần xem lại nhé.")
+# Tin nhắn chứa đề của một bài KHÁC còn hạn (kể cả khi bài đang mở đã hết hạn)
+SAFE_OTHER = TAG % "TU_CHOI" + ("Đề em vừa gửi thuộc một bài tập khác đang còn hạn nộp, nên mình chưa đưa kết quả được. "
+                               "Em mở bài tập đó và gửi bước em đang làm, mình sẽ chỉ ra chỗ cần xem lại nhé.")
 
 
 def parse_input(text: str) -> dict:
@@ -112,7 +115,7 @@ def answer(text: str) -> dict:
         reply = citations(retry["text"], chunks)["reply"]
         if check_leak(reply, guard + (final_answers_of(asg["id"]) if mode == "hint" else []))["leaked"]:
             note("vẫn lộ đáp án bài khác ở lần 2 → trả câu cố định")
-            reply = SAFE_HINT
+            reply = SAFE_OTHER
     if not reply.lstrip().startswith("[QUYET_DINH:"):
         note("model không ghi nhãn quyết định ở dòng đầu")  # để bộ chấm bắt lỗi, không tự vá
     return {"output": reply}

@@ -26,7 +26,8 @@ export default function StudentAssignmentPage() {
   const overdue = isPast(a.due_at);
 
   return (
-    <>
+    // Máy tính: cả trang vừa 1 màn hình — tiêu đề ở trên, hai cột chiếm phần còn lại; cột trái / khung chat tự cuộn bên trong
+    <div className="flex flex-col gap-4 lg:h-full lg:min-h-0">
       <PageHeader
         eyebrow={
           <Link href={`/student/classes/${a.class_id}`} className="normal-case tracking-normal hover:underline">
@@ -46,8 +47,8 @@ export default function StudentAssignmentPage() {
           </div>
         )}
       </PageHeader>
-      <div className="grid items-start gap-4 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
-        <div className="flex min-w-0 flex-col gap-4">
+      <div className="grid items-start gap-4 lg:min-h-0 lg:flex-1 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:grid-rows-1 lg:items-stretch">
+        <div className="flex min-w-0 flex-col gap-4 lg:min-h-0 lg:overflow-y-auto">
         <Card>
           <CardHeader title="Đề bài">
             <span className="rounded-md border border-line px-1.5 py-0.5 font-mono text-[0.7rem] text-faint">v{a.version}</span>
@@ -92,7 +93,7 @@ export default function StudentAssignmentPage() {
         </div>
         </div>
         <ChatPanel
-          className="h-[600px] lg:sticky lg:top-[72px] lg:h-[calc(100vh-100px)]"
+          className="h-[600px] lg:h-full"
           title="Trợ lý giải bài"
           badge={overdue ? <Pill tone="ok">Đã qua hạn · có lời giải</Pill> : <Pill tone="info">Chế độ gợi ý</Pill>}
           intro={
@@ -107,7 +108,7 @@ export default function StudentAssignmentPage() {
           onCite={(c) => router.push(`/student/documents/${c.document_id}?page=${c.page_number}`)}
         />
       </div>
-    </>
+    </div>
   );
 }
 
@@ -179,7 +180,7 @@ function SubmitCard({ assignmentId, late, onDone }: { assignmentId: string; late
       {mode === "text" ? (
         <Textarea
           aria-label="Bài làm"
-          rows={10}
+          rows={8}
           className="paper leading-5"
           placeholder="Câu 1: …"
           value={text}
