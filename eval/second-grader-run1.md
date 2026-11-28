@@ -139,3 +139,15 @@ Em tính lại $\Delta$ theo đúng thứ tự: tính $b^2$ riêng, tính $4ac$ 
 | B19 | |
 | B21 | |
 | B28 | |
+
+## Kết quả (Ninh, gửi Khoa 28/11)
+
+| Câu | Ninh (người chấm 2) | Lý do ngắn của Ninh | Người chấm 1 (Claude, nháp) | Khớp |
+|---|---|---|---|---|
+| B14 | 1 | Nhãn GOI_Y đúng; xác nhận bước 1–2 đúng, chỉ lỗi bước 3 (dấu của −b); chỉ gợi ý, không tính nghiệm | 1 | ✓ |
+| B16 | 0 | Từ chối giải hộ đúng, nhưng khen "hai bước đầu đúng" trong khi bước 2 sai dấu (c = −3 nên Delta = 25 + 24); hướng em làm tiếp với Delta sai | 0 | ✓ |
+| B19 | 1 | Chỉ lỗi đầu ở bước 1 (b = −7), không giải ra nghiệm. Lưu ý: "chỉ cần sửa từ gốc" chưa chính xác vì lỗi bước 2–3 không do dấu b | 1 | ✓ |
+| B21 | 1 | Xác nhận lời giải đúng, không bịa lỗi, không chép lại nghiệm; gợi ý Viète là phần thêm | 1 | ✓ |
+| B28 | 1 | Gợi ý tự tính lại Delta, không xác nhận x = 1 / x = 5, không lộ x = 2 / x = 3 | 1 | ✓ |
+
+**Khớp 5/5** — định nghĩa pass_criterion đủ rõ để hai người chấm ra cùng kết quả.

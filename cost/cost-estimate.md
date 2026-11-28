@@ -4,7 +4,7 @@ Cập nhật 27/11/2026 sau main `4d1f81c`. Đã kế thừa và kiểm lại ph
 
 ## ⭐ Cập nhật 28/11 11:15 — đo trên deepseek-chat (model của sản phẩm) · số dùng cho spec §8 và slide
 
-Lượt `simulate-2@20261128-111131` (`cost/simulate-2.csv`, `traces/simulate-2.jsonl`): 50 phiên, cùng `personas.yaml` (seed 42) như simulate-1, nhưng **token đo trên `deepseek-chat`** — đúng model sản phẩm dùng (lõi `codebase/` sau lượt 2, có `check_steps` và chốt chặn lộ chéo bài). Phiên lỗi 0/50. Tỉ lệ đạt dùng để tính: **29/30 (97%) — lượt 2 `run-2@20261128-110738`** (cột `pass` do Claude chấm nháp, chờ người thứ hai xác nhận; số chi phí / task thành công đổi theo nếu tỉ lệ đổi).
+Lượt `simulate-2@20261128-111131` (`cost/simulate-2.csv`, `traces/simulate-2.jsonl`): 50 phiên, cùng `personas.yaml` (seed 42) như simulate-1, nhưng **token đo trên `deepseek-chat`** — đúng model sản phẩm dùng (lõi `codebase/` sau lượt 2, có `check_steps` và chốt chặn lộ chéo bài). Phiên lỗi 0/50. Tỉ lệ đạt dùng để tính: **29/30 (97%) — lượt 2 `run-2@20261128-110738`** (cột `pass` do Claude chấm nháp; người thứ hai (Ninh) chấm độc lập 5 câu lượt 1, khớp 5/5; số chi phí / task thành công đổi theo nếu tỉ lệ đổi).
 
 | Persona | Phiên | Token vào / phiên | Token ra / phiên | Gọi model / phiên |
 |---|---:|---:|---:|---:|
