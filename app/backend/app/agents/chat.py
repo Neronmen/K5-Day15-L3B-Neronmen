@@ -16,7 +16,7 @@ from app.core import llm
 from app.core.config import settings
 from app.core.tenancy import TenantScope
 from app.db import SessionLocal
-from app.models import Assignment, AssignmentVersion, ChatMessage, Classroom, Document
+from app.models import Assignment, AssignmentVersion, ChatMessage, ClassMember, Classroom, Document
 
 from . import core_bridge, knowledge_graph
 from .policy import get_tutor_mode
@@ -74,6 +74,11 @@ def plan_chat(db: Session, *, student_id: str, cls: Classroom, question: str,
     if assignment is not None and core_bridge.available():
         return _plan_core(db, student_id=student_id, cls=cls, question=question, assignment=assignment,
                           remaining=remaining)
+    if document is not None and core_bridge.available():
+        guarded = _plan_lecture_guard(db, student_id=student_id, cls=cls, question=question, document=document,
+                                      remaining=remaining)
+        if guarded:
+            return guarded
 
     ctx = None
     mode = "lecture"
@@ -115,17 +120,74 @@ def _plan_core(db: Session, *, student_id: str, cls: Classroom, question: str, a
                remaining: int) -> ChatPlan:
     """Khung bài tập qua lõi codebase/ (N-08): chế độ, gắn cờ, prompt, tìm đoạn, citations, check_leak đều của lõi."""
     v = db.get(AssignmentVersion, (assignment.id, assignment.current_version))
-    mode = core_bridge.tutor_mode(_aware(assignment.due_at), datetime.now(timezone.utc))  # Rule 3, giờ server
-    history = _history(db, student_id, None, assignment.id)
+    now = datetime.now(timezone.utc)
+    mode = core_bridge.tutor_mode(_aware(assignment.due_at), now)  # Rule 3, giờ server
+    core = {"cls": cls, "mode": mode, "title": v.title, "prompt": assignment.full_prompt(v.prompt),
+            "reference_answer": v.reference_answer, "question": question}
+    meta = {"remaining_today": remaining}
+    # Học sinh dán đề của một bài KHÁC còn hạn (vd mở bài đã hết hạn để xin giải bài ngày mai): lượt này chuyển về
+    # chế độ gợi ý theo đúng bài còn hạn đó — đề, đoạn bài giảng và check_leak đều lấy theo bài đó.
+    match = _open_match(db, student_id, question, assignment.id, now)
+    if match:
+        mode = "hint"
+        core.update(_core_for_match(match))
+        meta["same_as"] = match["title"]
+    core["history"] = _history(db, student_id, None, assignment.id)
     db.add(ChatMessage(class_id=cls.id, assignment_id=assignment.id, student_id=student_id, role="user", mode=mode,
                        content=question, flagged=core_bridge.flag(question, mode)))
     db.commit()
     return ChatPlan(
         class_id=cls.id, student_id=student_id, mode=mode, route="core", system="", messages=[], chunks=[],
-        assignment_id=assignment.id, meta={"remaining_today": remaining},
-        core={"cls": cls, "mode": mode, "title": v.title, "prompt": assignment.full_prompt(v.prompt),
-              "reference_answer": v.reference_answer, "question": question, "history": history},
+        assignment_id=assignment.id, meta=meta, core=core,
     )
+
+
+def _plan_lecture_guard(db: Session, *, student_id: str, cls: Classroom, question: str, document: Document,
+                        remaining: int) -> ChatPlan | None:
+    """Khung hỏi bài giảng: tin nhắn chứa đề của một bài CÒN HẠN → không để Knowledge Agent giải; trả lời qua lõi ở
+    chế độ gợi ý theo đúng bài đó (như khi hỏi trong khung bài tập). Không trùng → None, chạy luồng bài giảng cũ."""
+    match = _open_match(db, student_id, question, None, datetime.now(timezone.utc))
+    if not match:
+        return None
+    core = {"question": question, "history": _history(db, student_id, document.id, None), **_core_for_match(match)}
+    db.add(ChatMessage(class_id=cls.id, document_id=document.id, student_id=student_id, role="user", mode="hint",
+                       content=question, flagged=core_bridge.flag(question, "hint")))
+    db.commit()
+    return ChatPlan(
+        class_id=cls.id, student_id=student_id, mode="hint", route="core", system="", messages=[], chunks=[],
+        document_id=document.id, meta={"remaining_today": remaining, "same_as": match["title"]}, core=core,
+    )
+
+
+def _open_match(db: Session, student_id: str, question: str, exclude_id: str | None, now: datetime) -> dict | None:
+    match = next(iter(core_bridge.open_matches(question, _open_assignments(db, student_id, exclude_id, now))), None)
+    if match:
+        log.info("core tutor: tin nhắn trùng đề bài còn hạn %s → chế độ gợi ý", match["id"])
+    return match
+
+
+def _core_for_match(match: dict) -> dict:
+    """Tham số core_bridge.answer khi học sinh dán đề của bài còn hạn: đề, lớp, đáp án (chỉ cho check_leak) của bài đó."""
+    due_vn = _aware(match["due_at"]).astimezone(VN_TZ).strftime("%H:%M %d/%m/%Y")
+    return {"cls": match["cls"], "mode": "hint", "title": match["title"], "prompt": match["question"],
+            "reference_answer": match["reference_answer"],
+            "notice": (f"Đề học sinh gửi trùng với bài \"{match['title']}\" đang còn hạn nộp đến {due_vn}. "
+                       "Áp dụng CHẾ ĐỘ GỢI Ý cho đề này như khi bài còn hạn: không giải hết, không nêu đáp số; "
+                       "nói ngắn gọn cho em biết đề này thuộc bài đang còn hạn rồi gợi ý bước đầu.")}
+
+
+def _open_assignments(db: Session, student_id: str, exclude_id: str | None, now: datetime) -> list[dict]:
+    """Bài còn hạn ở MỌI lớp học sinh đang học (trừ bài đang mở), kèm đề hiện hành để so với tin nhắn."""
+    rows = db.execute(
+        select(Assignment, AssignmentVersion, Classroom)
+        .join(ClassMember, ClassMember.class_id == Assignment.class_id)
+        .join(AssignmentVersion, (AssignmentVersion.assignment_id == Assignment.id)
+              & (AssignmentVersion.version == Assignment.current_version))
+        .join(Classroom, Classroom.id == Assignment.class_id)
+        .where(ClassMember.student_id == student_id, *([Assignment.id != exclude_id] if exclude_id else []))
+    ).all()
+    return [{"id": a.id, "title": v.title, "question": a.full_prompt(v.prompt), "reference_answer": v.reference_answer,
+             "due_at": a.due_at, "cls": c} for a, v, c in rows if _aware(a.due_at) > now]
 
 
 def _core_stream(plan: ChatPlan) -> Iterator[str]:
@@ -145,8 +207,8 @@ def _core_stream(plan: ChatPlan) -> Iterator[str]:
             yield _sse({"type": "error", "message": "Trợ lý AI đang bận hoặc lỗi kết nối, em thử lại sau ít phút."})
         if not failed:
             yield _sse({"type": "delta", "text": out["text"]})
-        db.add(ChatMessage(class_id=plan.class_id, assignment_id=plan.assignment_id, student_id=plan.student_id,
-                           role="assistant", mode=plan.mode, content=out["text"],
+        db.add(ChatMessage(class_id=plan.class_id, document_id=plan.document_id, assignment_id=plan.assignment_id,
+                           student_id=plan.student_id, role="assistant", mode=plan.mode, content=out["text"],
                            citations=json.dumps(out["citations"], ensure_ascii=False)))
         db.commit()
     finally:

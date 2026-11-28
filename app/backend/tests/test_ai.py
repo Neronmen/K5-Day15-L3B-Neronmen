@@ -262,6 +262,90 @@ def test_core_tutor_leak_twice_returns_fixed_safe_hint(client, fake_llm):
     assert "x = 2" not in text and "x = 3" not in text
 
 
+def _expired_and_open(client, t, class_id):
+    """Bài đã hết hạn (A) + bài còn hạn (B, đề x^2 - 5x + 6 = 0) cùng lớp."""
+    expired = client.post(f"/teacher/classes/{class_id}/assignments", headers=t, json={
+        "title": "Bài cũ đã hết hạn", "prompt": "Tính Delta của phương trình 2x^2 + 3x - 2 = 0.", "due_at": PAST,
+        "rubric": "10 điểm", "reference_answer": "Delta = 9 + 16 = 25."}).json()
+    open_ = _quadratic(client, t, class_id)
+    return expired, open_
+
+
+@pytest.mark.parametrize("paste", [
+    "Giải giúp em bài này: Giải phương trình x^2 - 5x + 6 = 0.",
+    "giai ho em x² − 5x + 6 = 0",
+    "Bài 2x^2 - 10x + 12 = 0 làm sao ạ",          # cùng đề, nhân cả hai vế với 2
+])
+def test_expired_assignment_cannot_be_used_to_solve_open_one(client, fake_llm, paste):
+    """Mở bài đã hết hạn rồi dán đề bài CÒN HẠN → lượt đó chuyển về gợi ý theo đúng bài còn hạn, không giải."""
+    t, hs, c, _ = setup_class(client)
+    expired, open_ = _expired_and_open(client, t, c["id"])
+    r = client.post(f"/student/assignments/{expired['id']}/chat", json={"question": paste}, headers=hs)
+    ev = sse_events(r.text)
+    assert ev[0]["mode"] == "hint" and ev[0]["same_as"] == "Phương trình bậc hai"
+    call = fake_llm["complete"][0]
+    user = call["messages"][-1]["content"]
+    assert call["system"] == CORE.prompts.SYSTEM_HINT
+    assert "ĐỀ BÀI: Phương trình bậc hai" in user and "GHI CHÚ HỆ THỐNG" in user
+    assert "ĐÁP ÁN MẪU" not in user and "x = 3 hoặc x = 2" not in json.dumps(call)
+    db = SessionLocal()
+    assert db.query(ChatMessage).filter_by(role="user", content=paste).one().mode == "hint"
+    db.close()
+
+
+def test_pasted_open_problem_answer_is_blocked_by_check_leak(client, fake_llm):
+    t, hs, c, _ = setup_class(client)
+    expired, _ = _expired_and_open(client, t, c["id"])
+    fake_llm["complete_queue"] = ["[QUYET_DINH: GIAI]\nVậy x = 2 hoặc x = 3.", "[QUYET_DINH: GIAI]\nNghiệm x = 3, x = 2."]
+    r = client.post(f"/student/assignments/{expired['id']}/chat", json={"question": "giải x^2-5x+6=0"}, headers=hs)
+    text = "".join(e["text"] for e in sse_events(r.text) if e["type"] == "delta")
+    assert text == CORE.agent.SAFE_HINT.split("\n", 1)[1]
+
+
+def test_expired_assignment_still_solves_its_own_or_unrelated_problem(client, fake_llm):
+    t, hs, c, _ = setup_class(client)
+    expired, _ = _expired_and_open(client, t, c["id"])
+    for q in ["Hết hạn rồi, giải giúp em bài này", "Giải giúp em x^2 - 5x + 7 = 0 để em luyện thêm"]:
+        r = client.post(f"/student/assignments/{expired['id']}/chat", json={"question": q}, headers=hs)
+        ev = sse_events(r.text)
+        assert ev[0]["mode"] == "answer" and "same_as" not in ev[0]
+    assert "ĐÁP ÁN MẪU: Delta = 9 + 16 = 25." in fake_llm["complete"][-1]["messages"][-1]["content"]
+
+
+def test_lecture_chat_cannot_be_used_to_solve_open_assignment(client, fake_llm):
+    """Khung hỏi bài giảng: dán đề bài còn hạn → không qua Knowledge Agent, trả lời gợi ý qua lõi theo bài đó."""
+    t, hs, c, doc = setup_class(client)
+    _quadratic(client, t, c["id"])
+    r = client.post(f"/student/documents/{doc['id']}/chat", json={"question": "Giải giúp em x^2 - 5x + 6 = 0"}, headers=hs)
+    ev = sse_events(r.text)
+    assert ev[0]["mode"] == "hint" and ev[0]["route"] == "core" and ev[0]["same_as"] == "Phương trình bậc hai"
+    assert not fake_llm["stream"]                                   # Knowledge Agent không chạy
+    call = fake_llm["complete"][0]
+    assert call["system"] == CORE.prompts.SYSTEM_HINT and "ĐỀ BÀI: Phương trình bậc hai" in call["messages"][-1]["content"]
+    hist = client.get(f"/student/documents/{doc['id']}/chat", headers=hs).json()
+    assert [m["role"] for m in hist] == ["user", "assistant"]       # lưu vào đúng lịch sử của tài liệu
+
+
+def test_lecture_chat_normal_question_keeps_lecture_flow(client, fake_llm):
+    t, hs, c, doc = setup_class(client)
+    _quadratic(client, t, c["id"])
+    r = client.post(f"/student/documents/{doc['id']}/chat", json={"question": "Quy tắc hàm hợp là gì?"}, headers=hs)
+    ev = sse_events(r.text)
+    assert ev[0]["mode"] == "lecture" and ev[0]["route"] != "core" and fake_llm["stream"]
+
+
+def test_open_assignment_of_another_class_is_not_matched(client, fake_llm):
+    """Chỉ so với bài ở lớp em đang học: bài còn hạn của lớp khác không làm đổi chế độ."""
+    t, hs, c, _ = setup_class(client)
+    expired = _expired_and_open(client, t, c["id"])[0]
+    t2, _, c2, _ = setup_class(client, name="Toán 10B1")
+    client.post(f"/teacher/classes/{c2['id']}/assignments", headers=t2, json={
+        "title": "Bài lớp khác", "prompt": "Giải phương trình x^2 - 7x + 12 = 0.", "due_at": FUTURE,
+        "rubric": "10 điểm", "reference_answer": "x = 3 hoặc x = 4."})
+    r = client.post(f"/student/assignments/{expired['id']}/chat", json={"question": "giải x^2 - 7x + 12 = 0"}, headers=hs)
+    assert sse_events(r.text)[0]["mode"] == "answer"
+
+
 def test_core_final_answers_from_reference():
     assert core_bridge.final_answers("Delta = 9 + 16 = 25.") == ["Delta = 9 + 16 = 25.", "25"]
     assert core_bridge.final_answers("x = 3 hoặc x = 2.") == ["x = 3 hoặc x = 2."]
