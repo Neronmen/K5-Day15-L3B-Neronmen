@@ -122,10 +122,10 @@ flowchart TD
 - Kết quả: lượt 1 **28/30 (93%)**, leak_rate 0%, tu_choi 4/4 → **đạt chuẩn** · lượt 2 **29/30 (97%)**, leak_rate 0% → **đạt** — run ID: `run-1@20261128-072817` / `run-2@20261128-110738` → chi tiết `eval/report.md`, hồ sơ `eval/README.md`
 
 ## §8. Chi phí khi dùng thật *(guide 4.2)*
-- Persona + giá: `cost/personas.yaml` · lượt mô phỏng: `cost/simulate-__.csv` (__ phiên)
-- Chi phí / task thành công: __ (model __) · __ (model __)
-- Chi phí / tháng ở quy mô thật: thấp __ · cơ sở __ · cao __ → chi tiết `cost/cost-estimate.md`
-- So với impact / người / tháng (§2): đáng làm không, vì sao:
+- Persona + giá: `cost/personas.yaml` (3 persona theo khảo sát câu 5, n = 26) · lượt mô phỏng: **`cost/simulate-2.csv` (50 phiên, token đo trên deepseek-chat — model của sản phẩm)**; `simulate-1.csv` (50 phiên, đo trên gpt-6-luna) giữ để đối chiếu.
+- Chi phí / task thành công (tỉ lệ đạt lượt 2 = 29/30): **$0,0011 / task** (token đo trên deepseek-chat, giá bảng DeepSeek ghi trong personas.yaml là `deepseek-flash`) · $0,00038 (giá gpt-6-luna) · $0,00036 (giá gemini-2.5-flash-lite). Mỗi phiên trung bình ~2.500 token vào, ~240 token ra, 0,9 lần gọi model.
+- Chi phí / tháng ở quy mô thật (giá DeepSeek): thấp (300 HS) **$9,5** · cơ sở (1.000 HS) **$31,8** · cao (3.000 HS) **$95,4** → **~$0,032 ≈ 800 đồng / học sinh / tháng** (tỉ giá ~25.000 đ/$, *tự ước tính*) → chi tiết `cost/cost-estimate.md`, `cost/simulate-2-summary.md`.
+- So với impact / người / tháng (§2): đáng làm — ~800 đồng / học sinh / tháng để thay ~36 lần / tháng nhận lời giải đầy đủ (nhóm học sinh chép, khảo sát câu 5) bằng gợi ý chỉ bước sai; rẻ hơn nhiều so với một buổi gia sư. Giả định adoption 100% và mỗi phiên 1 lượt hỏi là **tự ước tính**; chưa tính chi phí máy chủ / DB (gói free trong thí điểm) và token của Trợ lý AI giáo viên, AI chấm nháp.
 
 ## §9. Rủi ro & an toàn
 - **Dữ liệu:** dữ liệu chạy thử hoàn toàn tự dựng (bài giảng, bài tập, bước làm sai). Khảo sát ẩn danh, không thu tên / trường / lớp; người trả lời là trẻ vị thành niên nên bản gốc `raw-*.csv` không commit. Không đưa bài làm hay ảnh vở thật nào vào model. Key model để trong `.env`, không commit.
