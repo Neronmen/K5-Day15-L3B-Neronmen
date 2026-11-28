@@ -16,13 +16,13 @@
 
 **Trước khi lên:** tải repo về một máy khác (hoặc thư mục mới), chạy theo mục "Chạy trong 3 phút" của `README.md` · `.env` có trên máy demo, đã gọi thử 1 câu trong vòng 1 giờ trước giờ demo · video dự phòng mở được bằng cửa sổ ẩn danh · biết bản chạy thử sẽ làm gì với **1 câu thử lạ** của giám khảo.
 
-**Bản slide (9 trang, có hiệu ứng):** Claude artifact "MinutesStudy Tutor — Neronmen" — Khoa xuất PDF (Share › Export) thành `demo-slides.pdf` ở gốc repo và nộp link ở form CP4.
+**Bản slide (9 trang, kể theo kiểu sản phẩm: Vấn đề → Giải pháp → Cho giáo viên → Demo → Kết quả → Chi phí → Hạn chế → Hướng phát triển; số kỹ thuật nằm ở ghi chú người nói):** Claude artifact "MinutesStudy Tutor — Neronmen" — Khoa xuất PDF (Share › Export) thành `demo-slides.pdf` ở gốc repo và nộp link ở form CP4.
 
 Ai nói trang nào (mỗi người ≥1 phần):
 
 | Trang | Người nói |
 |---|---|
-| Bìa, 3 Giải pháp, 7 Kết luận | Khoa |
-| 1 Pain, 2 Vì sao chọn | Nhài |
-| 4 Demo live | Ninh |
-| 5 Đánh giá, 6 Chi phí, 8 Một tuần nữa | Thắng |
+| Bìa, Giải pháp, Hướng phát triển | Khoa |
+| Vấn đề, Hạn chế | Nhài |
+| Cho giáo viên, Demo live | Ninh |
+| Kết quả, Chi phí | Thắng |
