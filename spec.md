@@ -38,7 +38,7 @@ Data BTC cấp đã dùng: không (Track F, dữ liệu chạy thử tự dựng
 - Số lần / tháng của từng kiểu người dùng (persona §8, `cost/personas.yaml`, từ khảo sát câu 5): dùng ít 7/26 (~3,7 phiên / tháng) · dùng vừa 2/26 (~17 phiên / tháng) · dùng nhiều 17/26 (~45 phiên / tháng).
 
 ## §3. Giải pháp tương tự *(guide 2.1)*
-*(Mô tả sản phẩm ngoài: **chưa kiểm** bằng tài khoản của nhóm — kiểm lại và ghi nguồn trước CP4.)*
+*(Nguồn: hành vi người dùng của app giải bài lấy từ 149 review Google Play của Photomath, QANDA, AI Hay (`evidence/data-mining.md`) và khảo sát câu 3 (17/26 hỏi chatbot, 13/26 chụp lên app). Nhóm **chưa dùng thử** các sản phẩm này bằng tài khoản riêng — tính năng mô tả theo review và trang giới thiệu công khai.)*
 - **App giải bài bằng ảnh** (chụp đề → lời giải từng bước): đáng học — trải nghiệm cực nhanh, học sinh quen dùng · đáng né — đưa thẳng đáp án cuối · mình khác — khi bài còn hạn chỉ chỉ ra bước sai, không bao giờ đưa kết quả (khoá bằng code).
 - **Chatbot đa năng** (dán đề vào hỏi): đáng học — giải thích linh hoạt bằng lời · đáng né — không biết bài nào còn hạn, không theo tài liệu thầy cô, dễ bị dỗ lộ đáp án · mình khác — chế độ do giờ máy chủ + hạn nộp quyết, chỉ dùng tài liệu giáo viên đăng, có trích trang.
 - **Gia sư AI kiểu Socratic của các nền tảng học trực tuyến nước ngoài**: đáng học — nguyên tắc hỏi gợi mở thay vì giải hộ · đáng né — không gắn với bài và hạn nộp của lớp ở Việt Nam · mình khác — gắn vào LMS của lớp, giáo viên xem được học sinh kẹt ở đâu.
