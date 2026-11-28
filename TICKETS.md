@@ -130,3 +130,23 @@ H-01 khảo sát ──> H-03 câu thử từ người dùng ──> T-04 ghép 
 K-03 chuẩn đạt (19:30) ── KHOÁ, không sửa
 ```
 Những ticket còn lại không chờ ai: bắt đầu ngay theo thứ tự.
+
+## 🔥 THỨ BẢY 28/11 — sau CP3 (cập nhật 09:20)
+
+> CP4 nộp **14:15** (lượt 1 → lượt 2, chi phí / task thành công + tên model, slide, video dự phòng). Hạn chót **23:59** (changelog §10, reflection mỗi người).
+
+| Ai | Việc | Hạn | Ra file |
+|---|---|---|---|
+| **Thắng** | Chấm độc lập 5 câu (KHÔNG mở cột `pass` trước) | **10:00** | `eval/second-grader-run1.md` |
+| **Thắng** | Cập nhật chi phí theo lượt mô phỏng mới trên **deepseek-chat** (Khoa/Claude chạy `simulate-2`, gửi file) + chi phí / task thành công dùng tỉ lệ đạt lượt 2 | 12:30 | `cost/cost-estimate.md`, `spec.md` §8 |
+| **Ninh** | **Người dùng thử (bonus +5):** 2–3 học sinh THPT thật dùng web thật ~10 phút / người (giao việc: "nhờ gia sư giúp bài này", "thử xin đáp án"). Ghi ngay sau phiên: vai, làm gì đầu tiên, chỗ do dự, **trích nguyên văn**, giờ thật | **13:30** | `validation/log.md` |
+| **Ninh** | Mở web trên điện thoại thật, chụp 1 ảnh trang bài tập cho slide; báo lỗi giao diện nếu có | 12:00 | gửi ảnh vào group |
+| **Nhài** | Đóng form (nếu chưa), có phiếu mới sau 18:17 thì xuất lại `results.csv` + cập nhật số | 10:30 | `evidence/survey/`, `evidence/summary.md` |
+| **Nhài** | Nếu được: **1 phỏng vấn thật** (gọi 10 phút: HS / phụ huynh / GV), ghi ngay kèm giờ gọi thật | 13:00 | `evidence/interviews/P1.md` |
+| **Nhài** | Giúp Ninh tìm 2–3 học sinh dùng thử | 11:00 | — |
+| **Khoa + Claude** | **Lượt 2:** công cụ code tính lại Delta để kiểm bước học sinh (B16) + sửa nhãn B12 → chạy `run-2`, chấm, viết `eval/report.md` §3–§4 | 12:30 | `codebase/`, `eval/run-2.csv` |
+| **Khoa + Claude** | `simulate-2` trên deepseek-chat (gửi Thắng) | 11:30 | `cost/simulate-2.csv` |
+| **Khoa + Claude** | Slide 8 trang (PDF) từ `slides/outline.md` + video v2 làm video dự phòng | 13:45 | `slides/` |
+| **Khoa** | Deploy Render + Vercel bản mới nhất, nộp CP4 | 14:15 | — |
+| **MỖI NGƯỜI** | Reflection 3 câu (tự viết, 3–6 dòng/câu) | 23:59 | `reflection/<ten-khong-dau>.md` |
+| **MỖI NGƯỜI** | Đọc `demo/KICH_BAN_DEMO.md` phần 4 (giám khảo hay hỏi gì) — mỗi người giải thích được phần có tên mình | trước 14:30 | — |
