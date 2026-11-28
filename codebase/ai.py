@@ -97,8 +97,10 @@ def call_openai_compatible(system, user, provider):
     """DeepSeek / OpenAI (cùng định dạng Chat Completions). Token từ usage.prompt_tokens / completion_tokens;
     với deepseek-reasoner, completion_tokens đã gồm token suy luận (reasoning_tokens) nên không cộng thêm."""
     messages = ([{"role": "system", "content": system}] if system else []) + [{"role": "user", "content": user}]
-    body = {"model": MODEL_NAME, "messages": messages, "max_tokens": MAX_TOKENS, "stream": False}
-    if not MODEL_NAME.startswith(("deepseek-reasoner", "o1", "o3", "o4", "gpt-5")):
+    reasoning_model = MODEL_NAME.startswith(("deepseek-reasoner", "o1", "o3", "o4", "gpt-5", "gpt-6"))
+    limit_key = "max_completion_tokens" if provider == "openai" and reasoning_model else "max_tokens"
+    body = {"model": MODEL_NAME, "messages": messages, limit_key: MAX_TOKENS, "stream": False}
+    if not reasoning_model:
         body["temperature"] = TEMPERATURE  # các model suy luận không nhận temperature
     data = post_json(_base(provider) + "/chat/completions", {"Authorization": "Bearer " + API_KEY}, body)
     u = data["usage"]

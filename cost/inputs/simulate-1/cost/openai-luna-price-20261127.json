@@ -1,0 +1,13 @@
+{
+  "checked_at": "2026-11-27T21:10:19.876262+07:00",
+  "model": "gpt-6-luna",
+  "url": "https://developers.openai.com/api/docs/models/gpt-6-luna.md",
+  "resolved_url": "https://developers.openai.com/api/docs/models/gpt-6-luna.md",
+  "sha256": "dacc9870e67c0d68e4272f8394d4296ffe7cf70f18d3f4675ee6bd4c666966b7",
+  "currency": "USD",
+  "unit": "per 1M tokens",
+  "input_uncached": 0.1,
+  "input_cached": 0.01,
+  "output": 0.5,
+  "usage_measurement_available": false
+}

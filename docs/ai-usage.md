@@ -45,3 +45,9 @@ Khoa đã sửa hợp đồng nguồn và đồng bộ số đếm trong lúc re
 Codex đối chiếu commit duyệt metric ae5bc56 và các Issue/PR mới; kiểm benchmark main cùng candidate CSV Nhài tại b35509a, đối chiếu năm đoạn nguồn khảo sát. Chỉ đọc dữ liệu khảo sát ẩn danh, không tạo câu trả lời, phỏng vấn hoặc gán lại source. Không sửa metric, expected, agent hay dữ liệu của tác giả khác.
 
 Codex chạy smoke fake, check, 114 unittest, diff-check và các probe fake/stub; builder từ chối đúng candidate 9/30 nguồn thật. Đã ghi fingerprint SHA-256 hiện tại, không gán thành provenance của lượt model thật. Không tìm thấy run/trace phù hợp nên không chạy auto grader trên dữ liệu tự tạo, không chấm human hay người thứ hai. T-07 được cập nhật local bằng số đã kiểm chứng; reflection chỉ bổ sung hồ sơ công việc, Thắng còn phải tự xác nhận. Không gọi API model thật, không chạy mô phỏng H-05, không merge main hoặc đóng Issue.
+
+## Tiếp tục H-05 và rà Issue ngày 27/11/2026
+
+Lượt xử lý PR #34/#47: Codex kiểm ancestry, diff, dependency, CI/protection, chạy lại 125 unittest, đối chiếu raw usage/trace và công thức ba kịch bản. Xác nhận T-05 đã tích hợp để đóng PR dư, giữ B16/R24; H-05 đủ acceptance gốc, USD/task thành công còn chờ human pass rate. Không gọi model hoặc tạo lượt simulation mới khi review, không sửa benchmark/metric/evidence hoặc kết quả chấm.
+
+Codex kế thừa phân tích Q5/persona đã có, xác minh lại giá OpenAI/DeepSeek/Gemini, lưu lock SHA256 trước evaluation và đối chiếu acceptance các Issue của Thắng. Chỉ đóng Issue đã đủ bằng chứng, giữ mở H-05/T-07 vì thiếu output evaluation/human grading cho USD/task thành công, dù đã đo 50 phiên OpenAI thật. Không tạo số token, run hoặc phỏng vấn giả; bảo toàn draft T-07, worktree H-05 cũ và PR #39. Chi tiết công cụ, giới hạn và phần người kiểm tại docs/ai-usage-h05-thang.md.

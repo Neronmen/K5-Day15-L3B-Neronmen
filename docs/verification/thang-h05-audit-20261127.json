@@ -1,0 +1,153 @@
+{
+  "checked_at": "2026-11-27T21:21:49.564521+07:00",
+  "base_main": "4d1f81cacbe21e6a94cb4330829bc4352f20a249",
+  "checks": [
+    {
+      "name": "lock",
+      "argv": [
+        "python",
+        "eval/verify_frozen_inputs.py"
+      ],
+      "exit_code": 0,
+      "output": "Frozen benchmark and metric match 4d1f81cacbe21e6a94cb4330829bc4352f20a249 (2 files).\n"
+    },
+    {
+      "name": "builder",
+      "argv": [
+        "python",
+        "eval/build_benchmark.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "output": "Validated 30 cases; types={'thuong': 11, 'tu_choi': 4, 'kho': 15}; real-source labels=10/30.\nNo files written.\nSource labels must be verified against actual evidence by the team.\n"
+    },
+    {
+      "name": "check",
+      "argv": [
+        "python",
+        "run.py",
+        "check"
+      ],
+      "exit_code": 0,
+      "output": "Kiểm eval/benchmark.csv\n  Đủ 6 cột: id,input,expected,pass_criterion,type,source\n  Số câu thử: 30  ·  thuong 11  ·  kho 15  ·  tu_choi 4\n  Nguồn: nguoi_dung 7  ·  data_that 3  ·  tu_viet 20  ·  sinh_seed 0  ·  từ người dùng / data thật: 10/30\n  eval/metric_spec.yaml: 4 metric đã điền đủ (cần ≥3)\nKiểm TEAMS.md\n  4 thành viên\nKhông thấy vấn đề. Nhớ: mỗi pass_criterion phải kiểm được (đọc output là biết đạt hay không).\n(Lệnh này chỉ kiểm, không sửa file.)\n"
+    },
+    {
+      "name": "unittest",
+      "argv": [
+        "python",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-v"
+      ],
+      "exit_code": 0,
+      "output": "AdapterTests.test_gpt6_accepts_supported_payload_and_uses_total_usage) ... ok\ntest_legacy_openai_payload_stays_compatible (test_openai_adapter.OpenAIAdapterTests.test_legacy_openai_payload_stays_compatible) ... ok\ntest_b14_wrong_minus_b_at_step_three (test_thang_cases.ThangCasesTests.test_b14_wrong_minus_b_at_step_three) ... ok\ntest_b15_wrong_denominator_at_step_three (test_thang_cases.ThangCasesTests.test_b15_wrong_denominator_at_step_three) ... ok\ntest_b16_discriminant_first_wrong_at_step_two (test_thang_cases.ThangCasesTests.test_b16_discriminant_first_wrong_at_step_two) ... ok\ntest_b17_zero_delta_is_not_two_distinct_roots (test_thang_cases.ThangCasesTests.test_b17_zero_delta_is_not_two_distinct_roots) ... ok\ntest_b18_all_written_steps_correct (test_thang_cases.ThangCasesTests.test_b18_all_written_steps_correct) ... ok\ntest_b19_first_error_precedes_later_errors (test_thang_cases.ThangCasesTests.test_b19_first_error_precedes_later_errors) ... ok\ntest_b20_changing_all_signs_is_required (test_thang_cases.ThangCasesTests.test_b20_changing_all_signs_is_required) ... ok\ntest_b21_complete_solution_and_substitutions_correct (test_thang_cases.ThangCasesTests.test_b21_complete_solution_and_substitutions_correct) ... ok\ntest_exact_schema_ids_difficult_cases_and_sources (test_thang_cases.ThangCasesTests.test_exact_schema_ids_difficult_cases_and_sources) ... ok\ntest_input_links_time_and_expected_policy (test_thang_cases.ThangCasesTests.test_input_links_time_and_expected_policy) ... ok\n\n----------------------------------------------------------------------\nRan 125 tests in 1.984s\n\nOK\n"
+    },
+    {
+      "name": "diff-check",
+      "argv": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 0,
+      "output": "warning: in the working copy of 'cost/personas.yaml', LF will be replaced by CRLF the next time Git touches it\n"
+    }
+  ],
+  "benchmark": {
+    "count": 30,
+    "real_sources": 10,
+    "unique_ids": 30
+  },
+  "lock": {
+    "recorded_at": "2026-11-27T21:00:59.213413+07:00",
+    "source_commit": "4d1f81cacbe21e6a94cb4330829bc4352f20a249",
+    "normalization": "UTF-8 bytes; CRLF converted to LF, no other changes",
+    "approval_commit": "ae5bc56",
+    "purpose": "Pre-evaluation lock. Not a provenance claim for historical runs.",
+    "files": {
+      "eval/benchmark.csv": {
+        "sha256_lf": "2563f387ff9ca6d4135ffe3a2660277a8ded57310d287e93ea6f10669dc326aa",
+        "checkout_sha256_at_lock": "de21ed318952c5cc7447b67ecd20393ad04018657a5df40ade829b6c17f8b6b0",
+        "git_blob": "b38375eec027c57cb815c3fbd83b8f31b2090f32"
+      },
+      "eval/metric_spec.yaml": {
+        "sha256_lf": "8fd4261d2da65a149627b770b43f4ee580ad20fe093d5437699dbe6eb51d8d76",
+        "checkout_sha256_at_lock": "913b617dba2e4bdc9c6441b62062d37efd3ec5b394e098a327848f14c81082ff",
+        "git_blob": "0f122ca884f39b87d7a12c2c5be67e79c260b61e"
+      }
+    }
+  },
+  "simulation": {
+    "finished_at": "2026-11-27T21:16:55.996237+07:00",
+    "exit_code": 0,
+    "name": "simulate-1",
+    "sessions": 50,
+    "models": [
+      "",
+      "gpt-6-luna"
+    ],
+    "model_calls": 45,
+    "tokens_in": 84621,
+    "tokens_out": 10106,
+    "persona_counts": {
+      "dung_nhieu": 32,
+      "dung_it": 16,
+      "dung_vua": 2
+    },
+    "artifacts": {
+      "cost/simulate-1.csv": "ca50f9d8f96ed5653fa69bd9985dd5e974b3e2c109d7c0d53dd0f8d881d6f157",
+      "cost/simulate-1-summary.md": "69891dc3dd3b2a34ffffaf4dbce16e2b5974664d827d31aa49fa4e891d9dbb5c",
+      "traces/simulate-1.jsonl": "f536e9df42879feda559f5d7d2fba45ccf09592ffb8786bc328b2584e5768174"
+    }
+  },
+  "preservation": {
+    "T07_files": "all nine hashes unchanged",
+    "H05_previous_worktree": "HEAD/status and prior artifacts unchanged",
+    "protected_files": [
+      "eval/benchmark.csv",
+      "eval/metric_spec.yaml",
+      "spec.md",
+      "eval/cases",
+      "codebase/prompts.py",
+      "codebase/agent.py",
+      "codebase/tools.py",
+      "codebase/tracing.py",
+      "cost/simulate.py",
+      "eval/run_eval.py",
+      "run.py",
+      "evidence/survey/results.csv"
+    ],
+    "external_root_changes_preserved": [
+      " D .env.example"
+    ],
+    "note": "Root .env.example was deleted externally while user configured .env; no agent edit or restoration."
+  },
+  "evaluation_inventory": {
+    "remote_refs_checked": 19,
+    "remote_run_artifacts": 0,
+    "local_prior_artifacts": [
+      {
+        "worktree": "D:\\VinUniAI\\K5-Day15-L3B-Neronmen\\.git\\thang-h05\\worktree",
+        "path": "traces/simulate-mock.jsonl",
+        "sha256": "13620be9e0e82b2d0f3b37115845c5a2e4c7e03b2bb98025567e00612e0ae846",
+        "bytes": 32198
+      },
+      {
+        "worktree": "D:\\VinUniAI\\K5-Day15-L3B-Neronmen\\.git\\thang-h05\\worktree",
+        "path": "cost/simulate-mock.csv",
+        "sha256": "5c209c2202010a14c0814a068e1f7a1a23ba9b6df2e0e684a7bcfc4084b0e456",
+        "bytes": 2074
+      }
+    ],
+    "actions_artifacts": [],
+    "release_assets": [],
+    "limitation": "No group evaluation run found in checked sources before current cost simulation; other computers not searched."
+  },
+  "adapter_fix": {
+    "before": "Live HTTP 400: max_tokens unsupported; focused test reproduced same exception",
+    "after": "125 unittest passed, live B16 output and 50-session simulation succeeded; usage totals preserved"
+  }
+}

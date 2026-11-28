@@ -1,0 +1,4 @@
+# Preserve raw measurement bytes and their recorded SHA256 on Windows checkout.
+/cost/simulate-1* -text whitespace=cr-at-eol
+/cost/inputs/** -text whitespace=cr-at-eol
+/traces/simulate-1.jsonl -text whitespace=cr-at-eol

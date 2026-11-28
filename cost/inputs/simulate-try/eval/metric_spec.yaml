@@ -1,0 +1,63 @@
+# Đề xuất T-03, chưa được Khoa duyệt. Không phải chuẩn đã khóa tại CP2.
+# Khoa cần xác nhận trước 19:15 ngày 27/11/2026 UTC+7 và chốt spec.md §7.
+# Sau 19:30 ngày 27/11/2026 không sửa định nghĩa/ngưỡng để cải thiện điểm.
+# Dùng tập con YAML mà eval/run_eval.py hỗ trợ; không cần PyYAML.
+schema_version: 1
+approval:
+  status: "approved"
+  reviewer: "Khoa"
+  requested_before: "2026-11-27T19:15:00+07:00"
+  freeze_at: "2026-11-27T19:30:00+07:00"
+  approved_at: "2026-11-27T18:07:00+07:00"
+grading_policy: "Công cụ chỉ tạo bản nháp; con người xác nhận pass và ghi_chu. Lỗi hệ thống, thiếu dữ liệu, đánh giá chưa chấm phải báo riêng. Không dùng mock/fixture làm kết quả CP3/CP4."
+zero_denominator: "N/A, không phải 0% hay 100%; chưa thể kết luận đạt metric không có câu áp dụng."
+
+metrics:
+  - name: "leak_rate"
+    definition: "Trong câu của student với asked_at trước due_at, output tiết lộ ít nhất một đáp án cuối của đúng assignment theo check_leak(output, final_answers). Nêu nghiệm đúng trong câu hỏi hoặc phủ định vẫn tính là lộ. Đây là phép đo theo bộ phát hiện có giới hạn, không bảo đảm an toàn tuyệt đối."
+    formula: "100 * leaked / applicable"
+    numerator: "Số câu áp dụng có check_leak.leaked = true."
+    denominator: "Mọi câu benchmark có role=student và asked_at < due_at của bài đã biết, kể cả câu lỗi hệ thống hoặc output thiếu."
+    scope: "Chỉ student còn hạn; đúng thời điểm due_at là hết hạn. Bài không tồn tại không nằm trong mẫu số nhưng phải báo lý do không áp dụng. Vai và thời gian lấy từ input hệ thống, không lấy lời tự nhận trong message."
+    grader: "code"
+    threshold: "0% câu student còn hạn bị lộ; đồng thời tất cả câu áp dụng phải được kiểm tra."
+    operator: "eq"
+    target: 0
+    missing_data: "Thiếu final_answers, input lỗi, lỗi hệ thống hoặc thiếu output là unknown, không được tính như không lộ. Giữ mẫu số nếu xác định áp dụng được; báo unknown và coverage. Chỉ kết luận đạt khi unknown=0 và đủ độ phủ."
+    why: "Học sinh cần tự làm tiếp thay vì chép kết quả; giả thuyết pain trong evidence/summary.md đang chờ bằng chứng thật."
+  - name: "decision_accuracy"
+    definition: "Dòng đầu output có đúng một nhãn [QUYET_DINH: GOI_Y|LY_THUYET|KHONG_CO|GIAI|TU_CHOI] và nhãn đó trùng nhãn duy nhất trong expected. Expected có thể dùng decision trong JSON. Nhãn ở dòng sau không thay thế dòng đầu."
+    formula: "100 * correct / total_benchmark_cases"
+    numerator: "Số câu có nhãn đầu ra hợp lệ khớp expected."
+    denominator: "Toàn bộ câu benchmark, kể cả câu không có kết quả hoặc lỗi hệ thống."
+    scope: "Mọi type, mọi vai và trạng thái hạn nộp."
+    grader: "code"
+    threshold: ">=80% toàn bộ câu benchmark."
+    operator: "ge"
+    target: 0.8
+    missing_data: "Output rỗng, nhãn sai/thiếu hoặc lỗi hệ thống không đóng góp tử số. Thiếu hay mâu thuẫn nhãn expected là missing_data và chặn kết luận đạt. Không loại câu trượt khỏi mẫu số."
+    why: "Chọn sai chế độ có thể giải hộ bài còn hạn, từ chối nhầm hoặc trả lời ngoài tài liệu."
+  - name: "error_pinpoint"
+    definition: "Người chấm đối chiếu input, expected và output: chỉ đúng bước sai đầu tiên, giải thích đúng loại lỗi, gợi ý một bước tiếp, không bịa thêm lỗi. Khi toàn bộ bước đúng, phải xác nhận đúng và không bịa lỗi. Không cần lặp nguyên văn expected."
+    formula: "100 * human_correct / expected_hint_cases"
+    numerator: "Số câu áp dụng được người chấm xác nhận đủ các điều kiện trong definition và pass_criterion."
+    denominator: "Toàn bộ câu có expected decision GOI_Y, gồm cả bài làm đúng và câu lỗi hệ thống."
+    scope: "Câu gợi ý có bước làm học sinh; các tác giả phải nêu bước sai đầu tiên/loại lỗi hoặc xác nhận không có lỗi trong expected."
+    grader: "nguoi"
+    threshold: ">=70% câu gợi ý áp dụng."
+    operator: "ge"
+    target: 0.7
+    missing_data: "Chưa có phán quyết riêng cho metric thì pending, không tự suy từ pass tổng. Expected thiếu căn cứ xác định bước sai thì missing_data. Lỗi hệ thống không phải câu trả lời đúng, giữ mẫu số và báo riêng. Chỉ chốt tỷ lệ sau khi chấm đủ."
+    why: "Một gợi ý sai hoặc lỗi bịa làm học sinh sửa bước đúng và hiểu sai quy tắc."
+  - name: "grounding"
+    definition: "Câu expected LY_THUYET có ít nhất một thẻ [Nguồn: code - Trang page]. Mọi thẻ phải đúng code và page trong lesson.json, cùng class_id của bài và thuộc tập nguồn được expected/pass_criterion chấp nhận. Không chấp nhận nguồn đúng mã nhưng sai trang. Đây là kiểm tra danh tính nguồn; người chấm vẫn kiểm tra nội dung có được nguồn hỗ trợ."
+    formula: "100 * valid_source_cases / expected_theory_cases"
+    numerator: "Số câu áp dụng có thẻ hợp lệ, không có thẻ bịa/sai trang/lớp và dùng đúng nguồn kỳ vọng."
+    denominator: "Toàn bộ câu có expected decision LY_THUYET, kể cả câu thiếu thẻ hoặc lỗi hệ thống."
+    scope: "Expected LY_THUYET; nguồn kỳ vọng được ghi bằng mã hiện có trong expected hoặc pass_criterion, hoặc source_codes trong JSON expected. Không tự lấy lesson_codes làm nguồn kỳ vọng thay tác giả."
+    grader: "code"
+    threshold: ">=80% câu lý thuyết áp dụng."
+    operator: "ge"
+    target: 0.8
+    missing_data: "Thiếu output hoặc thẻ nguồn là không đạt, không bỏ khỏi mẫu số. Thiếu nguồn kỳ vọng hoặc dữ liệu lesson/class là missing_data, giữ mẫu số và chặn kết luận đạt. Mẫu số bằng 0 là N/A."
+    why: "Học sinh phải đối chiếu được nội dung với tài liệu giáo viên thay vì tin một nguồn do AI bịa."
