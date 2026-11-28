@@ -41,6 +41,7 @@ class ChatPlan:
     assignment_id: str | None = None
     meta: dict = field(default_factory=dict)
     core: dict | None = None       # route "core": tham số cho core_bridge.answer
+    guard: list[str] | None = None  # luồng bài giảng cũ: có bài còn hạn → không stream từng mẩu, soi cả câu trước khi gửi
 
 
 def _check_quota(db: Session, student_id: str) -> int:
@@ -108,7 +109,12 @@ def plan_chat(db: Session, *, student_id: str, cls: Classroom, question: str,
                        assignment_id=assignment.id if assignment else None, student_id=student_id,
                        role="user", mode=mode, content=question, flagged=flag_message(question, mode)))
     db.commit()
-    return ChatPlan(
+    guard = None
+    if document is not None and core_bridge.available():  # khung bài giảng: soi đáp án mọi bài còn hạn trước khi gửi
+        guard = core_bridge.guard_finals(
+            [a["reference_answer"] for a in _open_assignments(db, student_id, None, datetime.now(timezone.utc))],
+            None) or None
+    return ChatPlan(guard=guard,
         class_id=cls.id, student_id=student_id, mode=mode, route=route, system=system,
         messages=[*history, {"role": "user", "content": question}], chunks=chunks,
         document_id=document.id if document else None, assignment_id=assignment.id if assignment else None,
@@ -127,11 +133,15 @@ def _plan_core(db: Session, *, student_id: str, cls: Classroom, question: str, a
     meta = {"remaining_today": remaining}
     # Học sinh dán đề của một bài KHÁC còn hạn (vd mở bài đã hết hạn để xin giải bài ngày mai): lượt này chuyển về
     # chế độ gợi ý theo đúng bài còn hạn đó — đề, đoạn bài giảng và check_leak đều lấy theo bài đó.
-    match = _open_match(db, student_id, question, assignment.id, now)
+    open_list = _open_assignments(db, student_id, assignment.id, now)
+    match = _open_match(db, student_id, question, assignment.id, now, open_list)
     if match:
         mode = "hint"
         core.update(_core_for_match(match))
         meta["same_as"] = match["title"]
+    # Chốt chặn cuối: dù so đề không nhận ra (vd đề viết bằng chữ), câu trả lời không được chứa đáp án bài còn hạn khác
+    core["guard"] = core_bridge.guard_finals(
+        [a["reference_answer"] for a in open_list if not match or a["id"] != match["id"]], core["reference_answer"])
     core["history"] = _history(db, student_id, None, assignment.id)
     db.add(ChatMessage(class_id=cls.id, assignment_id=assignment.id, student_id=student_id, role="user", mode=mode,
                        content=question, flagged=core_bridge.flag(question, mode)))
@@ -146,10 +156,13 @@ def _plan_lecture_guard(db: Session, *, student_id: str, cls: Classroom, questio
                         remaining: int) -> ChatPlan | None:
     """Khung hỏi bài giảng: tin nhắn chứa đề của một bài CÒN HẠN → không để Knowledge Agent giải; trả lời qua lõi ở
     chế độ gợi ý theo đúng bài đó (như khi hỏi trong khung bài tập). Không trùng → None, chạy luồng bài giảng cũ."""
-    match = _open_match(db, student_id, question, None, datetime.now(timezone.utc))
+    open_list = _open_assignments(db, student_id, None, datetime.now(timezone.utc))
+    match = _open_match(db, student_id, question, None, datetime.now(timezone.utc), open_list)
     if not match:
         return None
     core = {"question": question, "history": _history(db, student_id, document.id, None), **_core_for_match(match)}
+    core["guard"] = core_bridge.guard_finals([a["reference_answer"] for a in open_list if a["id"] != match["id"]],
+                                             match["reference_answer"])
     db.add(ChatMessage(class_id=cls.id, document_id=document.id, student_id=student_id, role="user", mode="hint",
                        content=question, flagged=core_bridge.flag(question, "hint")))
     db.commit()
@@ -159,8 +172,11 @@ def _plan_lecture_guard(db: Session, *, student_id: str, cls: Classroom, questio
     )
 
 
-def _open_match(db: Session, student_id: str, question: str, exclude_id: str | None, now: datetime) -> dict | None:
-    match = next(iter(core_bridge.open_matches(question, _open_assignments(db, student_id, exclude_id, now))), None)
+def _open_match(db: Session, student_id: str, question: str, exclude_id: str | None, now: datetime,
+                open_list: list[dict] | None = None) -> dict | None:
+    if open_list is None:
+        open_list = _open_assignments(db, student_id, exclude_id, now)
+    match = next(iter(core_bridge.open_matches(question, open_list)), None)
     if match:
         log.info("core tutor: tin nhắn trùng đề bài còn hạn %s → chế độ gợi ý", match["id"])
     return match
@@ -239,7 +255,13 @@ def sse_stream(plan: ChatPlan) -> Iterator[str]:
         try:
             for piece in llm.stream(llm.Task.CHAT, plan.system, plan.messages):
                 text += piece
-                yield _sse({"type": "delta", "text": piece})
+                if not plan.guard:
+                    yield _sse({"type": "delta", "text": piece})
+            if plan.guard:  # có bài còn hạn: chỉ gửi khi cả câu không chứa đáp án của các bài đó
+                if core_bridge.leaks(text, plan.guard):
+                    log.info("lecture chat: câu trả lời chứa đáp án bài còn hạn → thay bằng câu cố định")
+                    text = core_bridge.SAFE_TEXT
+                yield _sse({"type": "delta", "text": text})
         except Exception as e:  # noqa: BLE001
             log.exception("chat stream lỗi")
             failed = True

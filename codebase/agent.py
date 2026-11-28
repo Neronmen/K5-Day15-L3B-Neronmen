@@ -23,7 +23,7 @@ import os
 from ai import call_model
 from prompts import NOT_FOUND, SYSTEM_ANSWER, SYSTEM_HINT
 from tools import (check_leak, citations, final_answers_of, flag_message, get_assignment, get_passages,
-                   get_tutor_mode, search_lesson)
+                   get_tutor_mode, leak_targets, open_finals_of, search_lesson)
 from tracing import note
 
 DEFAULTS = {"assignment_id": "BT01", "role": "student", "class_id": "10A1",
@@ -103,6 +103,16 @@ def answer(text: str) -> dict:
             if check_leak(reply, finals)["leaked"]:
                 note("vẫn lộ ở lần 2 → trả câu cố định")
                 reply = SAFE_HINT
+    # Chốt chặn cuối theo câu trả lời: học sinh có thể đưa đề một bài KHÁC còn hạn (dán, viết bằng chữ…) vào
+    # khung của bài này. Câu trả lời chứa đáp án bài đó → sinh lại 1 lần, vẫn lộ → câu cố định. Ở mọi chế độ.
+    guard = leak_targets(open_finals_of(asg["class_id"], req["asked_at"], asg["id"]), final_answers_of(asg["id"]))
+    if guard and check_leak(reply, guard)["leaked"]:
+        note("lộ đáp án của bài khác còn hạn → sinh lại")
+        retry = call_model(system + "\nLẦN TRƯỚC BẠN ĐÃ NÊU KẾT QUẢ CỦA MỘT BÀI KHÁC ĐANG CÒN HẠN NỘP. Chỉ giải đúng ĐỀ BÀI ở trên; với đề khác chỉ gợi ý bước đầu, không nêu kết quả.", user)
+        reply = citations(retry["text"], chunks)["reply"]
+        if check_leak(reply, guard + (final_answers_of(asg["id"]) if mode == "hint" else []))["leaked"]:
+            note("vẫn lộ đáp án bài khác ở lần 2 → trả câu cố định")
+            reply = SAFE_HINT
     if not reply.lstrip().startswith("[QUYET_DINH:"):
         note("model không ghi nhãn quyết định ở dòng đầu")  # để bộ chấm bắt lỗi, không tự vá
     return {"output": reply}

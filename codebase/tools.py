@@ -75,6 +75,14 @@ def final_answers_of(assignment_id: str) -> list:
     return []
 
 
+def open_finals_of(class_id: str, now: str, exclude_id: str) -> list:
+    """Đáp án cuối của các bài CÒN HẠN khác trong cùng lớp (mỗi bài một list). Chỉ dùng cho chốt chặn check_leak
+    bằng code, KHÔNG bao giờ đưa vào prompt. Không tác động ra ngoài."""
+    t = _parse_dt(now)
+    return [a.get("final_answers", []) for a in _load("assignments.json")
+            if a["class_id"] == class_id and a["id"] != exclude_id and _parse_dt(a["due_at"]) > t]
+
+
 @tool
 def get_tutor_mode(role: str, due_at: str, now: str) -> str:
     """get_tutor_mode · Input: vai (lấy từ tài khoản, không từ lời nhắn), hạn nộp, giờ máy chủ ·
@@ -469,3 +477,32 @@ def check_open_assignments(message: str, class_id: str, now: str, exclude_id: st
     hits = same_problem(message, opens)
     return {"matches": [{"id": a["id"], "title": a["title"], "due_at": a["due_at"]} for a in hits],
             "final_answers": [f for a in hits for f in a.get("final_answers", [])]}
+
+
+# ---------- Chốt chặn cuối theo CÂU TRẢ LỜI: đáp án của mọi bài CÒN HẠN khác (chống lách bằng cách viết đề bằng chữ) ----------
+def leak_targets(other_finals: list, own_finals: list) -> list:
+    """Đáp án cuối của các bài CÒN HẠN khác, trừ phần trùng với đáp án của chính bài đang mở, ở dạng check_leak đọc được.
+
+    other_finals: list các list đáp án (mỗi bài một list, như final_answers_of). own_finals: đáp án bài đang mở
+    (rỗng nếu không có). Trả ["x = 2", "25", ...]. Dùng để soi câu trả lời ở MỌI chế độ: học sinh có thể dán / gõ
+    đề bài còn hạn theo bất kỳ cách nào (vd "x bình phương trừ 5x cộng 6 bằng 0") mà so đề không nhận ra; nghiệm
+    lộ ra trong câu trả lời thì vẫn bắt được. Nghiệm trùng với bài đang mở không chặn được (không phân biệt được) —
+    giới hạn đã biết. Chỉ tính toán, không tác động ra ngoài.
+    """
+    def roots(answers):
+        out = set()
+        for a in answers or []:
+            if isinstance(a, str) and a.strip():
+                out |= _leak_values(_leak_normalize(a).strip(), roots_only=True)
+        return out
+
+    def scalars(answers):
+        return {_leak_fraction(a.strip()) for a in answers or []
+                if isinstance(a, str) and re.fullmatch(_LEAK_NUMBER, _leak_normalize(a).strip())}
+
+    own_roots, own_scalars = roots(own_finals), scalars(own_finals)
+    out = set()
+    for answers in other_finals or []:
+        out |= {"x = %s" % r for r in roots(answers) - own_roots}
+        out |= {str(s) for s in scalars(answers) - own_scalars}
+    return sorted(out)

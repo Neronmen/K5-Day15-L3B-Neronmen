@@ -36,6 +36,10 @@ CORE_DIR = Path(os.environ.get("TUTOR_CORE_DIR") or _default_core_dir())
 SEARCH_K = 3          # số đoạn theo câu hỏi (như search_lesson mặc định trong agent.py)
 TASK_K = 2            # số đoạn theo đề bài, thay cho lesson_codes mà bài tập trong DB không có
 RETRY_HINT = "\nLẦN TRƯỚC BẠN ĐÃ LỘ ĐÁP ÁN. Chỉ gợi ý, không nêu kết quả."   # giống bước 7 của codebase/agent.py
+RETRY_OTHER = ("\nLẦN TRƯỚC BẠN ĐÃ NÊU KẾT QUẢ CỦA MỘT BÀI KHÁC ĐANG CÒN HẠN NỘP (học sinh đưa đề đó vào tin nhắn). "
+               "Chỉ giải đúng ĐỀ BÀI ở trên; với đề khác chỉ nói đó là bài còn hạn và gợi ý bước đầu, không nêu kết quả.")
+SAFE_TEXT = ("Câu này có liên quan tới một bài tập đang còn hạn nộp, nên mình chưa đưa kết quả được. "
+             "Em mở bài tập đó và gửi bước em đang làm, mình sẽ chỉ ra chỗ cần xem lại nhé.")
 _DECISION = re.compile(r"^\s*\[QUYET_DINH:\s*([A-Z_]+)\s*\]\s*\n?")
 _core = None
 
@@ -88,6 +92,17 @@ def final_answers(reference_answer: str | None) -> list[str]:
     return out
 
 
+def guard_finals(open_reference_answers: list, own_reference_answer: str | None) -> list[str]:
+    """Đáp án của các bài CÒN HẠN khác (trừ phần trùng đáp án bài đang mở) để soi câu trả lời ở mọi chế độ —
+    chốt chặn cuối khi học sinh đưa đề bài còn hạn theo cách mà so đề không nhận ra (vd viết bằng chữ)."""
+    return _load()["tools"].leak_targets([final_answers(r) for r in open_reference_answers if r],
+                                         final_answers(own_reference_answer))
+
+
+def leaks(text: str, guard: list[str]) -> bool:
+    return bool(guard) and _load()["tools"].check_leak(text, guard)["leaked"]
+
+
 def open_matches(question: str, open_assignments: list[dict]) -> list[dict]:
     """Bài CÒN HẠN (mỗi dict có "question") mà đề trùng phương trình học sinh gửi — so bằng lõi (tools.same_problem):
     nhận ra phương trình tương đương (đổi vế, nhân hệ số, x², LaTeX). Không chứa phương trình nào → []."""
@@ -110,9 +125,10 @@ def _passages(db, cls) -> tuple[list[dict], dict]:
 
 
 def answer(db, *, cls, mode: str, title: str, prompt: str, reference_answer: str | None,
-           question: str, history: list[dict], notice: str | None = None) -> dict:
+           question: str, history: list[dict], notice: str | None = None, guard: list[str] | None = None) -> dict:
     """Bước 4–7 của codebase/agent.py trên dữ liệu DB. Trả {"text" (đã bỏ dòng nhãn, thẻ nguồn theo nhãn app),
-    "decision", "citations" (dạng app), "notes"}. `notice`: ghi chú của HỆ THỐNG (không phải học sinh) đặt trước tin nhắn."""
+    "decision", "citations" (dạng app), "notes"}. `notice`: ghi chú của HỆ THỐNG (không phải học sinh) đặt trước tin nhắn.
+    `guard`: đáp án các bài còn hạn khác (guard_finals): câu trả lời chứa chúng → sinh lại 1 lần, vẫn lộ → SAFE_HINT."""
     core = _load()
     tools, prompts, agent = core["tools"], core["prompts"], core["agent"]
     notes = []
@@ -147,6 +163,14 @@ def answer(db, *, cls, mode: str, title: str, prompt: str, reference_answer: str
             if tools.check_leak(reply, finals)["leaked"]:
                 notes.append("vẫn lộ ở lần 2 → trả câu cố định")
                 reply = agent.SAFE_HINT
+    if guard and tools.check_leak(reply, guard)["leaked"]:
+        notes.append("lộ đáp án của bài khác còn hạn → sinh lại")
+        retry = llm.complete(llm.Task.CHAT, system + RETRY_OTHER, messages, max_tokens=1024)
+        reply = tools.citations(retry, chunks)["reply"]
+        own = final_answers(reference_answer) if mode == "hint" else []
+        if tools.check_leak(reply, guard + own)["leaked"]:
+            notes.append("vẫn lộ đáp án bài khác ở lần 2 → trả câu cố định")
+            reply = agent.SAFE_HINT
 
     m = _DECISION.match(reply)
     decision = m.group(1) if m else None
