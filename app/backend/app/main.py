@@ -5,7 +5,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.core.config import settings
-from app.routers import assistant, auth, files, notifications, student, teacher
+from app.routers import assistant, auth, chat_insights, files, notifications, student, teacher
 
 if settings.sentry_dsn:
     import sentry_sdk  # pip install sentry-sdk
@@ -47,3 +47,4 @@ app.include_router(assistant.router)
 app.include_router(student.router)
 app.include_router(files.router)
 app.include_router(notifications.router)
+app.include_router(chat_insights.router)

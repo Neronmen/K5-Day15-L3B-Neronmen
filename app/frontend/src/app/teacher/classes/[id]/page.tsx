@@ -7,6 +7,7 @@ import { Copy, FileText, MapPin, Paperclip, Plus, RefreshCw, Trash2, Upload } fr
 
 import { AnnouncementForm } from "@/components/AnnouncementForm";
 import { AnnouncementList } from "@/components/AnnouncementList";
+import { ChatInsights } from "@/components/ChatInsights";
 import {
   Avatar, Banner, Button, Card, CardHeader, Empty, ErrorText, Field, Input, LinkButton, Loading, ModeLabel, PageHeader, Pill,
   Select, Textarea, cn,
@@ -14,7 +15,7 @@ import {
 import { api } from "@/lib/api";
 import { fmtDate, initials, isPast } from "@/lib/format";
 import { WEEKDAYS } from "@/lib/schedule";
-import type { AddStudentsOut, Announcement, ChatLog, ClassDetail, DocumentOut } from "@/lib/types";
+import type { AddStudentsOut, Announcement, ClassDetail, DocumentOut } from "@/lib/types";
 import { useLoad } from "@/lib/useLoad";
 
 type Tab = "students" | "documents" | "assignments" | "chats" | "announcements" | "schedule";
@@ -44,7 +45,14 @@ export default function ClassPage() {
 
   return (
     <>
-      <PageHeader eyebrow={c.subject} title={c.name}>
+      <PageHeader
+        eyebrow={
+          <Link href="/teacher" className="normal-case tracking-normal hover:underline">
+            ← Các lớp · {c.subject}
+          </Link>
+        }
+        title={c.name}
+      >
         <ModeLabel mode={c.ai_mode} />
       </PageHeader>
       <ClassCode code={c.class_code} />
@@ -80,7 +88,7 @@ export default function ClassPage() {
       {tab === "students" && <StudentsTab classId={c.id} data={data} reload={reload} />}
       {tab === "documents" && <DocumentsTab classId={c.id} docs={data.documents} reload={reload} />}
       {tab === "assignments" && <AssignmentsTab classId={c.id} data={data} />}
-      {tab === "chats" && <ChatsTab classId={c.id} />}
+      {tab === "chats" && <ChatInsights classId={c.id} />}
       {tab === "announcements" && <AnnouncementsTab classId={c.id} data={data} reload={reload} />}
       {tab === "schedule" && <ScheduleTab classId={c.id} data={data} reload={reload} />}
     </>
@@ -363,48 +371,6 @@ function DocumentsTab({ classId, docs, reload }: { classId: string; docs: Docume
         )}
       </Card>
     </div>
-  );
-}
-
-const FLAG_LABEL: Record<string, string> = { jailbreak: "Cố bẻ khoá AI", impersonation: "Tự nhận là giáo viên", ask_answer: "Xin đáp án khi còn hạn" };
-
-function ChatsTab({ classId }: { classId: string }) {
-  const [flagged, setFlagged] = useState(false);
-  const { data, error } = useLoad<ChatLog[]>(`/teacher/classes/${classId}/chats${flagged ? "?flagged_only=true" : ""}`);
-
-  return (
-    <Card>
-      <CardHeader title="Học sinh đã hỏi AI những gì">
-        <label className="flex items-center gap-2 text-sm">
-          <input type="checkbox" className="accent-accent" checked={flagged} onChange={(e) => setFlagged(e.target.checked)} />
-          Chỉ tin nhắn bị gắn cờ
-        </label>
-      </CardHeader>
-      <ErrorText error={error} />
-      {!data ? (
-        <Loading />
-      ) : data.length === 0 ? (
-        <Empty>{flagged ? "Không có tin nhắn nào bị gắn cờ." : "Học sinh chưa hỏi AI."}</Empty>
-      ) : (
-        <div className="flex flex-col">
-          {data.map((m) => (
-            <div key={m.id} className="flex flex-col gap-1 border-b border-line py-3 last:border-0">
-              <div className="flex flex-wrap items-center gap-2 text-xs text-muted">
-                <b className="text-sm text-ink">{m.role === "user" ? m.student_name : `AI trả lời ${m.student_name}`}</b>
-                <span>· {m.context}</span>
-                <span>· {fmtDate(m.created_at)}</span>
-                {m.mode === "hint" && <Pill tone="warn">Gợi ý</Pill>}
-                {m.mode === "answer" && <Pill tone="ok">Đáp án</Pill>}
-                {m.flagged && <Pill tone="bad">{FLAG_LABEL[m.flagged] ?? m.flagged}</Pill>}
-              </div>
-              <p className={cn("whitespace-pre-wrap break-words text-sm", m.role === "assistant" && "text-muted")}>
-                {m.content.length > 600 ? m.content.slice(0, 600) + "…" : m.content}
-              </p>
-            </div>
-          ))}
-        </div>
-      )}
-    </Card>
   );
 }
 

@@ -76,7 +76,7 @@ export function NotificationBell() {
               const d = describe(n);
               const body = (
                 <>
-                  <span className="block text-sm">{d.text}</span>
+                  <span className="block break-words text-sm [overflow-wrap:anywhere]">{d.text}</span>
                   <span className="text-xs text-faint">{fmtDate(n.created_at)}</span>
                 </>
               );
